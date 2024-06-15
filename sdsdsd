@@ -2707,9 +2707,15 @@ Create('Power!',function()
 end)
 
 Create('save!',function()
-Pos = "Fly"
-spininginmyhead = true
-blocking = false
+    Pos = "Fly"
+    spininginmyhead = true
+    blocking = false
+    end)
+
+Create('unsave!',function()
+        Pos = "Fly"
+        spininginmyhead = false
+        blocking = false
 end)
 
 Create('at!',function()
@@ -5432,7 +5438,7 @@ rs.Heartbeat:connect(function()
         Stop()
         blocking = false
         noclip = false
-        getRoot(STAND).CFrame = CFrame.new(getTorso(OWNER).Position)*CFrame.new(math.random(-2,3),4,math.random(-2,3))* CFrame.Angles(math.rad(math.random(0, 360)), math.rad(math.random(0, 360)), math.rad(math.random(0, 360)))
+        getRoot(STAND).CFrame = CFrame.new(getTorso(OWNER).Position)*CFrame.new(math.random(-3,4),4,math.random(-3,4))* CFrame.Angles(math.rad(math.random(0, 360)), math.rad(math.random(0, 360)), math.rad(math.random(0, 360)))
         game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(1000,0,1000)
     elseif spininginmyhead == true and KO(OWNER).Value == false then
         if antis2 == true and KO(TARGET).Value == true then
