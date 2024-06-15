@@ -5432,7 +5432,7 @@ rs.Heartbeat:connect(function()
         Stop()
         blocking = false
         noclip = false
-        getRoot(STAND).CFrame = CFrame.new(getTorso(OWNER).Position)*CFrame.new(math.random(-10,10),4,math.random(-10,10))* CFrame.Angles(math.rad(math.random(0, 360)), math.rad(math.random(0, 360)), math.rad(math.random(0, 360)))
+        getRoot(STAND).CFrame = CFrame.new(getTorso(OWNER).Position)*CFrame.new(math.random(-5,5),4,math.random(-5,5))* CFrame.Angles(math.rad(math.random(0, 360)), math.rad(math.random(0, 360)), math.rad(math.random(0, 360)))
         game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(1000,0,100)
     elseif spininginmyhead == true and KO(OWNER).Value == false then
         if antis2 == true and KO(TARGET).Value == true then
