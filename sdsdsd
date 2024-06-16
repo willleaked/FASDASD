@@ -5398,7 +5398,7 @@ rs.Heartbeat:connect(function()
         noclip = false
         --getRoot(STAND).CFrame = CFrame.new(getTorso(OWNER).Position)*CFrame.new(math.random(-1,0), math.random(-1,1), math.random(-1,0))* CFrame.Angles(math.pi*0.5,0,0)
         getRoot(STAND).CFrame = CFrame.new(getTorso(OWNER).Position)*CFrame.new(0,0,0)* CFrame.Angles(math.pi*0.5,0,0)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(10,110,10)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(80,110,80)
     elseif blockantis == true and KO(OWNER).Value == false then
         if antis2 == true and KO(TARGET).Value == true then
         else
