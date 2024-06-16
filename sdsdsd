@@ -2707,6 +2707,7 @@ Create('Power!',function()
 end)
 
 Create('save!',function()
+    game.ReplicatedStorage.MainEvent:FireServer("LeaveCrew")
     Pos = "Fly"
     spininginmyhead = true
     blocking = false
