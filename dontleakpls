@@ -3109,189 +3109,6 @@ end)
         end
     end)
     
-    Create('control!',function()
-        --control
-    
-    if getgenv().GrabWatcher then
-        getgenv().GrabWatcher:Disconnect()
-        getgenv().GrabWatcher = nil
-        wait()
-    end
-    
-    local LocalPlayer = game.Players.LocalPlayer
-    local Character = LocalPlayer.Character
-    
-    local BodyEffects = Character.BodyEffects
-    
-    local Mouse = LocalPlayer:GetMouse()
-    
-    local workPlayers = workspace.Players
-    
-    local LiveConnections = {}
-    
-    local function Align(P0, P1, Offset)
-        return game:GetService("RunService").Heartbeat:Connect(function()
-            P0.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
-            P0.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
-            P0.CFrame = P1.CFrame * (Offset or CFrame.new())
-        end)
-    end
-    
-    local function InsertOn(Table, Value)
-        if type(Table) == "table" and Value then
-            Table[#Table + 1] = Value
-        end
-    end
-    
-    local function Loop(Name, Callback)
-        if game:GetService("RunService")[Name] then
-            local CurrentLoop
-            CurrentLoop = game:GetService("RunService")[Name]:Connect(function()
-                local Result, Output = pcall(Callback)
-                
-                if not Result then
-                    CurrentLoop:Disconnect()
-                    warn(Output)
-                end
-            end)
-            
-            return CurrentLoop
-        end
-    end
-    
-    local function CloneCharacter(OldCharacter)
-        Character.Archivable = true
-        
-        local newClone = Character:Clone()
-        newClone.Humanoid.RootPart.Anchored = false
-        newClone.RagdollConstraints:Destroy()
-        newClone.Humanoid.RootPart.CFrame = OldCharacter.Humanoid.RootPart.CFrame * CFrame.new(0, 12, 0)
-        
-        newClone.Humanoid.WalkSpeed = OldCharacter.Humanoid.WalkSpeed
-        
-        newClone.Humanoid:ChangeState("GettingUp")
-        
-        for _, Class in pairs(newClone:GetDescendants()) do
-            if Class:IsA("BasePart") then
-                Class.Massless = false
-                Class.Transparency = 1
-            end
-    
-            if Class:IsA("NumberValue") and Character.Humanoid:FindFirstChild(Class.Name) then
-                Class:Destroy()
-                OldCharacter.Humanoid[Class.Name]:Clone().Parent = newClone.Humanoid
-            end
-            
-            if Class:IsA("Decal") then
-                Class.Transparency = 1
-            end
-        end
-    
-        newClone.Parent = Character
-    
-        newClone.Animate:Destroy()
-        OldCharacter.Animate:Clone().Parent = newClone
-        newClone.Animate.Disabled = false
-        
-        OldCharacter.Archivable = false
-        
-        return newClone
-    end
-    
-    local function onGrab()
-        if BodyEffects.Grabbed.Value then
-            wait()
-            local GrabbedCharacter = BodyEffects.Grabbed.Value
-            local GrabConstraint = GrabbedCharacter:WaitForChild("GRABBING_CONSTRAINT")
-            
-            if not GrabConstraint then return end
-            
-            local RopeGrab = GrabConstraint:FindFirstChildOfClass("RopeConstraint")
-            RopeGrab.Length = 1/0
-            
-            local Origin
-            
-            Character.Humanoid.RootPart.CFrame = Character.Humanoid.RootPart.CFrame * CFrame.new(0, -25, 0)
-            
-            local PlayerClone = CloneCharacter(GrabbedCharacter)
-            
-            workspace.CurrentCamera.CameraSubject = PlayerClone
-            
-            local RayParams = RaycastParams.new()
-            RayParams.FilterDescendantsInstances = {Character, GrabbedCharacter}
-            RayParams.IgnoreWater = true
-            
-            InsertOn(LiveConnections, Loop("Heartbeat", function()
-                local RootPartPosition = PlayerClone.Humanoid.RootPart.CFrame.Position
-                local RaycastResult = workspace:Raycast(RootPartPosition, RootPartPosition - Vector3.new(0, 9e9, 0), RayParams)
-                
-                local Position = Vector3.new()
-                
-                if RaycastResult and RaycastResult.Instance ~= nil then
-                    Position = RaycastResult.Position - Vector3.new(0, PlayerClone.Humanoid.RootPart.Size.Y * 5, 0)
-                end
-                
-                Character.Humanoid.RootPart.CFrame = CFrame.new(Vector3.new(Position.X, -Position.Y, Position.Z)) * CFrame.Angles(math.rad(90), 0, 0)
-            end))
-            
-            InsertOn(LiveConnections, Loop("Stepped", function()
-                PlayerClone.Humanoid.Jump = Character.Humanoid.Jump
-                PlayerClone.Humanoid:Move(Character.Humanoid.MoveDirection, false)
-                
-                for _, Class in pairs(GrabbedCharacter:GetDescendants()) do
-                    if Class:IsA("BasePart") then
-                        Class.CanCollide = false
-                    end
-                end
-            end))
-            
-            for _, Class in pairs(PlayerClone:GetChildren()) do
-                if Class:IsA("BasePart") and GrabbedCharacter:FindFirstChild(Class.Name) and Class.Name ~= "Head" and Class.Name ~= RopeGrab.Attachment1.Parent then
-                    InsertOn(LiveConnections, 
-                        Align(
-                            GrabbedCharacter:FindFirstChild(Class.Name), 
-                            Class, 
-                            CFrame.new(0, 0, 0)
-                        )
-                    )
-                end
-            end
-            
-            local function Stop()
-                for _ = 1, 10 do
-                    game:GetService("RunService").RenderStepped:Wait()
-                    Character.Humanoid.RootPart.CFrame = CFrame.new(PlayerClone.PrimaryPart.CFrame.Position) * CFrame.new(0, 5, 0)
-                    Character.Humanoid.RootPart.Velocity = Vector3.zero
-                end
-                
-                PlayerClone:Destroy()
-                
-                workspace.CurrentCamera.CameraSubject = Character
-                
-                for _, Connection in pairs(LiveConnections) do
-                    Connection:Disconnect()
-                end
-            end
-            
-            local Ungrabbed
-            
-            Ungrabbed = BodyEffects.Grabbed.Changed:Connect(function()
-                if BodyEffects.Grabbed.Value == nil then
-                    Stop()
-                    Ungrabbed:Disconnect()
-                end
-            end)
-        end
-    end
-    
-    getgenv().GrabWatcher = BodyEffects.Grabbed:GetPropertyChangedSignal("Value"):Connect(onGrab)
-    Stop()
-    wait(.1)
-    getRoot(STAND).CFrame = CFrame.new(getTorso(OWNER).Position)*CFrame.new(0,3,0)
-    wait(.2)
-    game.ReplicatedStorage.MainEvent:FireServer("Grabbing",true)
-        end)
-    
     Create('save!',function()
         spininginmyhead = true
         end)
@@ -5616,7 +5433,6 @@ end)
             Stop()
             if STAND.Backpack:FindFirstChild("[LMG]") then
                 STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character
-                GripPos(7)
             end
             blocking = false
             noclip = true
@@ -5919,13 +5735,6 @@ end)
             if TARGET then
                 if KO(TARGET).Value == false then
                     Strafe = true
-                    if STAND.Character:FindFirstChildWhichIsA("Tool") then
-                        if STAND.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo") then
-                            if STAND.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo").Value <= 0 then
-                                game:GetService("ReplicatedStorage").MainEvent:FireServer("Reload",STAND.Character:FindFirstChildWhichIsA("Tool")) 
-                            end
-                        end
-                    end
                     STAND.Character:FindFirstChild('[LMG]'):Activate()
                 end
             else
@@ -6385,13 +6194,6 @@ end)
                 getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,5,0)
             end
             MainEvent:FireServer("Block",false)
-            if STAND.Character:FindFirstChildWhichIsA("Tool") then
-                if STAND.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo") then
-                    if STAND.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo").Value <= 0 then
-                        game:GetService("ReplicatedStorage").MainEvent:FireServer("Reload",STAND.Character:FindFirstChildWhichIsA("Tool")) 
-                    end
-                end
-            end 
             if gunKills then
                 if STAND.Backpack:FindFirstChild("[LMG]") then
                     STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character
@@ -6490,13 +6292,6 @@ end)
             STAND.Character:FindFirstChild('Head').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Velocity*Prediction)*CFrame.Angles(0,5*math.pi*delta,0)* CFrame.new(0,-8,11)+ getRoot(TARGET).Position 
             MainEvent:FireServer("Block",false)
-            if STAND.Character:FindFirstChildWhichIsA("Tool") then
-                if STAND.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo") then
-                    if STAND.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo").Value <= 0 then
-                        game:GetService("ReplicatedStorage").MainEvent:FireServer("Reload",STAND.Character:FindFirstChildWhichIsA("Tool")) 
-                    end
-                end
-            end
             STAND.Character:FindFirstChild('[LMG]'):Activate()
         else
             if gunArrest == true and KO(TARGET).Value == true then
@@ -6697,13 +6492,6 @@ end)
                     getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,0,3)
                 end
                 MainEvent:FireServer("Block",false)
-                if STAND.Character:FindFirstChildWhichIsA("Tool") then
-                    if STAND.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo") then
-                        if STAND.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo").Value <= 0 then
-                            game:GetService("ReplicatedStorage").MainEvent:FireServer("Reload",STAND.Character:FindFirstChildWhichIsA("Tool")) 
-                        end
-                    end
-                end
                 STAND.Character:FindFirstChild('[LMG]'):Activate()
             end
         elseif GunKnocknotp == true and KO(TARGET).Value == true then
@@ -6730,17 +6518,10 @@ end)
             STAND.Character:FindFirstChild('RightFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('LeftFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('Head').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
-            getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Velocity*Prediction)*CFrame.Angles(0,5*math.pi*delta,0)* CFrame.new(0,-8,7)+ getRoot(TARGET).Position 
+            getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,0,0) + (getHumanoid(TARGET).MoveDirection*0.4*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,10*math.pi*delta,0)*CFrame.new(0,0,20)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
             
     
             MainEvent:FireServer("Block",false)
-            if STAND.Character:FindFirstChildWhichIsA("Tool") then
-                if STAND.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo") then
-                    if STAND.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo").Value <= 0 then
-                        game:GetService("ReplicatedStorage").MainEvent:FireServer("Reload",STAND.Character:FindFirstChildWhichIsA("Tool")) 
-                    end
-                end
-            end
             STAND.Character:FindFirstChild('[LMG]'):Activate()
         elseif GunKnock == true and KO(TARGET).Value == true then
             Stop()
@@ -6767,13 +6548,6 @@ end)
             STAND.Character:FindFirstChild('Head').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Velocity*Prediction)*CFrame.Angles(0,5*math.pi*delta,0)* CFrame.new(0,-8,7)+ getRoot(TARGET).Position 
             MainEvent:FireServer("Block",false)
-            if STAND.Character:FindFirstChildWhichIsA("Tool") then
-                if STAND.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo") then
-                    if STAND.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo").Value <= 0 then
-                        game:GetService("ReplicatedStorage").MainEvent:FireServer("Reload",STAND.Character:FindFirstChildWhichIsA("Tool")) 
-                    end
-                end
-            end
             STAND.Character:FindFirstChild('[LMG]'):Activate()
         elseif Gunbring == true and KO(TARGET).Value == true then
             Stop()
@@ -6810,13 +6584,6 @@ end)
             getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Velocity*Prediction)*CFrame.Angles(0,5*math.pi*delta,0)* CFrame.new(0,-8,7)+ getRoot(TARGET).Position 
     
             MainEvent:FireServer("Block",false)
-            if STAND.Character:FindFirstChildWhichIsA("Tool") then
-                if STAND.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo") then
-                    if STAND.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo").Value <= 0 then
-                        game:GetService("ReplicatedStorage").MainEvent:FireServer("Reload",STAND.Character:FindFirstChildWhichIsA("Tool")) 
-                    end
-                end
-            end 
             STAND.Character:FindFirstChild('[LMG]'):Activate()
         elseif GunStomp == true and KO(TARGET).Value == true then
             getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,3,0)
