@@ -34,7 +34,7 @@ function animstopedvv2(ID, SPEED)
 end
 
 function Moved()
-if SIGMA.Character:WaitForChild("Humanoid").MoveDirection.magnitude > 0 then
+if OWNER.Character:WaitForChild("Humanoid").MoveDirection.magnitude > 0 then
     local Char = game.Players.LocalPlayer.Character
     local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
     
@@ -62,4 +62,4 @@ end
 if _G.ASs then
     _G.ASs:Disconnect()
 end
-_G.ASs = SIGMA.Character:WaitForChild("Humanoid"):GetPropertyChangedSignal("MoveDirection"):Connect(Moved)
+_G.ASs = OWNER.Character:WaitForChild("Humanoid"):GetPropertyChangedSignal("MoveDirection"):Connect(Moved)
