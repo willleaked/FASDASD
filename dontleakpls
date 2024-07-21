@@ -6814,57 +6814,57 @@ end)
         end
     end)
     
-    game:GetService("RunService").Heartbeat:Connect(function()
-        if boddyfly == true then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
-        end
-    end)
-
-
-    
-    function BodyVel()
-        boddyfly = true
-    end
-
-
-    function DBodyVel()
-        boddyfly = false
-    end
     rs.heartbeat:connect(function()
         if follow == true and Pos == "Right" then
-            MoveTo(2,2,2.5)
-        elseif follow == true and Pos == "Left" then
-            game.Players.LocalPlayer.Character.Humanoid:MoveTo(OWNER.Character.HumanoidRootPart.CFrame.Position+Vector3.new(-5,0,6))
-            if OWNER.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air then
-                print("OWNER JUMPING")
-                wait(.1)
-                game.Players.LocalPlayer.Character.Humanoid.Jump = true
-                end
-                if (STAND.Character.HumanoidRootPart.Position - OWNER.Character.HumanoidRootPart.Position).Magnitude > 40 then
-                    local gyat = game:GetService("TweenService"):Create(STAND.Character.HumanoidRootPart, TweenInfo.new(.5), {CFrame = OWNER.Character.HumanoidRootPart.CFrame*CFrame.new(-6,10,1)})
-                    gyat:Play()
-                    BodyVel()
-                else
-                    DBodyVel()
-                end
-        elseif follow == true and Pos == "Back" then
-            game.Players.LocalPlayer.Character.Humanoid:MoveTo(OWNER.Character.HumanoidRootPart.CFrame.Position+Vector3.new(0,0,6))
+            game.Players.LocalPlayer.Character.Humanoid:MoveTo(OWNER.Character.HumanoidRootPart.CFrame.Position+Vector3.new(3,0,4))
             if OWNER.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air then
             print("OWNER JUMPING")
             wait(.1)
             game.Players.LocalPlayer.Character.Humanoid.Jump = true
             end
             if (STAND.Character.HumanoidRootPart.Position - OWNER.Character.HumanoidRootPart.Position).Magnitude > 40 then
-                local gyat = game:GetService("TweenService"):Create(STAND.Character.HumanoidRootPart, TweenInfo.new(.5), {CFrame = OWNER.Character.HumanoidRootPart.CFrame*CFrame.new(6,10,1)})
-                gyat:Play()
-                BodyVel()
-            else
-                DBodyVel()
+                getRoot(STAND).CFrame = CFrame.new(getTorso(OWNER).Position)*CFrame.new(0,0,3)  
+            end
+        elseif follow == true and Pos == "Left" then
+            game.Players.LocalPlayer.Character.Humanoid:MoveTo(OWNER.Character.HumanoidRootPart.CFrame.Position+Vector3.new(3,0,4))
+            if OWNER.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air then
+            print("OWNER JUMPING")
+            wait(.1)
+            game.Players.LocalPlayer.Character.Humanoid.Jump = true
+            end
+            if (STAND.Character.HumanoidRootPart.Position - OWNER.Character.HumanoidRootPart.Position).Magnitude > 40 then
+                getRoot(STAND).CFrame = CFrame.new(getTorso(OWNER).Position)*CFrame.new(0,0,3)  
+            end
+        elseif follow == true and Pos == "Back" then
+            game.Players.LocalPlayer.Character.Humanoid:MoveTo(OWNER.Character.HumanoidRootPart.CFrame.Position+Vector3.new(3,0,4))
+            if OWNER.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air then
+            print("OWNER JUMPING")
+            wait(.1)
+            game.Players.LocalPlayer.Character.Humanoid.Jump = true
+            end
+            if (STAND.Character.HumanoidRootPart.Position - OWNER.Character.HumanoidRootPart.Position).Magnitude > 40 then
+                getRoot(STAND).CFrame = CFrame.new(getTorso(OWNER).Position)*CFrame.new(0,0,3)  
             end
         elseif follow == true and Pos == "Under" then
-            MoveTo(0,5,0)
+            game.Players.LocalPlayer.Character.Humanoid:MoveTo(OWNER.Character.HumanoidRootPart.CFrame.Position+Vector3.new(5,0,5))
+            if OWNER.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air then
+            print("OWNER JUMPING")
+            wait(.1)
+            game.Players.LocalPlayer.Character.Humanoid.Jump = true
+            end
+            if (STAND.Character.HumanoidRootPart.Position - OWNER.Character.HumanoidRootPart.Position).Magnitude > 40 then
+                getRoot(STAND).CFrame = CFrame.new(getTorso(OWNER).Position)*CFrame.new(0,0,3)  
+            end
         elseif follow == true and Pos == "Under2" then
-            MoveTo(0,-10,0)
+            game.Players.LocalPlayer.Character.Humanoid:MoveTo(OWNER.Character.HumanoidRootPart.CFrame.Position+Vector3.new(5,0,5))
+            if OWNER.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air then
+            print("OWNER JUMPING")
+            wait(.1)
+            game.Players.LocalPlayer.Character.Humanoid.Jump = true
+            end
+            if (STAND.Character.HumanoidRootPart.Position - OWNER.Character.HumanoidRootPart.Position).Magnitude > 40 then
+                getRoot(STAND).CFrame = CFrame.new(getTorso(OWNER).Position)*CFrame.new(0,0,3)  
+            end
         elseif follow == true and Pos == "Fly" then
             local RanX = math.random(-1000,1000)
             local RanZ = math.random(-1000,1000)
