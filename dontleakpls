@@ -215,7 +215,7 @@ function Stand(targetName)
         ['Position'] = 'Back', --Position Of Stand [Back | Left | Right]
         ['CrewID'] = 32570691, --Must Be In Group For It To Work
         ['Attack'] = 'Heavy', --Heavy = Super Punch Light = Spam Punch [Heavy | Light]
-        ['StandMode'] = 'D4C', --[Star Platinum : OverHeaven | Star Platinum: The World | Star Platinum, Za Warudo! | TheWorld | Cmoon | King Crimson | Killer Queen | MIH | D4C]
+        ['StandMode'] = 'MIH', --[Star Platinum : OverHeaven | Star Platinum: The World | Star Platinum, Za Warudo! | TheWorld | Cmoon | King Crimson | Killer Queen | MIH | D4C]
         ['FlyMode'] = 'Hover', --[Glide | Fly | Hover | Heaven]| gogo]
         ['Prediction'] = 0.4, --Prediction For Attack Or Targetting
         ['GunPrediction'] =  0.3, --Prediction For Gun Kill
@@ -1357,6 +1357,8 @@ function Stand(targetName)
             play(8769131644,true,true)
         elseif SummonMusic == true and StandMode == 'Killer Queen' then
             play(5818138638,true,true)
+        elseif StandMode == 'Custom' then
+            Play(getgenv().ID)
         end
     end
     
@@ -2512,8 +2514,9 @@ function Stand(targetName)
         game.Players.LocalPlayer.Character.Animate.fall.FallAnim.AnimationId = "rbxassetid://1";
         game.Players.LocalPlayer.Character.Animate.climb.ClimbAnim.AnimationId = "rbxassetid://1";
     end)
-    
-    Create('noaim!',function()
+
+
+    Create('noanim!',function()
     
         for _, v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
             v:Stop();
@@ -2530,6 +2533,30 @@ function Stand(targetName)
         game.Players.LocalPlayer.Character.Animate.jump.JumpAnim.AnimationId = "rbxassetid://1";
         game.Players.LocalPlayer.Character.Animate.fall.FallAnim.AnimationId = "rbxassetid://1";
         game.Players.LocalPlayer.Character.Animate.climb.ClimbAnim.AnimationId = "rbxassetid://1";
+    end)
+    
+    Create('anim!',function()
+        signKills = false
+        gunKills = false
+        Kills = false
+        pitchKillsnostomp = false
+        resolve = false
+        antilock = false
+        Annoy = false
+        Stop()
+        task.wait(1)
+        for _,v in ipairs(game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do v:Stop() end
+        task.wait(.5)
+        local Animate = game.Players.LocalPlayer.Character.Animate
+        Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=18537376492"
+        Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=18537371272"
+        Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=18537392113"
+        Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=18537384940"
+        Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=18537380791"
+        Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=18537363391"
+        Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=18537367238"
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 10, 0)
+
     end)
     
     Create('Re!',function()
