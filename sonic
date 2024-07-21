@@ -1,0 +1,65 @@
+local SIGMA = game.Players.LocalPlayer
+
+function animplaying(ID, SPEED, Time, Smoothing)
+    for i,v in pairs(game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do if (v.Animation.AnimationId:match("rbxassetid://"..ID)) then v:Stop() end end
+    local animation = Instance.new('Animation', game:GetService("Workspace"))
+    animation.AnimationId = 'rbxassetid://'..ID
+    playing = game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(animation)
+    playing.Priority = Enum.AnimationPriority.Action;
+    if tonumber(Smoothing) then
+        playing:Play(Smoothing) 
+    else
+        playing:Play() 
+    end
+    if tonumber(SPEED) then
+        playing:AdjustSpeed(SPEED)
+    else
+        playing:AdjustSpeed(1)
+    end
+    if tonumber(Time) then
+        playing.TimePosition = Time
+    end
+    animation:Destroy()
+end	
+function animstopedvv2(ID, SPEED)
+    for i,v in pairs(game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do
+        if (v.Animation.AnimationId:match("rbxassetid://"..ID)) then
+            if tonumber(SPEED) then
+                v:Stop(SPEED)
+            else
+                v:Stop()
+            end
+        end 
+    end
+end
+
+function Moved()
+if SIGMA.Character:WaitForChild("Humanoid").MoveDirection.magnitude > 0 then
+    local Char = game.Players.LocalPlayer.Character
+    local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
+    
+    for i,v in next, Hum:GetPlayingAnimationTracks() do
+        if not (v.Animation.AnimationId:match("rbxassetid://18537367238")) then
+        v:Stop()
+        end
+    end
+    SIGMA.Character.Animate.Enabled = false
+    for _, v in next, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks() do
+        if (v.Animation.AnimationId:match("rbxassetid://18537367238")) then
+        else
+        animplaying(18537367238)
+        end
+    end
+else
+    local Char = game.Players.LocalPlayer.Character
+    local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
+    for i,v in next, Hum:GetPlayingAnimationTracks() do
+        v:Stop()
+    end
+    SIGMA.Character.Animate.Enabled = true
+end
+end
+if _G.ASs then
+    _G.ASs:Disconnect()
+end
+_G.ASs = SIGMA.Character:WaitForChild("Humanoid"):GetPropertyChangedSignal("MoveDirection"):Connect(Moved)
