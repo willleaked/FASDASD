@@ -6521,7 +6521,8 @@ end)
             noclip = false
         end
     end)
-
+    local Actual_Prediction = 0.4
+    local StrafeSpeed = 2
     rs.heartbeat:connect(function()
         if GunKnock == true and KO(TARGET).Value == false then
             StopHoverAnim = true
