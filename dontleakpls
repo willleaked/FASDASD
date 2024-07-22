@@ -7090,3 +7090,25 @@ end)
     end
     end
 end
+
+
+function reload()
+    while wait() do
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
+            if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo") then
+                if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo").Value <= 0 then
+                    game:GetService("ReplicatedStorage").MainEvent:FireServer("Reload", game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool")) 
+                    wait(1)
+                end
+            end
+        end
+    end
+end
+    
+reload()
+    if _G.autoreload then _G.autoreload:Disconnect() end
+    _G.autoreload = game.Players.LocalPlayer.CharacterAdded:connect(function()
+        game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
+        wait(0.5)
+        Anti()
+    end)
