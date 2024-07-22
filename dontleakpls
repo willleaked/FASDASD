@@ -263,7 +263,20 @@ function Stand(targetName)
             end
         end 
     
-    
+        function setspeed(MANY)
+            local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid;
+            Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+            Humanoid.WalkSpeed = _G.WS;
+            end)
+            Humanoid.WalkSpeed = _G.WS;
+                 wait(1)
+              _G.WS = (MANY);
+            local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid;
+            Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+            Humanoid.WalkSpeed = _G.WS;
+            end)
+            Humanoid.WalkSpeed = _G.WS;
+        end
     
     local part = Instance.new("Part")
     part.Size = Vector3.new(1, 2, 1)
@@ -480,7 +493,7 @@ function Stand(targetName)
     local MainEvent = game:GetService("ReplicatedStorage").MainEvent
     
     function Stop()
-        GunKnocknotp = false
+        gunwalking = false
         game.Players.LocalPlayer.Character.Humanoid.Jump = true
         game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
         StopHoverAnim = false
@@ -5398,7 +5411,7 @@ end)
             end
             noclip = false
             blocking = false
-            GunKnocknotp = true
+            gunwalking = true
             else
                 Stop()
                 repeat rs.Stepped:Wait()
@@ -5894,7 +5907,7 @@ end)
                 wait(1)
                 noclip = false
                 getHumanoid(STAND):UnequipTools()
-                if GunKnocknotp then
+                if gunwalking then
                     if STAND.Backpack:FindFirstChild("[LMG]") then
                         STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character
                     end
@@ -5949,7 +5962,7 @@ end)
                 wait(1)
                 noclip = false
                 getHumanoid(STAND):UnequipTools()
-                if GunKnocknotp then
+                if gunwalking then
                     if STAND.Backpack:FindFirstChild("[LMG]") then
                         STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character
                     end
@@ -6463,7 +6476,7 @@ end)
         end
         end)
     rs.heartbeat:connect(function()
-        if GunKnocknotp == true and KO(TARGET).Value == false then
+        if gunwalking == true and KO(TARGET).Value == false then
             if STAND.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed") then STAND.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed"):Destroy() end
             if STAND.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then STAND.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk"):Destroy() end
             if game.Players.LocalPlayer.Character:WaitForChild('BodyEffects')['Armor'].Value <= 30 then
@@ -6482,20 +6495,21 @@ end)
                 StopHoverAnim = true
                 noclip = false
                 Locking = true
-                game.Players.LocalPlayer.Character.Humanoid:MoveTo(TARGET.Character.HumanoidRootPart.CFrame.Position+Vector3.new(0,0,0))
+                game.Players.LocalPlayer.Character.Humanoid:MoveTo(TARGET.Character.HumanoidRootPart.CFrame.Position+Vector3.new(0,0,10))
                 if TARGET.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air then
                 print("OWNER JUMPING")
                 wait(.1)
                 game.Players.LocalPlayer.Character.Humanoid.Jump = true  
                 end
+                setspeed(16)
                 if (STAND.Character.HumanoidRootPart.Position - TARGET.Character.HumanoidRootPart.Position).Magnitude > 40 then
                     getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,0,3)
                 end
                 MainEvent:FireServer("Block",false)
                 STAND.Character:FindFirstChild('[LMG]'):Activate()
             end
-        elseif GunKnocknotp == true and KO(TARGET).Value == true then
-            GunKnocknotp = false
+        elseif gunwalking == true and KO(TARGET).Value == true then
+            gunwalking = false
             Stop()
             follow =  true
             Summon()
@@ -6518,7 +6532,7 @@ end)
             STAND.Character:FindFirstChild('RightFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('LeftFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('Head').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
-            getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,0,0) + (getHumanoid(TARGET).MoveDirection*0.4*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,10*math.pi*delta,0)*CFrame.new(0,0,20)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
+            getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,0,0) + (getHumanoid(TARGET).MoveDirection*Actual_Prediction*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,StrafeSpeed*math.pi*delta,0)*CFrame.new(0,0,20)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
             
     
             MainEvent:FireServer("Block",false)
@@ -6546,7 +6560,7 @@ end)
             STAND.Character:FindFirstChild('RightFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('LeftFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('Head').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
-            getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Velocity*Prediction)*CFrame.Angles(0,5*math.pi*delta,0)* CFrame.new(0,-8,7)+ getRoot(TARGET).Position 
+            getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,0,0) + (getHumanoid(TARGET).MoveDirection*Actual_Prediction*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,StrafeSpeed*math.pi*delta,0)*CFrame.new(0,0,20)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
             MainEvent:FireServer("Block",false)
             STAND.Character:FindFirstChild('[LMG]'):Activate()
         elseif Gunbring == true and KO(TARGET).Value == true then
@@ -6581,7 +6595,7 @@ end)
             STAND.Character:FindFirstChild('RightFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('LeftFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('Head').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
-            getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Velocity*Prediction)*CFrame.Angles(0,5*math.pi*delta,0)* CFrame.new(0,-8,7)+ getRoot(TARGET).Position 
+            getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,0,0) + (getHumanoid(TARGET).MoveDirection*Actual_Prediction*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,StrafeSpeed*math.pi*delta,0)*CFrame.new(0,0,20)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
     
             MainEvent:FireServer("Block",false)
             STAND.Character:FindFirstChild('[LMG]'):Activate()
