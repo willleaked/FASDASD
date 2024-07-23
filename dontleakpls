@@ -6783,17 +6783,32 @@ end)
     end
     rs.Stepped:connect(function()
         if blocking == true then
-            if game.Players.LocalPlayer.Character.BodyEffects:FindFirstChild('Block') then game.Players.LocalPlayer.Character.BodyEffects.Block:Destroy() end
-            GUN_CHECK = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool")
-            if GUN_CHECK then
-                if GUN_CHECK:FindFirstChild("GunScript") then
-                    game.ReplicatedStorage.MainEvent:FireServer("Block",false)
+            if getgenv().AUTO_BLOCK__ then
+            else
+            game.ReplicatedStorage.MainEvent:FireServer("ResetNew")game.Players.LocalPlayer.Character.Humanoid:ChangeState'Dead'
+            end
+            game:GetService("ReplicatedStorage").ClientAnimations.Block.AnimationId = "rbxassetid://0"
+            local OWNER = game:GetService("Players").LocalPlayer
+            local GUN_CHECK = nil
+            task.wait()
+            function Block()
+                game.ReplicatedStorage.MainEvent:FireServer("Block",true) wait()
+                game.ReplicatedStorage.MainEvent:FireServer("Block",false)
+            end
+            if getgenv().AUTO_BLOCK__ then getgenv().AUTO_BLOCK__:Disconnect() end
+            getgenv().AUTO_BLOCK__ = game:GetService("RunService").Stepped:Connect(function()
+                if OWNER.Character.BodyEffects:FindFirstChild('Block') then OWNER.Character.BodyEffects.Block:Destroy() end
+                GUN_CHECK = OWNER.Character:FindFirstChildWhichIsA("Tool")
+                if GUN_CHECK then
+                    if GUN_CHECK:FindFirstChild("GunScript") then
+                        game.ReplicatedStorage.MainEvent:FireServer("Block",false)
+                    else
+                        Block()
+                    end
                 else
                     Block()
                 end
-            else
-                Block()
-            end
+            end)
             end
     
     end)
