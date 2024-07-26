@@ -7002,29 +7002,8 @@ end)
     
     --respawn
     STAND.CharacterAdded:connect(function()
-        if not freestomping then
-        Stop()
-        getRoot(STAND).CFrame=CFrame.new(-897.6600952148438, -640.0717163085938, -709.875732421875)
-        blocking = true
-        barragepos = false
-        barragepunch = false
-        mimicpunch = false
-        block = false
-        mimic = false
-        Fog = false
-        UpFog = false
-        WideFog	= false
-        FlatFog = false
         STAND.Character:WaitForChild("FULLY_LOADED_CHAR")
-        Pitchfork()
-        wait(.5)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Ignored.Shop["[StopSign] - $318"].Head.CFrame + Vector3.new(0, 3, 0)
-        wait(0.6)
-        fireclickdetector(game:GetService("Workspace").Ignored.Shop["[StopSign] - $318"].ClickDetector)
-        wait(.5)
-        getRoot(STAND).CFrame=CFrame.new(-897.6600952148438, -640.0717163085938, -709.875732421875)
-        end
-        wait(1)
+        Summon()
         
     
         if AutoMask == true then MaskHide() end
