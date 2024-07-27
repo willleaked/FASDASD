@@ -6477,6 +6477,9 @@ end)
         end)
     rs.heartbeat:connect(function()
         if gunwalking == true and KO(TARGET).Value == false then
+            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then
+                game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk"):Destroy()
+                end
             if STAND.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed") then STAND.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed"):Destroy() end
             if STAND.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then STAND.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk"):Destroy() end
             if game.Players.LocalPlayer.Character:WaitForChild('BodyEffects')['Armor'].Value <= 30 then
