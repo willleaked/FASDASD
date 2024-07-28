@@ -6465,16 +6465,6 @@ end)
                 end
             if STAND.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed") then STAND.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed"):Destroy() end
             if STAND.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then STAND.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk"):Destroy() end
-                local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
-                local Brokie = game.Workspace.Ignored.Shop["[High-Medium Armor] - $2440"]
-                game.Players.LocalPlayer.Character:MoveTo(Brokie.Head.Position)
-                wait(0.1)
-                fireclickdetector(Brokie.ClickDetector)
-                wait(0.1)
-                wait(1)
-                noclip = false
-                getHumanoid(STAND):UnequipTools()
-                getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,0,-5)
                 fastspeed = true
                 StopHoverAnim = true
                 noclip = false
