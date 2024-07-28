@@ -5397,14 +5397,7 @@ end)
     CreateTargetAbility("Gstomp!",function()
         if TARGET then
             Stop()
-            if STAND.Backpack:FindFirstChild("[LMG]") then
-                STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character
-                --if GunMode == 'Sky' then
-                 --   GripPos(-7)
-                --elseif GunMode == 'Under' then
-                GripPos(7)
-              --  end
-            end
+            gunchecking()
             blocking = false
             noclip = true
             GunStomp = true
@@ -5452,9 +5445,7 @@ end)
     CreateTargetAbility("Gknock!",function()
         if TARGET then
             Stop()
-            if STAND.Backpack:FindFirstChild("[LMG]") then
-                STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character
-            end
+            gunchecking()
             blocking = false
             noclip = true
             GunKnock = true
@@ -5465,10 +5456,7 @@ end)
     CreateTargetAbility("gbring!",function()
         if TARGET then
             Stop()
-            if STAND.Backpack:FindFirstChild("[LMG]") then
-                STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character
-                GripPos(7)
-            end
+            gunchecking()
             blocking = false
             noclip = true
             Gunbring = true
@@ -5894,8 +5882,8 @@ end)
     end)
     function gunchecking()
         if augmode then
-            if STAND.Backpack:FindFirstChild("[LMG]") then
-                STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character
+            if STAND.Backpack:FindFirstChild("[AUG]") then
+                STAND.Backpack:FindFirstChild("[AUG]").Parent = STAND.Character
             end
         else
             if STAND.Backpack:FindFirstChild("[LMG]") then
