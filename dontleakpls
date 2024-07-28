@@ -5405,40 +5405,18 @@ end)
     end)
     CreateTargetAbility("get!",function()
         if TARGET then
-            if STAND.Backpack:FindFirstChild("[LMG]") or STAND.Character:FindFirstChild("[LMG]") then
-            Stop()
-            if STAND.Backpack:FindFirstChild("[LMG]") then
-                STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character
-            end
-            noclip = false
-            blocking = false
-            gunwalking = true
+            if augmode then
+                game.Players.LocalPlayer.Backpack:FindFirstChild("[AUG]").GripPos = Vector3.new(0,-7,-7)
+                if STAND.Backpack:FindFirstChild("[AUG]") then STAND.Backpack:FindFirstChild("[AUG]").Parent = STAND.Character end
+                noclip = false
+                blocking = false
+                gunwalking = true
             else
-                Stop()
-                repeat rs.Stepped:Wait()
-                    getRoot(STAND).CFrame=game.Workspace.Ignored.Shop["[LMG] - $3978"].Head.CFrame
-                    fireclickdetector(game.Workspace.Ignored.Shop["[LMG] - $3978"].ClickDetector)
-                until STAND.Backpack:FindFirstChild("[LMG]") or STAND.Character:FindFirstChild("[LMG]")
-                --game.Players.LocalPlayer.Backpack:FindFirstChild("[LMG]").GripPos = Vector3.new(0,-7,7)
-                getRoot(STAND).CFrame=game.Workspace.Ignored.Shop['200 [LMG Ammo] - $318'].Head.CFrame*CFrame.new(0,-5,0)
-                    fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector) wait(1)
-                    fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector) wait(1)
-                    fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector) wait(1)
-                    fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector) wait(1)
-                    fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector) wait(1)
-                    fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector) wait(1)
-                    fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector) wait(1)
-                    fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector) wait(1)
-                    fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector) wait(1)
-                    fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector) wait(1)
-                    fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector) wait(1)
-                    fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector) wait(1)
-                    fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector) wait(1)
-                    fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector) wait(1)
-                    fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector) wait(1)
-                    fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector)
-                    getRoot(STAND).CFrame = CFrame.new(getTorso(OWNER).Position)*CFrame.new(0,0,-3)
-                    follow = true
+                game.Players.LocalPlayer.Backpack:FindFirstChild("[LMG]").GripPos = Vector3.new(0,-7,-7)
+                if STAND.Backpack:FindFirstChild("[LMG]") then STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character end
+                noclip = false
+                blocking = false
+                gunwalking = true
             end
         end
     end)
