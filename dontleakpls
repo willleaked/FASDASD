@@ -5883,10 +5883,12 @@ end)
     function gunchecking()
         if augmode then
             if STAND.Backpack:FindFirstChild("[AUG]") then
+                game.Players.LocalPlayer.Backpack:FindFirstChild("[LMG]").GripPos = Vector3.new(0,-7,-7)
                 STAND.Backpack:FindFirstChild("[AUG]").Parent = STAND.Character
             end
         else
             if STAND.Backpack:FindFirstChild("[LMG]") then
+                game.Players.LocalPlayer.Backpack:FindFirstChild("[LMG]").GripPos = Vector3.new(0,-7,-7)
                 STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character
             end
         end
@@ -6471,9 +6473,11 @@ end)
         end)
         function Whichgunshot()
             if augmode then
+                getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,-7,0) + (getHumanoid(TARGET).MoveDirection*Actual_Prediction*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,20*math.pi*delta,0)*CFrame.new(0,0,10)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
                 STAND.Character:FindFirstChild('[AUG]'):Activate()
                 else
                 STAND.Character:FindFirstChild('[LMG]'):Activate()
+                getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,-7,0) + (getHumanoid(TARGET).MoveDirection*Actual_Prediction*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,20*math.pi*delta,0)*CFrame.new(0,0,10)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
             end
         end
     rs.heartbeat:connect(function()
@@ -6532,10 +6536,7 @@ end)
             STAND.Character:FindFirstChild('LeftHand').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('RightFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('LeftFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
-            STAND.Character:FindFirstChild('Head').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
-            getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,0,0) + (getHumanoid(TARGET).MoveDirection*Actual_Prediction*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,20*math.pi*delta,0)*CFrame.new(0,0,10)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
-            
-    
+            STAND.Character:FindFirstChild('Head').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)            
             MainEvent:FireServer("Block",false)
             gunchecking()
             Whichgunshot()
@@ -6562,7 +6563,6 @@ end)
             STAND.Character:FindFirstChild('RightFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('LeftFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('Head').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
-            getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,0,0) + (getHumanoid(TARGET).MoveDirection*Actual_Prediction*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,20*math.pi*delta,0)*CFrame.new(0,0,10)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
             MainEvent:FireServer("Block",false)
             gunchecking()
             Whichgunshot()
@@ -6597,9 +6597,7 @@ end)
             STAND.Character:FindFirstChild('LeftHand').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('RightFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('LeftFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
-            STAND.Character:FindFirstChild('Head').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
-            getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,0,0) + (getHumanoid(TARGET).MoveDirection*Actual_Prediction*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,20*math.pi*delta,0)*CFrame.new(0,0,10)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
-    
+            STAND.Character:FindFirstChild('Head').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)    
             MainEvent:FireServer("Block",false)
             gunchecking()
             Whichgunshot()
