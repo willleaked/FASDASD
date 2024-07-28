@@ -1708,15 +1708,15 @@ end)
             if stomp == true then
                 game:GetService('RunService'):BindToRenderStep("anti-stomp", 0 , function()
                 if    game.Players.LocalPlayer.Character.BodyEffects["K.O"].Value == true then
-                        game.ReplicatedStorage.MainEvent:FireServer("ResetNew")game.Players.LocalPlayer.Character.Humanoid:ChangeState'Dead'
-                    end
+                    game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Dead)
+                end
                 end)
             elseif stomp == false then
                 game:GetService('RunService'):UnbindFromRenderStep("anti-stomp")
             end
         end
     )
-    trun:Toggle("กันล็อก(เเบบ เเล็กปลอม โดนยิงยากมาก)", false, function(ffake)
+    trun:Toggle("กันล็อก(เเบบ เเล็กปลอม โดนยิงยากมาก) solaraไม่ซัพพอต", false, function(ffake)
         if ffake == true then
                 if _G.FAKELAG then
                     _G.FAKELAG:Disconnect()
@@ -1766,22 +1766,17 @@ end)
         false,
         function(locked)
             if locked == true then
-                game:GetService('RunService'):BindToRenderStep("Auto-locked", 0 , function()
-                    game:GetService("RunService").Heartbeat:Connect(function()
-                        if antilocked == true then
+                    _G.ANTILOCKNORANDOM = game:GetService("RunService").Heartbeat:Connect(function()
                             game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").WalkSpeed = 24
                         local currentvel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
                         game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(68756,100,-344)
                         game:GetService("RunService").RenderStepped:Wait()
                         game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = currentvel
-                        end
-                    end)
-                    antilocked = true
-                end)
+                        end)
             elseif locked == false then
-                antilocked = false
-                game:GetService('RunService'):UnbindFromRenderStep("Auto-locked")
-
+                if _G.ANTILOCKNORANDOM then
+                    _G.ANTILOCKNORANDOM:Disconnect()
+                end
             end
         end
     )
@@ -1791,9 +1786,7 @@ end)
         false,
         function(lock)
             if lock == true then
-                game:GetService('RunService'):BindToRenderStep("Auto-lock", 0 , function()
-                    game:GetService("RunService").Heartbeat:Connect(function()
-                        if antilock == true then
+                    _G.ANTILOCKARNDOm = game:GetService("RunService").Heartbeat:Connect(function()
                             game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").WalkSpeed = 24
                         local currentvel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
                         game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(-2000,2000), math.random(-2000,2000), math.random(-2000,2000))
@@ -1801,37 +1794,12 @@ end)
                         game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = currentvel
                         end
                     end)
-                    antilock = true
-                end)
             elseif lock == false then
-                antilock = false
-                game:GetService('RunService'):UnbindFromRenderStep("Auto-lock")
+                if _G.ANTILOCKARNDOm then
+                    _G.ANTILOCKARNDOm:Disconnect()
+                end
 
             end
-        end
-    )
-
-    trun:Toggle(
-        "Auto-block ตลอดเวลา โคตรตึง",
-        false,
-        function(t)
-            if t == true then
-                game:GetService("RunService").stepped:connect(function()
-                    if blocking == true then
-                        if game.Players.LocalPlayer.Character.BodyEffects:FindFirstChild('Block') then
-                            game.Players.LocalPlayer.Character.BodyEffects.Block:Destroy()
-                        end
-                        game.ReplicatedStorage.MainEvent:FireServer("Block",true) wait()
-                        game.ReplicatedStorage.MainEvent:FireServer("Block",false)
-                    end
-                end) 
-                    game:GetService("RunService"):BindToRenderStep("Spidersense", 0 , function()
-                        blocking = true
-                    end)
-        elseif t == false then
-        game:GetService('RunService'):UnbindFromRenderStep("Spidersense")
-        blocking = false
-        end
         end
     )
 
