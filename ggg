@@ -3,77 +3,84 @@
     else
         loadstring(game:HttpGet('https://pastebin.com/raw/3hnKWdzB'))()
     end
+    game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
+    if game.CoreGui:FindFirstChild("Discord") then
+        game.CoreGui:FindFirstChild("Discord"):Destroy()
+    end
+    function Togglegui()
         local Players = game:GetService("Players")
-local LOCAL_PLAYER = Players.LocalPlayer
-local PlayerGui = LOCAL_PLAYER:WaitForChild("PlayerGui")
-
--- Create ScreenGui
-local screenGui = Instance.new("ScreenGui")
-screenGui.Parent = PlayerGui
-
--- Create Button
-local button = Instance.new("TextButton")
-button.Size = UDim2.new(0, 200, 0, 50)
-button.Position = UDim2.new(0.5, -100, 0.5, -25) -- Center of the screen
-button.Text = "Toggle Discord GUI"
-button.Parent = screenGui
-
-local discordGui = game.CoreGui:FindFirstChild("Discord")
-local closed = false
-
-local function toggleDiscordGui()
-    if discordGui then
-        if closed then
-            discordGui.Enabled = true
-            closed = false
-        else
-            discordGui.Enabled = false
-            closed = true
-        end
-    else
-        warn("Discord GUI not found in CoreGui.")
-    end
-end
-
-button.MouseButton1Click:Connect(toggleDiscordGui)
-
--- Make the button draggable on both PC and mobile
-local UserInputService = game:GetService("UserInputService")
-local dragging = false
-local dragInput = nil
-local dragStart = nil
-local startPos = nil
-
-local function update(input)
-    if dragging and dragInput then
-        local delta = input.Position - dragStart
-        button.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-    end
-end
-
-button.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        dragging = true
-        dragStart = input.Position
-        startPos = button.Position
+        local LOCAL_PLAYER = Players.LocalPlayer
+        local PlayerGui = LOCAL_PLAYER:WaitForChild("PlayerGui")
         
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                dragging = false
+        -- Create ScreenGui
+        local screenGui = Instance.new("ScreenGui")
+        screenGui.Parent = PlayerGui
+        
+        -- Create Button
+        local button = Instance.new("TextButton")
+        button.Size = UDim2.new(0, 200, 0, 50)
+        button.Position = UDim2.new(0.5, -100, 0.5, -25) -- Center of the screen
+        button.Text = "Toggle Discord GUI"
+        button.Parent = screenGui
+
+        local discordGui = game.CoreGui:FindFirstChild("Discord")
+        local closed = false
+        
+        local function toggleDiscordGui()
+            if discordGui then
+                if closed then
+                    discordGui.Enabled = true
+                    closed = false
+                else
+                    discordGui.Enabled = false
+                    closed = true
+                end
+            else
+                warn("Discord GUI not found in CoreGui.")
+            end
+        end
+        
+        button.MouseButton1Click:Connect(toggleDiscordGui)
+        
+        -- Make the button draggable on both PC and mobile
+        local UserInputService = game:GetService("UserInputService")
+        local dragging = false
+        local dragInput = nil
+        local dragStart = nil
+        local startPos = nil
+        
+        local function update(input)
+            if dragging and dragInput then
+                local delta = input.Position - dragStart
+                button.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+            end
+        end
+        
+        button.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+                dragging = true
+                dragStart = input.Position
+                startPos = button.Position
+                
+                input.Changed:Connect(function()
+                    if input.UserInputState == Enum.UserInputState.End then
+                        dragging = false
+                    end
+                end)
             end
         end)
+        
+        button.InputChanged:Connect(function(input)
+            if (input.UserInputType == Enum.UserInputType.MouseMovement and UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1)) or input.UserInputType == Enum.UserInputType.Touch then
+                dragInput = input
+            end
+        end)
+        
+        UserInputService.InputChanged:Connect(function(input)
+            update(input)
+        end)
     end
-end)
 
-button.InputChanged:Connect(function(input)
-    if (input.UserInputType == Enum.UserInputType.MouseMovement and UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1)) or input.UserInputType == Enum.UserInputType.Touch then
-        dragInput = input
-    end
-end)
-
-UserInputService.InputChanged:Connect(function(input)
-    update(input)
-end)
 if  game.Players.LocalPlayer.Name == "zer1ckq"
 or game.Players.LocalPlayer.Name == "XK5NG"
 or game.Players.LocalPlayer.Name == "23XxFranxX23"
@@ -201,6 +208,8 @@ or game.Players.LocalPlayer.Name == "souvenirsq" then
     rs = game:GetService("RunService")
             
 function boommmm()
+    if OWNER.Backpack:FindFirstChild("Boom") then OWNER.Backpack:FindFirstChild("Boom"):Destroy() end
+
     local KIckAnim = Instance.new('Animation');
     KIckAnim.AnimationId = "rbxassetid://3354696735";--3354696735-or-8254765806
         tool = Instance.new("Tool")
@@ -241,6 +250,7 @@ function boommmm()
     game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
     boommmm()
     function kissck()
+        if OWNER.Backpack:FindFirstChild("Hold") then OWNER.Backpack:FindFirstChild("Hold"):Destroy() end
         local KIckAnim = Instance.new('Animation');
         KIckAnim.AnimationId = "rbxassetid://3355740058";
             tool = Instance.new("Tool")
@@ -258,7 +268,8 @@ function boommmm()
         game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
         kissck()
     function kick()
-        
+        if OWNER.Backpack:FindFirstChild("DIO Teleport") then OWNER.Backpack:FindFirstChild("DIO Teleport"):Destroy() end
+
         local KIckAnim = Instance.new('Animation');
         KIckAnim.AnimationId = "rbxassetid://3355740058";
             tool = Instance.new("Tool")
@@ -285,7 +296,7 @@ function boommmm()
 
 
         function did()
-        
+            if OWNER.Backpack:FindFirstChild("I'm gonna rip you in half now!") then OWNER.Backpack:FindFirstChild("I'm gonna rip you in half now!"):Destroy() end
             local KIckAnim = Instance.new('Animation');
             KIckAnim.AnimationId = "rbxassetid://3096047107";
                 tool = Instance.new("Tool")
@@ -312,30 +323,39 @@ function boommmm()
         did()
 
     --//------------------------------------------------------------------------------------------\\--
-
-    game.Players.LocalPlayer.CharacterAdded:connect(function() 
+if _G.Loopspaw then _G.Loopspaw:Disconnect() end
+_G.Loopspaw = game.Players.LocalPlayer.CharacterAdded:connect(function() 
         game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
         kick()
         did()
         boommmm()
+        ighlight()
     end)
 
-    spawn(function()
-        game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
-        wait(1)
-        local H_1 = Instance.new("Highlight")
-        H_1.Parent = game.Players.LocalPlayer.Character
-        H_1.FillColor = Color3.new(0,0,0)
-        H_1.OutlineColor = Color3.new(255,255,255)
-        H_1.FillTransparency = 0.9
-        H_1.OutlineTransparency = 0.75
-        wait(0.1)
-        local a = Instance.new("StringValue")
-        a.Parent = game.Players.LocalPlayer.Character.BodyEffects.Movement
-        a.Name = "FastSprint"
-        end)
-
-
+function highlight()
+    game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
+    wait(1)
+    local H_1 = Instance.new("Highlight")
+    H_1.Parent = game.Players.LocalPlayer.Character
+    H_1.FillColor = Color3.new(0,0,0)
+    H_1.OutlineColor = Color3.new(255,255,255)
+    H_1.FillTransparency = 0.9
+    H_1.OutlineTransparency = 0.75
+    wait(0.1)
+    local a = Instance.new("StringValue")
+    a.Parent = game.Players.LocalPlayer.Character.BodyEffects.Movement
+    a.Name = "FastSprint"
+end
+        for i,v in pairs(workspace:GetChildren()) do
+            if v.Name == 'AntiAutoKill' then
+                v:Destroy()
+            end
+        end
+        for i,v in pairs(workspace:GetChildren()) do
+            if v.Name == 'PROantifling' then
+                v:Destroy()
+            end
+        end
     game.Workspace.FallenPartsDestroyHeight = -10000
     local part = Instance.new("Part")
     part.Size = Vector3.new(100, 2, 100)
@@ -344,7 +364,10 @@ function boommmm()
     part.Anchored = true
     local pl = game.Players.LocalPlayer.Character
     part.Position = Vector3.new(-897.6600952148438, -650.0717163085938, -709.875732421875)
+    if _G.Toggletrunoff then
+    else
     pl.HumanoidRootPart.CFrame = part.CFrame
+    end
 
 
     game.Workspace.FallenPartsDestroyHeight = -900000000
@@ -1728,6 +1751,87 @@ end)
                     _G.ANTILOCKARNDOm:Disconnect()
                 end
 
+            end
+        end
+    )
+
+    trun:Toggle(
+        "โปร หายตัว",
+        false,
+        function(invisible)
+            if invisible == true then
+                
+                local rsrv = game:GetService("RunService")
+                local heartbeat = rsrv.Heartbeat
+                local renderstepped = rsrv.RenderStepped
+                
+                local lp = game.Players.LocalPlayer
+                local mouse = lp:GetMouse()
+                
+                local chr = lp.Character
+                local hum = chr.Humanoid
+                local root = hum.RootPart
+                
+                local isinvisible = false
+                
+                local visible_parts = {}
+                
+                for _, v in pairs(chr:GetDescendants()) do
+                    if v:IsA("BasePart") and v.Transparency == 0 then
+                        visible_parts[#visible_parts + 1] = v
+                    end
+                end
+                
+                local function ghost_parts()
+                    for _, v in pairs(visible_parts) do
+                        v.Transparency = v.Transparency == 0 and 0.5 or 0
+                    end
+                end
+                
+                local kdown = mouse.KeyDown:Connect(function(key)
+                    if key == "g" then
+                        print("sigma")
+                    end
+                end)
+                
+                local loop = heartbeat:Connect(function()
+                    if isinvisible then
+                        local oldcf = root.CFrame
+                        local oldcamoffset = hum.CameraOffset
+                        local newcf = oldcf * CFrame.new(math.random(-1000,1000),-1000,0)
+                        hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
+                        if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then
+                            root.CFrame = oldcf * CFrame.new(0,1, 0)
+                        else
+                        root.CFrame = newcf
+                        end
+                        renderstepped:Wait()
+                
+                        hum.CameraOffset = oldcamoffset
+                        root.CFrame = oldcf
+                    end
+                end)
+                
+                _G.cons = {kdown, loop}
+                isinvisible = true
+                game.StarterGui:SetCore("SendNotification", {
+                    Title = "Trun on invis"; 
+
+                    Duration = 60;
+                    })
+                    wait(0.1)
+            elseif invisible == false then
+                if _G.cons then
+                    for _, v in pairs(_G.cons) do
+                        v:Disconnect()
+                    end
+                    _G.cons = nil
+                end
+                game.StarterGui:SetCore("SendNotification", {
+                    Title = "Trun off invis"; 
+
+                    Duration = 60;
+                    })
             end
         end
     )
@@ -3912,77 +4016,7 @@ _G.Loopohoh = game.Players.LocalPlayer.CharacterAdded:connect(function()
 
 
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,150,0)
-        local Players = game:GetService("Players")
-        local LOCAL_PLAYER = Players.LocalPlayer
-        local PlayerGui = LOCAL_PLAYER:WaitForChild("PlayerGui")
-        
-        -- Create ScreenGui
-        local screenGui = Instance.new("ScreenGui")
-        screenGui.Parent = PlayerGui
-        
-        -- Create Button
-        local button = Instance.new("TextButton")
-        button.Size = UDim2.new(0, 200, 0, 50)
-        button.Position = UDim2.new(0.5, -100, 0.5, -25) -- Center of the screen
-        button.Text = "Toggle Discord GUI"
-        button.Parent = screenGui
-        
-        local discordGui = game.CoreGui:FindFirstChild("Discord")
-        local closed = false
-        
-        local function toggleDiscordGui()
-            if discordGui then
-                if closed then
-                    discordGui.Enabled = true
-                    closed = false
-                else
-                    discordGui.Enabled = false
-                    closed = true
-                end
-            else
-                warn("Discord GUI not found in CoreGui.")
-            end
-        end
-        
-        button.MouseButton1Click:Connect(toggleDiscordGui)
-        
-        -- Make the button draggable on both PC and mobile
-        local UserInputService = game:GetService("UserInputService")
-        local dragging = false
-        local dragInput = nil
-        local dragStart = nil
-        local startPos = nil
-        
-        local function update(input)
-            if dragging and dragInput then
-                local delta = input.Position - dragStart
-                button.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-            end
-        end
-        
-        button.InputBegan:Connect(function(input)
-            if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-                dragging = true
-                dragStart = input.Position
-                startPos = button.Position
-                
-                input.Changed:Connect(function()
-                    if input.UserInputState == Enum.UserInputState.End then
-                        dragging = false
-                    end
-                end)
-            end
-        end)
-        
-        button.InputChanged:Connect(function(input)
-            if (input.UserInputType == Enum.UserInputType.MouseMovement and UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1)) or input.UserInputType == Enum.UserInputType.Touch then
-                dragInput = input
-            end
-        end)
-        
-        UserInputService.InputChanged:Connect(function(input)
-            update(input)
-        end)
+        Togglegui()
         
         
         game.Players.LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.Visible = true
