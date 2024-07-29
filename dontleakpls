@@ -6986,6 +6986,7 @@ end)
         else
             print("ok")
         end
+    end
     rs.Stepped:Connect(function()
         if game.Players.LocalPlayer.PlayerGui.MainScreenGui.Crew.CrewFrame.Visible == true then
             game.Players.LocalPlayer.PlayerGui.MainScreenGui.Crew.CrewFrame.Visible = false
