@@ -3175,12 +3175,10 @@ end)
         end)
     
     Create('unsave!',function()
-        if getgenv().AUTO_BLOCK__ then getgenv().AUTO_BLOCK__:Disconnect() end
             Pos = "Fly"
             spininginmyhead = false
             blocking = false
     end)
-    blockantis = true
     Create('at!',function()
         game.ReplicatedStorage.MainEvent:FireServer("LeaveCrew")
                 blocking = false
@@ -6791,8 +6789,6 @@ end)
         game.ReplicatedStorage.MainEvent:FireServer("Block",true) wait()
         game.ReplicatedStorage.MainEvent:FireServer("Block",false)
     end
-    rs.Stepped:connect(function()
-        if blocking == true then
             if getgenv().AUTO_BLOCK__ then
             else
             game.ReplicatedStorage.MainEvent:FireServer("ResetNew")game.Players.LocalPlayer.Character.Humanoid:ChangeState'Dead'
@@ -6807,21 +6803,22 @@ end)
             end
             if getgenv().AUTO_BLOCK__ then getgenv().AUTO_BLOCK__:Disconnect() end
             getgenv().AUTO_BLOCK__ = game:GetService("RunService").Stepped:Connect(function()
-                if OWNER.Character.BodyEffects:FindFirstChild('Block') then OWNER.Character.BodyEffects.Block:Destroy() end
-                GUN_CHECK = OWNER.Character:FindFirstChildWhichIsA("Tool")
-                if GUN_CHECK then
-                    if GUN_CHECK:FindFirstChild("GunScript") then
-                        game.ReplicatedStorage.MainEvent:FireServer("Block",false)
+                if blocking == true then
+                    if OWNER.Character.BodyEffects:FindFirstChild('Block') then OWNER.Character.BodyEffects.Block:Destroy() end
+                    GUN_CHECK = OWNER.Character:FindFirstChildWhichIsA("Tool")
+                    if GUN_CHECK then
+                        if GUN_CHECK:FindFirstChild("GunScript") then
+                            game.ReplicatedStorage.MainEvent:FireServer("Block",false)
+                        else
+                            Block()
+                        end
                     else
                         Block()
                     end
                 else
-                    Block()
+                    game.ReplicatedStorage.MainEvent:FireServer("Block",false)
                 end
             end)
-            end
-    
-    end)
     
     rs.Stepped:connect(function()
         if Bind == true then
