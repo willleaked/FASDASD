@@ -7,6 +7,7 @@
     if game.CoreGui:FindFirstChild("Discord") then
         game.CoreGui:FindFirstChild("Discord"):Destroy()
     end
+    
     function Togglegui()
         local Players = game:GetService("Players")
         local LOCAL_PLAYER = Players.LocalPlayer
@@ -127,7 +128,7 @@ or game.Players.LocalPlayer.Name == "souvenirsq" then
     end
     --//------------------------------------------------------------------------------------------\\--
     function Play(ID)
-        if game.Players.LocalPlayer.Name == "dahoodbotmoney5" then
+        if game.Players.LocalPlayer.Name == "HIXIC_1" then
             game:GetService("ReplicatedStorage").MainEvent:FireServer("RingTone",ID)
             local Tool = nil
             if OWNER.Character:FindFirstChildWhichIsA("Tool") then
