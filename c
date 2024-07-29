@@ -289,6 +289,19 @@ end
 local function ControlFramework()
     local Ungrabbed
     local Speed__UP
+    if OWNER.Backpack:FindFirstChild("marco") then OWNER.Backpack:FindFirstChild("marco"):Destroy() end task.wait(.1)
+    local marco = Instance.new("Tool",OWNER.Backpack)
+    marco.RequiresHandle = false
+    marco.Name = "marco"
+    marco.Activated:connect(function()
+        Speed__UP = not Speed__UP
+        if Speed__UP == true then
+            CloneAnimPlayWDetectionIDK(3189777795)
+            repeat task.wait()
+                ClonedCharacter.HumanoidRootPart.CFrame = ClonedCharacter.HumanoidRootPart.CFrame + ClonedCharacter.Humanoid.MoveDirection * 1.5
+            until Speed__UP == false
+        end
+    end)
     InsertOn(LiveConnections, OWNER:GetMouse().KeyDown:Connect(function(key)
         if key == "v" then
             CloneAnimPlayWDetectionIDK(7024352298)
@@ -365,6 +378,9 @@ local function ControlFramework()
     end))
 
     repeat task.wait() until OWNER.Character.BodyEffects.Grabbed.Value == nil or Furry_ == true
+    if OWNER.Backpack:FindFirstChild("marco") then OWNER.Backpack:FindFirstChild("marco"):Destroy() end task.wait(.1)
+    if OWNER.Character:FindFirstChild("marco") then OWNER.Character:FindFirstChild("marco"):Destroy() end task.wait(.1)
+
     OWNER.Character.HumanoidRootPart.CFrame = ClonedCharacter.HumanoidRootPart.CFrame
     ZeroVelocity___(OWNER.Character.HumanoidRootPart)
     workspace.CurrentCamera.CameraSubject = OWNER.Character
