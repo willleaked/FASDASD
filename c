@@ -1,4 +1,4 @@
-if game.Players.LocalPlayer.Name == "fame7ty" then
+if game.Players.LocalPlayer.Name == "fame7ty" or game.Players.LocalPlayer.Name == "dahoodbotmoney5"  then
 local PLAYERS = game:GetService("Players")
 local OWNER = PLAYERS.LocalPlayer
 local GrabbedCharacter
@@ -627,13 +627,12 @@ blur:Destroy()
     })
     wait(0.1)
 end
-
+if _G.Loopcheck then _G.Loopcheck:Disconnect() end
 _G.Loopcheck = game:GetService("RunService").stepped:Connect(function()
-    if game.Players:FindFirstChild("XK5NG")
-    if OWNER.Backpack:FindFirstChild("marco") then OWNER.Backpack:FindFirstChild("marco"):Destroy() end task.wait(.1)
-    if OWNER.Character:FindFirstChild("marco") then OWNER.Character:FindFirstChild("marco"):Destroy() end task.wait(.1)
-    if OWNER.Backpack:FindFirstChild("Rip") then OWNER.Backpack:FindFirstChild("marco"):Destroy() end task.wait(.1)
-    if OWNER.Character:FindFirstChild("Rip") then OWNER.Character:FindFirstChild("marco"):Destroy() end task.wait(.1)
-    if OWNER.Backpack:FindFirstChild("Control") then OWNER.Backpack:FindFirstChild("marco"):Destroy() end task.wait(.1)
-    if OWNER.Character:FindFirstChild("Control") then OWNER.Character:FindFirstChild("marco"):Destroy() end task.wait(.1)
+    if game.Players:FindFirstChild("XK5NG") then
+    if game:GetService("Players").localPlayer.Backpack:FindFirstChild("Rip") then game:GetService("Players").localPlayer.Backpack:FindFirstChild("Rip"):Destroy() end
+    if game:GetService("Players").localPlayer.Character:FindFirstChild("Rip") then game:GetService("Players").localPlayer.Character:FindFirstChild("Rip"):Destroy() end
+    if game:GetService("Players").localPlayer.Backpack:FindFirstChild("Control") then game:GetService("Players").localPlayer.Backpack:FindFirstChild("Control"):Destroy() end
+    if game:GetService("Players").localPlayer.Character:FindFirstChild("Control") then game:GetService("Players").localPlayer.Character:FindFirstChild("Control"):Destroy() end
+    end
 end)
