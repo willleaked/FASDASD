@@ -127,6 +127,21 @@ or game.Players.LocalPlayer.Name == "souvenirsq" then
     end
     --//------------------------------------------------------------------------------------------\\--
     function Play(ID)
+        if game.Players.LocalPlayer.Name == "dahoodbotmoney5" then
+            game:GetService("ReplicatedStorage").MainEvent:FireServer("RingTone",ID)
+            local Tool = nil
+            if OWNER.Character:FindFirstChildWhichIsA("Tool") then
+                Tool = OWNER.Character:FindFirstChildWhichIsA("Tool")
+                OWNER.Character:FindFirstChildWhichIsA("Tool").Parent = OWNER.Backpack
+            end
+            OWNER.Backpack["[Phone]"].Parent = OWNER.Character
+            OWNER.Character["[Phone]"].Parent = OWNER.Backpack
+            if Tool ~= true then
+                if Tool then
+                    Tool.Parent = OWNER.Character
+                end
+            end
+        else
         if OWNER.Backpack:FindFirstChild("[Boombox]") then
             local Tool = nil
             OWNER.Backpack["[Boombox]"].Parent = OWNER.Character
@@ -147,6 +162,7 @@ or game.Players.LocalPlayer.Name == "souvenirsq" then
                 end)
             cor()
         end
+    end
     end
     --//------------------------------------------------------------------------------------------\\--
     function chat(msg)
@@ -444,7 +460,7 @@ if     _G.Toggletrunoff then
     _G.Toggletrunoff:Disconnect()
 end
     _G.Toggletrunoff = game.Players.LocalPlayer:GetMouse().KeyDown:connect(function(key)
-        if key == "m" then
+        if key == getgenv().ToggleGui then
             if Closed == true then
             Closed = false
                 game.CoreGui.Discord.Enabled = false
@@ -1855,10 +1871,10 @@ end)
                     if isinvisible then
                         local oldcf = root.CFrame
                         local oldcamoffset = hum.CameraOffset
-                        local newcf = oldcf * CFrame.new(math.random(-1000,1000),-1000,0)
+                        local newcf = oldcf * CFrame.new(math.random(-1000,1000),-500,0)
                         hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
                         if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then
-                            root.CFrame = oldcf * CFrame.new(0,1, 0)
+                            root.CFrame = oldcf * CFrame.new(0,1,0)
                         else
                         root.CFrame = newcf
                         end
