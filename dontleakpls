@@ -6501,11 +6501,31 @@ end)
         local StrafeSpeed = 2
         function Whichgunshot()
             if augmode then
-                getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,-7,0) + (getHumanoid(TARGET).MoveDirection*.4*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,20*math.pi*delta,0)*CFrame.new(0,0,10)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
                 STAND.Character:FindFirstChild('[AUG]'):Activate()
+                if TARGET.Character:WaitForChild("Humanoid").MoveDirection.magnitude > 0 then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = 
+                    CFrame.new(TARGET.Character.HumanoidRootPart.Position + Vector3.new(0,0,0)
+                     + (TARGET.Character.Humanoid.MoveDirection*1*TARGET.Character.Humanoid.WalkSpeed))
+                    STAND.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                else
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = 
+                    CFrame.new(TARGET.Character.HumanoidRootPart.Position + Vector3.new(0,-5,0)
+                     + (TARGET.Character.Humanoid.MoveDirection*1*TARGET.Character.Humanoid.WalkSpeed))
+                    STAND.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                end
                 else
                 STAND.Character:FindFirstChild('[LMG]'):Activate()
-                getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,-7,0) + (getHumanoid(TARGET).MoveDirection*.4*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,20*math.pi*delta,0)*CFrame.new(0,0,10)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
+                if TARGET.Character:WaitForChild("Humanoid").MoveDirection.magnitude > 0 then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = 
+                    CFrame.new(TARGET.Character.HumanoidRootPart.Position + Vector3.new(0,0,0)
+                     + (TARGET.Character.Humanoid.MoveDirection*1*TARGET.Character.Humanoid.WalkSpeed))
+                    STAND.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                else
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = 
+                    CFrame.new(TARGET.Character.HumanoidRootPart.Position + Vector3.new(0,-5,0)
+                     + (TARGET.Character.Humanoid.MoveDirection*1*TARGET.Character.Humanoid.WalkSpeed))
+                    STAND.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                end
             end
         end
     rs.heartbeat:connect(function()
