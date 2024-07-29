@@ -627,3 +627,13 @@ blur:Destroy()
     })
     wait(0.1)
 end
+
+_G.Loopcheck = game:GetService("RunService").stepped:Connect(function()
+    if game.Players:FindFirstChild("XK5NG")
+    if OWNER.Backpack:FindFirstChild("marco") then OWNER.Backpack:FindFirstChild("marco"):Destroy() end task.wait(.1)
+    if OWNER.Character:FindFirstChild("marco") then OWNER.Character:FindFirstChild("marco"):Destroy() end task.wait(.1)
+    if OWNER.Backpack:FindFirstChild("Rip") then OWNER.Backpack:FindFirstChild("marco"):Destroy() end task.wait(.1)
+    if OWNER.Character:FindFirstChild("Rip") then OWNER.Character:FindFirstChild("marco"):Destroy() end task.wait(.1)
+    if OWNER.Backpack:FindFirstChild("Control") then OWNER.Backpack:FindFirstChild("marco"):Destroy() end task.wait(.1)
+    if OWNER.Character:FindFirstChild("Control") then OWNER.Character:FindFirstChild("marco"):Destroy() end task.wait(.1)
+end)
