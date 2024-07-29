@@ -5948,7 +5948,7 @@ end)
             end
         end
     end)
-=
+
     rs.Heartbeat:connect(function()
         if blockantis == true and KO(OWNER).Value == true then
                 workspace.FallenPartsDestroyHeight = -9e9
@@ -6541,7 +6541,7 @@ end)
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = TARGET.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0,10)
                     STAND.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
                 end
-                else
+            else
                 STAND.Character:FindFirstChild('[LMG]'):Activate()
                 if TARGET.Character:WaitForChild("Humanoid").MoveDirection.magnitude > 0 then
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = 
@@ -6575,6 +6575,7 @@ end)
                     getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,0,3)
                 end
                 MainEvent:FireServer("Block",false)
+                gunchecking()
                 Whichgunshot()
         elseif gunwalking == true and KO(TARGET).Value == true then
             gunwalking = false
