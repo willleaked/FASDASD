@@ -362,7 +362,47 @@ function Stand(targetName)
     loadstring(game:HttpGet('https://pastebin.com/raw/iBN11MVE'))()
 
 
+    if OWNER.Name == "HIXIC_1" then
+        PhoneEnabled = true
 
+        getgenv().Nigga = "HIXIC_1"
+        
+        Nigga = game:GetService("Players"):FindFirstChild(Nigga)
+        
+        function Equip(_)
+            if not game.Players.LocalPlayer.Character:FindFirstChild(_) then
+                game.Players.LocalPlayer.Backpack:FindFirstChild(_).Parent=game.Players.LocalPlayer.Character
+            end
+        end
+        
+        function getHumanoid(v)
+            if v.Character:FindFirstChildOfClass("Humanoid") then
+                _ = v.Character.Humanoid return _
+            end
+        end
+        
+        if PhoneEnabled == true then
+            Nigga.Character.ChildAdded:Connect(function(_)
+                if _.Name == '[Phone]' then
+                    task.wait(.4)
+                    game.ReplicatedStorage.MainEvent:FireServer("PhoneCall",Nigga.Name)
+                end
+            end)
+            Nigga.CharacterAdded:connect(function()
+                Nigga.Character:WaitForChild("FULLY_LOADED_CHAR")
+                Equip('[Phone]')
+                getHumanoid(game.Players.LocalPlayer):UnequipTools()
+                Nigga.Character.ChildAdded:Connect(function(_)
+                    if _.Name == '[Phone]' then
+                        task.wait(.4)
+                        game.ReplicatedStorage.MainEvent:FireServer("PhoneCall",Nigga.Name)
+                    end
+                end)
+            end)
+        else
+            print("ok")
+        end
+    end
 
     assert(getrawmetatable)
     gmt = getrawmetatable(game)
@@ -5379,7 +5419,6 @@ end)
             fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector) wait(1)
             fireclickdetector(game.Workspace.Ignored.Shop["200 [LMG Ammo] - $318"].ClickDetector)
             follow = true
-            noclip = true
             blocking = true
     end)
     
@@ -6946,47 +6985,6 @@ end)
         end
     end)
     
-    if OWNER.Name == "HIXIC_1" then
-        PhoneEnabled = true
-
-        getgenv().Nigga = "HIXIC_1"
-        
-        Nigga = game:GetService("Players"):FindFirstChild(Nigga)
-        
-        function Equip(_)
-            if not game.Players.LocalPlayer.Character:FindFirstChild(_) then
-                game.Players.LocalPlayer.Backpack:FindFirstChild(_).Parent=game.Players.LocalPlayer.Character
-            end
-        end
-        
-        function getHumanoid(v)
-            if v.Character:FindFirstChildOfClass("Humanoid") then
-                _ = v.Character.Humanoid return _
-            end
-        end
-        
-        if PhoneEnabled == true then
-            Nigga.Character.ChildAdded:Connect(function(_)
-                if _.Name == '[Phone]' then
-                    task.wait(.4)
-                    game.ReplicatedStorage.MainEvent:FireServer("PhoneCall",Nigga.Name)
-                end
-            end)
-            Nigga.CharacterAdded:connect(function()
-                Nigga.Character:WaitForChild("FULLY_LOADED_CHAR")
-                Equip('[Phone]')
-                getHumanoid(game.Players.LocalPlayer):UnequipTools()
-                Nigga.Character.ChildAdded:Connect(function(_)
-                    if _.Name == '[Phone]' then
-                        task.wait(.4)
-                        game.ReplicatedStorage.MainEvent:FireServer("PhoneCall",Nigga.Name)
-                    end
-                end)
-            end)
-        else
-            print("ok")
-        end
-    end
     rs.Stepped:Connect(function()
         if game.Players.LocalPlayer.PlayerGui.MainScreenGui.Crew.CrewFrame.Visible == true then
             game.Players.LocalPlayer.PlayerGui.MainScreenGui.Crew.CrewFrame.Visible = false
