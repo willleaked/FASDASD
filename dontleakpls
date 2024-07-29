@@ -1,4 +1,11 @@
+local SoundService = game:GetService("SoundService")
 
+local song = Instance.new("Sound")
+song.SoundId = "rbxassetid://1848354536"
+song.Volume = .5
+song.Looped = false
+song.Parent = SoundService
+song:Play()
 for i,v in pairs(game.CoreGui:GetChildren()) do
     if v.Name == 'Betrue' then
         v:Destroy()
