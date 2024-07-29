@@ -14,7 +14,7 @@ local Ypos = Height
 local Wide = 10000
 local Distance = 193684
 local Randomize = false
-local sound = true
+local sound = false
 local function ControlAlign(P0,P1,Offset)
     P0.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
     P0.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
@@ -568,4 +568,3 @@ game.StarterGui:SetCore("SendNotification", {
     Duration = 9e9;
     })
     wait(0.1)
-end
