@@ -5510,21 +5510,23 @@ end)
             Stop()
             game.ReplicatedStorage.MainEvent:FireServer("JoinCrew",CrewID) 
             if STAND.Backpack:FindFirstChild("Combat") then STAND.Backpack:FindFirstChild("Combat").Parent = STAND.Character end
-            wait()
-            if KO(TARGET).Value == false then
-                game.ReplicatedStorage.MainEvent:FireServer("ChargeButton")
-                getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,0,3)
-            else
-                getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,0,3)
-                getHumanoid(STAND).Sit = true
-                wait(.1)
-                getRoot(STAND).Anchored = true
-                game.ReplicatedStorage.MainEvent:FireServer("ChargeButton")
-            end  
-            wait(3)
-            getRoot(STAND).Anchored = false
-            getRoot(STAND).CFrame = CFrame.new(-547,173,-0 )
-            getHumanoid(STAND).Sit = false
+            STAND.Character:FindFirstChild('Combat'):Activate()
+            STAND.Character.BodyEffects.Movement:WaitForChild("ReduceWalk")
+                AnimStop(2788289281)
+                AnimStop(2788292075)
+                local DefaultDansceanim = Instance.new('Animation');
+                DefaultDansceanim.AnimationId = "rbxassetid://2788290270";
+                local gyasst = game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(DefaultDansceanim)
+                gyasst:Play()
+                gyasst.TimePosition = 0.4
+                gyasst:AdjustSpeed(0)
+                game:GetService("RunService"):BindToRenderStep("Target",-1 ,function()
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TARGET.Character.HumanoidRootPart.Position + Vector3.new(0,0,0) + (TARGET.Character.Humanoid.MoveDirection*0.50*TARGET.Character.Humanoid.WalkSpeed))
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                end)
+            task.wait(1)
+            AnimStop(2788290270,.2)
+            game:GetService("RunService"):UnbindFromRenderStep("Target")
         end
     end)
     
