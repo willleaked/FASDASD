@@ -3180,7 +3180,7 @@ end)
             spininginmyhead = false
             blocking = false
     end)
-    
+    blockantis = true
     Create('at!',function()
         game.ReplicatedStorage.MainEvent:FireServer("LeaveCrew")
                 blocking = false
@@ -5444,18 +5444,20 @@ end)
     end)
     CreateTargetAbility("get!",function()
         if TARGET then
-            if augmode then
-                game.Players.LocalPlayer.Backpack:FindFirstChild("[AUG]").GripPos = Vector3.new(0,-7,-7)
-                if STAND.Backpack:FindFirstChild("[AUG]") then STAND.Backpack:FindFirstChild("[AUG]").Parent = STAND.Character end
-                noclip = false
-                blocking = false
-                gunwalking = true
-            else
-                game.Players.LocalPlayer.Backpack:FindFirstChild("[LMG]").GripPos = Vector3.new(0,-7,-7)
-                if STAND.Backpack:FindFirstChild("[LMG]") then STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character end
-                noclip = false
-                blocking = false
-                gunwalking = true
+            if STAND.Backpack:FindFirstChild("[LMG]") or STAND.Backpack:FindFirstChild("[AUG]") then
+                if augmode then
+                    game.Players.LocalPlayer.Backpack:FindFirstChild("[AUG]").GripPos = Vector3.new(0,-7,-7)
+                    if STAND.Backpack:FindFirstChild("[AUG]") then STAND.Backpack:FindFirstChild("[AUG]").Parent = STAND.Character end
+                    noclip = false
+                    blocking = false
+                    gunwalking = true
+                else
+                    game.Players.LocalPlayer.Backpack:FindFirstChild("[LMG]").GripPos = Vector3.new(0,-7,-7)
+                    if STAND.Backpack:FindFirstChild("[LMG]") then STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character end
+                    noclip = false
+                    blocking = false
+                    gunwalking = true
+                end
             end
         end
     end)
