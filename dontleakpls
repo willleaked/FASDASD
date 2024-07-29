@@ -5466,7 +5466,19 @@ end)
         game.Players.LocalPlayer.PlayerGui.MainScreenGui.AreYouSure.Visible = false
         firesignal(game.Players.LocalPlayer.PlayerGui.MainScreenGui.AreYouSure.TextButton.MouseButton1Click)
     end)
-    
+    function gunchecking()
+        if augmode then
+            if STAND.Backpack:FindFirstChild("[AUG]") then
+                game.Players.LocalPlayer.Backpack:FindFirstChild("[LMG]").GripPos = Vector3.new(0,-7,7)
+                STAND.Backpack:FindFirstChild("[AUG]").Parent = STAND.Character
+            end
+        else
+            if STAND.Backpack:FindFirstChild("[LMG]") then
+                game.Players.LocalPlayer.Backpack:FindFirstChild("[LMG]").GripPos = Vector3.new(0,-7,-7)
+                STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character
+            end
+        end
+    end
     
     CreateTargetAbility("Gstomp!",function()
         if TARGET then
@@ -5936,19 +5948,7 @@ end)
             end
         end
     end)
-    function gunchecking()
-        if augmode then
-            if STAND.Backpack:FindFirstChild("[AUG]") then
-                game.Players.LocalPlayer.Backpack:FindFirstChild("[LMG]").GripPos = Vector3.new(0,-7,-7)
-                STAND.Backpack:FindFirstChild("[AUG]").Parent = STAND.Character
-            end
-        else
-            if STAND.Backpack:FindFirstChild("[LMG]") then
-                game.Players.LocalPlayer.Backpack:FindFirstChild("[LMG]").GripPos = Vector3.new(0,-7,-7)
-                STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character
-            end
-        end
-    end
+=
     rs.Heartbeat:connect(function()
         if blockantis == true and KO(OWNER).Value == true then
                 workspace.FallenPartsDestroyHeight = -9e9
@@ -6535,12 +6535,10 @@ end)
                 if TARGET.Character:WaitForChild("Humanoid").MoveDirection.magnitude > 0 then
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = 
                     CFrame.new(TARGET.Character.HumanoidRootPart.Position + Vector3.new(0,0,0)
-                     + (TARGET.Character.Humanoid.MoveDirection*1.3*TARGET.Character.Humanoid.WalkSpeed))
+                     + (TARGET.Character.Humanoid.MoveDirection*1.5*TARGET.Character.Humanoid.WalkSpeed))
                     STAND.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
                 else
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = 
-                    CFrame.new(TARGET.Character.HumanoidRootPart.Position + Vector3.new(0,-5,0)
-                     + (TARGET.Character.Humanoid.MoveDirection*1.3*TARGET.Character.Humanoid.WalkSpeed))
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = TARGET.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0,10)
                     STAND.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
                 end
                 else
@@ -6548,12 +6546,10 @@ end)
                 if TARGET.Character:WaitForChild("Humanoid").MoveDirection.magnitude > 0 then
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = 
                     CFrame.new(TARGET.Character.HumanoidRootPart.Position + Vector3.new(0,0,0)
-                     + (TARGET.Character.Humanoid.MoveDirection*1.3*TARGET.Character.Humanoid.WalkSpeed))
+                     + (TARGET.Character.Humanoid.MoveDirection*1.5*TARGET.Character.Humanoid.WalkSpeed))
                     STAND.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
                 else
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = 
-                    CFrame.new(TARGET.Character.HumanoidRootPart.Position + Vector3.new(0,-5,0)
-                     + (TARGET.Character.Humanoid.MoveDirection*1.3*TARGET.Character.Humanoid.WalkSpeed))
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = TARGET.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0,10)
                     STAND.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
                 end
             end
