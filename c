@@ -14,7 +14,7 @@ local Ypos = Height
 local Wide = 10000
 local Distance = 193684
 local Randomize = false
-local sound = false
+local sound = true
 local function ControlAlign(P0,P1,Offset)
     P0.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
     P0.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
@@ -66,21 +66,61 @@ local function Loop(Name, Callback)
 	end
 end
 
-function Play(ID)
-    if sound == false then return end
-    game:GetService("ReplicatedStorage").MainEvent:FireServer("RingTone",ID)
-    local Tool = nil
-    if OWNER.Character:FindFirstChildWhichIsA("Tool") then
-        Tool = OWNER.Character:FindFirstChildWhichIsA("Tool")
-        OWNER.Character:FindFirstChildWhichIsA("Tool").Parent = OWNER.Backpack
-    end
-    OWNER.Backpack["[Phone]"].Parent = OWNER.Character
-    OWNER.Character["[Phone]"].Parent = OWNER.Backpack
-    if Tool ~= true then
-        if Tool then
-            Tool.Parent = OWNER.Character
+TweenService = game:GetService("TweenService")
+OWNER = game:GetService("Players").LocalPlayer
+--//------------------------------------------------------------------------------------------\\--
+local OriginalKeyUpValue = 0
+function StopAudio()
+    game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("BoomboxStop")
+end
+--//------------------------------------------------------------------------------------------\\--
+function stop(ID, Key)
+    local cor = coroutine.wrap(function()
+        wait(OWNER.Character.LowerTorso.BOOMBOXSOUND.TimeLength-0.1)
+        if OWNER.Character.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OriginalKeyUpValue == Key then
+            StopAudio()
         end
+    end)
+    cor()
+end
+--//------------------------------------------------------------------------------------------\\--
+function Play(ID)
+    if game.Players.LocalPlayer.Name == "dahoodbotmoney5" then
+        game:GetService("ReplicatedStorage").MainEvent:FireServer("RingTone",ID)
+        local Tool = nil
+        if OWNER.Character:FindFirstChildWhichIsA("Tool") then
+            Tool = OWNER.Character:FindFirstChildWhichIsA("Tool")
+            OWNER.Character:FindFirstChildWhichIsA("Tool").Parent = OWNER.Backpack
+        end
+        OWNER.Backpack["[Phone]"].Parent = OWNER.Character
+        OWNER.Character["[Phone]"].Parent = OWNER.Backpack
+        if Tool ~= true then
+            if Tool then
+                Tool.Parent = OWNER.Character
+            end
+        end
+    else
+    if OWNER.Backpack:FindFirstChild("[Boombox]") then
+        local Tool = nil
+        OWNER.Backpack["[Boombox]"].Parent = OWNER.Character
+        game.ReplicatedStorage.MainEvent:FireServer("Boombox", ID)
+        OWNER.Character["[Boombox]"].RequiresHandle = false
+        OWNER.Character["[Boombox]"].Parent = OWNER.Backpack
+        OWNER.PlayerGui.MainScreenGui.BoomboxFrame.Visible = false
+        if Tool ~= true then
+            if Tool then
+                Tool.Parent = OWNER.Character
+            end
+        end
+        OWNER.Character.LowerTorso:WaitForChild("BOOMBOXSOUND")
+            local cor = coroutine.wrap(function()
+                repeat wait() until OWNER.Character.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OWNER.Character.LowerTorso.BOOMBOXSOUND.TimeLength > 0.01
+                OriginalKeyUpValue = OriginalKeyUpValue+1
+                stop(ID, OriginalKeyUpValue)
+            end)
+        cor()
     end
+end
 end
     
 
@@ -424,6 +464,8 @@ Control.RequiresHandle = false
 Control.Name = "Control"
 Control.Activated:connect(function()
     if OWNER.Character.BodyEffects.Grabbed.Value then
+        Play(907329532)
+        task.wait(1)
         OWNER.Character["Control"].Parent = OWNER.Backpack task.wait()
         Furry_ = true
         task.wait()
