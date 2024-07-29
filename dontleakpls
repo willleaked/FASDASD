@@ -6495,13 +6495,15 @@ end)
             end
         end
         end)
+        local Actual_Prediction = 0.4
+        local StrafeSpeed = 2
         function Whichgunshot()
             if augmode then
-                getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,-7,0) + (getHumanoid(TARGET).MoveDirection*Actual_Prediction*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,20*math.pi*delta,0)*CFrame.new(0,0,10)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
+                getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,-7,0) + (getHumanoid(TARGET).MoveDirection*.4*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,20*math.pi*delta,0)*CFrame.new(0,0,10)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
                 STAND.Character:FindFirstChild('[AUG]'):Activate()
                 else
                 STAND.Character:FindFirstChild('[LMG]'):Activate()
-                getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,-7,0) + (getHumanoid(TARGET).MoveDirection*Actual_Prediction*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,20*math.pi*delta,0)*CFrame.new(0,0,10)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
+                getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,-7,0) + (getHumanoid(TARGET).MoveDirection*.4*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,20*math.pi*delta,0)*CFrame.new(0,0,10)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
             end
         end
     rs.heartbeat:connect(function()
@@ -6539,8 +6541,7 @@ end)
             noclip = false
         end
     end)
-    local Actual_Prediction = 0.4
-    local StrafeSpeed = 2
+
     rs.heartbeat:connect(function()
         if GunKnock == true and KO(TARGET).Value == false then
             StopHoverAnim = true
