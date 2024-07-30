@@ -5550,7 +5550,6 @@ end)
     CreateTargetAbility("ch!",function()
         if TARGET then
             Stopsave()
-            game.ReplicatedStorage.MainEvent:FireServer("JoinCrew",CrewID) 
             if STAND.Backpack:FindFirstChild("Combat") then STAND.Backpack:FindFirstChild("Combat").Parent = STAND.Character end
             STAND.Character:FindFirstChild('Combat'):Activate()
             STAND.Character.BodyEffects.Movement:WaitForChild("ReduceWalk")
@@ -7058,7 +7057,6 @@ end)
                 or (v.Animation.AnimationId:match("rbxassetid://2788292075"))
                 or (v.Animation.AnimationId:match("rbxassetid://3354699999"))
                 or (v.Animation.AnimationId:match("rbxassetid://3033700364"))
-                or (v.Animation.AnimationId:match("rbxassetid://2788289281"))
                 or (v.Animation.AnimationId:match("rbxassetid://2788314837"))
                 or (v.Animation.AnimationId:match("rbxassetid://2968344043")) then
               v:Stop();
