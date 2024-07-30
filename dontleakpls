@@ -5549,7 +5549,7 @@ end)
     
     CreateTargetAbility("ch!",function()
         if TARGET then
-            Stop()
+            Stopsave()
             game.ReplicatedStorage.MainEvent:FireServer("JoinCrew",CrewID) 
             if STAND.Backpack:FindFirstChild("Combat") then STAND.Backpack:FindFirstChild("Combat").Parent = STAND.Character end
             STAND.Character:FindFirstChild('Combat'):Activate()
@@ -5566,9 +5566,11 @@ end)
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TARGET.Character.HumanoidRootPart.Position + Vector3.new(0,0,0) + (TARGET.Character.Humanoid.MoveDirection*0.50*TARGET.Character.Humanoid.WalkSpeed))
                     game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
                 end)
-            task.wait(1)
+                repeat task.wait() until STAND.Character:FindFirstChild("BodyEffects"):FindFirstChild("Attacking").Value == false
             AnimStop(2788290270,.2)
             game:GetService("RunService"):UnbindFromRenderStep("Target")
+            follow = true
+
         end
     end)
     
