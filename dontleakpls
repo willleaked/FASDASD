@@ -627,8 +627,16 @@ function Stand(targetName)
     end
     
     function Stopsave()
+        Stopbuygun = true
+        game.Players.LocalPlayer.Character.Animate.Enabled = true
+        AnimStop(14548621256)
+        AnimStop(3541044388)
+        AnimStop(2788290270)
+        gunwalking = false
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
         StopHoverAnim = false
         unViewingreal = true
+        flyingman = false
         follow = false
         pitchKills = false
         looking = false
@@ -637,6 +645,7 @@ function Stand(targetName)
         bring = false
         gunArrest = false
         followownersaddsaasd = false
+        gkillwoner = false
         reset2 = false
         Knocked = false
         Gunbring = false
@@ -687,6 +696,7 @@ function Stand(targetName)
         rainnn2 = false
         give2 = false
         gunnear = false
+        getHumanoid(STAND):UnequipTools()
         blocking = true
         if getRoot(STAND):FindFirstChild("BodyPosition") then getRoot(STAND).BodyPosition:Destroy()end
         if getRoot(STAND):FindFirstChild("BodyGyro") then getRoot(STAND).BodyGyro:Destroy()end
