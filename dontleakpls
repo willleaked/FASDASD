@@ -473,7 +473,15 @@ function Stand(targetName)
             e:Destroy()
         end
     end
-    
+    local BlacklistCharater = {
+        "Accessory (AdventurePeely (BACK ACCESSORY))",
+        "Accessory (AgentPeely (BACK ACCESSORY))",
+        "Accessory (Handle)",
+        "Accessory (KawsPeely (BACK ACCESSORY))",
+        "Accessory (Meshes/Peely_headAccessory)",
+        "Accessory (Peely (BACK ACCESSORY))",
+        "Accessory (PolarPeely (BACK ACCESSORY))"
+    }
     local float = Instance.new("Part",game.Workspace)
     float.Parent = game.Workspace
     float.Name = "FLOATPART"
@@ -7063,6 +7071,12 @@ end)
     --respawn
     STAND.CharacterAdded:connect(function()
         STAND.Character:WaitForChild("FULLY_LOADED_CHAR")
+        for _, Banana in ipairs(BlacklistCharater) do
+            if OWNER.Character:FindFirstChild(Banana) then
+                print("banana!")
+                game.Players.LocalPlayer:Kick("Chnage ur Character naga")
+            end
+        end
         Summon()
         
     
