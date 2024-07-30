@@ -5974,10 +5974,7 @@ end)
                 wait(0.1)
                 fireclickdetector(Brokie.ClickDetector)
                 wait(0.1)
-                wait(1)
                 noclip = false
-                getHumanoid(STAND):UnequipTools()
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-897.6600952148438, -640.0717163085938, -709.875732421875)
                 else
                     --TWEEN(CFrame.new(0,500,0))
                 end
