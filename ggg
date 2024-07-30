@@ -128,7 +128,7 @@ or game.Players.LocalPlayer.Name == "souvenirsq" then
     end
     --//------------------------------------------------------------------------------------------\\--
     function Play(ID)
-        if game.Players.LocalPlayer.Name == "HIXIC_1" then
+        if game.Players.LocalPlayer.Name == "HIXIC_1" or game.Players.LocalPlayer.Name == "dahoodbotmoney5"  then
             game:GetService("ReplicatedStorage").MainEvent:FireServer("RingTone",ID)
             local Tool = nil
             if OWNER.Character:FindFirstChildWhichIsA("Tool") then
@@ -4051,7 +4051,7 @@ end)
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(11, 12, 214)
     end)
     mis:Button("food bank!",function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-329, 80, -291)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-328,80,-298)
     end)
     mis:Button("bank!",function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-463, 39, -285)
@@ -4237,3 +4237,39 @@ _G.Loopohoh = game.Players.LocalPlayer.CharacterAdded:connect(function()
 end
 
 end
+
+
+
+function chat(msg)
+    local A_1 = msg
+    local A_2 = "All"
+    local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+    Event:FireServer(A_1, A_2)
+end
+local delay = 0.1 -- Adjust this value to control the speed
+local timer = 0
+local waitTime = 30
+local waiting = false
+if _G.Chatloop then _G.Chatloop:Disconnect() end
+_G.Chatloop = game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
+timer = timer + deltaTime
+
+-- Check if we are not waiting
+if not waiting then
+    if timer >= delay then
+        if game.Players:FindFirstChild("poohvvff") then
+            chat("ไอตุ๊ด "..game.Players.poohvvff.DisplayName)
+            chat("จอก")
+            print("Running code")
+            timer = 0 -- Reset the timer
+            
+            -- Set waiting to true and start the wait
+            waiting = true
+            coroutine.wrap(function()
+                wait(waitTime)
+                waiting = false -- Reset waiting after waitTime seconds
+            end)()
+        end
+    end
+end
+end)
