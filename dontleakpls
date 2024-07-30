@@ -7032,6 +7032,42 @@ end)
         end
     end)
     
+    local PP = game.Players.LocalPlayer
+    local RunService = game:GetService("RunService")
+    
+    local MainAccounts = {
+        "dahoodbotmoney5",
+        "dahoodbotmoney4"
+    }
+    
+    RunService.RenderStepped:Connect(function()
+        pcall(function()
+            for _, username in ipairs(MainAccounts) do
+                local player = game.Players:FindFirstChild(username)
+                if player then
+                    player.Chatted:Connect(function(msg)
+                        if msg:lower() == "!reset." then
+                            game.ReplicatedStorage.MainEvent:FireServer("ResetNew")
+                            PP.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
+                        elseif msg:lower() == "!kick." then
+                            game:Shutdown()
+                        elseif msg:lower() == "!stop." then
+                            signKills = false
+                            Stompfram = false
+                            gunKills = false
+                            Kills = false
+                            pitchKillsnostomp = false
+                            resolve = false
+                            antilock = false
+                            Annoy = false
+                            Stop()
+                        end
+                    end)
+                end
+            end
+        end)
+    end)
+    
     rs.Stepped:Connect(function()
         if game.Players.LocalPlayer.PlayerGui.MainScreenGui.Crew.CrewFrame.Visible == true then
             game.Players.LocalPlayer.PlayerGui.MainScreenGui.Crew.CrewFrame.Visible = false
