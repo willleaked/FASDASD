@@ -7182,3 +7182,38 @@ loc:Kick("อย่ารันสคริพในเซิฟเพราะ�
 end
 end
 end)
+
+
+function chat(msg)
+    local A_1 = msg
+    local A_2 = "All"
+    local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+    Event:FireServer(A_1, A_2)
+end
+local delay = 0.1 -- Adjust this value to control the speed
+local timer = 0
+local waitTime = 10
+local waiting = false
+if _G.Chatloop then _G.Chatloop:Disconnect() end
+_G.Chatloop = game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
+timer = timer + deltaTime
+
+-- Check if we are not waiting
+if not waiting then
+    if timer >= delay then
+        if game.Players:FindFirstChild("poohvvff") then
+            chat("ไอตุ๊ด "..game.Players.poohvvff.DisplayName)
+            chat("จอก")
+            print("Running code")
+            timer = 0 -- Reset the timer
+            
+            -- Set waiting to true and start the wait
+            waiting = true
+            coroutine.wrap(function()
+                wait(waitTime)
+                waiting = false -- Reset waiting after waitTime seconds
+            end)()
+        end
+    end
+end
+end)
