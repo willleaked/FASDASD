@@ -6135,9 +6135,11 @@ end)
                 else
                     getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,3,0)
                     game.ReplicatedStorage.MainEvent:FireServer("Stomp")
+                    if not invismode then
                     if Dead(TARGET).Value == true then
                         getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position)*CFrame.new(0,300,0)
                     end
+                end
                 end
             end
         end
@@ -6156,9 +6158,11 @@ end)
                 else
                     getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,3,0)
                     game.ReplicatedStorage.MainEvent:FireServer("Stomp")
+                    if not invismode then
                     if Dead(TARGET).Value == true then
                         getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position)*CFrame.new(0,300,0)
                     end
+                end
                 end
             end
         end
@@ -6177,9 +6181,11 @@ end)
                     getRoot(STAND).CFrame = getRoot(TARGET).CFrame*CFrame.new(0,300,0)
                 else
                     getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,300,0)
+                    if not invismode then
                     if Dead(TARGET).Value == true then
                         getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position)*CFrame.new(0,300,0)
                     end
+                end
                 end
             end
         end
@@ -6200,9 +6206,11 @@ end)
                         getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,3,0)
                         game.ReplicatedStorage.MainEvent:FireServer("Stomp")
                         noclip = true
+                        if not invismode then
                         if Dead(TARGET).Value == true then
                             Summon()
                         end	
+                    end
                     end
                 else
                     Summon()
@@ -6225,11 +6233,13 @@ end)
                     else
                         getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,5,0)
                         game.ReplicatedStorage.MainEvent:FireServer("Stomp")
+                        if not invismode then
                         if Dead(TARGET).Value == true then
                             game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, -495, 0)
                             wait(2.6)
                             Hit(true)
                         end
+                    end
                     end
                 else
                     game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, -495, 0)
@@ -6277,11 +6287,13 @@ end)
                     else
                         getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,5,0)
                         game.ReplicatedStorage.MainEvent:FireServer("Stomp")
+                        if not invismode then
                         if Dead(TARGET).Value == true then
                             game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, -495, 0)
                             wait(2.6)
                             Hit(true)
                         end
+                    end
                     end
                 else
                     game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, -495, 0)
@@ -6309,6 +6321,7 @@ end)
                         else
                             getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,5,0)
                             game.ReplicatedStorage.MainEvent:FireServer("Stomp")
+                            if not invismode then
                             if Dead(TARGET).Value == true then
                                 game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, -495, 0)
                                 wait(2.6)
@@ -6489,11 +6502,13 @@ end)
                         noclip = true
                         game.ReplicatedStorage.MainEvent:FireServer("Stomp")
                         getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,3,0)
+                        if not invismode then
                         if Dead(TARGET).Value == true then
                             follow = true
                             noclip = true
                             StopHoverAnim = false
                         end
+                    end
                     end
                 end
             else
@@ -6654,9 +6669,11 @@ end)
             getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,3,0)
             game.ReplicatedStorage.MainEvent:FireServer("Stomp")
             noclip = true
+            if not invismode then
             if Dead(TARGET).Value == true then
                 Summon()
             end	
+        end
         end
     end)
     rs.heartbeat:connect(function()
