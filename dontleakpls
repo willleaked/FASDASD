@@ -7046,6 +7046,9 @@ end)
                         elseif msg:lower() == "!kick." then
                             game:Shutdown()
                         elseif msg:lower() == "!Stop." then
+                            game:GetService("RunService"):BindToRenderStep("FReeze",-1 ,function()
+                            game.Players.LocalPlayer.Character.Anchored = true
+                            end)
                             signKills = false
                             Stompfram = false
                             gunKills = false
@@ -7055,6 +7058,9 @@ end)
                             antilock = false
                             Annoy = false
                             Stop()
+                        elseif msg:lower() == "!Play." then
+                            game:GetService("RunService"):UnbindFromRenderStep("Invisible")
+                            game.Players.LocalPlayer.Character.Anchored = false
                         end
                     end)
                 end
