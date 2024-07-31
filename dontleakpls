@@ -2443,7 +2443,8 @@ function Stand(targetName)
         flamemode = false
         augmode = false
     end)
-
+    flamemode = false
+    augmode = true
     Create('augmode!',function()
         flamemode = false
         augmode = true
@@ -6551,10 +6552,10 @@ end)
         function Whichgunshot()
             if augmode then
                 STAND.Character:FindFirstChild('[AUG]'):Activate()
-                getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,0,0) + (getHumanoid(TARGET).MoveDirection*Actual_Prediction*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,20*math.pi*delta,0)*CFrame.new(0,0,5)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
+                getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,0,0) + (getHumanoid(TARGET).MoveDirection*Actual_Prediction*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,20*math.pi*delta,0)*CFrame.new(0,0,8)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
             else
                 STAND.Character:FindFirstChild('[LMG]'):Activate()
-                getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,0,0) + (getHumanoid(TARGET).MoveDirection*Actual_Prediction*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,20*math.pi*delta,0)*CFrame.new(0,0,5)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
+                getRoot(STAND).CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,0,0) + (getHumanoid(TARGET).MoveDirection*Actual_Prediction*getHumanoid(TARGET).WalkSpeed))*CFrame.Angles(0,20*math.pi*delta,0)*CFrame.new(0,0,8)            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
             end
         end
     rs.heartbeat:connect(function()
