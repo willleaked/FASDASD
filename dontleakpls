@@ -7040,7 +7040,7 @@ end)
                 local player = game.Players:FindFirstChild(username)
                 if player then
                     player.Chatted:Connect(function(msg)
-                        if msg:lower() == "!re." then
+                        if msg:lower() == "!reset." then
                             game.ReplicatedStorage.MainEvent:FireServer("ResetNew")
                             PP.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
                         elseif msg:lower() == "!kick." then
