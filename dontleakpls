@@ -6555,9 +6555,6 @@ end)
                 Locking = true
                 game.Players.LocalPlayer.Character.Humanoid:MoveTo(TARGET.Character.HumanoidRootPart.CFrame.Position+Vector3.new(0,0,10))
                 if TARGET.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air then
-                print("OWNER JUMPING")
-                wait(.1)
-                game.Players.LocalPlayer.Character.Humanoid.Jump = true  
                 end
                 if (STAND.Character.HumanoidRootPart.Position - TARGET.Character.HumanoidRootPart.Position).Magnitude > 40 then
                     getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,0,3)
