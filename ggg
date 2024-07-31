@@ -13,14 +13,14 @@
         local LOCAL_PLAYER = Players.LocalPlayer
         local PlayerGui = LOCAL_PLAYER:WaitForChild("PlayerGui")
         
-        -- Create ScreenGui
+        
         local screenGui = Instance.new("ScreenGui")
         screenGui.Parent = PlayerGui
         
-        -- Create Button
+       
         local button = Instance.new("TextButton")
         button.Size = UDim2.new(0, 200, 0, 50)
-        button.Position = UDim2.new(0.5, -100, 0.5, -25) -- Center of the screen
+        button.Position = UDim2.new(0.5, -100, 0.5, -25)
         button.Text = "Toggle Discord GUI"
         button.Parent = screenGui
 
@@ -43,7 +43,7 @@
         
         button.MouseButton1Click:Connect(toggleDiscordGui)
         
-        -- Make the button draggable on both PC and mobile
+        
         local UserInputService = game:GetService("UserInputService")
         local dragging = false
         local dragInput = nil
@@ -321,9 +321,10 @@ function boommmm()
                 tool.RequiresHandle = false
                 tool.Name = "I'm gonna rip you in half now!"
                 tool.Activated:Connect(function()
+                    if game.Players.LocalPlayer.Character.BodyEffects.Grabbed.Value ~= nil then
                     Play(7148332723)
                     wait(2.5)
-                    Play(5951833277)--5951833277
+                    Play(429400881)--5951833277
                     wait(.1)
                     wait(.1)
                     for i , v in pairs(game.Players[tostring(game.Players.LocalPlayer.Character.BodyEffects.Grabbed.Value)].Character:GetChildren()) do
@@ -333,6 +334,7 @@ function boommmm()
                     end
                     wait(.1)
                     game.ReplicatedStorage.MainEvent:FireServer("Grabbing")
+                end
                 end)
                 tool.Parent = game.Players.LocalPlayer.Backpack
         
@@ -346,6 +348,7 @@ _G.Loopspaw = game.Players.LocalPlayer.CharacterAdded:connect(function()
         game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
         kick()
         did()
+        kissck()
         boommmm()
         ighlight()
     end)
@@ -1687,6 +1690,89 @@ end)
             end
         end
     )
+    trun:Toggle(
+        "anti RPG",
+        false,
+        function(ANTIRPG)
+            if ANTIRPG == true then
+                function ANtiRpg()
+                    local rsrv = game:GetService("RunService")
+                    local heartbeat = rsrv.Heartbeat
+                    local renderstepped = rsrv.RenderStepped
+                    
+                    local lp = game.Players.LocalPlayer
+                    local mouse = lp:GetMouse()
+                    
+                    local chr = lp.Character
+                    local hum = chr.Humanoid
+                    local root = hum.RootPart
+                    
+                    
+                    local visible_parts = {}
+                    
+                    for _, v in pairs(chr:GetDescendants()) do
+                        if v:IsA("BasePart") and v.Transparency == 0 then
+                            visible_parts[#visible_parts + 1] = v
+                        end
+                    end
+                    print("New1")
+                    antipart = false
+                    local LocalPlayer = game.Players.LocalPlayer
+                    local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+                    local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+                    if _G.LOOPANTIHEAL then _G.LOOPANTIHEAL:Disconnect() end
+                    _G.LOOPANTIHEAL = heartbeat:Connect(function()
+                        for i, v in pairs(workspace.Ignored:GetChildren()) do
+                            if v.Name == "Handle" or v.Name == "Part" and (v.Position - HumanoidRootPart.Position).Magnitude <= 14 then
+                                local oldcf = root.CFrame
+                                local oldcamoffset = hum.CameraOffset
+                    
+                                local newcf = oldcf * CFrame.new(0,100,0)
+                    
+                                hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
+                                if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then
+                                    root.CFrame = oldcf * CFrame.new(0,1, 0)
+                                else
+                                root.CFrame = newcf
+                                end
+                                renderstepped:Wait()
+                    
+                                hum.CameraOffset = oldcamoffset
+                                root.CFrame = oldcf
+                            elseif v.name == "Model" then
+                                if v:FindFirstChild("Launcher") then
+                                    local oldcf = root.CFrame
+                                    local oldcamoffset = hum.CameraOffset
+                        
+                                    local newcf = oldcf * CFrame.new(0,100,0)
+                        
+                                    hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
+                                    root.CFrame = newcf
+                                    renderstepped:Wait()
+                        
+                                    hum.CameraOffset = oldcamoffset
+                                    root.CFrame = oldcf
+                            end
+                        end
+                    end
+                    end)
+                    
+                    end
+                    
+                    ANtiRpg()
+                    if getgenv().ANTIRPG then getgenv().ANTIRPG:Disconnect() end
+                    getgenv().ANTIRPG =  game.Players.LocalPlayer.CharacterAdded:connect(function()
+                        game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
+                        task.wait(1)
+                        ANtiRpg()
+                    end)
+            elseif ANTIRPG == false then
+                if getgenv().ANTIRPG then getgenv().ANTIRPG:Disconnect() end
+                if _G.LOOPANTIHEAL then _G.LOOPANTIHEAL:Disconnect() end
+
+            end
+        end
+    )
     trun:Toggle("กันล็อก(เเบบ เเล็กปลอม โดนยิงยากมาก) solaraไม่ซัพพอต", false, function(ffake)
         if ffake == true then
                 if _G.FAKELAG then
@@ -1735,7 +1821,7 @@ end)
     trun:Toggle(
         "anti lock เเบบ อยู่นิ่งๆ",
         false,
-        function(locked)
+        function(Antilock)
             if locked == true then
                     _G.ANTILOCKNORANDOM = game:GetService("RunService").Heartbeat:Connect(function()
                             game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").WalkSpeed = 24
@@ -1744,7 +1830,7 @@ end)
                         game:GetService("RunService").RenderStepped:Wait()
                         game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = currentvel
                         end)
-            elseif locked == false then
+            elseif Antilock == false then
                 if _G.ANTILOCKNORANDOM then
                     _G.ANTILOCKNORANDOM:Disconnect()
                 end
