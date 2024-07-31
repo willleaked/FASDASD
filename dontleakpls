@@ -6328,6 +6328,7 @@ end)
                                 signhit(true)
                             end
                         end
+                        end
                     else
                         game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, -495, 0)
                     end
