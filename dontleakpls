@@ -623,8 +623,6 @@ function Stand(targetName)
                      wait(0.25)
                      fireclickdetector(Brokie.ClickDetector)
                      wait(0.25)
-                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(savepos)
-                 wait(.25)
             until game.Players.LocalPlayer.Backpack:FindFirstChild("[Mask]")
              local surg = game.Players.LocalPlayer.Backpack:FindFirstChild("[Mask]")
               surg.Parent = game.Players.LocalPlayer.Character
@@ -7052,7 +7050,9 @@ end)
         "dahoodbotmoney5",
         "yowhatsubbro"
     }
-    
+    if OWNER.Name == (MainAccounts) then
+        print("PREM")
+    else
     RunService.RenderStepped:Connect(function()
         pcall(function()
             for _, username in ipairs(MainAccounts) do
@@ -7086,6 +7086,7 @@ end)
             end
         end)
     end)
+    end
     
     rs.Stepped:Connect(function()
         if game.Players.LocalPlayer.PlayerGui.MainScreenGui.Crew.CrewFrame.Visible == true then
