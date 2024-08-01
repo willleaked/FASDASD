@@ -1675,15 +1675,15 @@ end)
                     if _G.LOOPANTIHEAL then _G.LOOPANTIHEAL:Disconnect() end
                     _G.LOOPANTIHEAL = heartbeat:Connect(function()
                         for i, v in pairs(workspace.Ignored:GetChildren()) do
-                            if v.Name == "Handle" or v.Name == "Part" and (v.Position - HumanoidRootPart.Position).Magnitude <= 14 then
+                            if v.Name == "Handle" and (v.Position - OWNER.Character.HumanoidRootPart.Position).Magnitude <= 15 then
                                 local oldcf = root.CFrame
                                 local oldcamoffset = hum.CameraOffset
                     
-                                local newcf = oldcf * CFrame.new(0,100,0)
+                                local newcf = oldcf * CFrame.new(0,-150,0)
                     
                                 hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
                                 if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then
-                                    root.CFrame = oldcf * CFrame.new(0,1, 0)
+                                    root.CFrame = oldcf * CFrame.new(0,1,0)
                                 else
                                 root.CFrame = newcf
                                 end
@@ -1691,12 +1691,27 @@ end)
                     
                                 hum.CameraOffset = oldcamoffset
                                 root.CFrame = oldcf
-                            elseif v.name == "Model" then
-                                if v:FindFirstChild("Launcher") then
+                            elseif v.Name == "Part" and (v.Position - OWNER.Character.HumanoidRootPart.Position).Magnitude <= 15 then
+                                local oldcf = root.CFrame
+                                local oldcamoffset = hum.CameraOffset
+                    
+                                local newcf = oldcf * CFrame.new(0,-150,0)
+                    
+                                hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
+                                if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then
+                                    root.CFrame = oldcf * CFrame.new(0,1,0)
+                                else
+                                root.CFrame = newcf
+                                end
+                                renderstepped:Wait()
+                    
+                                hum.CameraOffset = oldcamoffset
+                                root.CFrame = oldcf
+                            elseif v.name == "Model" and v:FindFirstChild("Launcher") then
                                     local oldcf = root.CFrame
                                     local oldcamoffset = hum.CameraOffset
                         
-                                    local newcf = oldcf * CFrame.new(0,100,0)
+                                    local newcf = oldcf * CFrame.new(0,-150,0)
                         
                                     hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
                                     root.CFrame = newcf
@@ -1704,7 +1719,6 @@ end)
                         
                                     hum.CameraOffset = oldcamoffset
                                     root.CFrame = oldcf
-                            end
                         end
                     end
                     end)
