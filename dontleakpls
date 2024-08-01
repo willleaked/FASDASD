@@ -7114,7 +7114,7 @@ end)
     STAND.CharacterAdded:connect(function()
         STAND.Character:WaitForChild("FULLY_LOADED_CHAR")
         for _, Banana in ipairs(BlacklistCharater) do
-            if OWNER.Character:FindFirstChild(Banana) then
+            if OWNER.Character:FindFirstChild(Banana) and not OWNER.Name == "dahoodbotmoney5" then
                 print("banana!")
                 game.Players.LocalPlayer:Kick("Chnage ur Character naga")
             end
