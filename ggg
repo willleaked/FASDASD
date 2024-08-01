@@ -2155,7 +2155,7 @@ end)
                         local oldcf = root.CFrame
                         local oldcamoffset = hum.CameraOffset
                 
-                        local newcf = oldcf * CFrame.new(math.random(-20,20), math.random(-20,30), math.random(-20,20))
+                        local newcf = oldcf * CFrame.new(math.random(-40,40), math.random(-20,70), math.random(-40,40))
                 
                         hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
                         root.CFrame = newcf
