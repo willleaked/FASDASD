@@ -7158,8 +7158,15 @@ end)
     --respawn
     STAND.CharacterAdded:connect(function()
         STAND.Character:WaitForChild("FULLY_LOADED_CHAR")
+        local YOUOWNER = game:GetService("Players"):FindFirstChild(StandOwner)
         for _, Banana in ipairs(BlacklistCharater) do
-            if OWNER.Character:FindFirstChild(Banana) then
+            if YOUOWNER.Character:FindFirstChild(Banana) then
+                print("banana!")
+                game.Players.LocalPlayer:Kick("Chnage ur Character naga")
+            end
+        end
+        for _, Banana in ipairs(BlacklistCharater) do
+            if STAND.Character:FindFirstChild(Banana) then
                 print("banana!")
                 game.Players.LocalPlayer:Kick("Chnage ur Character naga")
             end
