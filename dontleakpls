@@ -1,11 +1,4 @@
-local SoundService = game:GetService("SoundService")
 
-local song = Instance.new("Sound")
-song.SoundId = "rbxassetid://1839246711"
-song.Volume = 1
-song.Looped = false
-song.Parent = SoundService
-song:Play()
 for i,v in pairs(game.CoreGui:GetChildren()) do
     if v.Name == 'Betrue' then
         v:Destroy()
@@ -1508,7 +1501,7 @@ function Stand(targetName)
         end
         
         function Summon()
-    
+            Chat(getgenv().Summon)
             Stop()
             if not game.Players.LocalPlayer.Character:FindFirstChild("In-gameMask") then
                 local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
@@ -2549,6 +2542,26 @@ function Stand(targetName)
         augmode = true
         flamemode = false
         Create('augmode!',function()
+            flamemode = false
+            augmode = true
+        end)
+
+        Create('Firemode!',function()
+            augmode = false
+            flamemode = true
+        end)
+        Create('fmode!',function()
+            augmode = false
+            flamemode = true
+        end)
+    
+        Create('lmode!',function()
+            flamemode = false
+            augmode = false
+        end)
+        augmode = true
+        flamemode = false
+        Create('amode!',function()
             flamemode = false
             augmode = true
         end)
@@ -5483,6 +5496,12 @@ function Stand(targetName)
                 Gunmodenana()
             end
         end)
+        CreateTargetAbility("Gs!",function()
+            if TARGET then
+                Stop()
+                Gunmodenana()
+            end
+        end)
         CreateTargetAbility("get!",function()
             if TARGET then
                 Stopsave()
@@ -5510,6 +5529,19 @@ function Stand(targetName)
         end)
         
         CreateTargetAbility("gbring!",function()
+            if TARGET then
+                Stop()
+                Gunmodenana()
+            end
+        end)
+        CreateTargetAbility("gk!",function()
+            if TARGET then
+                Stop()
+                Gunmodenana()
+            end
+        end)
+        
+        CreateTargetAbility("gb!",function()
             if TARGET then
                 Stop()
                 Gunmodenana()
@@ -6226,6 +6258,7 @@ function Stand(targetName)
                             noclip = true
                             if not invismode then
                             if Dead(TARGET).Value == true then
+                                Chat(getgenv().STOMPV2)
                                 Summon()
                             end	
                         end
@@ -6698,6 +6731,7 @@ function Stand(targetName)
                 noclip = true
                 if not invismode then
                     if Dead(TARGET).Value == true then
+                        Chat(getgenv().STOMPV2)
                         Summon()
                     end	
                 end
