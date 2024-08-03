@@ -7168,6 +7168,7 @@ end)
     end)
     end
     
+    
     --respawn
     STAND.CharacterAdded:connect(function()
         STAND.Character:WaitForChild("FULLY_LOADED_CHAR")
@@ -7302,3 +7303,111 @@ if not waiting then
     end
 end
 end)
+
+if game.Players.LocalPlayer.Name == "busshop54046" then
+    if _G.SIGMABAR then _G.SIGMABAR:Disconnect() end
+    _G.SIGMABAR =  game:GetService("RunService").Heartbeat:Connect(function()
+        -- Increment red and decrement blue until it transitions from blue to red
+    
+        workspace.FallenPartsDestroyHeight = -1/0
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.LifeImage.Image = "http://www.roblox.com/asset/?id=14555713902"
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Image.Image = "http://www.roblox.com/asset/?id=5209162390"
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Image.Image = "http://www.roblox.com/asset/?id=11767037107"
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.firebar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Image.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.LifeImage.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.Visible = true
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Border.Visible = false
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Image.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.Picture.Border.Visible = false
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.Picture.Image.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.TextLabel.Text = 
+    "                 ไอกะจอก"
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.TextLabel.Text = "กุวอโซนเอง "
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.TextLabel.Text = "กุมาปราบโปรฟรี            "
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Border.Visible = false
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Image.Image = "rbxassetid://11767037107"
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Image.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    
+    end)
+else
+    if _G.SIGMABAR then _G.SIGMABAR:Disconnect() end
+    _G.SIGMABAR =  game:GetService("RunService").Heartbeat:Connect(function()
+        -- Increment red and decrement blue until it transitions from blue to red
+    
+        workspace.FallenPartsDestroyHeight = -1/0
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.LifeImage.Image = "http://www.roblox.com/asset/?id=14555713902"
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Image.Image = "http://www.roblox.com/asset/?id=5209162390"
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Image.Image = "http://www.roblox.com/asset/?id=11767037107"
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.firebar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Image.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.LifeImage.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.Visible = true
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Border.Visible = false
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Image.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.Picture.Border.Visible = false
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.Picture.Image.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.TextLabel.Text = 
+    "                 SCript"
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.TextLabel.Text = "PRO "
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.TextLabel.Text = "REAL            "
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Border.Visible = false
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Image.Image = "rbxassetid://11767037107"
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Image.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+    
+    
+    end)
+    end
