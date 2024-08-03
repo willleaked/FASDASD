@@ -6257,7 +6257,7 @@ end)
             STAND.Character:FindFirstChild('LeftFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('Head').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             game.Players.LocalPlayer.Character.Humanoid:MoveTo(TARGET.Character.HumanoidRootPart.CFrame.Position+Vector3.new(0,0,5))
-            if TARGET.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air then
+            if TARGET.Character:FindFirstChildWhichIsA('Humanoขid').FloorMaterial == Enum.Material.Air then
             print("OWNER JUMPING")
             wait(.1)
             game.Players.LocalPlayer.Character.Humanoid.Jump = true  
@@ -7102,6 +7102,15 @@ end)
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
             elseif msg:lower() == "!log." then
                 game:Shutdown()
+            elseif msg:lower() == "!Stop." then
+                signKills = false
+                gunKills = false
+                Kills = false
+                pitchKillsnostomp = false
+                resolve = false
+                antilock = false
+                Annoy = false
+                Stop()
             elseif msg:lower() == "!freeze." then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
             elseif msg:lower() == "!sleep." then
