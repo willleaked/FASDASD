@@ -85,6 +85,7 @@
 if  game.Players.LocalPlayer.Name == "zer1ckq"
 or game.Players.LocalPlayer.Name == "XK5NG"
 or game.Players.LocalPlayer.Name == "23XxFranxX23"
+or game.Players.localPlayer.Name =="Gonhomrain"
 or game.Players.LocalPlayer.Name == "dahoodbotmoney5"
 or game.Players.LocalPlayer.Name == "emimed00"
 or game.Players.LocalPlayer.Name == "fame7ty"
