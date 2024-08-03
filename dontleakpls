@@ -5501,18 +5501,18 @@ end)
         if TARGET then
             if STAND.Backpack:FindFirstChild("[LMG]") or STAND.Backpack:FindFirstChild("[AUG]") then
                 if augmode then
-                     game.Players.LocalPlayer.Backpack:FindFirstChild("[AUG]").GripPos = Vector3.new(0,-7,7)
-                    if STAND.Backpack:FindFirstChild("[AUG]") then STAND.Backpack:FindFirstChild("[AUG]").Parent = STAND.Character end
-                    noclip = false
-                    blocking = false
-                    gunwalking = true
-                else
-                     game.Players.LocalPlayer.Backpack:FindFirstChild("[LMG]").GripPos = Vector3.new(0,-7,-7)
-                    if STAND.Backpack:FindFirstChild("[LMG]") then STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character end
-                    noclip = false
-                    blocking = false
-                    gunwalking = true
-                end
+                    game.Players.LocalPlayer.Backpack:FindFirstChild("[AUG]").GripPos = Vector3.new(0,-7,7)
+                   if STAND.Backpack:FindFirstChild("[AUG]") then STAND.Backpack:FindFirstChild("[AUG]").Parent = STAND.Character end
+                   noclip = false
+                   blocking = false
+                   gunwalking = true
+               else
+                    game.Players.LocalPlayer.Backpack:FindFirstChild("[LMG]").GripPos = Vector3.new(0,-7,-7)
+                   if STAND.Backpack:FindFirstChild("[LMG]") then STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character end
+                   noclip = false
+                   blocking = false
+                   gunwalking = true
+               end
             end
         end
     end)
@@ -6256,8 +6256,8 @@ end)
             STAND.Character:FindFirstChild('RightFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('LeftFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('Head').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
-            game.Players.LocalPlayer.Character.Humanoid:MoveTo(TARGET.Character.HumanoidRootPart.CFrame.Position+Vector3.new(0,0,5))
-            if TARGET.Character:FindFirstChildWhichIsA('Humanoขid').FloorMaterial == Enum.Material.Air then
+            game.Players.LocalPlayer.Character.Humanoid:MoveTo(TARGET.Character.HumanoidRootPart.CFrame.Position+Vector3.new(0,0,0))
+            if TARGET.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air then
             print("OWNER JUMPING")
             wait(.1)
             game.Players.LocalPlayer.Character.Humanoid.Jump = true  
@@ -6265,14 +6265,12 @@ end)
             if (STAND.Character.HumanoidRootPart.Position - TARGET.Character.HumanoidRootPart.Position).Magnitude > 40 then
                 getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,5,0)
             end
-            MainEvent:FireServer("Block",false)
             if gunKills then
                 if STAND.Backpack:FindFirstChild("[LMG]") then
                     STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character
-                else
-                    STAND.Character:FindFirstChild('[LMG]'):Activate()
                 end
             end
+            STAND.Character:FindFirstChild('[LMG]'):Activate()
         else
             if gunKills == true and KO(TARGET).Value == true then
                 if gunKills then
@@ -6284,15 +6282,13 @@ end)
                     if Attacking(STAND).Value == true then
                         getRoot(STAND).CFrame = getRoot(TARGET).CFrame*CFrame.new(0,300,0)
                     else
-                        getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,5,0)
+                        getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,5,0)* CFrame.Angles(math.rad(math.random(0, 360)), math.rad(math.random(0, 360)), math.rad(math.random(0, 360)))
                         game.ReplicatedStorage.MainEvent:FireServer("Stomp")
                         if not invismode then
-                        if Dead(TARGET).Value == true then
-                            game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, -495, 0)
-                            wait(2.6)
-                            Hit(true)
+                            if Dead(TARGET).Value == true then
+                                game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(math.random(-1000,1000), -495, math.random(-1000,1000))
+                            end
                         end
-                    end
                     end
                 else
                     game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, -495, 0)
@@ -6561,7 +6557,7 @@ end)
 
             if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then
                 game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk"):Destroy()
-                end
+            end
             if STAND.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed") then STAND.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed"):Destroy() end
             if STAND.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then STAND.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk"):Destroy() end
                 fastspeed = true
@@ -7305,110 +7301,3 @@ if not waiting then
 end
 end)
 
-if game.Players.LocalPlayer.Name == "busshop54046" then
-    if _G.SIGMABAR then _G.SIGMABAR:Disconnect() end
-    _G.SIGMABAR =  game:GetService("RunService").Heartbeat:Connect(function()
-        -- Increment red and decrement blue until it transitions from blue to red
-    
-        workspace.FallenPartsDestroyHeight = -1/0
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.LifeImage.Image = "http://www.roblox.com/asset/?id=14555713902"
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Image.Image = "http://www.roblox.com/asset/?id=5209162390"
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Image.Image = "http://www.roblox.com/asset/?id=11767037107"
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.firebar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Image.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.LifeImage.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.Visible = true
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Border.Visible = false
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Image.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.Picture.Border.Visible = false
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.Picture.Image.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.TextLabel.Text = 
-    "                 ไอกะจอก"
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.TextLabel.Text = "กุวอโซนเอง "
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.TextLabel.Text = "กุมาปราบโปรฟรี            "
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Border.Visible = false
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Image.Image = "rbxassetid://11767037107"
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Image.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    
-    end)
-else
-    if _G.SIGMABAR then _G.SIGMABAR:Disconnect() end
-    _G.SIGMABAR =  game:GetService("RunService").Heartbeat:Connect(function()
-        -- Increment red and decrement blue until it transitions from blue to red
-    
-        workspace.FallenPartsDestroyHeight = -1/0
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.LifeImage.Image = "http://www.roblox.com/asset/?id=14555713902"
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Image.Image = "http://www.roblox.com/asset/?id=5209162390"
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Image.Image = "http://www.roblox.com/asset/?id=11767037107"
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.firebar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Image.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.LifeImage.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.Visible = true
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Border.Visible = false
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Image.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.Picture.Border.Visible = false
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.Picture.Image.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Armor.TextLabel.Text = 
-    "                 SCript"
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.TextLabel.Text = "PRO "
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.TextLabel.Text = "REAL            "
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Border.Visible = false
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Image.Image = "rbxassetid://11767037107"
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.Picture.Image.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.bar.BackgroundColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-    
-    
-    end)
-    end
