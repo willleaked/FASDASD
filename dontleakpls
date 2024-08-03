@@ -6144,7 +6144,7 @@ function Stand(targetName)
                 STAND.Character:FindFirstChild('RightFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
                 STAND.Character:FindFirstChild('LeftFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
                 STAND.Character:FindFirstChild('Head').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
-                game.Players.LocalPlayer.Character.Humanoid:MoveTo(TARGET.Character.HumanoidRootPart.CFrame.Position+Vector3.new(0,0,0))
+                game.Players.LocalPlayer.Character.Humanoid:MoveTo(TARGET.Character.HumanoidRootPart.CFrame.Position+Vector3.new(0,0,6))
                 if TARGET.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air then
                 print("OWNER JUMPING")
                 wait(.1)
@@ -6513,7 +6513,7 @@ function Stand(targetName)
                 if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then
                     game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk"):Destroy()
                     end
-                    game.Players.LocalPlayer.Character.Humanoid:MoveTo(TARGET.Character.HumanoidRootPart.CFrame.Position+Vector3.new(0,0,0))
+                    game.Players.LocalPlayer.Character.Humanoid:MoveTo(TARGET.Character.HumanoidRootPart.CFrame.Position+Vector3.new(0,0,6))
                     StopHoverAnim = true
                     noclip = false
                     Locking = true
