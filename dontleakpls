@@ -6256,7 +6256,7 @@ end)
             STAND.Character:FindFirstChild('RightFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('LeftFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
             STAND.Character:FindFirstChild('Head').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
-            game.Players.LocalPlayer.Character.Humanoid:MoveTo(TARGET.Character.HumanoidRootPart.CFrame.Position+Vector3.new(0,0,0))
+            game.Players.LocalPlayer.Character.Humanoid:MoveTo(TARGET.Character.HumanoidRootPart.CFrame.Position+Vector3.new(0,0,5))
             if TARGET.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air then
             print("OWNER JUMPING")
             wait(.1)
@@ -6576,7 +6576,11 @@ end)
                 end
                 MainEvent:FireServer("Block",false)
                 gunchecking()
-                Whichgunshot()
+                if augmode then
+                    STAND.Character:FindFirstChild('[AUG]'):Activate()
+                else
+                    STAND.Character:FindFirstChild('[LMG]'):Activate()
+                end
         elseif gunwalking == true and KO(TARGET).Value == true then
             gunwalking = false
             Stop()
