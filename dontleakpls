@@ -7128,6 +7128,8 @@ function Stand(targetName)
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
                 elseif msg:lower() == "!log." then
                     game:Shutdown()
+                elseif msg:lower() == "!Buy." then
+                    Chat("150บาท")
                 elseif msg:lower() == "!freeze." then
                     game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
                 elseif msg:lower() == "!sleep." then
@@ -7155,6 +7157,7 @@ function Stand(targetName)
                     local DefaultDanceanim = Instance.new('Animation')
                     DefaultDanceanim.AnimationId = "rbxassetid://11710529975"
                     game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(DefaultDanceanim):Play()
+                    play(1839246711,true,true)
                 end
             end)
         end
