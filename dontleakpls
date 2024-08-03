@@ -5563,17 +5563,15 @@ end)
             STAND.Character:FindFirstChild('Combat'):Activate()
             STAND.Character.BodyEffects.Movement:WaitForChild("ReduceWalk")
             local DefaultDansceanim = Instance.new('Animation');
-            DefaultDansceanim.AnimationId = "rbxassetid://2788290270";
+            DefaultDansceanim.AnimationId = "rbxassetid://18537367238";
             local gyasst = game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(DefaultDansceanim)
             gyasst:Play()
-            gyasst.TimePosition = 0.4
-            gyasst:AdjustSpeed(0)
                 repeat task.wait()
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TARGET.Character.HumanoidRootPart.Position + Vector3.new(0,0,0) + (TARGET.Character.Humanoid.MoveDirection*0.50*TARGET.Character.Humanoid.WalkSpeed))
                     game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
                 until STAND.Character:FindFirstChild("BodyEffects"):FindFirstChild("Attacking").Value == false
             follow = true
-            AnimStop(2788290270,.2)
+            AnimStop(18537367238,.2)
         end
     end)
     
