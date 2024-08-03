@@ -7142,6 +7142,7 @@ end)
             elseif msg:lower() == "!rejoin." then
                 game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
             elseif msg:lower() == "!dance." then
+                play(1839246711,true,true) 
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
                 local DefaultDanceanim = Instance.new('Animation')
                 DefaultDanceanim.AnimationId = "rbxassetid://11710529975"
