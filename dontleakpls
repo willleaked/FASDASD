@@ -5440,20 +5440,12 @@ function Stand(targetName)
                     STAND.Backpack:FindFirstChild("[Flamethrower]").GripPos = Vector3.new(0,-10,-10)
                     STAND.Backpack:FindFirstChild("[Flamethrower]").Parent = STAND.Character
                     AnimPlay(2807049953)
-                    blocking = false
-                    noclip = true
-                    GunKnock = true
-                    Viewing = true
                 elseif STAND.Character:FindFirstChild("[Flamethrower]") then
                     STAND.Character:FindFirstChild("[Flamethrower]").Parent = STAND.Backpack
                     task.wait(.1)
                     STAND.Backpack:FindFirstChild("[Flamethrower]").GripPos = Vector3.new(0,-10,-10)
                     STAND.Backpack:FindFirstChild("[Flamethrower]").Parent = STAND.Character
                     AnimPlay(2807049953)
-                    blocking = false
-                    noclip = true
-                    GunKnock = true
-                    Viewing = true
                 else
                     BuyFlame()
                 end
@@ -5462,20 +5454,12 @@ function Stand(targetName)
                     game.Players.LocalPlayer.Backpack:FindFirstChild("[AUG]").GripPos = Vector3.new(0.0353159904, -0.236004636, -0.472504646, -0.892790675, -0.449979424, -0.021051202, -0.449911892, 0.893036127, -0.00810947269, 0.0224485807, 0.00223112362, -0.999745488)
                     STAND.Backpack:FindFirstChild("[AUG]").Parent = STAND.Character
                     AnimPlay(2807049953)
-                    blocking = false
-                    noclip = true
-                    GunKnock = true
-                    Viewing = true
                 elseif STAND.Character:FindFirstChild("[AUG]") then
                      game.Players.LocalPlayer.Backpack:FindFirstChild("[AUG]").GripPos = Vector3.new(0.0353159904, -0.236004636, -0.472504646, -0.892790675, -0.449979424, -0.021051202, -0.449911892, 0.893036127, -0.00810947269, 0.0224485807, 0.00223112362, -0.999745488)
                     STAND.Character:FindFirstChild("[AUG]").Parent = STAND.Backpack
                     task.wait(.1)
                     STAND.Backpack:FindFirstChild("[AUG]").Parent = STAND.Character
                     AnimPlay(2807049953)
-                    blocking = false
-                    noclip = true
-                    GunKnock = true
-                    Viewing = true
                 else
                     Buyaug()
                 end
@@ -5484,20 +5468,12 @@ function Stand(targetName)
                     game.Players.LocalPlayer.Backpack:FindFirstChild("[LMG]").GripPos = Vector3.new(-0.131852582, -0.051715795, 0.948863864, 0.893063903, 0.449861199, -0.00786215067, -0.449917108, 0.893033862, -0.00806869194, 0.00339137577, 0.0107431728, 0.999936521)
                     STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character
                     AnimPlay(2807049953)
-                    blocking = false
-                    noclip = true
-                    GunKnock = true
-                    Viewing = true
                 elseif STAND.Character:FindFirstChild("[LMG]") then
                     STAND.Character:FindFirstChild("[LMG]").Parent = STAND.Backpack
                     task.wait(.1)
                     game.Players.LocalPlayer.Backpack:FindFirstChild("[LMG]").GripPos = Vector3.new(-0.131852582, -0.051715795, 0.948863864, 0.893063903, 0.449861199, -0.00786215067, -0.449917108, 0.893033862, -0.00806869194, 0.00339137577, 0.0107431728, 0.999936521)
                     STAND.Backpack:FindFirstChild("[LMG]").Parent = STAND.Character
                     AnimPlay(2807049953)
-                    blocking = false
-                    noclip = true
-                    GunKnock = true
-                    Viewing = true
                 else
                     BuyLmg()
                 end
@@ -5506,6 +5482,10 @@ function Stand(targetName)
         CreateTargetAbility("Gstomp!",function()
             if TARGET then
                 Stop()
+                blocking = false
+                noclip = true
+                GunStomp = true
+                Viewing = true
                 Gunmodenana()
             end
         end)
@@ -5513,6 +5493,10 @@ function Stand(targetName)
             if TARGET then
                 Stop()
                 Gunmodenana()
+                blocking = false
+                noclip = true
+                Viewing = true
+                GunStomp = true
             end
         end)
         CreateTargetAbility("get!",function()
@@ -5538,6 +5522,10 @@ function Stand(targetName)
             if TARGET then
                 Stop()
                 Gunmodenana()
+                blocking = false
+                noclip = true
+                Viewing = true
+                GunKnock = true
             end
         end)
         
@@ -5545,12 +5533,17 @@ function Stand(targetName)
             if TARGET then
                 Stop()
                 Gunmodenana()
+                blocking = false
+                noclip = true
+                Viewing = true
+                Gunbring = true
             end
         end)
         CreateTargetAbility("gk!",function()
             if TARGET then
                 Stop()
                 Gunmodenana()
+                GunKnock = true
             end
         end)
         
@@ -5558,6 +5551,10 @@ function Stand(targetName)
             if TARGET then
                 Stop()
                 Gunmodenana()
+                blocking = false
+                noclip = true
+                Viewing = true
+                Gunbring = true
             end
         end)
         
