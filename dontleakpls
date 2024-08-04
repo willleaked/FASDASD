@@ -2565,6 +2565,21 @@ function Stand(targetName)
             flamemode = false
             augmode = true
         end)
+        Create('fm!',function()
+            augmode = false
+            flamemode = true
+        end)
+    
+        Create('lm!',function()
+            flamemode = false
+            augmode = false
+        end)
+        augmode = true
+        flamemode = false
+        Create('am!',function()
+            flamemode = false
+            augmode = true
+        end)
         
         Create('uninvis!',function()
             invismode = false
