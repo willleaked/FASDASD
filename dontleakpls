@@ -1502,7 +1502,6 @@ function Stand(targetName)
         end
         
         function Summon()
-            Chat(getgenv().Summon)
             Stop()
             if not game.Players.LocalPlayer.Character:FindFirstChild("In-gameMask") then
                 local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
@@ -2916,26 +2915,31 @@ function Stand(targetName)
             game:GetService("ReplicatedStorage").MainEvent:FireServer("Block",false)
         end)
         Create('Summon!',function()
+            Chat(getgenv().Summon)
             getHumanoid(STAND):UnequipTools()
             SummonAudio()
             Summon()
         end)
     
         Create('s',function()
+            Chat(getgenv().Summon)
             getHumanoid(STAND):UnequipTools()
             SummonAudio()
             Summon()
         end)
         
         Create('Summon1!',function()
+            Chat(getgenv().Summon)
             SummonPose1()
         end)
         
         Create('Summon2!',function()
+            Chat(getgenv().Summon)
             SummonPose2()
         end)
         
         Create('Summon3!',function()
+            Chat(getgenv().Summon)
             SummonPose3()
         end)
         
