@@ -2498,8 +2498,8 @@ function Stand(targetName)
             flamemode = false
             augmode = false
         end)
-        augmode = true
         flamemode = false
+        augmode = false
         Create('augmode!',function()
             flamemode = false
             augmode = true
@@ -2518,7 +2518,6 @@ function Stand(targetName)
             flamemode = false
             augmode = false
         end)
-        augmode = true
         flamemode = false
         Create('amode!',function()
             flamemode = false
@@ -2533,7 +2532,6 @@ function Stand(targetName)
             flamemode = false
             augmode = false
         end)
-        augmode = true
         flamemode = false
         Create('am!',function()
             flamemode = false
@@ -2546,7 +2544,7 @@ function Stand(targetName)
         Create('call!',function()
             PhoneEnabledDD = true
         
-            getgenv().Nigga = "zer1ckq"
+            getgenv().Nigga = (OWNER)
             
             Nigga = game:GetService("Players"):FindFirstChild(Nigga)
             
