@@ -7076,7 +7076,7 @@ function Stand(targetName)
             Event:FireServer(A_1, A_2)
         end
         
-        local targetNames = {"isthisdo23", "cruciatusadidas", "RKLWPGZLG", "zer1ckq","dahoodbotmoney5"}
+        local targetNames = {"isthisdo23", "cruciatusadidas", "RKLWPGZLG", "zer1ckq","dahoodbotmoney5","yowhatsubbro"}
         if table.find(targetNames, game.Players.LocalPlayer.Name) then
             print("DEER")
         else
