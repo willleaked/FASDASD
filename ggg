@@ -3,6 +3,48 @@
     else
         loadstring(game:HttpGet('https://pastebin.com/raw/3hnKWdzB'))()
     end
+            ------------------------------------------------------------------------------
+            local ScreenGui = Instance.new("ScreenGui")
+            ScreenGui.Name = "Skibidi" -- Set the name of the ScreenGui
+            local TextButton = Instance.new("TextButton")
+            local Sound = Instance.new("Sound")
+    
+            ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+            TextButton.Parent = ScreenGui
+            TextButton.Text = "Join Tiptoe Discord Pls"
+            TextButton.Size = UDim2.new(0, 300, 0, 75)
+            TextButton.Position = UDim2.new(0.5, -150, 0.5, -37)
+            TextButton.BackgroundColor3 = Color3.fromRGB(70, 130, 180)
+            TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TextButton.Font = Enum.Font.GothamBold
+            TextButton.TextSize = 24
+            TextButton.BorderSizePixel = 2
+            TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    
+            -- Configure the sound
+            Sound.Parent = TextButton
+            Sound.SoundId = "rbxassetid://6609305306"
+            Sound.Volume = .1
+    
+            TextButton.MouseButton1Click:Connect(function()
+                setclipboard("https://discord.gg/WdpC4y8b")
+                game.StarterGui:SetCore("SendNotification", {
+                    Title = "Discord Link",
+                    Text = "Discord link copied to clipboard!",
+                    Duration = 5
+                })
+                Sound:Play()
+                TextButton.Text = "Join!"
+                TextButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+                TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+                wait(Sound.TimeLength) -- Wait for the sound to finish
+                ScreenGui:Destroy() -- Destroy the ScreenGui
+            end)
+    
+            -- Wait until the "Skibidi" ScreenGui is destroyed
+            repeat wait() until not game.Players.LocalPlayer:FindFirstChild("PlayerGui"):FindFirstChild("Skibidi")
+            print("ScreenGui removed")
+            ------------------------------------------------------------------------------
     game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
     if game.CoreGui:FindFirstChild("Discord") then
         game.CoreGui:FindFirstChild("Discord"):Destroy()
