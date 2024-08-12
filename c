@@ -1,4 +1,6 @@
-if game.Players.LocalPlayer.Name == "fame7ty" or game.Players.LocalPlayer.Name == "dahoodbotmoney5"  then
+if game.Players.LocalPlayer.Name == "fame7ty" or game.Players.LocalPlayer.Name == "bobo_458393" or game.Players.LocalPlayer.Name == "isthisdo23"  then
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+
 local PLAYERS = game:GetService("Players")
 local OWNER = PLAYERS.LocalPlayer
 local GrabbedCharacter
@@ -623,7 +625,7 @@ blur:Destroy()
     Text = "script";
     Text = "discrod deer14927";
     Icon = "rbxassetid://16005965106";
-    Duration = 9e9;
+    Duration = 1;
     })
     wait(0.1)
 end
