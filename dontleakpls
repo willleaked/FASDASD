@@ -468,7 +468,7 @@ function Stand(targetName)
         ['GunPrediction'] =  0.3, --Prediction For Gun Kill
         ['AttackMode'] = 'Under', --[Sky | Under] If [Sky] The Stand Will Attack Infront Of Then And If [Under] The Stand Will Attack In Underground
         ['GunMode'] = 'Sky', --[Sky | Under]  The Stand Will Shooting Just Like What In The Settings
-        ['Resolver'] = false, --[true | false] Turn On Or Off Resolver If Someone Using Anti Lock
+        ['Resolver'] = true, --[true | false] Turn On Or Off Resolver If Someone Using Anti Lock
         --// ! Misc ! \\--
         ['LowGraphics'] = false, --[true | false] Turns graphics down so your stand doesnt lag too much
         
@@ -2832,6 +2832,9 @@ function Stand(targetName)
         Create('resolver!',function()
             resolve = true
         end)
+        Create('unresolver!',function()
+            resolve = false
+        end)
         local Realleak = false
         Create('fakelag!',function()
             Realleak = true
@@ -3952,7 +3955,6 @@ function Stand(targetName)
             gunKills = false
             Kills = false
             pitchKillsnostomp = false
-            resolve = false
             antilock = false
             Annoy = false
             Stop()
@@ -5870,7 +5872,6 @@ function Stand(targetName)
                 signKills = false
                 Kills = false
                 pitchKillsnostomp = false
-                resolve = false
                 antilock = false
                 Annoy = false
                 Stop()
