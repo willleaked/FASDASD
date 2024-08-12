@@ -2450,6 +2450,7 @@
                         end
                         end
                         end)
+
                         local LocalPlayer = game:GetService("Players").LocalPlayer
                         local RipTool = Instance.new("Tool",LocalPlayer.Backpack)
                         local Mouse = LocalPlayer:GetMouse()
@@ -2507,12 +2508,13 @@
                         end
                         end
                         end)
+
                             local LocalPlayer = game:GetService("Players").LocalPlayer
-                            local RipTool = Instance.new("Tool",LocalPlayer.Backpack)
+                            local EAT = Instance.new("Tool",LocalPlayer.Backpack)
                             local Mouse = LocalPlayer:GetMouse()
-                            RipTool.RequiresHandle = false 
-                            RipTool.Name = "EAT"
-                            RipTool.Activated:Connect(function()
+                            EAT.RequiresHandle = false 
+                            EAT.Name = "EAT"
+                            EAT.Activated:Connect(function()
                             if Grabbed == true then
                             if Up == false then
                                 local target = tostring(game.Players.LocalPlayer.Character.BodyEffects.Grabbed.Value)
