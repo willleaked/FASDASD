@@ -37,8 +37,215 @@ end)
 
 -- Wait until the "Skibidi" ScreenGui is destroyed
 repeat wait() until not game.Players.LocalPlayer:FindFirstChild("PlayerGui"):FindFirstChild("Skibidi")
-print("ScreenGui removed")
 
+print("ScreenGui removed")
+-- Create the GUI
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "ProfessionalGUI"
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.Name = "Animation ui"
+-- Table to keep track of all buttons
+local buttons = {}
+
+-- Function to create a button with an icon
+local function createButton(name, position, text, iconId, clickAction)
+    local Frame = Instance.new("Frame")
+    Frame.Size = UDim2.new(0, 200, 0, 50)
+    Frame.Position = position
+    Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Frame.BorderSizePixel = 0
+    Frame.Parent = ScreenGui
+
+    local Button = Instance.new("TextButton")
+    Button.Name = name
+    Button.Size = UDim2.new(1, -50, 1, 0)
+    Button.Position = UDim2.new(0, 50, 0, 0)
+    Button.Text = text
+    Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Button.BackgroundColor3 = Color3.fromRGB(0, 122, 204)
+    Button.BorderSizePixel = 0
+    Button.Font = Enum.Font.GothamBold
+    Button.TextSize = 20
+    Button.Parent = Frame
+
+    -- Add hover effect
+    Button.MouseEnter:Connect(function()
+        Button.BackgroundColor3 = Color3.fromRGB(0, 153, 255)
+    end)
+
+    Button.MouseLeave:Connect(function()
+        Button.BackgroundColor3 = Color3.fromRGB(0, 122, 204)
+    end)
+
+    -- Button click action
+    Button.MouseButton1Click:Connect(function()
+        clickAction()
+            game:GetService("Players").LocalPlayer.PlayerGui["Animation ui"]:Destroy()
+    end)
+
+    local Icon = Instance.new("ImageLabel")
+    Icon.Size = UDim2.new(0, 50, 0, 50)
+    Icon.Position = UDim2.new(0, 0, 0, 0)
+    Icon.Image = "http://www.roblox.com/asset/?id="..iconId
+    Icon.BackgroundTransparency = 1
+    Icon.Parent = Frame
+
+    table.insert(buttons, Frame)
+end
+
+-- Function to handle animations
+local function ANIMATION(idle, idle2, walk, run, jump, climb, fall)
+    local function onCharacterAdded(character)
+        wait(1)
+        
+        local humanoid = character:WaitForChild("Humanoid")
+        
+        -- Stop all currently playing animations
+        for _, v in ipairs(humanoid:GetPlayingAnimationTracks()) do
+            v:Stop()
+        end
+        
+        local animate = character:WaitForChild("Animate")
+        
+        -- Function to set the animation ID
+        local function setAnimation(animation, animationId)
+            if typeof(animation) == "Instance" and animation:IsA("Animation") then
+                animation.AnimationId = animationId
+            else
+                warn("Failed to set animation:", animationId)
+            end
+        end
+        
+        -- Set animations using provided asset IDs
+        setAnimation(animate.idle.Animation1, "http://www.roblox.com/asset/?id="..idle)
+        setAnimation(animate.idle.Animation2, "http://www.roblox.com/asset/?id="..idle2)
+        setAnimation(animate.walk.WalkAnim, "http://www.roblox.com/asset/?id="..walk)
+        setAnimation(animate.run.RunAnim, "http://www.roblox.com/asset/?id="..run)
+        setAnimation(animate.jump.JumpAnim, "http://www.roblox.com/asset/?id="..jump)
+        setAnimation(animate.climb.ClimbAnim, "http://www.roblox.com/asset/?id="..climb)
+        setAnimation(animate.fall.FallAnim, "http://www.roblox.com/asset/?id="..fall)
+        task.wait(1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, 100, 0)
+    end
+
+    -- Connect the function to CharacterAdded event
+    game.Players.LocalPlayer.CharacterAdded:Connect(onCharacterAdded)
+
+    -- Apply animations to the existing character if present
+    if game.Players.LocalPlayer.Character then
+        onCharacterAdded(game.Players.LocalPlayer.Character)
+    end
+    task.wait()
+    game.Players.LocalPlayer.Character.Humanoid.Jump = true
+end
+
+-- Create buttons with actions and icons
+createButton("Button1", UDim2.new(0.5, -110, 0.1, 0), "Sports", "18537376492", function()
+    print("Adidas Sports Animation Pack")
+    ANIMATION(
+        "18537376492",  -- Idle Animation 
+        "18537371272",  -- Idle Animation 2
+        "18537392113",  -- Walk Animation
+        "18537384940",  -- Run Animation
+        "18537380791",  -- Jump Animation
+        "18537363391",  -- Climb Animation
+        "18537367238"   -- Fall Animation
+    )
+end)
+
+createButton("Button2", UDim2.new(0.5, -110, 0.2, 0), "Cartoon", "10921230744", function()
+    print("Oldschool Animation Pack")
+    ANIMATION(
+        "742637544",  -- Idle Animation 
+        "742638445",  -- Idle Animation 2
+        "742640026",  -- Walk Animation
+        "742638842",  -- Run Animation
+        "742637942",  -- Jump Animation
+        "742636889",  -- Climb Animation
+        "742637151"   -- Fall Animation
+    )
+end)
+
+createButton("Button3", UDim2.new(0.5, -110, 0.3, 0), "Bold", "10921054344", function()
+    print("Bold Animation Pack by e.l.f.")
+    ANIMATION(
+        "10921054344",  -- Idle Animation 
+        "10921055107",  -- Idle Animation 2
+        "16738340646",  -- Walk Animation
+        "10921057244",  -- Run Animation
+        "10921062673",  -- Jump Animation
+        "10921061530",  -- Climb Animation
+        "707829716"    -- Fall Animation
+    )
+end)
+
+createButton("Button4", UDim2.new(0.5, -110, 0.4, 0), "Ninja", "656117400", function()
+    ANIMATION(
+        "656117400",  -- Idle Animation 
+        "656118341",  -- Idle Animation 2
+        "656121766",  -- Walk Animation
+        "656118852",  -- Run Animation
+        "656117878",  -- Jump Animation
+        "656114359",  -- Climb Animation
+        "656115606"   -- Fall Animation
+    )
+end)
+
+createButton("Button5", UDim2.new(0.5, -110, 0.5, 0), "Zombie", "616158929", function()
+    ANIMATION(
+        "616158929",  -- Idle Animation 
+        "616160636",  -- Idle Animation 2
+        "616168032",  -- Walk Animation
+        "616163682",  -- Run Animation
+        "616161997",  -- Jump Animation
+        "616156119",  -- Climb Animation
+        "616157476"   -- Fall Animation
+    )
+    print("Stylish Animation Pack")
+end)
+
+createButton("Button6", UDim2.new(0.5, -110, 0.6, 0), "Robot", "616158930", function()
+    print("Robo Animation Pack")
+    ANIMATION(
+        "616088211",  -- Idle Animation 
+        "616089559",  -- Idle Animation 2
+        "616095330",  -- Walk Animation
+        "616091570",  -- Run Animation
+        "616090535",  -- Jump Animation
+        "616086039",  -- Climb Animation
+        "616087089"   -- Fall Animation
+    )
+end)
+
+createButton("Button7", UDim2.new(0.5, -110, 0.7, 0), "Pirate", "616158931", function()
+    print("Pirate Animation Pack")
+    ANIMATION(
+        "750781874",  -- Idle Animation 
+        "750782770",  -- Idle Animation 2
+        "750785693",  -- Walk Animation
+        "750783738",  -- Run Animation
+        "750782230",  -- Jump Animation
+        "750779899",  -- Climb Animation
+        "750780242"   -- Fall Animation
+    )
+end)
+
+createButton("Button8", UDim2.new(0.5, -110, 0, 0), "Knight", "616158932", function()
+    print("Knight Animation Pack")
+    ANIMATION(
+        "657595757",  -- Idle Animation 
+        "657568135",  -- Idle Animation 2
+        "657552124",  -- Walk Animation
+        "657564596",  -- Run Animation
+        "658409194",  -- Jump Animation
+        "658360781",  -- Climb Animation
+        "657600338"   -- Fall Animation
+    )
+end)
+
+
+repeat wait() until not game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Animation ui")
+print("animation loading")
 for i,v in pairs(game.CoreGui:GetChildren()) do
     if v.Name == 'Betrue' then
         v:Destroy()
@@ -562,7 +769,7 @@ function Stand(targetName)
             print("Low Graphics Enabled!")
         end
         loadstring(game:HttpGet('https://pastebin.com/raw/iBN11MVE'))()
-
+        
         --local
         local SkyP = 0
         local UnderP = -4.8 --6.8
