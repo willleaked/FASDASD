@@ -242,7 +242,7 @@
             OWNER.Character.HumanoidRootPart.CFrame = OWNER.Character.HumanoidRootPart.CFrame*CFrame.new(X,Y,Z)
         end
         --//------------------------------------------------------------------------------------------\\--
-        if not game.Players.LocalPlayer.Name == "huakcha" or not game.Players.LocalPlayer.Name == "dahoodbotmoney5" then
+        if not game.Players.LocalPlayer.Name == "huakcha" or not game.Players.LocalPlayer.Name == "namchaza_araya" or not game.Players.LocalPlayer.Name == "dahoodbotmoney5" then
         -- Anti Afk Ril --
         local vu = game:GetService("VirtualUser")
         game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -2450,7 +2450,63 @@
                         end
                         end
                         end)
-                        
+                        local LocalPlayer = game:GetService("Players").LocalPlayer
+                        local RipTool = Instance.new("Tool",LocalPlayer.Backpack)
+                        local Mouse = LocalPlayer:GetMouse()
+                        RipTool.RequiresHandle = false 
+                        RipTool.Name = "Rip In Half"
+                        RipTool.Activated:Connect(function()
+                        if Grabbed == true then
+                        if Up == false then
+                            local target = tostring(game.Players.LocalPlayer.Character.BodyEffects.Grabbed.Value)
+                            spawn(function()
+                                wait(0.3)
+                                game.Players[target].Character.UpperTorso.BodyPosition.D = 200
+                                game.Players[target].Character.UpperTorso.BodyPosition.p = 500
+                            end)
+                            task.wait()
+                            for i, Track in pairs (game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do
+                                if Track.Animation.AnimationId == "rbxassetid://3135389157" then
+                                Track:Stop()
+                            end
+                        end
+                        local Animation1 = Instance.new("Animation")
+                        Animation1.AnimationId = "rbxassetid://13850666420"
+                        local LoadAnimation1 = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):LoadAnimation(Animation1)
+                        LoadAnimation1.Priority = Enum.AnimationPriority.Action
+                        LoadAnimation1:Play()
+                        local Animation2 = Instance.new("Animation")
+                        Animation2.AnimationId = "rbxassetid://13850675130"
+                        local LoadAnimation2 = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):LoadAnimation(Animation2)
+                        LoadAnimation2.Priority = Enum.AnimationPriority.Action
+                        LoadAnimation2:Play()
+                        game:GetService('RunService'):UnbindFromRenderStep("Pos")
+                        game:GetService('RunService'):BindToRenderStep("Pos", 0 , function()
+                        game.Players[target].Character.UpperTorso.BodyGyro.CFrame = CFrame.new(game.Players[target].Character.UpperTorso.Position, game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+                        game.Players[target].Character.UpperTorso.BodyPosition.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 2 + Vector3.new(0,0.2,0)
+                        end)
+                        Play(7148332723)
+                        game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer("Im gonna rip you in half now.", "All")
+                        task.wait(2.30)
+                        task.wait(0.2)
+                        game.Players[target].Character.LowerTorso.Position = Vector3.new(0,-600,0)
+                        game:GetService('RunService'):UnbindFromRenderStep("Pos")
+                        task.wait(0.2)
+                        game.Players[target].Character.UpperTorso:FindFirstChild("BodyPosition"):Destroy()
+                        game.Players[target].Character.UpperTorso:FindFirstChild("BodyGyro"):Destroy()
+                        task.wait(0.1)
+                        Play(429400881)
+                        game.Players[target].Character.UpperTorso.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.RightVector*90
+                        game.Players[target].Character.RightUpperLeg.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.RightVector*-90
+                        game.Players[target].Character.LeftUpperLeg.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.RightVector*-90
+                        task.wait(0.3)
+                        game:GetService("ReplicatedStorage").MainEvent:FireServer('Grabbing', false)
+                        task.wait(0.2)
+                        LoadAnimation1:Stop(0.3)
+                        LoadAnimation2:Stop(0.3)
+                        end
+                        end
+                        end)
                             local LocalPlayer = game:GetService("Players").LocalPlayer
                             local RipTool = Instance.new("Tool",LocalPlayer.Backpack)
                             local Mouse = LocalPlayer:GetMouse()
@@ -2509,6 +2565,7 @@
                     local OWNER = game:GetService("Players").LocalPlayer
                     if OWNER.Backpack:FindFirstChild("Activate") then OWNER.Backpack:FindFirstChild("Activate"):Destroy() end
                     if OWNER.Backpack:FindFirstChild("Up") then OWNER.Backpack:FindFirstChild("Up"):Destroy() end
+                    if OWNER.Backpack:FindFirstChild("EAT") then OWNER.Backpack:FindFirstChild("EAT"):Destroy() end
                     if OWNER.Backpack:FindFirstChild("Throw up") then OWNER.Backpack:FindFirstChild("Throw up"):Destroy() end
                     if OWNER.Backpack:FindFirstChild("Heaven Throw") then OWNER.Backpack:FindFirstChild("Heaven Throw"):Destroy() end
                     if OWNER.Backpack:FindFirstChild("Floar Slam") then OWNER.Backpack:FindFirstChild("Floar Slam"):Destroy() end
