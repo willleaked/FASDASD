@@ -7552,7 +7552,7 @@ function chat(msg)
             chat("ไอตุ๊ด "..game.Players.poohvvff.DisplayName)
             chat("จอก")
             chat("โปรปัญอ่อน")
-            chat("เจอกุในเซิกละออกหนีตลอด")
+
             print("Running code")
             timer = 0 -- Reset the timer
             
