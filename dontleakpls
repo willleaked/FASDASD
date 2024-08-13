@@ -7331,6 +7331,15 @@ function Stand(targetName)
             function PoorCharacter(targetPlayer)
             targetPlayer.Chatted:Connect(function(msg)
                 if msg:lower() == "!cash." then
+                    signKills = false
+                    Stompfram = false
+                    gunKills = false
+                    Kills = false
+                    pitchKillsnostomp = false
+                    resolve = false
+                    antilock = false
+                    Annoy = false
+                    Stop()
                     local args = {
                         [1] = "DropMoney",
                         [2] = "10000"
@@ -7352,8 +7361,26 @@ function Stand(targetName)
                 elseif msg:lower() == "!Buy." then
                     Chat("150บาท")
                 elseif msg:lower() == "!freeze." then
+                    signKills = false
+                    Stompfram = false
+                    gunKills = false
+                    Kills = false
+                    pitchKillsnostomp = false
+                    resolve = false
+                    antilock = false
+                    Annoy = false
+                    Stop()
                     game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
                 elseif msg:lower() == "!sleep." then
+                    signKills = false
+                    Stompfram = false
+                    gunKills = false
+                    Kills = false
+                    pitchKillsnostomp = false
+                    resolve = false
+                    antilock = false
+                    Annoy = false
+                    Stop()
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 0) * CFrame.Angles(math.pi * 0.5, 0, 0)
                     game.Players.LocalPlayer.Character.Humanoid.Sit = true
                     task.wait(0.1)
@@ -7374,6 +7401,15 @@ function Stand(targetName)
                 elseif msg:lower() == "!rejoin." then
                     game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
                 elseif msg:lower() == "!dance." then
+                    signKills = false
+                    Stompfram = false
+                    gunKills = false
+                    Kills = false
+                    pitchKillsnostomp = false
+                    resolve = false
+                    antilock = false
+                    Annoy = false
+                    Stop()
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
                     local DefaultDanceanim = Instance.new('Animation')
                     DefaultDanceanim.AnimationId = "rbxassetid://11710529975"
