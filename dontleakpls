@@ -5319,14 +5319,22 @@ function Stand(targetName)
     
         CreateTargetAbility("Bring!",function()
             if TARGET then
+                Chat(getgenv().BRINGV2)
                 Bring(TARGET)
             end
             Viewing = true
         end)
         local Predictiondd = 0.4
-    
+        CreateTargetAbility(getgenv().BRING,function()
+            if TARGET then
+                Chat(getgenv().BRINGV2)
+                Bring(TARGET)
+            end
+            Viewing = true
+        end)
         CreateTargetAbility("got!",function()
             if TARGET and not Realleak then
+                Chat(getgenv().BRINGV2)
                 Bringandgrab(TARGET)
             end
         end)
@@ -5739,6 +5747,7 @@ function Stand(targetName)
             if TARGET then
                 Stop()
                 Gunmodenana()
+                Chat(getgenv().BRINGV2)
                 blocking = false
                 noclip = true
                 Viewing = true
