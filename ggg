@@ -336,6 +336,28 @@ boommmm()
 end
 function kick()
     if OWNER.Backpack:FindFirstChild("DIO Teleport") then OWNER.Backpack:FindFirstChild("DIO Teleport"):Destroy() end
+    local player = game.Players.LocalPlayer
+local mouse = player:GetMouse()
+
+local player = game.Players.LocalPlayer
+local mouse = player:GetMouse()
+
+-- Ensure to disconnect any existing connections
+if _G.SKBISID then _G.SKBISID:Disconnect() end
+
+-- Function to teleport the player to the mouse position
+local function teleportToMouse()
+    local character = player.Character
+    if character and character:FindFirstChild("HumanoidRootPart") then
+        local humanoidRootPart = character.HumanoidRootPart
+        local targetPosition = mouse.Hit.Position
+        
+        -- Preserve the current orientation
+        local currentOrientation = humanoidRootPart.CFrame - humanoidRootPart.Position
+        
+        humanoidRootPart.CFrame = CFrame.new(targetPosition) * currentOrientation
+    end
+end
 
     local KIckAnim = Instance.new('Animation');
     KIckAnim.AnimationId = "rbxassetid://3355740058";
@@ -343,8 +365,8 @@ function kick()
         tool.RequiresHandle = false
         tool.Name = "DIO Teleport"
         tool.Activated:Connect(function()
+            teleportToMouse()
             Play(6603980575)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -30)
             TweenService:Create(workspace.CurrentCamera, TweenInfo.new(0.5), {FieldOfView = 85}):Play()
             TweenService:Create(game:GetService("Lighting").ColorCorrection, TweenInfo.new(0.8), {Saturation = -1}):Play()
             local blur = Instance.new("BlurEffect", game:GetService("Lighting"))
@@ -355,6 +377,11 @@ function kick()
             TweenService:Create(blur, TweenInfo.new(0.8), {Size = 0}):Play()
             wait(0.3)
             TweenService:Create(game:GetService("Lighting").ColorCorrection, TweenInfo.new(0.8), {Saturation = 0}):Play()
+            if game.Players.LocalPlayer.Character:FindFirstChild("DIO Teleport") then
+                OWNER.Character.Humanoid:UnequipTools()
+            local surgvvv = game.Players.LocalPlayer.Backpack:FindFirstChild("DIO Teleport")
+            surgvvv.Parent = game.Players.LocalPlayer.Character
+            end
         end)
         tool.Parent = game.Players.LocalPlayer.Backpack
     end;
