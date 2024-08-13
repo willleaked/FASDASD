@@ -3063,7 +3063,11 @@ trun:Toggle(
     false,
     function(grabse)
         if grabse == true then
+
+
+
             function ABOUTGRAB()
+                local target
                 local Grabbed = false
                 local Up = false
                 local LocalPlayer = game:GetService("Players").LocalPlayer
@@ -3072,6 +3076,8 @@ trun:Toggle(
                 local OWNER = game:GetService("Players").LocalPlayer
                 if OWNER.Backpack:FindFirstChild("Activate") then OWNER.Backpack:FindFirstChild("Activate"):Destroy() end
                 if OWNER.Backpack:FindFirstChild("Up") then OWNER.Backpack:FindFirstChild("Up"):Destroy() end
+                if OWNER.Backpack:FindFirstChild("EAT") then OWNER.Backpack:FindFirstChild("EAT"):Destroy() end
+                if OWNER.Backpack:FindFirstChild("Archer") then OWNER.Backpack:FindFirstChild("Archer"):Destroy() end
                 if OWNER.Backpack:FindFirstChild("Throw up") then OWNER.Backpack:FindFirstChild("Throw up"):Destroy() end
                 if OWNER.Backpack:FindFirstChild("Heaven Throw") then OWNER.Backpack:FindFirstChild("Heaven Throw"):Destroy() end
                 if OWNER.Backpack:FindFirstChild("Floar Slam") then OWNER.Backpack:FindFirstChild("Floar Slam"):Destroy() end
@@ -3106,9 +3112,9 @@ trun:Toggle(
                 end 
                 for _, Class in pairs(game.Players[target].Character:GetDescendants()) do
                     if Class:IsA("BasePart") then
-                        Class.Velocity = Vector3.zero
-                        Class.AssemblyAngularVelocity = Vector3.zero
-                        Class.AssemblyLinearVelocity = Vector3.zero
+                        Class.Velocity = Vector3.new(0,0,0)
+                        Class.AssemblyAngularVelocity = Vector3.new(0,0,0)
+                        Class.AssemblyLinearVelocity =Vector3.new(0,0,0)
                     end
                 end
                 spawn(function()
@@ -3125,25 +3131,33 @@ trun:Toggle(
                 if game.Players[target].Character.UpperTorso:FindFirstChild("BodyPosition") then
                     game.Players[target].Character.UpperTorso:FindFirstChild("BodyPosition"):Destroy()
                     game.Players[target].Character.UpperTorso:FindFirstChild("BodyGyro"):Destroy()
-                    getfenv().bodypos = Instance.new('BodyPosition', game.Players[target].Character.UpperTorso)
-                    getfenv().bodypos.D = 400
-                    getfenv().bodypos.P = 10000
-                    getfenv().bodypos.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
-                    getfenv().bodygyro = Instance.new('BodyGyro', game.Players[target].Character.UpperTorso)
-                    getfenv().bodygyro.MaxTorque = Vector3.new(9e9,9e9,9e9)
-                    getfenv().bodygyro.P = 1000
-                    else
-                    getfenv().bodypos = Instance.new('BodyPosition', game.Players[target].Character.UpperTorso)
-                    getfenv().bodypos.D = 400
-                    getfenv().bodypos.P = 10000
-                    getfenv().bodypos.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
-                    getfenv().bodygyro = Instance.new('BodyGyro', game.Players[target].Character.UpperTorso)
-                    getfenv().bodygyro.MaxTorque = Vector3.new(9e9,9e9,9e9)
-                    getfenv().bodygyro.P = 1000
+                    function GrabPositon(Dpos, Ppos, Bodypos, Target_part)
+                        getfenv().bodypos = Instance.new('BodyPosition', game.Players[target].Character[Target_part])
+                        getfenv().bodypos.D = Dpos
+                        getfenv().bodypos.P = Ppos
+                        getfenv().bodypos.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+                        getfenv().bodygyro = Instance.new('BodyGyro', game.Players[target].Character[Target_part])
+                        getfenv().bodygyro.MaxTorque = Vector3.new(9e9, 9e9, 9e9)
+                        getfenv().bodygyro.P = Bodypos
                     end
-                    game:GetService('RunService'):BindToRenderStep("Pos", 0 , function()
-                        game.Players[target].Character.UpperTorso.BodyPosition.Position = game.Players.LocalPlayer.Character.RightHand.Position + Vector3.new(0,-0.7,0)
-                        game.Players[target].Character.UpperTorso.BodyGyro.BodyGyro.CFrame = game.Players.LocalPlayer.Character.RightHand.CFrame*CFrame.Angles(math.pi*-.5,3.5,math.pi*-.06)
+                    GrabPositon(175, 5000, 10000, "UpperTorso")
+                    print("grab function")
+                    else
+                        function GrabPositon(Dpos, Ppos, Bodypos, Target_part)
+                            getfenv().bodypos = Instance.new('BodyPosition', game.Players[target].Character[Target_part])
+                            getfenv().bodypos.D = Dpos
+                            getfenv().bodypos.P = Ppos
+                            getfenv().bodypos.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+                            getfenv().bodygyro = Instance.new('BodyGyro', game.Players[target].Character[Target_part])
+                            getfenv().bodygyro.MaxTorque = Vector3.new(9e9, 9e9, 9e9)
+                            getfenv().bodygyro.P = Bodypos
+                        end
+                        GrabPositon(175, 5000, 10000, "UpperTorso")
+                    end
+                    game:GetService('RunService'):UnbindFromRenderStep("Pos")
+                    game:GetService('RunService'):BindToRenderStep("Pos", 0, function()
+                        game.Players[target].Character.UpperTorso.BodyPosition.Position = game.Players.LocalPlayer.Character.RightHand.Position + Vector3.new(0, -0.7, 0)
+                        game.Players[target].Character.UpperTorso.BodyGyro.CFrame = CFrame.new(game.Players[target].Character.UpperTorso.Position, game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
                     end)
                     print("grabed")
                 else
@@ -3208,6 +3222,7 @@ trun:Toggle(
                 LoadAnimation:AdjustSpeed(0)
                 end)
                 Play(7861309685)
+                print(1)
                 spawn(function()
                 wait(0.3)
                 game:GetService('RunService'):UnbindFromRenderStep("Pos")
@@ -3218,6 +3233,7 @@ trun:Toggle(
                 end)
                 game.Players[target].Character.UpperTorso.BodyPosition.D = 1200
                 end)
+                print(21)
                 else
                 for i, Track in pairs (game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do
                     if Track.Animation.AnimationId == "rbxassetid://14496531574" then
@@ -3245,6 +3261,70 @@ trun:Toggle(
                 wait(1)
                 game.Players[target].Character.UpperTorso.BodyPosition.D = 200
                 end
+                end
+                end)
+            
+                
+                local LocalPlayer = game:GetService("Players").LocalPlayer
+                local Archer = Instance.new("Tool",LocalPlayer.Backpack)
+                local Mouse = LocalPlayer:GetMouse()
+                Archer.RequiresHandle = false 
+                Archer.Name = "Archer"
+                Archer.Activated:Connect(function()
+                if Grabbed == true then
+                    if OWNER.Character.BodyEffects.Grabbed.Value then
+                        local target = tostring(game.Players.LocalPlayer.Character.BodyEffects.Grabbed.Value)
+                        Up = true
+                        spawn(function()
+                            wait(0.3)
+                            game.Players[target].Character.UpperTorso.BodyPosition.D = 100
+                            game.Players[target].Character.UpperTorso.BodyPosition.p = 500
+                        end)
+                        for i, Track in pairs (game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do
+                                if Track.Animation.AnimationId == "rbxassetid://3135389157" then
+                                Track:Stop()
+                            end
+                        end
+                        Play(7634196777)
+                        spawn(function()
+                        local Animation = Instance.new("Animation")
+                        Animation.AnimationId = "rbxassetid://13823324057"
+                        local LoadAnimation = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(Animation)
+                        LoadAnimation.Priority = Enum.AnimationPriority.Action
+                        LoadAnimation:Play()
+                        LoadAnimation:AdjustSpeed(1)
+                        wait(1.5)
+                        end)
+                        Play(7861309685)
+                        spawn(function()
+                            wait(0.3)
+                            game:GetService('RunService'):UnbindFromRenderStep("Pos")
+                            wait(0.05)
+                            game:GetService('RunService'):BindToRenderStep("Pos", 0 , function()
+                            game.Players[target].Character.UpperTorso.BodyPosition.Position =  game.Players.LocalPlayer.Character.HumanoidRootPart.Position + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 8 + Vector3.new(0,0,0)
+                            game.Players[target].Character.UpperTorso.BodyGyro.CFrame = CFrame.new(game.Players[target].Character.UpperTorso.Position, game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+                            end)
+                            game.Players[target].Character.UpperTorso.BodyPosition.D = 1200
+                            end)
+                            wait(2.5)
+                            Play(5773418559)
+                            spawn(function()
+                                wait(0.3)
+                                game:GetService('RunService'):UnbindFromRenderStep("Pos")
+                                wait(0.05)
+                                game:GetService('RunService'):BindToRenderStep("Pos", 0 , function()
+                                game.Players[target].Character.UpperTorso.BodyPosition.Position =  game.Players.LocalPlayer.Character.HumanoidRootPart.Position + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 500 + Vector3.new(0,23,0)
+                                game.Players[target].Character.UpperTorso.BodyGyro.CFrame = CFrame.new(game.Players[target].Character.UpperTorso.Position, game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+                                end)
+                                game.Players[target].Character.UpperTorso.BodyPosition.D = 1200
+                                end)
+                                wait(.5)
+                                AnimStop(13823324057,.5)
+                                game.Players[target].Character.UpperTorso.CFrame = CFrame.new(0,-9999,0)
+                                task.wait(.2)
+                                game.Players[target].Character.UpperTorso:FindFirstChild("BodyPosition"):Destroy()
+                                game:GetService("ReplicatedStorage").MainEvent:FireServer('Grabbing', false)
+                    end
                 end
                 end)
                 
@@ -3292,7 +3372,7 @@ trun:Toggle(
                 end
                 end
                 end)
-
+            
                 local LocalPlayer = game:GetService("Players").LocalPlayer
                 local ThrowToolUp = Instance.new("Tool",LocalPlayer.Backpack)
                 local Mouse = LocalPlayer:GetMouse()
@@ -3336,7 +3416,7 @@ trun:Toggle(
                 end
                 end
                 end)
-
+            
                 local LocalPlayer = game:GetService("Players").LocalPlayer
                 local RipTool = Instance.new("Tool",LocalPlayer.Backpack)
                 local Mouse = LocalPlayer:GetMouse()
@@ -3394,7 +3474,7 @@ trun:Toggle(
                 end
                 end
                 end)
-
+            
                     local LocalPlayer = game:GetService("Players").LocalPlayer
                     local EAT = Instance.new("Tool",LocalPlayer.Backpack)
                     local Mouse = LocalPlayer:GetMouse()
@@ -3443,6 +3523,8 @@ trun:Toggle(
                     end)
                 end
                 ABOUTGRAB()
+                if getgenv().CharacterAddedEDD then getgenv().CharacterAddedEDD:Disconnect() end
+            
                 getgenv().CharacterAddedEDD = OWNER.CharacterAdded:connect(function()
                     OWNER.Character:WaitForChild("FULLY_LOADED_CHAR")
                     ABOUTGRAB()
