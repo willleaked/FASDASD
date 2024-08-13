@@ -3536,6 +3536,7 @@ trun:Toggle(
             if OWNER.Backpack:FindFirstChild("Activate") then OWNER.Backpack:FindFirstChild("Activate"):Destroy() end
             if OWNER.Backpack:FindFirstChild("Up") then OWNER.Backpack:FindFirstChild("Up"):Destroy() end
             if OWNER.Backpack:FindFirstChild("EAT") then OWNER.Backpack:FindFirstChild("EAT"):Destroy() end
+            if OWNER.Backpack:FindFirstChild("Archer") then OWNER.Backpack:FindFirstChild("Archer"):Destroy() end
             if OWNER.Backpack:FindFirstChild("Throw up") then OWNER.Backpack:FindFirstChild("Throw up"):Destroy() end
             if OWNER.Backpack:FindFirstChild("Heaven Throw") then OWNER.Backpack:FindFirstChild("Heaven Throw"):Destroy() end
             if OWNER.Backpack:FindFirstChild("Floar Slam") then OWNER.Backpack:FindFirstChild("Floar Slam"):Destroy() end
