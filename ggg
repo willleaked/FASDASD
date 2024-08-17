@@ -166,7 +166,7 @@ local allowedPlayers = {
     "NBKKFIE22", "Hpersonh0", "namchaza_araya", "DAIKizu39", "Phx_ze",
     "decianx23", "kkuf9", "PAT_NATTANAN", "bruhidontcare00", "SparklingSymbol",
     "ozone_TH10", "rzzzuuoo", "gggyt7t6", "myfan49", "bobo_458391",
-    "bobo_458393", "huakcha", "souvenirsq","roopin01","kkuf8","jjyrr56","isthisdo23"
+    "bobo_458393", "huakcha", "souvenirsq","roopin01","kkuf8","dee","isthisdo23"
 }
 
 if table.find(allowedPlayers, localPlayer.Name) then
