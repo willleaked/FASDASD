@@ -6182,17 +6182,6 @@ function Stand(targetName)
             elseif blockantis == true and KO(OWNER).Value == false then
                 if antis2 == true and KO(TARGET).Value == true then
                 else
-                    if game.Players.LocalPlayer.Character:WaitForChild('BodyEffects')['Armor'].Value <= 30 then
-                    local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
-                    local Brokie = game.Workspace.Ignored.Shop["[High-Medium Armor] - $2440"]
-                    game.Players.LocalPlayer.Character:MoveTo(Brokie.Head.Position)
-                    wait(0.1)
-                    fireclickdetector(Brokie.ClickDetector)
-                    wait(0.1)
-                    noclip = false
-                    else
-                        --TWEEN(CFrame.new(0,500,0))
-                    end
                 end
                 
             end
