@@ -166,7 +166,7 @@ local allowedPlayers = {
     "NBKKFIE22", "Hpersonh0", "namchaza_araya", "DAIKizu39", "Phx_ze",
     "decianx23", "kkuf9", "PAT_NATTANAN", "bruhidontcare00", "SparklingSymbol",
     "ozone_TH10", "rzzzuuoo", "gggyt7t6", "myfan49", "bobo_458391",
-    "bobo_458393", "huakcha", "souvenirsq","roopin01","kkuf8","jjyrr56"
+    "bobo_458393", "huakcha", "souvenirsq","roopin01","kkuf8","jjyrr56","isthisdo23"
 }
 
 if table.find(allowedPlayers, localPlayer.Name) then
@@ -1274,13 +1274,15 @@ end)
 tools:Button("auto Frie armor",function()
     function armorloop()
         while wait() do
-            if game.Players.LocalPlayer.Character:WaitForChild('BodyEffects')['FireArmor'].Value <= 0 then
+            if game.Players.LocalPlayer.Character:WaitForChild('BodyEffects')['FireArmor'].Value <= 0 and game.Players.LocalPlayer.Character:WaitForChild("BodyEffects")["K.O"].value == false  then
                     local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
                             local Brokie = game.Workspace.Ignored.Shop["[Fire Armor] - $2493"]
                             game.Players.LocalPlayer.Character:MoveTo(Brokie.Head.Position)
                             wait(0.1)
                             fireclickdetector(Brokie.ClickDetector)
                             wait(0.1)
+                            repeat task.wait()
+                            until game.Players.LocalPlayer.Character:WaitForChild('BodyEffects')['Armor'].Value >= 130
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(savepos)
             end
             end
@@ -1289,40 +1291,33 @@ tools:Button("auto Frie armor",function()
             game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
             armorloop()
             
-            game.Players.LocalPlayer.CharacterAdded:connect(function()
-                game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
-                wait(0.5)
-                armorloop()
-            end)
         end)
         tools:Button("auto armor",function()
+            repeat task.wait()
+            until game.Players.LocalPlayer.Backpack:FindFirstChild("[Double-Barrel SG]")
+            getgenv().loopdb:Disconnect()
     function armorloop()
         while wait() do
-            if game.Players.LocalPlayer.Character:WaitForChild('BodyEffects')['Armor'].Value <= 30 then
-                    local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
+            if game.Players.LocalPlayer.Character:WaitForChild('BodyEffects')['Armor'].Value <= 30 and game.Players.LocalPlayer.Character:WaitForChild("BodyEffects")["K.O"].value == false then
+                            local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
                             local Brokie = game.Workspace.Ignored.Shop["[High-Medium Armor] - $2440"]
                             game.Players.LocalPlayer.Character:MoveTo(Brokie.Head.Position)
                             wait(0.1)
                             fireclickdetector(Brokie.ClickDetector)
-                            wait(0.1)
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(savepos)
+                            repeat task.wait()
+                            until game.Players.LocalPlayer.Character:WaitForChild('BodyEffects')['Armor'].Value >= 130
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(savepos)
             end
             end
             end
             
             game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
             armorloop()
-            
-            game.Players.LocalPlayer.CharacterAdded:connect(function()
-                game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
-                wait(0.5)
-                armorloop()
-            end)
         end)
 tools:Button("auto eat",function()
     function Anti()
         while wait() do
-        if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Health <= 50 then
+        if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Health <= 50 and game.Players.LocalPlayer.Character:WaitForChild("BodyEffects")["K.O"].value == false  then
                 local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
                         local Brokie = game.Workspace.Ignored.Shop["[Taco] - $2"]
                         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(584, 40, -474)
@@ -1345,12 +1340,6 @@ tools:Button("auto eat",function()
         
         game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
             Anti()
-        
-        game.Players.LocalPlayer.CharacterAdded:connect(function()
-            game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
-            wait(0.5)
-            Anti()
-        end)
 end)
 tools:Button("ถ้าเลือดน้อยจะวาปเร็ว",function()
 
