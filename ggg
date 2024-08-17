@@ -3411,6 +3411,7 @@ trun:Toggle(
                                 AnimStop(13823324057,.5)
                                 game.Players[target].Character.UpperTorso.CFrame = CFrame.new(0,-9999,0)
                                 task.wait(.2)
+                                Play(0)
                                 game.Players[target].Character.UpperTorso:FindFirstChild("BodyPosition"):Destroy()
                                 game:GetService("ReplicatedStorage").MainEvent:FireServer('Grabbing', false)
                                 Up = false
