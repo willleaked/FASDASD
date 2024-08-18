@@ -6131,7 +6131,7 @@ function chat(msg)
     Event:FireServer(A_1, A_2)
 end
 
-local targetNames = {"isthisdo23", "cruciatusadidas", "RKLWPGZLG", "zer1ckq","dahoodbotmoney5"}
+local targetNames = {"isthisdo23", "cruciatusadidas", "RKLWPGZLG", "deeralttrue","Rag0_IQ","dahoodbotmoney5"}
 if table.find(targetNames, game.Players.LocalPlayer.Name) then
     print("cute_hummingbird_73847")
 else
