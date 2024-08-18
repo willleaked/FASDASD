@@ -305,7 +305,7 @@ function Play(ID)
             local cor = coroutine.wrap(function()
                 repeat wait() until OWNER.Character.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OWNER.Character.LowerTorso.BOOMBOXSOUND.TimeLength > 0.01
                 OriginalKeyUpValue = OriginalKeyUpValue+1
-                Playv42354(0)
+                stop(ID, OriginalKeyUpValue)
             end)
         cor()
     end
