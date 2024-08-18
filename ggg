@@ -176,6 +176,8 @@ if table.find(allowedPlayers, localPlayer.Name) then
 --//------------------------------------------------------------------------------------------\\-- SOUND FIXED BY ticxyylolz#9164
 TweenService = game:GetService("TweenService")
 OWNER = game:GetService("Players").LocalPlayer
+local OWNER = game.Players.LocalPlayer
+
 --//------------------------------------------------------------------------------------------\\--
 local OriginalKeyUpValue = 0
 function StopAudio()
@@ -224,7 +226,7 @@ function Play(ID)
             local cor = coroutine.wrap(function()
                 repeat wait() until OWNER.Character.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OWNER.Character.LowerTorso.BOOMBOXSOUND.TimeLength > 0.01
                 OriginalKeyUpValue = OriginalKeyUpValue+1
-                stop(ID, OriginalKeyUpValue)
+                Play(0)
             end)
         cor()
     end
