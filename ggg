@@ -194,6 +194,43 @@ function stop(ID, Key)
     cor()
 end
 --//------------------------------------------------------------------------------------------\\--
+function Playv42354(ID)
+    if game.Players.LocalPlayer.Name == "HIXIC_1" or game.Players.LocalPlayer.Name == "dahoodbotmoney5"  then
+        game:GetService("ReplicatedStorage").MainEvent:FireServer("RingTone",ID)
+        local Tool = nil
+        if OWNER.Character:FindFirstChildWhichIsA("Tool") then
+            Tool = OWNER.Character:FindFirstChildWhichIsA("Tool")
+            OWNER.Character:FindFirstChildWhichIsA("Tool").Parent = OWNER.Backpack
+        end
+        OWNER.Backpack["[Phone]"].Parent = OWNER.Character
+        OWNER.Character["[Phone]"].Parent = OWNER.Backpack
+        if Tool ~= true then
+            if Tool then
+                Tool.Parent = OWNER.Character
+            end
+        end
+    else
+    if OWNER.Backpack:FindFirstChild("[Boombox]") then
+        local Tool = nil
+        OWNER.Backpack["[Boombox]"].Parent = OWNER.Character
+        game.ReplicatedStorage.MainEvent:FireServer("Boombox", ID)
+        OWNER.Character["[Boombox]"].RequiresHandle = false
+        OWNER.Character["[Boombox]"].Parent = OWNER.Backpack
+        OWNER.PlayerGui.MainScreenGui.BoomboxFrame.Visible = false
+        if Tool ~= true then
+            if Tool then
+                Tool.Parent = OWNER.Character
+            end
+        end
+        OWNER.Character.LowerTorso:WaitForChild("BOOMBOXSOUND")
+            local cor = coroutine.wrap(function()
+                repeat wait() until OWNER.Character.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OWNER.Character.LowerTorso.BOOMBOXSOUND.TimeLength > 0.01
+                OriginalKeyUpValue = OriginalKeyUpValue+1
+            end)
+        cor()
+    end
+end
+end
 function Play(ID)
     if game.Players.LocalPlayer.Name == "HIXIC_1" or game.Players.LocalPlayer.Name == "dahoodbotmoney5"  then
         game:GetService("ReplicatedStorage").MainEvent:FireServer("RingTone",ID)
@@ -226,7 +263,7 @@ function Play(ID)
             local cor = coroutine.wrap(function()
                 repeat wait() until OWNER.Character.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OWNER.Character.LowerTorso.BOOMBOXSOUND.TimeLength > 0.01
                 OriginalKeyUpValue = OriginalKeyUpValue+1
-                Play(0)
+                Playv42354(0)
             end)
         cor()
     end
