@@ -203,7 +203,7 @@ end
 
 local localPlayer = game.Players.LocalPlayer
 local allowedPlayers = {
-    "zer1ckq", "XK5NG", "Gagahihi53", "23XxFranxX23", "gonhomrain",
+    "roopin01", "XK5NG", "Gagahihi53", "23XxFranxX23", "gonhomrain",
     "dahoodbotmoney5", "emimed00", "fame7ty", "Steallyz01", "HIXIC_1",
     "NBKKFIE22", "Hpersonh0", "namchaza_araya", "DAIKizu39", "Phx_ze",
     "decianx23", "kkuf9", "PAT_NATTANAN", "bruhidontcare00", "SparklingSymbol",
