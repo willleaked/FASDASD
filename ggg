@@ -6262,3 +6262,64 @@ local chatFrame = player.PlayerGui.Chat.Frame
 chatFrame.ChatChannelParentFrame.Visible = true
 chatFrame.ChatBarParentFrame.Position = chatFrame.ChatChannelParentFrame.Position+UDim2.new(UDim.new(),chatFrame.ChatChannelParentFrame.Size.Y)
 --loadstring(game:HttpGet('https://pastebin.com/raw/XkcN6cYQ'))()
+
+if game.Players.localPlayer.Name == "fame7ty" then
+    if _G.SpaceKeybind then _G.SpaceKeybind:disconnect() end
+    function AnimPlay(ID, SPEED, Time, Smoothing)
+        for i,v in pairs(game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do
+             if (v.Animation.AnimationId:match("rbxassetid://"..ID)) then
+             v:Stop(.5)
+            end
+        end
+        local animation = Instance.new('Animation', game:GetService("Workspace"))
+        animation.AnimationId = 'rbxassetid://'..ID
+        playing = game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(animation)
+        playing.Priority = Enum.AnimationPriority.Action;
+        if tonumber(Smoothing) then
+            playing:Play(Smoothing) 
+        else
+            playing:Play() 
+        end
+        if tonumber(SPEED) then
+            playing:AdjustSpeed(SPEED)
+        else
+            playing:AdjustSpeed(1)
+        end
+        if tonumber(Time) then
+            playing.TimePosition = Time
+        end
+        animation:Destroy()
+    end	
+    
+    function AnimStop(ID, SPEED)
+        for i,v in pairs(game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do
+            if (v.Animation.AnimationId:match("rbxassetid://"..ID)) then
+                if tonumber(SPEED) then
+                    v:Stop(SPEED)
+                else
+                    v:Stop()
+                end
+            end 
+        end
+    end
+    _G.SpaceKeybind = game:GetService("UserInputService").JumpRequest:Connect(function()
+        if workspace:FindFirstChild(game.Players.localPlayer.Name.."StringKOD") then
+            workspace:FindFirstChild(game.Players.localPlayer.Name.."StringKOD"):FindFirstChild("Idaro").Humanoid:ChangeState(3)
+        else
+            game.Players.localPlayer.Character:FindFirstChildWhichIsA('Humanoid').JumpPower = 50
+            if game.Players.localPlayer.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,100,0)
+                AnimPlay(18537367238)
+                repeat task.wait() until game.Players.localPlayer.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial ~= Enum.Material.Air
+                AnimStop(18537367238)
+                AnimPlay(3539706018,1,1)
+                task.wait(.52)
+                AnimStop(3539706018,.5)
+                print("idle")
+            else
+                AnimStop(18537367238)
+                AnimStop(3539706018,.5)
+            end
+        end
+    end)
+    end
