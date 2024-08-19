@@ -1,4 +1,4 @@
-if game.Players.LocalPlayer.Name == "fame7ty" or game.Players.LocalPlayer.Name == "bobo_458393" or game.Players.LocalPlayer.Name == "isthisdo23"  then
+if game.Players.LocalPlayer.Name == "fame7ty" or game.Players.LocalPlayer.Name == "bobo_458393" or game.Players.LocalPlayer.Name == "isthisdo23" or game.Players.LocalPlayer.Name == "namchaza_araya"  then
     loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 
 local PLAYERS = game:GetService("Players")
