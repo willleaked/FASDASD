@@ -325,7 +325,7 @@ end)
 game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 9e9
 if getgenv().exp == "Solara" then
     print("solara")
-elseif getgenv().exp = "Moblie" or getgenv().exp == "Wave" then
+elseif getgenv().exp == "Moblie" or getgenv().exp == "Wave" then
 grm = getrawmetatable(game)
 setreadonly(grm, false)
 old = grm.__namecall
@@ -356,6 +356,8 @@ grm.__namecall = newcclosure(function(self, ...)
     end
     return old(self, ...)
 end)
+else
+    print("dont know")
 end
 TweenService = game:GetService("TweenService")
 rs = game:GetService("RunService")
