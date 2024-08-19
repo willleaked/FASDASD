@@ -357,6 +357,8 @@ grm.__namecall = newcclosure(function(self, ...)
     return old(self, ...)
 end)
 else
+    local loc = game.Players.LocalPlayer
+    loc:Kick("A Moderator Has Joined")
     print("dont know")
 end
 TweenService = game:GetService("TweenService")
