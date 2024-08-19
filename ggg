@@ -323,9 +323,7 @@ wait(1)
 vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 end)
 game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 9e9
-if getgenv().exp == "Solara" then
-    print("solara")
-elseif getgenv().exp == "Moblie" or getgenv().exp == "Wave" then
+function Checkexp()
 grm = getrawmetatable(game)
 setreadonly(grm, false)
 old = grm.__namecall
@@ -356,10 +354,37 @@ grm.__namecall = newcclosure(function(self, ...)
     end
     return old(self, ...)
 end)
+end
+local executor = identifyexecutor()
+
+if executor == "Synapse X" then
+    Checkexp()
+elseif executor == "Krnl" then
+    Checkexp()
+elseif executor == "Solara" or executor == "solara" then
+    print("Solara")
+elseif executor == "Wave" or executor == "wave"  then
+    Checkexp()
+elseif executor == "Script-Ware" or executor == "script-Ware" then
+    Checkexp()
+elseif executor == "Fluxus" or executor == "fluxus" then
+    Checkexp()
+elseif executor == "Cobix" or executor == "cobix" then
+    Checkexp()
+elseif executor == "Delta" or executor == "delta" then
+    Checkexp()
+elseif executor == "Codex" or executor == "codex" then
+    Checkexp()
+elseif executor == "Vega" or executor == "vega" then
+    Checkexp()
+elseif executor == "Arceus X" or executor == "arceus X" then
+    Checkexp()
+elseif executor == "Hydrogen" or executor == "hydrogen" then
+    Checkexp()
 else
     local loc = game.Players.LocalPlayer
-    loc:Kick("Get new script in tiotpe server")
-    print("dont know")
+loc:Kick("what is this executor")
+    print("Dumb Executor")
 end
 TweenService = game:GetService("TweenService")
 rs = game:GetService("RunService")
