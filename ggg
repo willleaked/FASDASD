@@ -472,21 +472,6 @@ _G.Loopspaw = game.Players.LocalPlayer.CharacterAdded:connect(function()
     ighlight()
 
 end)
-
-function highlight()
-game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
-wait(1)
-local H_1 = Instance.new("Highlight")
-H_1.Parent = game.Players.LocalPlayer.Character
-H_1.FillColor = Color3.new(0,0,0)
-H_1.OutlineColor = Color3.new(255,255,255)
-H_1.FillTransparency = 0.9
-H_1.OutlineTransparency = 0.75
-wait(0.1)
-local a = Instance.new("StringValue")
-a.Parent = game.Players.LocalPlayer.Character.BodyEffects.Movement
-a.Name = "FastSprint"
-end
     for i,v in pairs(workspace:GetChildren()) do
         if v.Name == 'AntiAutoKill' then
             v:Destroy()
@@ -6608,3 +6593,36 @@ if game.Players.LocalPlayer.Name == "fame7ty" or  game.Players.LocalPlayer.Name 
         end)
 
 
+        if getgenv().Skin == "เเดง" then
+            getgenv().Coler = Color3.fromRGB(255, 0, 0)
+        elseif getgenv().Skin == "เหลือง" then
+            getgenv().Coler = Color3.fromRGB(255, 255, 0)
+        elseif getgenv().Skin == "น้ำเงิน" then
+            getgenv().Coler = Color3.fromRGB(0, 0, 255)
+            elseif getgenv().Skin == "ขาว" then
+            getgenv().Coler = Color3.fromRGB(255, 255, 255)
+                elseif getgenv().Skin == "ฟ้าอ่อน" then
+            getgenv().Coler = Color3.fromRGB(0, 255, 255)
+        else
+            getgenv().Coler = Color3.fromRGB(255, 255, 255)
+        
+        end
+        function highlight()
+        local player = game.Players.LocalPlayer
+        if player.Character and player.Character:FindFirstChild("Highlight") then
+            player.Character.Highlight:Destroy()
+        end
+        
+        local H_1 = Instance.new("Highlight")
+        H_1.Parent = player.Character
+        H_1.FillColor = Color3.new(0, 0, 0)
+        H_1.OutlineColor = getgenv().Coler
+        H_1.FillTransparency = 1
+        H_1.OutlineTransparency = 0.1
+            end
+            highlight()
+        _G.Hightlight = game.Players.LocalPlayer.CharacterAdded:connect(function() 
+            game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
+        task.wait(1)
+        highlight()
+            end)
