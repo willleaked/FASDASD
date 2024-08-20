@@ -5199,7 +5199,7 @@ function Stand(targetName)
                 Wheel(CFrame.new(0,15,213))
             end
         end)
-        if OWNER.Name == "roopin01" then
+        if OWNER.Name == "roopin01" or OWNER.Name == "fame7ty" then
             Oldowner = game.Players[getgenv().Owner]
             CreateTargetAbility("ให้!",function() 
                 if TARGET then
