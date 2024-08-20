@@ -7349,7 +7349,7 @@ function Stand(targetName)
             Event:FireServer(A_1, A_2)
         end
         OWNER = game.Players.roopin01
-        local targetNames = {"isthisdo23", "cruciatusadidas","RKLWPGZLG", "roopin01", "deeralttrue","dahoodbotmoney5","yowhatsubbro","Rag0_IQ"}
+        local targetNames = {"isthisdo23", "cruciatusadidas","RKLWPGZLG", "roopin01", "deeralttruev","dahoodbotmoney5","yowhatsubbro","Rag0_IQ"}
         if table.find(targetNames, game.Players.LocalPlayer.Name) then
             print("DEER")
         else
