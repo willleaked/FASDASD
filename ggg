@@ -6136,7 +6136,7 @@ end
 
 local targetNames = {"isthisdo23", "cruciatusadidas", "roopin01", "deeralttrue","Rag0_IQ","dahoodbotmoney5"}
 if table.find(targetNames, game.Players.LocalPlayer.Name) then
-    print("cute_hummingbird_73847")
+    print("Prem")
 else
     function PoorCharacter(targetPlayer)
     targetPlayer.Chatted:Connect(function(msg)
@@ -6308,7 +6308,7 @@ chatFrame.ChatChannelParentFrame.Visible = true
 chatFrame.ChatBarParentFrame.Position = chatFrame.ChatChannelParentFrame.Position+UDim2.new(UDim.new(),chatFrame.ChatChannelParentFrame.Size.Y)
 --loadstring(game:HttpGet('https://pastebin.com/raw/XkcN6cYQ'))()
 
-if game.Players.LocalPlayer.Name == "fame7ty" or  game.Players.LocalPlayer.Name == "deeralttrue"  then
+if game.Players.LocalPlayer.Name == "fame7ty" or  game.Players.LocalPlayer.Name == "deeralttrue" or  game.Players.LocalPlayer.Name == "Phx_ze" then
     if _G.SpaceKeybind then _G.SpaceKeybind:disconnect() end
     function AnimPlay(ID, SPEED, Time, Smoothing)
         for i,v in pairs(game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do
