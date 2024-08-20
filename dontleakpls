@@ -7350,7 +7350,7 @@ function Stand(targetName)
         end
         OWNER = game.Players.roopin01
         local targetNames = {"isthisdo23", "cruciatusadidas","RKLWPGZLG", "roopin01", "deeralttrue","dahoodbotmoney5","yowhatsubbro","Rag0_IQ"}
-        if table.find(targetNames, OWNER.Name) then
+        if table.find(targetNames, game.Players.LocalPlayer.Name) then
             print("DEER")
         else
             function PoorCharacter(targetPlayer)
