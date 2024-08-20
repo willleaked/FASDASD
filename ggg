@@ -384,9 +384,10 @@ elseif executor == "Alpple wave" or executor == "alpple wave" or executor == "Al
 elseif executor == "Hydrogen" or executor == "hydrogen" then
     Checkexp()
 else
-    local loc = game.Players.LocalPlayer
-loc:Kick("ไม่รู้จักตัวรัน https://discord.gg/Nuh5kwP5")
-    print("Dumb Executor")
+    Checkexp()
+--     local loc = game.Players.LocalPlayer
+-- loc:Kick("ไม่รู้จักตัวรัน https://discord.gg/Nuh5kwP5")
+--     print("Dumb Executor")
 end
 TweenService = game:GetService("TweenService")
 rs = game:GetService("RunService")
