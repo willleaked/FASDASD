@@ -1,5 +1,4 @@
-if game.Players.LocalPlayer.Name == "fame7ty" or game.Players.LocalPlayer.Name == "bobo_458393" or game.Players.LocalPlayer.Name == "isthisdo23"  then
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+if game.Players.LocalPlayer.Name == "fame7ty" or game.Players.LocalPlayer.Name == "bobo_458393" or game.Players.LocalPlayer.Name == "namchaza_araya"or game.Players.LocalPlayer.Name == "roopin01"  then
 
 local PLAYERS = game:GetService("Players")
 local OWNER = PLAYERS.LocalPlayer
