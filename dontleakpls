@@ -5199,21 +5199,22 @@ function Stand(targetName)
                 Wheel(CFrame.new(0,15,213))
             end
         end)
-        
-        Oldowner = game.Players[getgenv().Owner]
-        CreateTargetAbility("ให้!",function() 
-            if TARGET then
-                OlDOWNER = getgenv().Owner
-                OWNER = TARGET
-                Chat("คนคุมคนใหม่ "..TARGET.DisplayName)
-                _G.Giveed = Oldowner.Chatted:Connect(function(message)
-                    if message:lower() == "กลับมา!" then
-                        OWNER = Oldowner
-                        _G.Giveed:Disconnect()
-                    end
-                end)       
-            end
-        end)
+        if OWNER.Name == "roopin01" then
+            Oldowner = game.Players[getgenv().Owner]
+            CreateTargetAbility("ให้!",function() 
+                if TARGET then
+                    OlDOWNER = getgenv().Owner
+                    OWNER = TARGET
+                    Chat("คนคุมคนใหม่ "..TARGET.DisplayName)
+                    _G.Giveed = Oldowner.Chatted:Connect(function(message)
+                        if message:lower() == "กลับมา!" then
+                            OWNER = Oldowner
+                            _G.Giveed:Disconnect()
+                        end
+                    end)       
+                end
+            end)
+        end
         CreateTargetAbility("give!",function()
             if TARGET then
                 OlDOWNER = getgenv().Owner
