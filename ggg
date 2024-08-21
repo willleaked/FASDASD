@@ -204,7 +204,7 @@ end
 loadstring(game:HttpGet('https://pastebin.com/raw/efgdHBFi'))()
 
 if game.Players.localPlayer then
-    -- Your code here
+    Togglegui()
 
 
 --//------------------------------------------------------------------------------------------\\-- SOUND FIXED BY ticxyylolz#9164
