@@ -1427,26 +1427,6 @@ tools:Button("auto eat",function()
         game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
             Anti()
 end)
-tools:Button("ถ้าเลือดน้อยจะวาปเร็ว",function()
-
-game:GetService("RunService").stepped:Connect(function()
-    if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Health <= 50 then
-        spinmo = true
-    else
-        spinmo = false
-    end
-end)
-
-
-game:GetService("RunService").Heartbeat:Connect(function()
-    if spinmo == true then
-    local currentvel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
-    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(-2000,2000), math.random(-2000,2000), math.random(-2000,2000))
-    game:GetService("RunService").RenderStepped:Wait()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = currentvel
-    end
-end)
-end)
 tools:Button(
     "real kick",
     function()
@@ -2132,6 +2112,82 @@ trun:Toggle(
         end
     end
 )
+local oldcamoffset = game.Players.localPlayer.Character.Humanoid.CameraOffset
+
+trun:Toggle("ถ้าเลือดน้อยจะวาปเร็ว",false,function(antispining)
+    if antispining == true then
+        if _G.spiningv3 then _G.spiningv3:Disconnect() end
+    _G.spiningv3 = game:GetService("RunService").Heartbeat:Connect(function()
+        if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Health <= 80 then
+
+            local rsrv = game:GetService("RunService")
+            local heartbeat = rsrv.Heartbeat
+            local renderstepped = rsrv.RenderStepped
+
+            local lp = game.Players.LocalPlayer
+            local mouse = lp:GetMouse()
+
+            local chr = lp.Character
+            local hum = chr.Humanoid
+            local root = hum.RootPart
+
+            local ifyouwilldead = false
+
+            local visible_parts = {}
+
+            for _, v in pairs(chr:GetDescendants()) do
+                if v:IsA("BasePart") and v.Transparency == 0 then
+                    visible_parts[#visible_parts + 1] = v
+                end
+            end
+
+            local function ghost_parts()
+                for _, v in pairs(visible_parts) do
+                    v.Transparency = v.Transparency == 0 and 0.5 or 0
+                end
+            end
+            if not game.Players.LocalPlayer.Backpack:FindFirstChild("[Taco]") and not game.Players.LocalPlayer.Character:FindFirstChild("[Taco]") then
+                local oldcf = root.CFrame
+                local currentvel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+                local Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+                local newcf =  game.Workspace.Ignored.Shop["[Taco] - $2"].Head.CFrame*CFrame.new(math.random(-5,5),math.random(-5,5), math.random(-5,5))   
+                fireclickdetector(game.Workspace.Ignored.Shop["[Taco] - $2"].ClickDetector)
+                hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
+                root.CFrame = newcf
+                renderstepped:Wait()
+                hum.CameraOffset = oldcamoffset
+                root.CFrame = oldcf
+            elseif game.Players.LocalPlayer.Character:FindFirstChild("[Taco]") then
+                local oldcf = root.CFrame
+
+                local newcf = oldcf * CFrame.new(math.random(-50,50),math.random(-10,10), math.random(-50,50))
+
+                hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
+                root.CFrame = newcf
+
+                renderstepped:Wait()
+
+                hum.CameraOffset = oldcamoffset
+                root.CFrame = oldcf
+            else
+                local oldcf = root.CFrame
+
+                local newcf = oldcf * CFrame.new(math.random(-50,50),math.random(-10,10), math.random(-50,50))
+
+                hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
+                root.CFrame = newcf
+
+                renderstepped:Wait()
+
+                hum.CameraOffset = oldcamoffset
+                root.CFrame = oldcf
+            end
+        end
+    end)
+elseif antispining == false then
+    if _G.spiningv3 then _G.spiningv3:Disconnect() end
+end
+end)
 trun:Toggle(
     "anti RPG",
     false,
