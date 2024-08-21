@@ -493,7 +493,8 @@ Control.Activated:connect(function()
             workspace.CurrentCamera.CameraSubject = ClonedCharacter
         InsertOn(LiveConnections, Loop("Heartbeat", function()
               for i,v in pairs(OWNER.Character:FindFirstChild("Humanoid"):GetPlayingAnimationTracks()) do v:Stop() end
-              OWNER.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(ClonedCharacter.HumanoidRootPart.Position.X,-10,ClonedCharacter.HumanoidRootPart.Position.Z))*CFrame.Angles(math.pi*0.5,0,0)
+              OWNER.Character.HumanoidRootPart.CFrame = ClonedCharacter.HumanoidRootPart.CFrame * CFrame.new(0,-15,0)
+              *CFrame.Angles(math.pi*0.5,0,0)
               ZeroVelocity___(OWNER.Character.HumanoidRootPart)
             ControlAlign(GrabbedCharacter.Head,ClonedCharacter:FindFirstChild("Head"),CFrame.new(0, 0, 0))
             ControlAlign(GrabbedCharacter.HumanoidRootPart,ClonedCharacter:FindFirstChild("HumanoidRootPart"),CFrame.new(0, 0, 0))
