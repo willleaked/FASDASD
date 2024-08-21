@@ -6196,6 +6196,7 @@ game.Players.PlayerAdded:Connect(function(newPlayer)
     for _, targetName in pairs(targetNames) do
         if newPlayer.Name == targetName then
             print(targetName .. " just joined")
+            task.wait(1)
             PoorCharacter(newPlayer)
         end
     end
