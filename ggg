@@ -6343,7 +6343,7 @@ if timer >= delay then
     if game.Players:FindFirstChild("poohvvff") then
         chat("ไอตุ๊ด "..game.Players.poohvvff.DisplayName)
         chat("จอก")
-        chat("โปรปัญอ่อน")
+        chat("โปรปัญญาอ่อน")
         print("Running code")
         timer = 0 -- Reset the timer
         
