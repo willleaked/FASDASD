@@ -2160,7 +2160,7 @@ trun:Toggle("ถ้าเลือดน้อยจะวาปเร็ว",fa
             elseif game.Players.LocalPlayer.Character:FindFirstChild("[Taco]") then
                 local oldcf = root.CFrame
 
-                local newcf = oldcf * CFrame.new(math.random(-50,50),math.random(-10,10), math.random(-50,50))
+                local newcf = oldcf * CFrame.new(math.random(-100,100),math.random(-100,100), math.random(-100,100))
 
                 hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
                 root.CFrame = newcf
@@ -2172,7 +2172,7 @@ trun:Toggle("ถ้าเลือดน้อยจะวาปเร็ว",fa
             else
                 local oldcf = root.CFrame
 
-                local newcf = oldcf * CFrame.new(math.random(-50,50),math.random(-10,10), math.random(-50,50))
+                local newcf = oldcf * CFrame.new(math.random(-100,100),math.random(-100,100), math.random(-100,100))
 
                 hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
                 root.CFrame = newcf
