@@ -6430,7 +6430,7 @@ chatFrame.ChatChannelParentFrame.Visible = true
 chatFrame.ChatBarParentFrame.Position = chatFrame.ChatChannelParentFrame.Position+UDim2.new(UDim.new(),chatFrame.ChatChannelParentFrame.Size.Y)
 --loadstring(game:HttpGet('https://pastebin.com/raw/XkcN6cYQ'))()
 
-if game.Players.LocalPlayer.Name == "fame7ty" or  game.Players.LocalPlayer.Name == "deeralttrue" or  game.Players.LocalPlayer.Name == "Phx_ze" then
+if game.Players.LocalPlayer.Name == "fame7ty" or  game.Players.LocalPlayer.Name == "deeralttrue" or  game.Players.LocalPlayer.Name == "wubxbeb" then
     if _G.SpaceKeybind then _G.SpaceKeybind:disconnect() end
     function AnimPlay(ID, SPEED, Time, Smoothing)
         for i,v in pairs(game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do
@@ -6491,7 +6491,7 @@ if game.Players.LocalPlayer.Name == "fame7ty" or  game.Players.LocalPlayer.Name 
     end)
     end
 
-    if game.Players.LocalPlayer.Name == "fame7ty" or  game.Players.LocalPlayer.Name == "deeralttrue" or  game.Players.LocalPlayer.Name == "Rag0_IQ" or  game.Players.LocalPlayer.Name == "Phx_ze"  or  game.Players.LocalPlayer.Name == "Hpersonh0"  then
+    if game.Players.LocalPlayer.Name == "fame7ty" or  game.Players.LocalPlayer.Name == "deeralttrue" or  game.Players.LocalPlayer.Name == "Rag0_IQ" or  game.Players.LocalPlayer.Name == "wubxbeb"  or  game.Players.LocalPlayer.Name == "Hpersonh0"  then
 
         getgenv().Settings = {
             rewrittenmain = {
