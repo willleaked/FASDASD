@@ -6491,7 +6491,8 @@ if game.Players.LocalPlayer.Name == "fame7ty" or  game.Players.LocalPlayer.Name 
     end)
     end
 
-    if game.Players.LocalPlayer.Name == "fame7ty" or  game.Players.LocalPlayer.Name == "deeralttrue" or  game.Players.LocalPlayer.Name == "Rag0_IQ" or  game.Players.LocalPlayer.Name == "wubxbeb"  or  game.Players.LocalPlayer.Name == "Hpersonh0"  then
+    if game.Players.LocalPlayer.Name == "fame7ty" or  game.Players.LocalPlayer.Name == "deeralttrue" or  game.Players.LocalPlayer.Name == "Rag0_IQ" or  game.Players.LocalPlayer.Name == "wubxbeb"  or  game.Players.LocalPlayer.Name == "Hpersonh0"
+    or game.Players.LocalPlayer.Name == "DAIKizu39"  then
 
         getgenv().Settings = {
             rewrittenmain = {
