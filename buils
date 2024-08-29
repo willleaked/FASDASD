@@ -1,0 +1,126 @@
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+wait(1)
+vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+-- loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+
+function buildbaot()
+game:GetService("StarterGui"):SetCore("SendNotification",{
+    Title = "info";
+    Text = "Script loaded enjoy!";
+    Icon = "rbxassetid://13689518399";
+    Duration = 5;
+})
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+Text = "build a boat script loaded! enjoy!";
+    Color = Color3.fromRGB(255, 255, 255);
+})
+
+-- loadstring(game:HttpGet("https://raw.githubusercontent.com/XRoLLu/UWU/main/BUILD%20A%20BOAT%20FOR%20TREASURE.lua"))()
+getgenv().TreasureAutoFarm = {
+    Enabled = true, -- // Toggle the auto farm on and off
+    Teleport = 1.10, -- // How fast between each teleport between the stages and stuff
+    TimeBetweenRuns = 1.10 -- // How long to wait until it goes to the next run
+}
+ 
+-- // Services
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local Lighting = game:GetService("Lighting")
+ 
+-- // Vars
+local LocalPlayer = Players.LocalPlayer
+ 
+-- // Goes through all of the stages
+local autoFarm = function(currentRun)
+    -- // Variables
+    local Character = LocalPlayer.Character
+    local NormalStages = Workspace.BoatStages.NormalStages
+    -- // Go to each stage thing
+    for i = 1, 10 do      
+        local Stage = NormalStages["CaveStage" .. i]
+        local DarknessPart = Stage:FindFirstChild("DarknessPart")
+ 
+        if (DarknessPart) then
+            -- // Teleport to next stage
+            print("Teleporting to next stage: Stage " .. i)
+            task.wait(.1)
+            game.Players.localPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = DarknessPart.CFrame
+
+
+            -- // Create a temp part under you
+            local Part = Instance.new("Part", LocalPlayer.Character)
+            Part.Anchored = true
+            Part.Position = LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 6, 0)
+ 
+            -- // Wait and remove temp part
+            wait(getgenv().TreasureAutoFarm.Teleport)
+            Part:Destroy()
+        end
+    end
+ 
+    -- // Go to end
+    print("Teleporting to the end")
+    repeat wait()
+        game.Players.localPlayer.Character.HumanoidRootPart.CFrame = 
+        CFrame.new(-57, 0, 9490)
+        
+        
+        local TweenService = game:GetService("TweenService")
+        local player = game.Players.LocalPlayer
+        local part = player.Character:WaitForChild("HumanoidRootPart")
+        
+        local function tweenToPosition(part, targetCFrame, duration)
+            local tweenInfo = TweenInfo.new(
+                duration, 
+                Enum.EasingStyle.Quad, 
+                Enum.EasingDirection.Out
+            )
+            
+            local tween = TweenService:Create(part, tweenInfo, {CFrame = targetCFrame})
+            tween:Play()
+        end
+        
+        local targetCFrame = CFrame.new(-59, -360, 9490)
+        tweenToPosition(part, targetCFrame, 2)
+        _G.bibibbi= game:GetService("RunService").Heartbeat:Connect(function()
+            OLDCFRAME = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(math.random(-7,7),0,math.random(-7,7))
+            game:GetService("RunService").RenderStepped:Wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OLDCFRAME
+        end)
+        print("the end")
+    until getgenv().TreasureAutoFarm.TimeBetweenRuns
+        print("respawn")
+    -- // Wait until you have respawned
+    local Respawned = True
+    local Connection
+    Connection = LocalPlayer.CharacterAdded:Connect(function()
+        Respawned = true
+        Connection:Disconnect()
+        if _G.bibibbi then _G.bibibbi:Disconnect() end
+    end)
+ 
+    repeat wait() until Respawned
+    wait(getgenv().TreasureAutoFarm.TimeBetweenRuns)
+    print("Auto Farm: Run " .. currentRun .. " finished")
+end
+ 
+-- // Whilst the autofarm is enable, constantly do it
+local autoFarmRun = 1
+while wait() do
+    if (getgenv().TreasureAutoFarm.Enabled) then
+        print("Initialising Auto Farm: Run " .. autoFarmRun)
+        autoFarm(autoFarmRun)
+        autoFarmRun = autoFarmRun + 1
+    end
+end
+end
+if getgenv().CharacterAddedv3 then getgenv().CharacterAddedv3:Disconnect() end
+getgenv().CharacterAddedv3 =  game.Players.localPlayer.CharacterAdded:connect(function()
+    -- game.Players.localPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
+    -- buildbaot()
+end)
+buildbaot()
