@@ -1,6 +1,8 @@
 if not game:IsLoaded() then
 	game.Loaded:Wait()
 end
+getgenv().keybind = Enum.KeyCode.V
+
 if game.Players.LocalPlayer.Name == "poohvvff" then
     game.ReplicatedStorage.MainEvent:FireServer("OneMoreTime",game.Players.LocalPlayer.UserId)
 else
@@ -1874,7 +1876,7 @@ red = Color3.new(255,0,0)
 
 buyingarmor = false
 UIS.InputBegan:Connect(function(key,b) 
-    if key.KeyCode == Enum.KeyCode.V and not b then
+    if key.KeyCode == getgenv().keybind and not b then
         if TIPTOPFrame.Visible == true then
             TIPTOPFrame.Visible = false
         else
@@ -4965,4 +4967,34 @@ InfTools.MouseButton1Click:Connect(function()
     infrpg()
 end)
 CashDroppedLabel.Visible = false
+end)
+
+
+local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+local existingGui = playerGui:FindFirstChild("DeerUI")
+
+if existingGui then
+    existingGui:Destroy()
+end
+
+local ScreenGui = Instance.new("ScreenGui")
+local Button = Instance.new("TextButton")
+
+ScreenGui.Parent = playerGui
+ScreenGui.Name = "DeerUI"
+Button.Parent = ScreenGui
+Button.Name = "Testlostgui"
+Button.Size = UDim2.new(0, 100, 0, 50)
+Button.Position = UDim2.new(0,0,.7)
+Button.BackgroundColor3 = Color3.fromRGB(10, 10, 10) 
+Button.Text = "Toggle"
+Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+Button.TextSize = 24
+
+Button.MouseButton1Click:Connect(function()
+    if game:GetService("CoreGui")["Dahood BIG Ui"].TIPTOPFrame.Visible == true then
+        game:GetService("CoreGui")["Dahood BIG Ui"].TIPTOPFrame.Visible = false
+    else
+        game:GetService("CoreGui")["Dahood BIG Ui"].TIPTOPFrame.Visible = true
+    end
 end)
