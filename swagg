@@ -4969,7 +4969,7 @@ end)
 CashDroppedLabel.Visible = false
 end)
 
-
+function ToggleUi()
 local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 local existingGui = playerGui:FindFirstChild("DeerUI")
 
@@ -4984,7 +4984,8 @@ ScreenGui.Parent = playerGui
 ScreenGui.Name = "DeerUI"
 Button.Parent = ScreenGui
 Button.Name = "Testlostgui"
-Button.Size = UDim2.new(0, 100, 0, 50)
+Button.TextScaled = true
+Button.Size = UDim2.new(0, 50, 0, 50)
 Button.Position = UDim2.new(0,0,.7)
 Button.BackgroundColor3 = Color3.fromRGB(10, 10, 10) 
 Button.Text = "Toggle"
@@ -4997,4 +4998,10 @@ Button.MouseButton1Click:Connect(function()
     else
         game:GetService("CoreGui")["Dahood BIG Ui"].TIPTOPFrame.Visible = true
     end
+end)
+end
+ToggleUi()
+getgenv().Togglegeted =  game.Players.LocalPlayer.CharacterAdded:connect(function()
+    game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
+    ToggleUi()
 end)
