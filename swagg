@@ -8,7 +8,7 @@ if game.Players.LocalPlayer.Name == "poohvvff" then
 else
     print("no get ban")
 end
-loadstring(game:HttpGet('https://pastebin.com/raw/LfWnft8C'))()--REMOVE FOR DONT WORK
+loadstring(game:HttpGet('https://pastebin.com/raw/BYaqyVBp'))()--REMOVE FOR DONT WORK
 
 local player = game.Players.LocalPlayer
 buying = false
