@@ -200,8 +200,7 @@ function Togglegui()
         update(input)
     end)
 end
-
-loadstring(game:HttpGet('https://pastebin.com/raw/efgdHBFi'))()
+ loadstring(game:HttpGet('https://pastebin.com/raw/efgdHBFi'))()
 
 if game.Players.localPlayer then
 
@@ -302,6 +301,64 @@ function Play(ID)
     end
 end
 end
+function Ftools(Name, POWERFLING, AnimationID, AdjustSpeed,PlayIDSound)
+    game:GetService("RunService").Heartbeat:Connect(function()
+        for _, v in next, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks() do
+            if (v.Animation.AnimationId:match("rbxassetid://" .. AnimationID)) then
+                local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X * POWERFLING,
+                    POWERFLING,
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z * POWERFLING
+                )
+                game:GetService("RunService").RenderStepped:Wait()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
+            end
+        end
+    end)
+
+    if game.Players.LocalPlayer.Backpack:FindFirstChild(Name) then
+        game.Players.LocalPlayer.Backpack:FindFirstChild(Name):Destroy()
+    end
+    task.wait()
+
+    if game.Players.LocalPlayer.Character:FindFirstChild(Name) then
+        game.Players.LocalPlayer.Character:FindFirstChild(Name):Destroy()
+    end
+    task.wait()
+
+    game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR')
+    local FLing = false
+    local KIckAnim = Instance.new('Animation')
+    KIckAnim.AnimationId = "rbxassetid://" .. AnimationID
+
+    local tool = Instance.new("Tool")
+    tool.RequiresHandle = false
+    tool.Name = Name
+    tool.Activated:Connect(function()
+        if not FLing then
+            FLing = true
+            local animationTrack = game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim)
+            animationTrack:Play()
+            animationTrack:AdjustSpeed(AdjustSpeed)
+            Play(PlayIDSound)
+            animationTrack.Stopped:Wait()
+            task.wait(.3)
+            FLing = false
+        end
+    end)
+    tool.Parent = game.Players.LocalPlayer.Backpack
+    local a = Instance.new("StringValue")
+    if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("FastSprint") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("FastSprint"):Destroy() end
+    a.Parent = game.Players.LocalPlayer.Character.BodyEffects.Movement
+    a.Name = "FastSprint"
+end
+
+Ftools("👆", 400, 3355740058, 1,6543434995)
+Ftools("👈", 400, 8254789608, 1.5)
+Ftools("👉", 400, 8254792138, 1.5)
+Ftools("👇", -400, 8254794168, 1.5)
+
 --//------------------------------------------------------------------------------------------\\--
 function chat(msg)
     local A_1 = msg
@@ -443,17 +500,14 @@ local mouse = player:GetMouse()
 local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
 
--- Ensure to disconnect any existing connections
 if _G.SKBISID then _G.SKBISID:Disconnect() end
 
--- Function to teleport the player to the mouse position
 local function teleportToMouse()
     local character = player.Character
     if character and character:FindFirstChild("HumanoidRootPart") then
         local humanoidRootPart = character.HumanoidRootPart
         local targetPosition = mouse.Hit.Position
         
-        -- Preserve the current orientation
         local currentOrientation = humanoidRootPart.CFrame - humanoidRootPart.Position
         
         humanoidRootPart.CFrame = CFrame.new(targetPosition) * currentOrientation
@@ -1357,80 +1411,15 @@ tools:Button("lock เเบบยิงพวกกันล้อกไม่�
         end
     end)
 end)
-tools:Button("auto Frie armor",function()
-    function armorloop()
-        while wait() do
-            if game.Players.LocalPlayer.Character:WaitForChild('BodyEffects')['FireArmor'].Value <= 0 and game.Players.LocalPlayer.Character:WaitForChild("BodyEffects")["K.O"].value == false  then
-                    local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
-                            local Brokie = game.Workspace.Ignored.Shop["[Fire Armor] - $2493"]
-                            game.Players.LocalPlayer.Character:MoveTo(Brokie.Head.Position)
-                            wait(0.1)
-                            fireclickdetector(Brokie.ClickDetector)
-                            wait(0.1)
-                            repeat task.wait()
-                            until game.Players.LocalPlayer.Character:WaitForChild('BodyEffects')['Armor'].Value >= 130
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(savepos)
-            end
-            end
-            end
-            
-            game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
-            armorloop()
-            
-        end)
-        tools:Button("auto armor",function()
-            repeat task.wait()
-            until game.Players.LocalPlayer.Backpack:FindFirstChild("[Double-Barrel SG]")
-            getgenv().loopdb:Disconnect()
-    function armorloop()
-        while wait() do
-            if game.Players.LocalPlayer.Character:WaitForChild('BodyEffects')['Armor'].Value <= 30 and game.Players.LocalPlayer.Character:WaitForChild("BodyEffects")["K.O"].value == false then
-                            local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
-                            local Brokie = game.Workspace.Ignored.Shop["[High-Medium Armor] - $2440"]
-                            game.Players.LocalPlayer.Character:MoveTo(Brokie.Head.Position)
-                            wait(0.1)
-                            fireclickdetector(Brokie.ClickDetector)
-                            repeat task.wait()
-                            until game.Players.LocalPlayer.Character:WaitForChild('BodyEffects')['Armor'].Value >= 130
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(savepos)
-            end
-            end
-            end
-            
-            game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
-            armorloop()
-        end)
-tools:Button("auto eat",function()
-    function Anti()
-        while wait() do
-        if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Health <= 50 and game.Players.LocalPlayer.Character:WaitForChild("BodyEffects")["K.O"].value == false  then
-                local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
-                        local Brokie = game.Workspace.Ignored.Shop["[Taco] - $2"]
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(584, 40, -474)
-                        wait(0.25)
-                        fireclickdetector(Brokie.ClickDetector)
-                        wait(0.25)
-                    wait(.25)
-                local surg = game.Players.LocalPlayer.Backpack:FindFirstChild("[Taco]")
-                surg.Parent = game.Players.LocalPlayer.Character
-                local New = game.Players.LocalPlayer.Character:FindFirstChild("[Taco]")
-                for i = 1,55  do      
-                New:Activate()
-                wait(0.1)
-                New:Activate()
-                end
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(savepos)
-        end
-        end
-        end
-        
-        game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
-            Anti()
-end)
+
 tools:Button(
     "real kick",
     function()
-    
+        tool.Parent = game.Players.LocalPlayer.Backpack
+    local a = Instance.new("StringValue")
+    if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("FastSprint") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("FastSprint"):Destroy() end
+    a.Parent = game.Players.LocalPlayer.Character.BodyEffects.Movement
+    a.Name = "FastSprint"
         getgenv().asfafgagdrfgerth = 1000
         getgenv().wsgewgeherhhrsd = 390
     
@@ -1465,7 +1454,11 @@ tools:Button(
             kick()
     end)
 tools:Button("kick",function()
-    
+    tool.Parent = game.Players.LocalPlayer.Backpack
+    local a = Instance.new("StringValue")
+    if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("FastSprint") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("FastSprint"):Destroy() end
+    a.Parent = game.Players.LocalPlayer.Character.BodyEffects.Movement
+    a.Name = "FastSprint"
     getgenv().iejhooooo = 300
     getgenv().rthrthrthrjrt = 400
 
@@ -1518,6 +1511,11 @@ tools:Button("hold up!",function()
         kick()
 end)
 tools:Button("sigma kick",function()
+    tool.Parent = game.Players.LocalPlayer.Backpack
+    local a = Instance.new("StringValue")
+    if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("FastSprint") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("FastSprint"):Destroy() end
+    a.Parent = game.Players.LocalPlayer.Character.BodyEffects.Movement
+    a.Name = "FastSprint"
     getgenv().rtjjjjjjjjjj = 400
     getgenv().rthrthrthrjrt = 360
 
@@ -1551,79 +1549,84 @@ tools:Button("sigma kick",function()
         game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
         kick()
 end)
-tools:Button("upper cut!",function()         
-    getgenv().rtjjjjjjjjjj = 400
-    getgenv().rthrthrthrjrt = 360
+-- tools:Button("upper cut!",function()         
+--     getgenv().rtjjjjjjjjjj = 400
+--     getgenv().rthrthrthrjrt = 360
 
-    game:GetService("RunService").heartbeat:Connect(function()
-        for _, v in next, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks() do
-            if (v.Animation.AnimationId:match("rbxassetid://3355740058")) then
-                local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X*getgenv().rtjjjjjjjjjj,getgenv().rtjjjjjjjjjj,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z*getgenv().rtjjjjjjjjjj)
-                game:GetService("RunService").RenderStepped:Wait()
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
-            end
-        end
-    end)
-
-    
-    function kick()
-        local KIckAnim = Instance.new('Animation');
-        KIckAnim.AnimationId = "rbxassetid://3355740058";
-            tool = Instance.new("Tool")
-            tool.RequiresHandle = false
-            tool.Name = "upper cut"
-            tool.Activated:Connect(function()
-                game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim):Play()
-            wait(0.1)
-            Play(6543434995)
-            wait(0.1)
-    
-            end)
-            tool.Parent = game.Players.LocalPlayer.Backpack
-        end;
-        game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
-        kick()
-end)    
-tools:Button("push!",function()
-    -- Call()
-
-    getgenv().sadddddddddddddddd = 400
-    getgenv().asddddddddddddddddvvv = 360
-
-    game:GetService("RunService").heartbeat:Connect(function()
-        for _, v in next, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks() do
-            if (v.Animation.AnimationId:match("rbxassetid://3354696735")) then---3354696735o==or==8254765806
-                local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X*getgenv().sadddddddddddddddd,getgenv().sadddddddddddddddd,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z*getgenv().sadddddddddddddddd)
-                game:GetService("RunService").RenderStepped:Wait()
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
-            end
-        end
-    end)
+--     game:GetService("RunService").heartbeat:Connect(function()
+--         for _, v in next, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks() do
+--             if (v.Animation.AnimationId:match("rbxassetid://3355740058")) then
+--                 local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+--                 game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X*getgenv().rtjjjjjjjjjj,getgenv().rtjjjjjjjjjj,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z*getgenv().rtjjjjjjjjjj)
+--                 game:GetService("RunService").RenderStepped:Wait()
+--                 game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
+--             end
+--         end
+--     end)
 
     
-    function kick()
-        local KIckAnim = Instance.new('Animation');
-        KIckAnim.AnimationId = "rbxassetid://3354696735";--3354696735-or-8254765806
-            tool = Instance.new("Tool")
-            tool.RequiresHandle = false
-            tool.Name = "push"
-            tool.Activated:Connect(function()
-                game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim):Play()
-            wait(0.3)
-            Play(4766119678)
-            wait(0.1)
+--     function kick()
+--         local KIckAnim = Instance.new('Animation');
+--         KIckAnim.AnimationId = "rbxassetid://3355740058";
+--             tool = Instance.new("Tool")
+--             tool.RequiresHandle = false
+--             tool.Name = "upper cut"
+--             tool.Activated:Connect(function()
+--                 game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim):Play()
+--             wait(0.1)
+--             Play(6543434995)
+--             wait(0.1)
     
-            end)
-            tool.Parent = game.Players.LocalPlayer.Backpack
-        end;
-        game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
-        kick()
-    end)
+--             end)
+--             tool.Parent = game.Players.LocalPlayer.Backpack
+--         end;
+--         game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
+--         kick()
+-- end)    
+-- tools:Button("push!",function()
+--     -- Call()
+
+--     getgenv().sadddddddddddddddd = 400
+--     getgenv().asddddddddddddddddvvv = 360
+
+--     game:GetService("RunService").heartbeat:Connect(function()
+--         for _, v in next, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks() do
+--             if (v.Animation.AnimationId:match("rbxassetid://3354696735")) then---3354696735o==or==8254765806
+--                 local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+--                 game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X*getgenv().sadddddddddddddddd,getgenv().sadddddddddddddddd,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z*getgenv().sadddddddddddddddd)
+--                 game:GetService("RunService").RenderStepped:Wait()
+--                 game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
+--             end
+--         end
+--     end)
+
+    
+--     function kick()
+--         local KIckAnim = Instance.new('Animation');
+--         KIckAnim.AnimationId = "rbxassetid://3354696735";--3354696735-or-8254765806
+--             tool = Instance.new("Tool")
+--             tool.RequiresHandle = false
+--             tool.Name = "push"
+--             tool.Activated:Connect(function()
+--                 game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim):Play()
+--             wait(0.3)
+--             Play(4766119678)
+--             wait(0.1)
+    
+--             end)
+--             tool.Parent = game.Players.LocalPlayer.Backpack
+--         end;
+--         game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
+--         kick()
+--     end)
 tools:Button("combatfing!",function()
-    chat('COMBAT FING TRUE')
-    getgenv().sadfasfrfgrthrtyhj = 350
+    tool.Parent = game.Players.LocalPlayer.Backpack
+    local a = Instance.new("StringValue")
+    if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("FastSprint") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("FastSprint"):Destroy() end
+    a.Parent = game.Players.LocalPlayer.Character.BodyEffects.Movement
+    a.Name = "FastSprint"
+chat('COMBAT FING TRUE')
+getgenv().sadfasfrfgrthrtyhj = 350
 getgenv().rthrthrthrjrt = 400
 
 
@@ -1941,160 +1944,160 @@ tools:Button("one kick",function()
         game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
         kick()
 end)
-tools:Button("thunder",function()
+-- tools:Button("thunder",function()
 
-    getgenv().sadfasfrfgrthrtyhj = 310
-    getgenv().rthrthrthrjrt = 400
+--     getgenv().sadfasfrfgrthrtyhj = 310
+--     getgenv().rthrthrthrjrt = 400
 
-    game:GetService("RunService").heartbeat:Connect(function()
-        for _, v in next, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks() do
-            if (v.Animation.AnimationId:match("rbxassetid://14496531574")) then
-                local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X*getgenv().sadfasfrfgrthrtyhj,getgenv().sadfasfrfgrthrtyhj,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z*getgenv().sadfasfrfgrthrtyhj)
-                game:GetService("RunService").RenderStepped:Wait()
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
-            end
-        end
-    end)
-
-    
-    function kick()
-        local KIckAnim = Instance.new('Animation');
-        KIckAnim.AnimationId = "rbxassetid://14496531574";
-            tool = Instance.new("Tool")
-            tool.RequiresHandle = false
-            tool.Name = "thunder"
-            tool.Activated:Connect(function()
-                game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim):Play()
-            wait(0.1)
-            Play(1079408535)
-            wait(0.1)
-    
-            end)
-            tool.Parent = game.Players.LocalPlayer.Backpack
-        end;
-        game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
-        kick()
-end)
-tools:Button("speed",function()
-    local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid;
-    Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
-    Humanoid.WalkSpeed = _G.WS;
-    end)
-    Humanoid.WalkSpeed = _G.WS;
-        wait(1)
-    _G.WS = "23";
-    local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid;
-    Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
-    Humanoid.WalkSpeed = _G.WS;
-    end)
-    Humanoid.WalkSpeed = _G.WS;
-    end)
-
-tools:Button("kick",function()
-    
-    getgenv().iejhooooo = 300
-    getgenv().rthrthrthrjrt = 400
-
-    game:GetService("RunService").heartbeat:Connect(function()
-        for _, v in next, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks() do
-            if (v.Animation.AnimationId:match("rbxassetid://2791328524")) then
-                local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X*getgenv().iejhooooo,getgenv().iejhooooo,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z*getgenv().iejhooooo)
-                game:GetService("RunService").RenderStepped:Wait()
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
-            end
-        end
-    end)
+--     game:GetService("RunService").heartbeat:Connect(function()
+--         for _, v in next, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks() do
+--             if (v.Animation.AnimationId:match("rbxassetid://14496531574")) then
+--                 local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+--                 game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X*getgenv().sadfasfrfgrthrtyhj,getgenv().sadfasfrfgrthrtyhj,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z*getgenv().sadfasfrfgrthrtyhj)
+--                 game:GetService("RunService").RenderStepped:Wait()
+--                 game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
+--             end
+--         end
+--     end)
 
     
-    function kick()
-        local KIckAnim = Instance.new('Animation');
-        KIckAnim.AnimationId = "rbxassetid://2791328524";
-            tool = Instance.new("Tool")
-            tool.RequiresHandle = false
-            tool.Name = "slamdonw 👈"
-            tool.Activated:Connect(function()
-            local gyat = game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim)
-            gyat:Play()
-            gyat:AdjustSpeed(2.5)
-            end)
-            tool.Parent = game.Players.LocalPlayer.Backpack
-        end;
-        game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
-        kick()
-end)
-tools:Button("upper cut!",function()         
-    getgenv().rtjjjjjjjjjj = 400
-    getgenv().rthrthrthrjrt = 360
+--     function kick()
+--         local KIckAnim = Instance.new('Animation');
+--         KIckAnim.AnimationId = "rbxassetid://14496531574";
+--             tool = Instance.new("Tool")
+--             tool.RequiresHandle = false
+--             tool.Name = "thunder"
+--             tool.Activated:Connect(function()
+--                 game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim):Play()
+--             wait(0.1)
+--             Play(1079408535)
+--             wait(0.1)
+    
+--             end)
+--             tool.Parent = game.Players.LocalPlayer.Backpack
+--         end;
+--         game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
+--         kick()
+-- end)
+-- tools:Button("speed",function()
+--     local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid;
+--     Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+--     Humanoid.WalkSpeed = _G.WS;
+--     end)
+--     Humanoid.WalkSpeed = _G.WS;
+--         wait(1)
+--     _G.WS = "23";
+--     local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid;
+--     Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+--     Humanoid.WalkSpeed = _G.WS;
+--     end)
+--     Humanoid.WalkSpeed = _G.WS;
+--     end)
 
-    game:GetService("RunService").heartbeat:Connect(function()
-        for _, v in next, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks() do
-            if (v.Animation.AnimationId:match("rbxassetid://3355740058")) then
-                local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X*getgenv().rtjjjjjjjjjj,getgenv().rtjjjjjjjjjj,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z*getgenv().rtjjjjjjjjjj)
-                game:GetService("RunService").RenderStepped:Wait()
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
-            end
-        end
-    end)
+-- tools:Button("kick",function()
+    
+--     getgenv().iejhooooo = 300
+--     getgenv().rthrthrthrjrt = 400
+
+--     game:GetService("RunService").heartbeat:Connect(function()
+--         for _, v in next, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks() do
+--             if (v.Animation.AnimationId:match("rbxassetid://2791328524")) then
+--                 local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+--                 game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X*getgenv().iejhooooo,getgenv().iejhooooo,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z*getgenv().iejhooooo)
+--                 game:GetService("RunService").RenderStepped:Wait()
+--                 game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
+--             end
+--         end
+--     end)
 
     
-    function kick()
-        local KIckAnim = Instance.new('Animation');
-        KIckAnim.AnimationId = "rbxassetid://3355740058";
-            tool = Instance.new("Tool")
-            tool.RequiresHandle = false
-            tool.Name = "upper cut"
-            tool.Activated:Connect(function()
-                game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim):Play()
-            wait(0.1)
-            Play(6543434995)
-            wait(0.1)
+--     function kick()
+--         local KIckAnim = Instance.new('Animation');
+--         KIckAnim.AnimationId = "rbxassetid://2791328524";
+--             tool = Instance.new("Tool")
+--             tool.RequiresHandle = false
+--             tool.Name = "slamdonw 👈"
+--             tool.Activated:Connect(function()
+--             local gyat = game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim)
+--             gyat:Play()
+--             gyat:AdjustSpeed(2.5)
+--             end)
+--             tool.Parent = game.Players.LocalPlayer.Backpack
+--         end;
+--         game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
+--         kick()
+-- end)
+-- tools:Button("upper cut!",function()         
+--     getgenv().rtjjjjjjjjjj = 400
+--     getgenv().rthrthrthrjrt = 360
+
+--     game:GetService("RunService").heartbeat:Connect(function()
+--         for _, v in next, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks() do
+--             if (v.Animation.AnimationId:match("rbxassetid://3355740058")) then
+--                 local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+--                 game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X*getgenv().rtjjjjjjjjjj,getgenv().rtjjjjjjjjjj,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z*getgenv().rtjjjjjjjjjj)
+--                 game:GetService("RunService").RenderStepped:Wait()
+--                 game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
+--             end
+--         end
+--     end)
+
     
-            end)
-            tool.Parent = game.Players.LocalPlayer.Backpack
-        end;
-        game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
-        kick()
-end)    
-tools:Button(
-    "slap",
-    function()
-        getgenv().hgggggggggggggggggg = 400
-        getgenv().asddddddddddddddddvvv = 360
+--     function kick()
+--         local KIckAnim = Instance.new('Animation');
+--         KIckAnim.AnimationId = "rbxassetid://3355740058";
+--             tool = Instance.new("Tool")
+--             tool.RequiresHandle = false
+--             tool.Name = "upper cut"
+--             tool.Activated:Connect(function()
+--                 game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim):Play()
+--             wait(0.1)
+--             Play(6543434995)
+--             wait(0.1)
     
-        game:GetService("RunService").heartbeat:Connect(function()
-            for _, v in next, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks() do
-                if (v.Animation.AnimationId:match("rbxassetid://8254765806")) then---3354696735o==or==8254765806
-                    local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X*getgenv().hgggggggggggggggggg,getgenv().hgggggggggggggggggg,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z*getgenv().hgggggggggggggggggg)
-                    game:GetService("RunService").RenderStepped:Wait()
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
-                end
-            end
-        end)
+--             end)
+--             tool.Parent = game.Players.LocalPlayer.Backpack
+--         end;
+--         game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
+--         kick()
+-- end)    
+-- tools:Button(
+--     "slap",
+--     function()
+--         getgenv().hgggggggggggggggggg = 400
+--         getgenv().asddddddddddddddddvvv = 360
+    
+--         game:GetService("RunService").heartbeat:Connect(function()
+--             for _, v in next, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks() do
+--                 if (v.Animation.AnimationId:match("rbxassetid://8254765806")) then---3354696735o==or==8254765806
+--                     local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+--                     game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X*getgenv().hgggggggggggggggggg,getgenv().hgggggggggggggggggg,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z*getgenv().hgggggggggggggggggg)
+--                     game:GetService("RunService").RenderStepped:Wait()
+--                     game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
+--                 end
+--             end
+--         end)
     
         
-        function kick()
-            local KIckAnim = Instance.new('Animation');
-            KIckAnim.AnimationId = "rbxassetid://8254765806";--3354696735-or-8254765806
-                tool = Instance.new("Tool")
-                tool.RequiresHandle = false
-                tool.Name = "slap"
-                tool.Activated:Connect(function()
-                    game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim):Play()
-                wait(0.1)
-                Play(541909913)
-                wait(0.1)
+--         function kick()
+--             local KIckAnim = Instance.new('Animation');
+--             KIckAnim.AnimationId = "rbxassetid://8254765806";--3354696735-or-8254765806
+--                 tool = Instance.new("Tool")
+--                 tool.RequiresHandle = false
+--                 tool.Name = "slap"
+--                 tool.Activated:Connect(function()
+--                     game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim):Play()
+--                 wait(0.1)
+--                 Play(541909913)
+--                 wait(0.1)
         
-                end)
-                tool.Parent = game.Players.LocalPlayer.Backpack
-            end;
-            game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
-            kick()
-    end
-)
+--                 end)
+--                 tool.Parent = game.Players.LocalPlayer.Backpack
+--             end;
+--             game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
+--             kick()
+--     end
+-- )
 
 local trun = serv:Channel("ฟังชั่นเปิด/ปิด")
 trun:Toggle(
@@ -6149,6 +6152,10 @@ _G.Loopohoh = game.Players.LocalPlayer.CharacterAdded:connect(function()
 
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,150,0)
     Togglegui()
+    Ftools("👆", 400, 3355740058, 1,6543434995)
+    Ftools("👈", 400, 8254789608, 1.5,4766119678)
+    Ftools("👉", 400, 8254792138, 1.5,8595977193) 
+    Ftools("👇", -400, 8254765806, 1.5,541909913)
     
     
     game.Players.LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.Visible = true
