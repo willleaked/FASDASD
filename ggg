@@ -302,18 +302,6 @@ function Play(ID)
 end
 end
 function Ftools(Name, POWERFLING, AnimationID, AdjustSpeed,PlayIDSound)
-    game:GetService("RunService").Heartbeat:Connect(function()
-        if FLing == true then
-                local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X * POWERFLING,
-                    POWERFLING,
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z * POWERFLING
-                )
-                game:GetService("RunService").RenderStepped:Wait()
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
-        end
-    end)
 
     if game.Players.LocalPlayer.Backpack:FindFirstChild(Name) then
         game.Players.LocalPlayer.Backpack:FindFirstChild(Name):Destroy()
@@ -336,12 +324,23 @@ function Ftools(Name, POWERFLING, AnimationID, AdjustSpeed,PlayIDSound)
     tool.Activated:Connect(function()
         if not FLing then
             FLing = true
+            _G.SKIDIDIFLING = game:GetService("RunService").Heartbeat:Connect(function()
+                local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X * POWERFLING,
+                    POWERFLING,
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z * POWERFLING
+                )
+                game:GetService("RunService").RenderStepped:Wait()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
+            end)
             local animationTrack = game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim)
             animationTrack:Play()
             animationTrack:AdjustSpeed(AdjustSpeed)
             Play(PlayIDSound)
             animationTrack.Stopped:Wait()
             task.wait(.3)
+            if _G.SKIDIDIFLING then _G.SKIDIDIFLING:Disconnect() end
             FLing = false
         end
     end)
