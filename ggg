@@ -303,8 +303,7 @@ end
 end
 function Ftools(Name, POWERFLING, AnimationID, AdjustSpeed,PlayIDSound)
     game:GetService("RunService").Heartbeat:Connect(function()
-        for _, v in next, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks() do
-            if (v.Animation.AnimationId:match("rbxassetid://" .. AnimationID)) then
+        if FLing == true then
                 local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
                 game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X * POWERFLING,
@@ -313,7 +312,6 @@ function Ftools(Name, POWERFLING, AnimationID, AdjustSpeed,PlayIDSound)
                 )
                 game:GetService("RunService").RenderStepped:Wait()
                 game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
-            end
         end
     end)
 
