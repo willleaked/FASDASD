@@ -324,6 +324,7 @@ function Ftools(Name, POWERFLING, AnimationID, AdjustSpeed,PlayIDSound)
     tool.Activated:Connect(function()
         if not FLing then
             FLing = true
+            if _G.SKIDIDIFLING then _G.SKIDIDIFLING:Disconnect() end
             _G.SKIDIDIFLING = game:GetService("RunService").Heartbeat:Connect(function()
                 local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
                 game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(
@@ -1927,13 +1928,22 @@ tools:Button("one kick",function()
         KIckAnim.AnimationId = "rbxassetid://8254765806";--3354696735
             tool = Instance.new("Tool")
             tool.RequiresHandle = false
-            tool.Name = "one kick"
+            tool.Name = "[one kick]"
             tool.Activated:Connect(function()
                 game.Players.LocalPlayer.Backpack["Combat"].Parent = game.Players.LocalPlayer.Character
                 game.ReplicatedStorage.MainEvent:FireServer("ChargeButton")
+                repeat wait() until OWNER.Character:FindFirstChild("BodyEffects"):FindFirstChild("Attacking").Value == true
+                    if OWNER.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed") then OWNER.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed"):Destroy() end
+                    if OWNER.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then OWNER.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk"):Destroy() end
+                    if OWNER.Character.BodyEffects.Movement:FindFirstChild("NoJumping") then OWNER.Character.BodyEffects.Movement:FindFirstChild("NoJumping"):Destroy() end
                 wait(1)
-            Play(6073433216)
-            wait(0.1)
+               Play(6073433216)
+               wait(0.1)
+               repeat wait() until OWNER.Character:FindFirstChild("BodyEffects"):FindFirstChild("Attacking").Value == false
+               game.Players.LocalPlayer.Character["Combat"].Parent = game.Players.LocalPlayer.Backpack
+               game.Players.LocalPlayer.Character["[one kick]"].Parent = game.Players.LocalPlayer.Backpack
+               game.Players.LocalPlayer.Backpack["[one kick]"].Parent = game.Players.LocalPlayer.Character
+
     
             end)
             tool.Parent = game.Players.LocalPlayer.Backpack
