@@ -1452,7 +1452,6 @@ tools:Button(
             kick()
     end)
 tools:Button("kick",function()
-    tool.Parent = game.Players.LocalPlayer.Backpack
     local a = Instance.new("StringValue")
     if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("FastSprint") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("FastSprint"):Destroy() end
     a.Parent = game.Players.LocalPlayer.Character.BodyEffects.Movement
@@ -1472,12 +1471,12 @@ tools:Button("kick",function()
     end)
 
     
-    function kick()
+    function SLOWDONWSLOWDONW()
         local KIckAnim = Instance.new('Animation');
         KIckAnim.AnimationId = "rbxassetid://2791328524";
             tool = Instance.new("Tool")
             tool.RequiresHandle = false
-            tool.Name = "slamdonw 👈"
+            tool.Name = "[slamdonw 👈]"
             tool.Activated:Connect(function()
             local gyat = game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim)
             gyat:Play()
@@ -1486,30 +1485,9 @@ tools:Button("kick",function()
             tool.Parent = game.Players.LocalPlayer.Backpack
         end;
         game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
-        kick()
-end)
-
-tools:Button("hold up!",function()
-    function kick()
-        local KIckAnim = Instance.new('Animation');
-        KIckAnim.AnimationId = "rbxassetid://3355740058";
-            tool = Instance.new("Tool")
-            tool.RequiresHandle = false
-            tool.Name = "Hold"
-            tool.Activated:Connect(function()
-                game.ReplicatedStorage.MainEvent:FireServer("Grabbing",true)
-                task.wait(0.1)
-                if game.Players.LocalPlayer.Character.BodyEffects.Grabbed.Value ~= nil then
-                Play(2848703459)
-                end
-            end)
-            tool.Parent = game.Players.LocalPlayer.Backpack
-        end;
-        game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
-        kick()
+        SLOWDONWSLOWDONW()
 end)
 tools:Button("sigma kick",function()
-    tool.Parent = game.Players.LocalPlayer.Backpack
     local a = Instance.new("StringValue")
     if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("FastSprint") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("FastSprint"):Destroy() end
     a.Parent = game.Players.LocalPlayer.Character.BodyEffects.Movement
@@ -1529,23 +1507,29 @@ tools:Button("sigma kick",function()
     end)
 
     
-    function kick()
+    function kickED()
+        local flggg = false
         local KIckAnim = Instance.new('Animation');
         KIckAnim.AnimationId = "rbxassetid://2788290270";
             tool = Instance.new("Tool")
             tool.RequiresHandle = false
-            tool.Name = "sigma kick"
+            tool.Name = "[sigma kick]"
             tool.Activated:Connect(function()
-                game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim):Play()
-            wait(0.1)
-            Play(8296182640)
-            wait(0.1)
+                if not flggg then
+                flggg = true
+                local animationTrack = game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(KIckAnim)
+                animationTrack:Play()
+                Play(8296182640)
+                animationTrack.Stopped:Wait()
+                task.wait(.5)
+                flggg = false
+                end
     
             end)
             tool.Parent = game.Players.LocalPlayer.Backpack
         end;
         game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
-        kick()
+        kickED()
 end)
 -- tools:Button("upper cut!",function()         
 --     getgenv().rtjjjjjjjjjj = 400
