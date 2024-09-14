@@ -6205,7 +6205,7 @@ function chat(msg)
     Event:FireServer(A_1, A_2)
 end
 
-local targetNames = {"isthisdo23", "cruciatusadidas", "PLAYERS1", "deeralttrue", "Rag0_IQ", "dahoodbotmoney5"}
+local targetNames = {"isthisdo23", "cruciatusadidas", "PLAYERS1", "deeralttrue", "PLAYERS3", "dahoodbotmoney5"}
 
 -- Function to find a player by partial name
 function gplr(partialName)
@@ -6500,7 +6500,7 @@ if game.Players.LocalPlayer.Name == "Gralew1234" or  game.Players.LocalPlayer.Na
     end)
     end
 
-    if game.Players.LocalPlayer.Name == "Gralew1234" or  game.Players.LocalPlayer.Name == "deeralttrue" or  game.Players.LocalPlayer.Name == "Rag0_IQ" or  game.Players.LocalPlayer.Name == "wubxbeb"  or  game.Players.LocalPlayer.Name == "Hpersonh0"
+    if game.Players.LocalPlayer.Name == "Gralew1234" or  game.Players.LocalPlayer.Name == "deeralttrue" or  game.Players.LocalPlayer.Name == "PLAUERS4" or  game.Players.LocalPlayer.Name == "wubxbeb"  or  game.Players.LocalPlayer.Name == "Hpersonh0"
     or game.Players.LocalPlayer.Name == "DAIKizu39"  then
 
         getgenv().Settings = {
