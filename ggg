@@ -490,7 +490,7 @@ game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR
 if not game.Players.localPlayer.Name == "dahoodbotmoney5" then
 boommmm()
 end
-function kick()
+function Diotp()
     if OWNER.Backpack:FindFirstChild("DIO Teleport") then OWNER.Backpack:FindFirstChild("DIO Teleport"):Destroy() end
     local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
@@ -541,14 +541,14 @@ end
     game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
     if not game.Players.localPlayer.Name == "dahoodbotmoney5" then
 
-    kick()
+        Diotp()
     end
 
 --//------------------------------------------------------------------------------------------\\--
 if _G.Loopspaw then _G.Loopspaw:Disconnect() end
 _G.Loopspaw = game.Players.LocalPlayer.CharacterAdded:connect(function() 
     game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
-    kick()
+    Diotp()
     boommmm()
     ighlight()
 
@@ -573,18 +573,28 @@ local pl = game.Players.LocalPlayer.Character
 part.Position = Vector3.new(-897.6600952148438, -650.0717163085938, -709.875732421875)
 if _G.Toggletrunoff then
 else
-pl.HumanoidRootPart.CFrame = part.CFrame
+pl.HumanoidRootPart.CFrame = part.CFrame * CFrame.new(0,10,0)
 end
 
+if _G.antidiebyeundergluod then 
+    _G.antidiebyeundergluod:Disconnect() 
+end
 
-game.Workspace.FallenPartsDestroyHeight = -900000000
-local part = Instance.new("Part")
-part.Size = Vector3.new(99000000000, 2, 99000000000)
-part.Name = "PROantifling"
-part.Parent = game.Workspace
-part.Anchored = true
-local pl = game.Players.LocalPlayer.Character
-part.Position = Vector3.new(0,-150,-10)
+_G.antidiebyeundergluod = game:GetService("RunService").Stepped:Connect(function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+    local humanoid = character:FindFirstChild("Humanoid")
+
+    if humanoidRootPart and humanoid then
+        local isLayingDown = humanoid:GetState() == Enum.HumanoidStateType.Physics
+
+        if humanoidRootPart.Position.Y < -100 and not isLayingDown then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)*CFrame.new(0,200,0)  
+            humanoidRootPart.Velocity = Vector3.zero
+        end
+    end
+end)
 
 game.Players.LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.Visible = true
 game.Players.LocalPlayer.CharacterAdded:Connect(function()
