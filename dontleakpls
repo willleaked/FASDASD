@@ -1146,7 +1146,53 @@ function Stand(targetName)
             end
             end
     
-    
+            function BringDropvoid(Target)
+                Stop()
+                bring = true
+                noclip = true
+                if KO(TARGET).Value == false then
+                game.Workspace.Camera.CameraSubject = getHumanoid(STAND)
+                repeat rs.Stepped:Wait()
+                if KO(TARGET).Value == false then
+                Hit(true)
+                TargetMalee(Target)
+                game.Workspace.Camera.CameraSubject = getRoot(TARGET)
+                end
+                until KO(TARGET).Value == true or bring == false
+                repeat rs.Stepped:Wait()
+                getRoot(STAND).CFrame = getRoot(TARGET).CFrame*CFrame.new(0,300,0)
+                until Attacking(STAND).Value == false
+                if Alt == false then
+                repeat rs.Stepped:Wait()
+                if KO(TARGET).Value == true then
+                getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,5,0)
+                wait(.2)
+                game.ReplicatedStorage.MainEvent:FireServer("Grabbing")
+                wait(.5)
+                getRoot(STAND).CFrame = OWNER.Character:FindFirstChild('HumanoidRootPart').CFrame*CFrame.new(0,5,0)
+                end
+                until KO(TARGET).Value == false or bring == false
+                end
+                STAND.Character.HumanoidRootPart.CFrame = CFrame.new(0,-200,0)
+                task.wait()
+                game.ReplicatedStorage.MainEvent:FireServer("Grabbing")
+                Summon()
+                else
+                if Alt == false then
+                repeat rs.Stepped:Wait()
+                if KO(TARGET).Value == true then
+                getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,5,0)
+                wait(.2)
+                game.ReplicatedStorage.MainEvent:FireServer("Grabbing")
+                wait(.5)
+                getRoot(STAND).CFrame = getRoot(OWNER).CFrame*CFrame.new(0,5,0)
+                end
+                until KO(TARGET).Value == false or bring == false
+                end
+                STAND.Character.HumanoidRootPart.CFrame = CFrame.new(0,-200,0)
+                end
+                end
+
             function Bringandgrab(Target)
                 Stop()
                 bring = true
@@ -5323,6 +5369,14 @@ function Stand(targetName)
             end
             Viewing = true
         end)
+
+        CreateTargetAbility("Void!",function()
+            if TARGET then
+                BringDropvoid(TARGET)
+            end
+            Viewing = true
+        end)
+
         local Predictiondd = 0.4
         CreateTargetAbility(getgenv().BRING,function()
             if TARGET then
@@ -5751,6 +5805,22 @@ function Stand(targetName)
                 noclip = true
                 Viewing = true
                 Gunbring = true
+            end
+        end)
+        CreateTargetAbility("gvoid!",function()
+            if TARGET then
+                Stop()
+                Gunmodenana()
+                blocking = false
+                noclip = true
+                Viewing = true
+                Gunbring = true
+                repeat wait() until Gunbring == false
+                Stop()
+                STAND.Character.HumanoidRootPart.CFrame = CFrame.new(0,-200,0)
+                task.wait()
+                game.ReplicatedStorage.MainEvent:FireServer("Grabbing")
+                Summon()
             end
         end)
         CreateTargetAbility("gk!",function()
