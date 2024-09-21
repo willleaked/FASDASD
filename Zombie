@@ -55,6 +55,37 @@ function FullscriptZombie()
                 end
                 animation:Destroy()
             end	
+            local Locked = false
+            function AnimPlayfortest(ID, SPEED, Time, Smoothing)
+                for i,v in pairs(game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do
+                     if (v.Animation.AnimationId:match("rbxassetid://"..ID)) then
+                        Locked = true
+                    end
+                end
+                if not Locked then
+                local animation = Instance.new('Animation', game:GetService("Workspace"))
+                animation.AnimationId = 'rbxassetid://'..ID
+                playing = game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(animation)
+                playing.Priority = Enum.AnimationPriority.Action;
+                if tonumber(Smoothing) then
+                    playing:Play(Smoothing) 
+                else
+                    playing:Play() 
+                end
+                if tonumber(SPEED) then
+                    playing:AdjustSpeed(SPEED)
+                else
+                    playing:AdjustSpeed(1)
+                end
+                if tonumber(Time) then
+                    playing.TimePosition = Time
+                end
+                animation:Destroy()
+                else
+                    Locked = false
+                    print("Locked Animation")
+                end
+            end	
         
             function AnimStop(ID, SPEED)
                 for i,v in pairs(game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do
@@ -78,7 +109,7 @@ function FullscriptZombie()
                         if track.Animation.AnimationId == "rbxassetid://3354699999" or 
                         track.Animation.AnimationId == "rbxassetid://2788289281" or 
                         track.Animation.AnimationId == "rbxassetid://2788292075" then
-                            track:Stop() -- Stop the animation
+                            track:Stop()
                         end
                     end
                 end
@@ -107,6 +138,66 @@ function FullscriptZombie()
             a.Name = "FastSprint"
             local OWNER = game.Players.LocalPlayer
             local jumpedd = true
+                    TweenService = game:GetService("TweenService")
+                    OWNER = game:GetService("Players").LocalPlayer
+                    local OriginalKeyUpValue = 0
+                    function StopAudio()
+                        game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("BoomboxStop")
+                    end
+                    function stop(ID, Key)
+                        local cor = coroutine.wrap(function()
+                            wait(OWNER.Character.LowerTorso.BOOMBOXSOUND.TimeLength-0.1)
+                            if OWNER.Character.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OriginalKeyUpValue == Key then
+                                StopAudio()
+                            end
+                        end)
+                        cor()
+                    end
+                    function Playes(ID)
+                        if OWNER.Backpack:FindFirstChild("[Boombox]") then
+                            local Tool = nil
+                            OWNER.Backpack["[Boombox]"].Parent = OWNER.Character
+                            game.ReplicatedStorage.MainEvent:FireServer("Boombox", ID)
+                            OWNER.Character["[Boombox]"].RequiresHandle = false
+                            OWNER.Character["[Boombox]"].Parent = OWNER.Backpack
+                            OWNER.PlayerGui.MainScreenGui.BoomboxFrame.Visible = false
+                            if Tool ~= true then
+                                if Tool then
+                                    Tool.Parent = OWNER.Character
+                                end
+                            end
+                            OWNER.Character.LowerTorso:WaitForChild("BOOMBOXSOUND")
+                                local cor = coroutine.wrap(function()
+                                    repeat wait() until OWNER.Character.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OWNER.Character.LowerTorso.BOOMBOXSOUND.TimeLength > 0.01
+                                    OriginalKeyUpValue = OriginalKeyUpValue+1
+                                    stop(ID, OriginalKeyUpValue)
+                                end)
+                            cor()
+                        end
+                    end
+            local function PlayId(soundId, looped)
+                if game.Players.LocalPlayer.Character:FindFirstChild("[boombox]") or game.Players.LocalPlayer.Backpack:FindFirstChild("[boombox]") then
+                    Playes(soundId)
+                else
+                    local sound = Instance.new("Sound")
+                    sound.SoundId = "rbxassetid://" .. soundId
+                    sound.Parent = workspace
+                    sound.Looped = looped
+                    sound:Play()
+                    sound.Ended:Connect(function()
+                    sound:Destroy()
+                    end)
+                end
+            end
+            local function StopId(soundId)
+                for _, sound in pairs(workspace:GetChildren()) do
+                    if sound:IsA("Sound") and sound.SoundId == "rbxassetid://" .. soundId then
+                        sound:Stop()
+                        sound:Destroy()
+                    end
+                end
+            end
+            local isPlaying = false
             if _G.SpaceKeybind then _G.SpaceKeybind:Disconnect() end
             _G.SpaceKeybind = game:GetService("UserInputService").JumpRequest:Connect(function()
                 if workspace:FindFirstChild(OWNER.Name.."StringKOD") then
@@ -114,11 +205,12 @@ function FullscriptZombie()
                 else
                     OWNER.Character:FindFirstChildWhichIsA('Humanoid').JumpPower = 50
                     if OWNER.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air then
-                        if jumpedd then
+                        if jumpedd and not isPlaying then
                             jumpedd = false
                             OWNER.Character.Humanoid:ChangeState(3)
                             AnimPlay(12992262118,1,.5)
                             OWNER.Character.HumanoidRootPart.Velocity = OWNER.Character.HumanoidRootPart.Velocity + (OWNER.Character.HumanoidRootPart.CFrame.LookVector * 100)
+                            PlayId(186661028,false)
                             repeat task.wait() until OWNER.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial ~= Enum.Material.Air
                             AnimStop(12992262118,.3)
                             jumpedd = true
@@ -133,7 +225,6 @@ function FullscriptZombie()
             if OWNER.Backpack:FindFirstChild("[Speed]") then OWNER.Backpack:FindFirstChild("[Speed]"):Destroy() end
             local humanoid = OWNER.Character:WaitForChild("Humanoid")
             local animId = 3489173414
-            local isPlaying = false
             function Boostspeed()
                 tool = Instance.new("Tool")
                 tool.RequiresHandle = false
@@ -144,20 +235,35 @@ function FullscriptZombie()
                     AnimPlay(animId)
                     local tween = TweenService:Create(camera, tweenInfo, {FieldOfView = 100})
                     tween:Play()
+                    PlayId(2076455443,false)
                     end
+                    local OWNER = game.Players.LocalPlayer
+                    local function Moved()
+                        local humanoid = OWNER.Character:WaitForChild("Humanoid")
+                        if humanoid.MoveDirection.magnitude > 0 and OWNER.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial ~= Enum.Material.Air then
+                            print("1")
+                            local tween = TweenService:Create(camera, tweenInfo, {FieldOfView = 100})
+                            tween:Play()
+                            AnimPlayfortest(animId)
+                        else
+                            print("2")
+                            TweenService:Create(workspace.CurrentCamera, TweenInfo.new(0.5), {FieldOfView = 70}):Play()
+                            AnimStop(animId)
+                        end
+                    end
+
+                    _G.Runing = OWNER.Character:WaitForChild("Humanoid"):GetPropertyChangedSignal("MoveDirection"):Connect(Moved)
+
                     _G.TEST = humanoid.Running:Connect(function(speed)
                         if speed > 0 then
                             if not isPlaying then
-                                local tween = TweenService:Create(camera, tweenInfo, {FieldOfView = 100})
-                                tween:Play()
-                                AnimPlay(animId)
                                 isPlaying = true
+                                PlayId(2076455443,false)
                             end
                         else
                             if isPlaying then
-                                TweenService:Create(workspace.CurrentCamera, TweenInfo.new(0.5), {FieldOfView = 70}):Play()
-                                AnimStop(animId)
                                 isPlaying = false
+                                StopId(2076455443)
                             end
                         end
                     end)
@@ -169,7 +275,9 @@ function FullscriptZombie()
                 
                 tool.Unequipped:Connect(function()
                     isPlaying = false
+                    StopId(2076455443)
                     TweenService:Create(workspace.CurrentCamera, TweenInfo.new(0.5), {FieldOfView = 70}):Play()
+                    if _G.Runing then _G.Runing:Disconnect() end
                     if _G.TEST then _G.TEST:Disconnect() end
                     if _G.MARCO then _G.MARCO:Disconnect() end
                     AnimStop(3489173414)
@@ -234,6 +342,13 @@ function FullscriptZombie()
             end
             game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
             ZombiePunch()
+            local H_1 = Instance.new("Highlight")
+            H_1.Parent = game.Players.LocalPlayer.Character
+            H_1.FillColor = Color3.new(0, 0, 0)
+            H_1.OutlineColor = Color3.new(0, 255, 0)
+            H_1.FillTransparency = 1
+            H_1.OutlineTransparency = 0.75
+            local a = Instance.new("StringValue")
         end
                 FullscriptZombie()
                 local OWNER = game.Players.LocalPlayer
@@ -250,3 +365,6 @@ function FullscriptZombie()
             Lighting.FogStart = 0
             Lighting.FogEnd = 400
             end
+
+            --1842639095
+            print("Zombie!!")
