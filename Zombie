@@ -1,0 +1,251 @@
+function FullscriptZombie()
+            local function onCharacterAdded(character)
+                wait(1)
+                
+                local humanoid = character:WaitForChild("Humanoid")
+                
+                for _, v in ipairs(humanoid:GetPlayingAnimationTracks()) do
+                    v:Stop()
+                end
+                
+                local animate = character:WaitForChild("Animate")
+                
+                local function setAnimation(animation, animationId)
+                    if typeof(animation) == "Instance" and animation:IsA("Animation") then
+                        animation.AnimationId = animationId
+                    else
+                        warn("Failed to set animation:", animationId)
+                    end
+                end
+
+                setAnimation(animate.idle.Animation1, "http://www.roblox.com/asset/?id=3489171152")
+                setAnimation(animate.idle.Animation2, "http://www.roblox.com/asset/?id=3489171152")
+                setAnimation(animate.walk.WalkAnim, "http://www.roblox.com/asset/?id=3489174223")
+                setAnimation(animate.run.RunAnim, "http://www.roblox.com/asset/?id=3489174223")
+                setAnimation(animate.jump.JumpAnim, "http://www.roblox.com/asset/?id=616161997")
+                setAnimation(animate.climb.ClimbAnim, "http://www.roblox.com/asset/?id=10921061530")
+                setAnimation(animate.fall.FallAnim, "http://www.roblox.com/asset/?id=616157476")
+            end
+            game.Players.LocalPlayer.CharacterAdded:Connect(onCharacterAdded)
+            if game.Players.LocalPlayer.Character then
+                onCharacterAdded(game.Players.LocalPlayer.Character)
+            end
+            function AnimPlay(ID, SPEED, Time, Smoothing)
+                for i,v in pairs(game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do
+                     if (v.Animation.AnimationId:match("rbxassetid://"..ID)) then
+                     v:Stop(.5)
+                    end
+                end
+                local animation = Instance.new('Animation', game:GetService("Workspace"))
+                animation.AnimationId = 'rbxassetid://'..ID
+                playing = game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(animation)
+                playing.Priority = Enum.AnimationPriority.Action;
+                if tonumber(Smoothing) then
+                    playing:Play(Smoothing) 
+                else
+                    playing:Play() 
+                end
+                if tonumber(SPEED) then
+                    playing:AdjustSpeed(SPEED)
+                else
+                    playing:AdjustSpeed(1)
+                end
+                if tonumber(Time) then
+                    playing.TimePosition = Time
+                end
+                animation:Destroy()
+            end	
+        
+            function AnimStop(ID, SPEED)
+                for i,v in pairs(game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do
+                    if (v.Animation.AnimationId:match("rbxassetid://"..ID)) then
+                        if tonumber(SPEED) then
+                            v:Stop(SPEED)
+                        else
+                            v:Stop()
+                        end
+                    end 
+                end
+            end
+        
+            if _G.SIGMABAR then _G.SIGMABAR:Disconnect() end
+            _G.SIGMABAR = game:GetService("RunService").Heartbeat:Connect(function()
+                local player = game:GetService("Players").LocalPlayer
+                local humanoid = player.Character and player.Character:FindFirstChild("Humanoid")
+
+                if humanoid then
+                    for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
+                        if track.Animation.AnimationId == "rbxassetid://3354699999" or 
+                        track.Animation.AnimationId == "rbxassetid://2788289281" or 
+                        track.Animation.AnimationId == "rbxassetid://2788292075" then
+                            track:Stop() -- Stop the animation
+                        end
+                    end
+                end
+
+                game.Workspace.FallenPartsDestroyHeight = -1/0
+                local playerGui = game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar
+                local healthPercent = playerGui.HP.bar.Size.X.Scale 
+                local hpColor = Color3.fromRGB(0, 255 * (0.1 + 0.9 * healthPercent), 0)
+                playerGui.HP.bar.BackgroundColor3 = hpColor
+                playerGui.HP.Picture.Life.LifeImage.ImageColor3 = hpColor
+                playerGui.HP.Picture.Image.ImageColor3 = Color3.fromRGB(255,255,0)
+                local energyPercent = playerGui.Energy.bar.Size.X.Scale
+                local energyColor = Color3.fromRGB(0, 255 * (0.1 + 0.9 * energyPercent), 0)
+                playerGui.Energy.bar.BackgroundColor3 = energyColor
+                playerGui.Energy.TextLabel.Text = "Zombie Energy            "
+                playerGui.Energy.Picture.Image.ImageColor3 = energyColor
+                playerGui.HP.TextLabel.Text = "Zombie Health"
+                playerGui.Armor.TextLabel.Text = "          Zombie Armor"
+                local armorPercent = playerGui.Armor.bar.Size.X.Scale
+                local armorColor = Color3.fromRGB(0, 255 * (0.1 + 0.9 * armorPercent), 0)
+                playerGui.Armor.bar.BackgroundColor3 = armorColor
+            end)
+            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("FastSprint") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("FastSprint"):Destroy() end
+            local a = Instance.new("StringValue")
+            a.Parent = game.Players.LocalPlayer.Character.BodyEffects.Movement
+            a.Name = "FastSprint"
+            local OWNER = game.Players.LocalPlayer
+            local jumpedd = true
+            if _G.SpaceKeybind then _G.SpaceKeybind:Disconnect() end
+            _G.SpaceKeybind = game:GetService("UserInputService").JumpRequest:Connect(function()
+                if workspace:FindFirstChild(OWNER.Name.."StringKOD") then
+                    workspace:FindFirstChild(OWNER.Name.."StringKOD"):FindFirstChild("Idaro").Humanoid:ChangeState(3)
+                else
+                    OWNER.Character:FindFirstChildWhichIsA('Humanoid').JumpPower = 50
+                    if OWNER.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air then
+                        if jumpedd then
+                            jumpedd = false
+                            OWNER.Character.Humanoid:ChangeState(3)
+                            AnimPlay(12992262118,1,.5)
+                            OWNER.Character.HumanoidRootPart.Velocity = OWNER.Character.HumanoidRootPart.Velocity + (OWNER.Character.HumanoidRootPart.CFrame.LookVector * 100)
+                            repeat task.wait() until OWNER.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial ~= Enum.Material.Air
+                            AnimStop(12992262118,.3)
+                            jumpedd = true
+                        end
+                    end
+                end
+            end)
+            local TweenService = game:GetService("TweenService")
+            local camera = workspace.CurrentCamera
+            local tweenInfo = TweenInfo.new(0.5)
+            if OWNER.Character:FindFirstChild("[Speed]") then OWNER.Character:FindFirstChild("[Speed]"):Destroy() end
+            if OWNER.Backpack:FindFirstChild("[Speed]") then OWNER.Backpack:FindFirstChild("[Speed]"):Destroy() end
+            local humanoid = OWNER.Character:WaitForChild("Humanoid")
+            local animId = 3489173414
+            local isPlaying = false
+            function Boostspeed()
+                tool = Instance.new("Tool")
+                tool.RequiresHandle = false
+                tool.Name = "[Speed]"
+                tool.TextureId = "rbxassetid://113590062075867"
+                tool.Equipped:Connect(function()
+                    if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").MoveDirection.magnitude > 0 then
+                    AnimPlay(animId)
+                    local tween = TweenService:Create(camera, tweenInfo, {FieldOfView = 100})
+                    tween:Play()
+                    end
+                    _G.TEST = humanoid.Running:Connect(function(speed)
+                        if speed > 0 then
+                            if not isPlaying then
+                                local tween = TweenService:Create(camera, tweenInfo, {FieldOfView = 100})
+                                tween:Play()
+                                AnimPlay(animId)
+                                isPlaying = true
+                            end
+                        else
+                            if isPlaying then
+                                TweenService:Create(workspace.CurrentCamera, TweenInfo.new(0.5), {FieldOfView = 70}):Play()
+                                AnimStop(animId)
+                                isPlaying = false
+                            end
+                        end
+                    end)
+                    
+                    _G.MARCO = game:GetService("RunService").heartbeat:Connect(function()
+                    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = game.Players.localPlayer.Character.HumanoidRootPart.CFrame + game.Players.localPlayer.Character.Humanoid.MoveDirection * .5
+                    end)
+                end)
+                
+                tool.Unequipped:Connect(function()
+                    isPlaying = false
+                    TweenService:Create(workspace.CurrentCamera, TweenInfo.new(0.5), {FieldOfView = 70}):Play()
+                    if _G.TEST then _G.TEST:Disconnect() end
+                    if _G.MARCO then _G.MARCO:Disconnect() end
+                    AnimStop(3489173414)
+                end)
+                tool.Parent = game.Players.LocalPlayer.Backpack
+            end
+            game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
+            Boostspeed()
+            if OWNER.Character:FindFirstChild("[Zombie Punch]") then OWNER.Character:FindFirstChild("[Zombie Punch]"):Destroy() end
+            if OWNER.Backpack:FindFirstChild("[Zombie Punch]") then OWNER.Backpack:FindFirstChild("[Zombie Punch]"):Destroy() end
+            print("Runed")
+            function ZombiePunch()
+                ZombiePunch = Instance.new("Tool")
+                ZombiePunch.RequiresHandle = false
+                ZombiePunch.Name = "[Zombie Punch]"
+                ZombiePunch.TextureId = "rbxassetid://98508428683217"
+                ZombiePunch.Equipped:Connect(function()
+                end)
+                ZombiePunch.Activated:Connect(function()
+                    if OWNER.Character:FindFirstChild("[Zombie Punch]") then OWNER.Character:FindFirstChild("[Zombie Punch]").Parent = OWNER.Backpack end
+                    OWNER.Backpack:FindFirstChild("Combat").Parent = OWNER.Character
+                    OWNER.Character:FindFirstChild("Combat"):Activate()
+                    _G.nuber1 = game:GetService("RunService").Heartbeat:Connect(function()
+                    if OWNER.Character.BodyEffects.Movement:FindFirstChild("NoJumping") then OWNER.Character.BodyEffects.Movement:FindFirstChild("NoJumping"):Destroy() end
+                    if OWNER.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed") then OWNER.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed"):Destroy() end
+                    end)
+                    repeat task.wait() until OWNER.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk")
+                    _G.nuber1:Disconnect()
+                    local player = game:GetService("Players").LocalPlayer
+                    local nearestPlayer = nil
+                    local shortestDistance = math.huge
+                    
+                    for _, p in ipairs(game:GetService("Players"):GetPlayers()) do
+                        if p ~= player and p.Character and p.Character:FindFirstChild("HumanoidRootPart") and p.Character.BodyEffects and p.Character.BodyEffects["K.O"].Value == false then
+                            local distance = (p.Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).Magnitude
+                            if distance < shortestDistance then
+                                shortestDistance = distance
+                                nearestPlayer = p
+                            end
+                        end
+                    end
+                    
+                    
+                    if nearestPlayer then
+                    if nearestPlayer.Character:WaitForChild("Humanoid").MoveDirection.magnitude > 0 then
+                    game:GetService("TweenService"):Create(OWNER.Character.HumanoidRootPart, TweenInfo.new(.2), {CFrame = nearestPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -5)}):Play()
+                    else
+                        game:GetService("TweenService"):Create(OWNER.Character.HumanoidRootPart, TweenInfo.new(.2), {CFrame = nearestPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 0)}):Play()
+                    end
+                    task.wait(.2)
+                    game:GetService("RunService"):BindToRenderStep("Target",-1 ,function()
+                            OWNER.Character.HumanoidRootPart.CFrame = CFrame.new(nearestPlayer.Character.HumanoidRootPart.Position.X+(nearestPlayer.Character.HumanoidRootPart.Velocity.X*.4), nearestPlayer.Character.HumanoidRootPart.Position.Y+0, nearestPlayer.Character.HumanoidRootPart.Position.Z+(nearestPlayer.Character.HumanoidRootPart.Velocity.Z*.4))
+                            OWNER.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                    end)
+                    wait(.5)
+                    game:GetService("RunService"):UnbindFromRenderStep("Target")      
+                    end             
+                end)
+                ZombiePunch.Unequipped:Connect(function()
+                end)
+                ZombiePunch.Parent = game.Players.LocalPlayer.Backpack
+            end
+            game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
+            ZombiePunch()
+        end
+                FullscriptZombie()
+                local OWNER = game.Players.LocalPlayer
+                getgenv().CharacterAdded = OWNER.CharacterAdded:connect(function()
+                    OWNER.Character:WaitForChild("FULLY_LOADED_CHAR")
+                        FullscriptZombie()
+                    end)
+                    
+                    local Lighting = game:GetService("Lighting")
+            Lighting.Ambient = Color3.fromRGB(0, 100, 0)
+            Lighting.OutdoorAmbient = Color3.fromRGB(0, 100, 0)
+            Lighting.Brightness = 0.2
+            Lighting.FogColor = Color3.fromRGB(10, 10, 10)
+            Lighting.FogStart = 0
+            Lighting.FogEnd = 400
