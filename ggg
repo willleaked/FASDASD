@@ -6142,6 +6142,90 @@ win:Server("Main", "http://www.roblox.com/asset/?id=6031075938")
 
 
 --------------------------------------------------------------------------------------------------------------------  
+local FINOBE_KEYBIND = "o"
+getgenv().Finobe1 = false 
+local NewCFrame = CFrame.new
+local LocalFinobe = game.Players.LocalPlayer
+local InputService = game:GetService("UserInputService")
+local Runfinobe = game:GetService("RunService")
+local oldcamoffset = game.Players.LocalPlayer.Character.Humanoid.CameraOffset
+
+if _G.V2 then _G.V2:Disconnect() end
+_G.V2 = Runfinobe.Heartbeat:Connect(function()
+    if LocalFinobe.Character then
+        local FinobeChar = LocalFinobe.Character.HumanoidRootPart
+        local Offset = FinobeChar.CFrame * NewCFrame(9e9, 0/0, math.huge)
+        local oldcf = FinobeChar.CFrame
+
+        if getgenv().Finobe1 then 
+            Finobe2 = FinobeChar.CFrame
+            game.Players.LocalPlayer.Character.Humanoid.CameraOffset = (FinobeChar.CFrame:ToObjectSpace(oldcf)).Position
+            FinobeChar.CFrame = Offset
+            Runfinobe.RenderStepped:Wait()
+            game.Players.LocalPlayer.Character.Humanoid.CameraOffset = oldcamoffset
+            FinobeChar.CFrame = Finobe2
+        end 
+    end 
+end)
+
+if _G.V1 then _G.V1:Disconnect() end
+_G.V1 = LocalFinobe:GetMouse().KeyDown:Connect(function(sigma)
+    if sigma == FINOBE_KEYBIND then
+        getgenv().Finobe1 = not getgenv().Finobe1
+
+        if not getgenv().Finobe1 then 
+            LocalFinobe.Character.HumanoidRootPart.CFrame = Finobe2
+            game:GetService("StarterGui"):SetCore("SendNotification", {
+                Title = "Void Desync";
+                Text = "Disabled";
+            })
+        else 
+            Finobe2 = nil 
+            game:GetService("StarterGui"):SetCore("SendNotification", {
+                Title = "Void Desync";
+                Text = "Enabled";
+            })
+        end 
+    end 
+end)
+function Antikillfordunmb()
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "[ANTI autokill]"
+tool.Activated:Connect(function()
+    getgenv().Finobe1 = not getgenv().Finobe1
+
+    if not getgenv().Finobe1 then 
+        LocalFinobe.Character.HumanoidRootPart.CFrame = Finobe2
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "PRO GUI";
+            Text = "ปิดกันauto";
+        })
+    else 
+        Finobe2 = nil 
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "PRO GUI";
+            Text = "เปิดกันauto";
+        })
+    end 
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+end
+Antikillfordunmb()
+-- local camelocke
+-- camelocke = hookmetamethod(game, "__index", newcclosure(function(self, key)
+--     if not checkcaller() then
+--         if key == "CFrame" and getgenv().Finobe1 and LocalFinobe.Character 
+--         and LocalFinobe.Character:FindFirstChild("HumanoidRootPart") 
+--         and LocalFinobe.Character:FindFirstChild("Humanoid") 
+--         and LocalFinobe.Character:FindFirstChild("Humanoid").Health > 0 then
+--             if self == LocalFinobe.Character.HumanoidRootPart and Finobe2 ~= nil then
+--                 return Finobe2
+--             end
+--         end
+--     end
+--     return camelocke(self, key)
+-- end))
 
 local annoying = {"JokeTheFool","Sherosama", "Papa_Mbaye", "AStrongMuscle", "streetren", "NikoSenpai", "WashedGarage", "iumu", "Benoxa", "Luutyy", "clubstar54", "givkitheth", "kywiexcx", "ATKDrizzy", "dtbbullet", "XavierWildYT", "RogueDaHoodKing", "paxxythecreator", "NatsuDBlaze", "AnqelicMar", "DrBlakMD", "DarkWhirlwind", "coreten", "LegacyCross", "Greed_Ocean"} -- you can add more players by doing {"Player1", "Player2"}
 
@@ -6169,7 +6253,8 @@ _G.Loopohoh = game.Players.LocalPlayer.CharacterAdded:connect(function()
     Ftools("👉", 400, 8254792138, 1.5,8595977193) 
     Ftools("👇", -400, 8254765806, 1.5,541909913)
     
-    
+    Antikillfordunmb()
+
     game.Players.LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.Visible = true
     
     
