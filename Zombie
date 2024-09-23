@@ -1,5 +1,8 @@
 loadstring(game:HttpGet('https://pastebin.com/raw/efgdHBFi'))()
-
+-- repeat task.wait()
+-- until game.Players.LocalPlayer.Character:FindFirstChild("Shirt Graphic")
+-- print("Have Zombie")
+local getgenv().Sound = "Ringtone" --Ringtone--Boombox--FakePlay
 function FullscriptZombie()
             local function onCharacterAdded(character)
                 wait(1)
@@ -109,6 +112,11 @@ function FullscriptZombie()
                 if humanoid then
                     for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
                         if track.Animation.AnimationId == "rbxassetid://3354699999" or 
+                        track.Animation.AnimationId == "rbxassetid://2788309982" or 
+                        track.Animation.AnimationId == "rbxassetid://2788308661" or 
+                        track.Animation.AnimationId == "rbxassetid://2788309317" or 
+                        track.Animation.AnimationId == "rbxassetid://2788309982" or 
+                        track.Animation.AnimationId == "rbxassetid://2788311138" or 
                         track.Animation.AnimationId == "rbxassetid://2788289281" or 
                         track.Animation.AnimationId == "rbxassetid://2788292075" then
                             track:Stop()
@@ -177,14 +185,27 @@ function FullscriptZombie()
                             cor()
                         end
                     end
-            local function PlayId(soundId, looped)
-                if game.Players.LocalPlayer.Character:FindFirstChild("[boombox]") or game.Players.LocalPlayer.Backpack:FindFirstChild("[boombox]") then
+            local function PlayId(soundId)
+                if game.Players.LocalPlayer.Character:FindFirstChild("[boombox]") or game.Players.LocalPlayer.Backpack:FindFirstChild("[boombox]") or getgenv().Sound == "Boombox" then
                     Playes(soundId)
-                else
+                elseif getgenv().Sound == "Ringtone" then
+                    game:GetService("ReplicatedStorage").MainEvent:FireServer("RingTone",soundId)
+                    local Tool = nil
+                    if OWNER.Character:FindFirstChildWhichIsA("Tool") then
+                        Tool = OWNER.Character:FindFirstChildWhichIsA("Tool")
+                        OWNER.Character:FindFirstChildWhichIsA("Tool").Parent = OWNER.Backpack
+                    end
+                    OWNER.Backpack["[Phone]"].Parent = OWNER.Character
+                    OWNER.Character["[Phone]"].Parent = OWNER.Backpack
+                    if Tool ~= true then
+                        if Tool then
+                            Tool.Parent = OWNER.Character
+                        end
+                    end
+                elseif getgenv().Sound == "FakePlay" then
                     local sound = Instance.new("Sound")
                     sound.SoundId = "rbxassetid://" .. soundId
                     sound.Parent = workspace
-                    sound.Looped = looped
                     sound:Play()
                     sound.Ended:Connect(function()
                     sound:Destroy()
@@ -192,12 +213,14 @@ function FullscriptZombie()
                 end
             end
             local function StopId(soundId)
+                if Sound == FakePlay then
                 for _, sound in pairs(workspace:GetChildren()) do
                     if sound:IsA("Sound") and sound.SoundId == "rbxassetid://" .. soundId then
                         sound:Stop()
                         sound:Destroy()
                     end
                 end
+            end
             end
             local isPlaying = false
             if _G.SpaceKeybind then _G.SpaceKeybind:Disconnect() end
@@ -212,7 +235,7 @@ function FullscriptZombie()
                             OWNER.Character.Humanoid:ChangeState(3)
                             AnimPlay(12992262118,1,.5)
                             OWNER.Character.HumanoidRootPart.Velocity = OWNER.Character.HumanoidRootPart.Velocity + (OWNER.Character.HumanoidRootPart.CFrame.LookVector * 100)
-                            PlayId(186661028,false)
+                            PlayId(186661028)
                             repeat task.wait() until OWNER.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial ~= Enum.Material.Air
                             AnimStop(12992262118,.3)
                             jumpedd = true
@@ -237,7 +260,7 @@ function FullscriptZombie()
                     AnimPlay(animId)
                     local tween = TweenService:Create(camera, tweenInfo, {FieldOfView = 100})
                     tween:Play()
-                    PlayId(2076455443,false)
+                    PlayId(2076455443)
                     end
                     local OWNER = game.Players.LocalPlayer
                     local function Moved()
@@ -260,7 +283,7 @@ function FullscriptZombie()
                         if speed > 0 then
                             if not isPlaying then
                                 isPlaying = true
-                                PlayId(2076455443,false)
+                                PlayId(2076455443)
                             end
                         else
                             if isPlaying then
@@ -290,16 +313,18 @@ function FullscriptZombie()
             Boostspeed()
             if OWNER.Character:FindFirstChild("[Zombie Punch]") then OWNER.Character:FindFirstChild("[Zombie Punch]"):Destroy() end
             if OWNER.Backpack:FindFirstChild("[Zombie Punch]") then OWNER.Backpack:FindFirstChild("[Zombie Punch]"):Destroy() end
+            if OWNER.Character:FindFirstChild("[Zombie]") then OWNER.Character:FindFirstChild("[Zombie]"):Destroy() end
+            if OWNER.Backpack:FindFirstChild("[Zombie]") then OWNER.Backpack:FindFirstChild("[Zombie]"):Destroy() end
             print("Runed")
             function ZombiePunch()
                 ZombiePunch = Instance.new("Tool")
                 ZombiePunch.RequiresHandle = false
-                ZombiePunch.Name = "[Zombie Punch]"
+                ZombiePunch.Name = "[Zombie]"
                 ZombiePunch.TextureId = "rbxassetid://98508428683217"
                 ZombiePunch.Equipped:Connect(function()
                 end)
                 ZombiePunch.Activated:Connect(function()
-                    if OWNER.Character:FindFirstChild("[Zombie Punch]") then OWNER.Character:FindFirstChild("[Zombie Punch]").Parent = OWNER.Backpack end
+                    if OWNER.Character:FindFirstChild("[Zombie]") then OWNER.Character:FindFirstChild("[Zombie]").Parent = OWNER.Backpack end
                     OWNER.Backpack:FindFirstChild("Combat").Parent = OWNER.Character
                     OWNER.Character:FindFirstChild("Combat"):Activate()
                     _G.nuber1 = game:GetService("RunService").Heartbeat:Connect(function()
@@ -344,6 +369,50 @@ function FullscriptZombie()
             end
             game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
             ZombiePunch()
+
+            function ZombiePunchFling()
+                ZombiePunchFling = Instance.new("Tool")
+                ZombiePunchFling.RequiresHandle = false
+                ZombiePunchFling.Name = "[Zombie Punch]"
+                ZombiePunchFling.Equipped:Connect(function()
+                end)
+                ZombiePunchFling.Activated:Connect(function()
+                    if not FLing then
+                        FLing = true
+                        local Tool = nil
+                        if OWNER.Character:FindFirstChildWhichIsA("Tool") then
+                            Tool = OWNER.Character:FindFirstChildWhichIsA("Tool")
+                            OWNER.Character:FindFirstChildWhichIsA("Tool").Parent = OWNER.Backpack
+                        end
+                        if _G.SKIDIDIFLING then _G.SKIDIDIFLING:Disconnect() end
+                        _G.SKIDIDIFLING = game:GetService("RunService").Heartbeat:Connect(function()
+                            local Vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.X * 300,
+                                300,
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z * 300
+                            )
+                            game:GetService("RunService").RenderStepped:Wait()
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vel
+                        end)
+                        AnimPlay(3489169607)
+                        task.wait(1)
+                        if _G.SKIDIDIFLING then _G.SKIDIDIFLING:Disconnect() end
+                        if Tool ~= true then
+                            if Tool then
+                                Tool.Parent = OWNER.Character
+                            end
+                        end
+                        AnimStop(3489169607,.5)
+                        FLing = false
+                end             
+                end)
+                ZombiePunchFling.Unequipped:Connect(function()
+                end)
+                ZombiePunchFling.Parent = game.Players.LocalPlayer.Backpack
+            end
+            game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
+            ZombiePunchFling()
             local H_1 = Instance.new("Highlight")
             H_1.Parent = game.Players.LocalPlayer.Character
             H_1.FillColor = Color3.new(0, 0, 0)
@@ -370,3 +439,4 @@ function FullscriptZombie()
 
             --1842639095
             print("Zombie!!")
+
