@@ -2,7 +2,7 @@ loadstring(game:HttpGet('https://pastebin.com/raw/efgdHBFi'))()
 -- repeat task.wait()
 -- until game.Players.LocalPlayer.Character:FindFirstChild("Shirt Graphic")
 -- print("Have Zombie")
-local getgenv().Sound = "Ringtone" --Ringtone--Boombox--FakePlay
+getgenv().Sound = "Ringtone" --Ringtone--Boombox--FakePlay
 function FullscriptZombie()
             local function onCharacterAdded(character)
                 wait(1)
@@ -311,8 +311,6 @@ function FullscriptZombie()
             end
             game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
             Boostspeed()
-            if OWNER.Character:FindFirstChild("[Zombie Punch]") then OWNER.Character:FindFirstChild("[Zombie Punch]"):Destroy() end
-            if OWNER.Backpack:FindFirstChild("[Zombie Punch]") then OWNER.Backpack:FindFirstChild("[Zombie Punch]"):Destroy() end
             if OWNER.Character:FindFirstChild("[Zombie]") then OWNER.Character:FindFirstChild("[Zombie]"):Destroy() end
             if OWNER.Backpack:FindFirstChild("[Zombie]") then OWNER.Backpack:FindFirstChild("[Zombie]"):Destroy() end
             print("Runed")
@@ -370,10 +368,12 @@ function FullscriptZombie()
             game:GetService('Players').LocalPlayer.Character:WaitForChild('FULLY_LOADED_CHAR');
             ZombiePunch()
 
+            if OWNER.Character:FindFirstChild("[Zombie Push]") then OWNER.Character:FindFirstChild("[Zombie Push]"):Destroy() end
+            if OWNER.Backpack:FindFirstChild("[Zombie Push]") then OWNER.Backpack:FindFirstChild("[Zombie Push]"):Destroy() end
             function ZombiePunchFling()
                 ZombiePunchFling = Instance.new("Tool")
                 ZombiePunchFling.RequiresHandle = false
-                ZombiePunchFling.Name = "[Zombie Punch]"
+                ZombiePunchFling.Name = "[Zombie Push]"
                 ZombiePunchFling.Equipped:Connect(function()
                 end)
                 ZombiePunchFling.Activated:Connect(function()
