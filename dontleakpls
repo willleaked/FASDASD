@@ -7737,7 +7737,6 @@ function Stand(targetName)
         local Players = game:GetService("Players")
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
         local localskid = game.Players.localPlayer
-        -- Function to send a chat message
         function chat(msg)
             local A_1 = msg
             local A_2 = "All"
@@ -7747,7 +7746,6 @@ function Stand(targetName)
         
         local targetNames = {"isthisdo23", "cruciatusadidas", "PLAYERs1", "deeralttrue", "PLAYEWR4", "dahoodbotmoney5"}
         
-        -- Function to find a player by partial name
         function gplr(partialName)
             local lowerPartial = partialName:lower()
             for _, v in pairs(Players:GetPlayers()) do
@@ -7880,15 +7878,6 @@ function Stand(targetName)
             end
         end)
         
-        local BlacklistCharater = {
-            "Accessory (AdventurePeely (BACK ACCESSORY))",
-            "Accessory (AgentPeely (BACK ACCESSORY))",
-            "Accessory (Handle)",
-            "Accessory (KawsPeely (BACK ACCESSORY))",
-            "Accessory (Meshes/Peely_headAccessory)",
-            "Accessory (Peely (BACK ACCESSORY))",
-            "Accessory (PolarPeely (BACK ACCESSORY))"
-        }
         
         
         rs.Stepped:Connect(function()
@@ -7916,18 +7905,6 @@ function Stand(targetName)
         --respawn
         STAND.CharacterAdded:connect(function()
             STAND.Character:WaitForChild("FULLY_LOADED_CHAR")
-            for _, Banana in ipairs(BlacklistCharater) do
-                if OWNER.Character:FindFirstChild(Banana) then
-                    print("banana!")
-                    game.Players.LocalPlayer:Kick("Change ur Character naga")
-                end
-            end
-            for _, Banana in ipairs(BlacklistCharater) do
-                if STAND.Character:FindFirstChild(Banana) then
-                    print("banana!")
-                    game.Players.LocalPlayer:Kick("Change ur Character naga")
-                end
-            end
             Summon()
         
             if AutoMask == true then MaskHide() end
