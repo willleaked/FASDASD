@@ -7896,11 +7896,9 @@ function Stand(targetName)
         --respawn
         STAND.CharacterAdded:connect(function()
             STAND.Character:WaitForChild("FULLY_LOADED_CHAR")
-            Summon()
-            DOINGFARM = false
-            if _G.Farming then _G.Farming:Disconnect() end
-            if _G.Clippy2 then _G.Clippy2:Disconnect() end
-            if _G.Clippy then _G.Clippy:Disconnect() end        
+            if DOINGFARM then return end
+            print("DOINGFARM = false")
+            Summon()  
             if AutoMask == true then MaskHide() end
         end)
         STAND.CharacterAdded:connect(function() follow = false noclip = false looking = false STAND.Character:WaitForChild("FULLY_LOADED_CHAR") FollowMode() ANIMATION() end)
