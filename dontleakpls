@@ -7499,7 +7499,8 @@ function Stand(targetName)
                     end
                 end)
         
-        
+                local oldcamoffset = game.Players.localPlayer.Character.Humanoid.CameraOffset
+
                 game:GetService("RunService").Heartbeat:Connect(function()
                     if Bind == true then
                         if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Health <= 80 then
