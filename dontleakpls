@@ -641,7 +641,7 @@ function Stand(targetName)
         end
         
         STAND = game:GetService('Players'):FindFirstChild(game:GetService('Players').LocalPlayer.Name)
-        OWNER = game:GetService("Players"):FindFirstChild(StandOwner)
+        local OWNER = game:GetService("Players"):FindFirstChild(StandOwner)
         rs = game:GetService("RunService")
 
         function getRoot(v)local rootPart = v.Character:FindFirstChild('HumanoidRootPart') return rootPart end
@@ -5794,14 +5794,7 @@ function Stand(targetName)
                 Annoy = true
             end
         end)
-        
-        CreateTargetAbility("Frame!",function()
-            if TARGET then
-                Stop()
-                noclip = true
-                Frame = true
-            end
-        end)
+    
         
         CreateTargetAbility("Arrest!",function()
             if TARGET then
