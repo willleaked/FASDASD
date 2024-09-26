@@ -2903,6 +2903,7 @@ function Stand(targetName)
         end)
         local DOINGFARM = true
         Create('ATM!', function()
+            DOINGFARM = true
             signKills = false
             Stompfram = false
             gunKills = false
@@ -2958,11 +2959,6 @@ function Stand(targetName)
                 end
             end
         
-            if _G.Farming then
-                game.ReplicatedStorage.MainEvent:FireServer("ResetNew")
-                game.Players.LocalPlayer.Character.Humanoid:ChangeState('Dead')
-            end
-        
             local vu = game:GetService("VirtualUser")
             game:GetService("Players").LocalPlayer.Idled:connect(function()
                 vu:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
@@ -2977,11 +2973,6 @@ function Stand(targetName)
                     game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Dead)
                 end
             end)
-        
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 150, 0)
-            task.wait()
-            game.ReplicatedStorage.MainEvent:FireServer("ResetNew")
-            game.Players.LocalPlayer.Character.Humanoid:ChangeState('Dead')
         
             _G.Clippy2 = game:GetService("RunService").Stepped:connect(function()
                 for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
