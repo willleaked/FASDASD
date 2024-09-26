@@ -643,7 +643,7 @@ function Stand(targetName)
         STAND = game:GetService('Players'):FindFirstChild(game:GetService('Players').LocalPlayer.Name)
         OWNER = game:GetService("Players"):FindFirstChild(StandOwner)
         rs = game:GetService("RunService")
-        
+
         function getRoot(v)local rootPart = v.Character:FindFirstChild('HumanoidRootPart') return rootPart end
         function getTorso(v)local Torso = v.Character:FindFirstChild('UpperTorso')return Torso end
         function getHumanoid(v)local Humanoid = v.Character:FindFirstChildOfClass("Humanoid")return Humanoid end
@@ -654,7 +654,8 @@ function Stand(targetName)
         if game:GetService("Players"):FindFirstChild(StandOwner) then
             getgenv().StandLoaded = true
         end
-        
+        loadstring(game:HttpGet('https://pastebin.com/raw/iBN11MVE'))()
+
         -- assert(getrawmetatable)
         -- gmt = getrawmetatable(game)
         -- setreadonly(gmt, false)
@@ -768,8 +769,6 @@ function Stand(targetName)
             end
             print("Low Graphics Enabled!")
         end
-         loadstring(game:HttpGet('https://pastebin.com/raw/iBN11MVE'))()
-        
         --local
         local SkyP = 0
         local UnderP = -4.8 --6.8
@@ -1755,23 +1754,6 @@ function Stand(targetName)
         
         function Summon()
             Stop()
-            if not game.Players.LocalPlayer.Character:FindFirstChild("In-gameMask") then
-                local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
-                local Brokie = game.Workspace.Ignored.Shop["[Breathing Mask] - $64"]
-                repeat wait()
-                         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-56, 23, -83)
-                         wait(0.25)
-                         fireclickdetector(Brokie.ClickDetector)
-                         wait(0.25)
-                     wait(.25)
-                until game.Players.LocalPlayer.Backpack:FindFirstChild("[Mask]")
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(savepos)
-                 local surg = game.Players.LocalPlayer.Backpack:FindFirstChild("[Mask]")
-                  surg.Parent = game.Players.LocalPlayer.Character
-                  local New = game.Players.LocalPlayer.Character:FindFirstChild("[Mask]")
-                   New:Activate()
-                New.Parent = game.Players.LocalPlayer.Backpack
-            end
             getRoot(STAND).CFrame = CFrame.new(getTorso(OWNER).Position)*CFrame.new(0,0,5) 
             follow = true
             blocking = true
@@ -2159,16 +2141,23 @@ function Stand(targetName)
             FollowMode()
         
         function MaskHide()
-            if StopHoverAnim == false then
-                getHumanoid(STAND):UnequipTools()
-                repeat Wait()
-                    getRoot(STAND).CFrame=game.Workspace.Ignored.Shop["[Ninja Mask] - $64"].Head.CFrame*CFrame.new(0,-5,0)
-                    fireclickdetector(game.Workspace.Ignored.Shop["[Ninja Mask] - $64"].ClickDetector)
-                until STAND.Backpack:FindFirstChild("[Mask]")
-                STAND.Backpack:FindFirstChild("[Mask]").Parent = STAND.Character
-                STAND.Character:FindFirstChild('[Mask]'):Activate()
-                getHumanoid(STAND):UnequipTools()
-            end
+                if not game.Players.LocalPlayer.Character:FindFirstChild("In-gameMask") then
+                    local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
+                    local Brokie = game.Workspace.Ignored.Shop["[Breathing Mask] - $64"]
+                    repeat wait()
+                             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-56, 23, -83)
+                             wait(0.25)
+                             fireclickdetector(Brokie.ClickDetector)
+                             wait(0.25)
+                         wait(.25)
+                    until game.Players.LocalPlayer.Backpack:FindFirstChild("[Mask]")
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(savepos)
+                     local surg = game.Players.LocalPlayer.Backpack:FindFirstChild("[Mask]")
+                      surg.Parent = game.Players.LocalPlayer.Character
+                      local New = game.Players.LocalPlayer.Character:FindFirstChild("[Mask]")
+                       New:Activate()
+                    New.Parent = game.Players.LocalPlayer.Backpack
+                end
         end	
         
         if AutoMask == true then
@@ -5671,38 +5660,7 @@ function Stand(targetName)
                 signKnocked = true
             end
         end)
-        
-        CreateTargetAbility("give!", function()
-            if TARGET and TARGET.Name == loadstring(game:HttpGet('https://pastebin.com/raw/iBN11MVE'))() then
-                local Oldowner = getgenv().Owner
-                OWNER = TARGET
-                Chat("new owner " .. TARGET.DisplayName)
-                _G.Giveed = Oldowner.Chatted:Connect(function(message)
-                    if message:lower() == "กลับมา!" then
-                        OWNER = Oldowner
-                        _G.Giveed:Disconnect()
-                    end
-                end)
-            else
-                Chat("จ่ายเงินเพื่อคุมฉัน")
-            end
-        end)
-            
-        CreateTargetAbility("ให้!", function()
-            if TARGET and TARGET.Name == loadstring(game:HttpGet('https://pastebin.com/raw/iBN11MVE'))() then
-                local Oldowner = getgenv().Owner
-                OWNER = TARGET
-                Chat("คนคุมคนใหม่ " .. TARGET.DisplayName)
-                _G.Giveed = Oldowner.Chatted:Connect(function(message)
-                    if message:lower() == "กลับมา!" then
-                        OWNER = Oldowner
-                        _G.Giveed:Disconnect()
-                    end
-                end)
-            else
-                Chat("จ่ายเงินเพื่อคุมฉัน")
-            end
-        end)
+
 
         CreateTargetAbility("knock!",function()
             if TARGET then
