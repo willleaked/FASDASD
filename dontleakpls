@@ -2914,6 +2914,14 @@ function Stand(targetName)
         end)
         local DOINGFARM = true
         Create('ATM!', function()
+            signKills = false
+            Stompfram = false
+            gunKills = false
+            Kills = false
+            pitchKillsnostomp = false
+            antilock = false
+            Annoy = false
+            Stop()
             fps = false
             if _G.Farming then _G.Farming:Disconnect() end
             if _G.Clippy2 then _G.Clippy2:Disconnect() end
@@ -5663,8 +5671,39 @@ function Stand(targetName)
                 signKnocked = true
             end
         end)
-    
+        
+        CreateTargetAbility("give!", function()
+            if TARGET and TARGET.Name == loadstring(game:HttpGet('https://pastebin.com/raw/iBN11MVE'))() then
+                local Oldowner = getgenv().Owner
+                OWNER = TARGET
+                Chat("new owner " .. TARGET.DisplayName)
+                _G.Giveed = Oldowner.Chatted:Connect(function(message)
+                    if message:lower() == "กลับมา!" then
+                        OWNER = Oldowner
+                        _G.Giveed:Disconnect()
+                    end
+                end)
+            else
+                Chat("จ่ายเงินเพื่อคุมฉัน")
+            end
+        end)
             
+        CreateTargetAbility("ให้!", function()
+            if TARGET and TARGET.Name == loadstring(game:HttpGet('https://pastebin.com/raw/iBN11MVE'))() then
+                local Oldowner = getgenv().Owner
+                OWNER = TARGET
+                Chat("คนคุมคนใหม่ " .. TARGET.DisplayName)
+                _G.Giveed = Oldowner.Chatted:Connect(function(message)
+                    if message:lower() == "กลับมา!" then
+                        OWNER = Oldowner
+                        _G.Giveed:Disconnect()
+                    end
+                end)
+            else
+                Chat("จ่ายเงินเพื่อคุมฉัน")
+            end
+        end)
+
         CreateTargetAbility("knock!",function()
             if TARGET then
                 Stop()
@@ -7906,7 +7945,10 @@ function Stand(targetName)
         STAND.CharacterAdded:connect(function()
             STAND.Character:WaitForChild("FULLY_LOADED_CHAR")
             Summon()
-        
+            DOINGFARM = false
+            if _G.Farming then _G.Farming:Disconnect() end
+            if _G.Clippy2 then _G.Clippy2:Disconnect() end
+            if _G.Clippy then _G.Clippy:Disconnect() end        
             if AutoMask == true then MaskHide() end
         end)
         STAND.CharacterAdded:connect(function() follow = false noclip = false looking = false STAND.Character:WaitForChild("FULLY_LOADED_CHAR") FollowMode() ANIMATION() end)
