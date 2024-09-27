@@ -7493,9 +7493,10 @@ function Stand(targetName)
                 local oldcamoffset = game.Players.localPlayer.Character.Humanoid.CameraOffset
 
                 game:GetService("RunService").Heartbeat:Connect(function()
+                    local currentvel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
                     if Bind == true then
                         if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Health <= 80 then
-            
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(68756,100,-344)
                             local rsrv = game:GetService("RunService")
                             local heartbeat = rsrv.Heartbeat
                             local renderstepped = rsrv.RenderStepped
@@ -7530,6 +7531,8 @@ function Stand(targetName)
                                 hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
                                 root.CFrame = newcf
                                 renderstepped:Wait()
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = currentvel
+        
                                 hum.CameraOffset = oldcamoffset
                                 root.CFrame = oldcf
                             else
@@ -7542,7 +7545,8 @@ function Stand(targetName)
                                 root.CFrame = newcf
                 
                                 renderstepped:Wait()
-                
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = currentvel
+        
                                 hum.CameraOffset = oldcamoffset
                                 root.CFrame = oldcf
                                 if STAND.Character:FindFirstChild("[Taco]") then
