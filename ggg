@@ -6159,7 +6159,7 @@ if game.Players.LocalPlayer.Name == "Gralew1234" or  game.Players.LocalPlayer.Na
     end)
     end
 
-    if game.Players.LocalPlayer.Name == "Gralew1234" or  game.Players.LocalPlayer.Name == "deeralttrue" or  game.Players.LocalPlayer.Name == "PLAUERS4" or  game.Players.LocalPlayer.Name == "wubxbeb"  or  game.Players.LocalPlayer.Name == "Hpersonh0"
+    if game.Players.LocalPlayer.Name == "Gralew1234" or  game.Players.LocalPlayer.Name == "deeralttrue" or  game.Players.LocalPlayer.Name == "PLAUERS4" or  game.Players.LocalPlayer.Name == "wubxbeb" or  game.Players.LocalPlayer.Name == "Realizejonni26"  or  game.Players.LocalPlayer.Name == "Hpersonh0"
     or game.Players.LocalPlayer.Name == "DAIKizu39"  then
 
         getgenv().Settings = {
