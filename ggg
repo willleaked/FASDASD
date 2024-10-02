@@ -5801,7 +5801,7 @@ function checkpunch()
         if _G.dontpunchme then _G.dontpunchme:disconnect() end
     _G.dontpunchme = heartbeat:Connect(function()
         for i , player in pairs(game.Players:GetChildren()) do
-            if player ~= game.Players.LocalPlayer and IsInRage(player,10) and player ~= game.Players.localPlayer and player ~= game.Players:FindFirstChild("deeralttrue") and player ~= game.Players:FindFirstChild("fortestaaaa4") then 
+            if player ~= game.Players.LocalPlayer and IsInRage(player,10) and player ~= game.Players.localPlayer and player ~= game.Players:FindFirstChild("deeralttrue") and player ~= game.Players:FindFirstChild("fortestaaaa3") then 
                     if player.Character and player.Character:FindFirstChildWhichIsA("Tool") and HasTool(player.Character:FindFirstChildWhichIsA("Tool").Name) and player.Character:FindFirstChild("BodyEffects"):FindFirstChild("Attacking").Value == true then
                         checkpunchedd = true
                         if checkpunchedd and not workspace:FindFirstChild(game.Players.localPlayer.Name.."StringKOD") then
