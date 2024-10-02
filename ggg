@@ -127,61 +127,51 @@ function AnimStop(ID, SPEED)
         end 
     end
 end
+local toggleGuiInstance = nil
+local toggleButton = nil
 function Togglegui()
+    if game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("Toggggg") then game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("Toggggg"):Destroy() end
+
     local Players = game:GetService("Players")
     local LOCAL_PLAYER = Players.LocalPlayer
     local PlayerGui = LOCAL_PLAYER:WaitForChild("PlayerGui")
-    
-    
     local screenGui = Instance.new("ScreenGui")
     screenGui.Parent = PlayerGui
-    
-
-    local button = Instance.new("TextButton")
-    button.Size = UDim2.new(0, 200, 0, 50)
-    button.Position = UDim2.new(0.5, -100, 0.5, -25)
-    button.Text = "Toggle Discord GUI"
-    button.Parent = screenGui
-
+    screenGui.Name = "Toggggg"
+    toggleGuiInstance = screenGui
+    toggleButton = Instance.new("TextButton")
+    toggleButton.Size = UDim2.new(0, 200, 0, 50)
+    toggleButton.Position = UDim2.new(0.5, -100, 0.5, -25)
+    toggleButton.Text = "Toggle Discord GUI"
+    toggleButton.Parent = screenGui
+    toggleButton.Name = "Toggleee"
     local discordGui = game.CoreGui:FindFirstChild("Discord")
     local closed = false
-    
     local function toggleDiscordGui()
         if discordGui then
-            if closed then
-                discordGui.Enabled = true
-                closed = false
-            else
-                discordGui.Enabled = false
-                closed = true
-            end
+            discordGui.Enabled = not closed
+            closed = not closed
         else
             warn("Discord GUI not found in CoreGui.")
         end
     end
-    
-    button.MouseButton1Click:Connect(toggleDiscordGui)
-    
-    
+    toggleButton.MouseButton1Click:Connect(toggleDiscordGui)
     local UserInputService = game:GetService("UserInputService")
     local dragging = false
     local dragInput = nil
     local dragStart = nil
     local startPos = nil
-    
     local function update(input)
         if dragging and dragInput then
             local delta = input.Position - dragStart
-            button.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+            toggleButton.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
         end
     end
-    
-    button.InputBegan:Connect(function(input)
+    toggleButton.InputBegan:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
             dragging = true
             dragStart = input.Position
-            startPos = button.Position
-            
+            startPos = toggleButton.Position
             input.Changed:Connect(function()
                 if input.UserInputState == Enum.UserInputState.End then
                     dragging = false
@@ -189,17 +179,18 @@ function Togglegui()
             end)
         end
     end)
-    
-    button.InputChanged:Connect(function(input)
-        if (input.UserInputType == Enum.UserInputType.MouseMovement and UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1)) or input.UserInputType == Enum.UserInputType.Touch then
+    toggleButton.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
             dragInput = input
         end
     end)
-    
     UserInputService.InputChanged:Connect(function(input)
-        update(input)
+        if input == dragInput then
+            update(input)
+        end
     end)
 end
+
  loadstring(game:HttpGet('https://pastebin.com/raw/efgdHBFi'))()
 
 if game.Players.localPlayer then
@@ -1100,8 +1091,8 @@ jojo:Button("Killer Queen!",function()
 
         
 local tools = serv:Channel("ของปั่นๆ tools")
-tools:Label("ล็อกเเบบยิงพวกกันล้อกกำลังจะอัพ")
-tools:Button("lock เเบบยิงพวกกันล้อกไม่ได้",function()
+tools:Label("ล็อกปืน")
+tools:Button("lock for Gun",function()
     getgenv().Settings = {
         rewrittenmain = {
             Enabled = true,
@@ -1191,10 +1182,36 @@ tools:Button("lock เเบบยิงพวกกันล้อกไม่�
     game.Players.PlayerAdded:connect(function(Player)
         noob(Player)
     end)
+    ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    local rsrv = game:GetService("RunService")
+    local heartbeat = rsrv.Heartbeat
+    local renderstepped = rsrv.RenderStepped
     
+    local lp = game.Players.LocalPlayer
+    local chr = lp.Character
+    local hum = chr.Humanoid
+    local root = hum.RootPart
+    
+    local SKIBIIDI = false
+    if _G.TrueLockspin then _G.TrueLockspin:Disconnect() end
+    _G.TrueLockspin = heartbeat:Connect(function()
+        if SKIBIIDI then
+            local oldcf = root.CFrame
+            local oldcamoffset = hum.CameraOffset
+            local newcf = Plr.Character.HumanoidRootPart.CFrame * CFrame.new(math.random(-10,10), math.random(-10,10), math.random(-10,10))
+            if game.Players.localPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then
+            root.CFrame = newcf
+            hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
+            end
+            renderstepped:Wait()
+    
+            hum.CameraOffset = oldcamoffset
+            root.CFrame = oldcf
+        end
+    end)
+    ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     OWNER = game.Players.localPlayer
-    
-    _G.cons = {kdown, loop}
     spawn(function()
         placemarker.Anchored = true
         placemarker.CanCollide = false
@@ -1216,6 +1233,7 @@ tools:Button("lock เเบบยิงพวกกันล้อกไม่�
     tool.Activated:Connect(function()
         if enabled == true then
             enabled = false
+            SKIBIIDI = false
             if Settings.rewrittenmain.NOTIF == true then
                 Plr = getClosestPlayerToCursor()
                 game.StarterGui:SetCore("SendNotification", {
@@ -1228,6 +1246,7 @@ tools:Button("lock เเบบยิงพวกกันล้อกไม่�
         else
             Plr = getClosestPlayerToCursor()
             enabled = true
+            SKIBIIDI = true
             if Settings.rewrittenmain.NOTIF == true then
     
                 game.StarterGui:SetCore("SendNotification", {
@@ -1294,7 +1313,9 @@ tools:Button("lock เเบบยิงพวกกันล้อกไม่�
         end
         return closestPlayer
     end
-    
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     local pingvalue = nil;
     local split = nil;
     local ping = nil;
@@ -1341,7 +1362,7 @@ tools:Button("lock เเบบยิงพวกกันล้อกไม่�
         if enabled and getnamecallmethod() == "FireServer" and args[2] == "UpdateMousePosI" and Settings.rewrittenmain.Enabled and Plr.Character ~= nil then
             if Prediction == true then
     
-                args[3] = Plr.Character[SelectedPart].Position+(Plr.Character[SelectedPart].Velocity*PredictionValue)
+                args[3] = Plr.Character[SelectedPart].Position + Vector3.new(0, 1, 0) + (Plr.Character.Humanoid.MoveDirection * 0.4 * Plr.Character.Humanoid.WalkSpeed)
     
             else
     
@@ -2236,7 +2257,7 @@ trun:Toggle(
                 local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
                 if _G.LOOPANTIHEAL then _G.LOOPANTIHEAL:Disconnect() end
                 _G.LOOPANTIHEAL = heartbeat:Connect(function()
-                    if not isinvisible then
+                    if not ANTIRPGTRUE then
                     for i, v in pairs(workspace.Ignored:GetChildren()) do
                         if v.Name == "Handle" and (v.Position - OWNER.Character.HumanoidRootPart.Position).Magnitude <= 10 then
                             local oldcf = root.CFrame
@@ -2280,7 +2301,7 @@ trun:Toggle(
                 local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
                 if _G.LOOPANTIHEARPGL then _G.LOOPANTIHEARPGL:Disconnect() end
                 _G.LOOPANTIHEARPGL = heartbeat:Connect(function()
-                    if not isinvisible then
+                    if not ANTIRPGTRUE then
                         if workspace.Ignored:FindFirstChild("Model") then
                         for i, v in pairs(workspace.Ignored.Model:GetChildren()) do
                             if v.Name == "Launcher" and (v.Position - OWNER.Character.HumanoidRootPart.Position).Magnitude <= 10 then
@@ -3321,7 +3342,7 @@ trun:Toggle(
             local hum = chr.Humanoid
             local root = hum.RootPart
             
-            local isinvisible = false
+            local Fastmoveing = false
             
             local visible_parts = {}
             
@@ -3339,13 +3360,13 @@ trun:Toggle(
             
             local kdownv2 = mouse.KeyDown:Connect(function(key)
                 if key == "g" then
-                    isinvisible = not isinvisible
+                    Fastmoveing = not Fastmoveing
                     ghost_parts()
                 end
             end)
             
             local loopv3 = heartbeat:Connect(function()
-                if isinvisible then
+                if Fastmoveing then
                     local oldcf = root.CFrame
                     local oldcamoffset = hum.CameraOffset
             
@@ -3360,7 +3381,7 @@ trun:Toggle(
                     root.CFrame = oldcf
                 end
             end)
-            isinvisible = true
+            Fastmoveing = true
             _G.cons = {kdownv2, loopv3}
         else
             if _G.cons then
@@ -5661,6 +5682,8 @@ _G.V1 = LocalFinobe:GetMouse().KeyDown:Connect(function(sigma)
     end 
 end)
 function Antikillfordunmb()
+    if game.Players.LocalPlayer.Backpack:FindFirstChild("[ANTI autokill]") then game.Players.LocalPlayer.Backpack:FindFirstChild("[ANTI autokill]"):Destroy() end
+    if game.Players.LocalPlayer.Character:FindFirstChild("[ANTI autokill]") then game.Players.LocalPlayer.Character:FindFirstChild("[ANTI autokill]"):Destroy() end
 tool = Instance.new("Tool")
 tool.RequiresHandle = false
 tool.Name = "[ANTI autokill]"
@@ -5711,7 +5734,7 @@ function checkpunch()
     local hum = chr.Humanoid
     local root = hum.RootPart
     
-    local isinvisible = false
+    local checkpunchedd = false
     
     local visible_parts = {}
     
@@ -5765,8 +5788,8 @@ function checkpunch()
         for i , player in pairs(game.Players:GetChildren()) do
             if player ~= game.Players.LocalPlayer and IsInRage(player,10) and player ~= game.Players.localPlayer and player ~= game.Players:FindFirstChild("XK5NG") and player ~= game.Players:FindFirstChild("isthisdo23") then 
                     if player.Character and player.Character:FindFirstChildWhichIsA("Tool") and HasTool(player.Character:FindFirstChildWhichIsA("Tool").Name) and player.Character:FindFirstChild("BodyEffects"):FindFirstChild("Attacking").Value == true then
-                        isinvisible = true
-                        if isinvisible and not workspace:FindFirstChild(game.Players.localPlayer.Name.."StringKOD") then
+                        checkpunchedd = true
+                        if checkpunchedd and not workspace:FindFirstChild(game.Players.localPlayer.Name.."StringKOD") then
                             local currentvel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
                             local oldcf = root.CFrame
                             local newcf = oldcf * CFrame.new(100,-600,100)
@@ -5779,7 +5802,7 @@ function checkpunch()
                             root.CFrame = oldcf
                         end
                     else
-                        isinvisible = false
+                        checkpunchedd = false
                     end
             end
         end
