@@ -534,13 +534,28 @@ end
 
         Diotp()
     end
+    function getout()
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("[Get Out]") then game.Players.LocalPlayer.Backpack:FindFirstChild("[Get Out]"):Destroy() end
+        if game.Players.LocalPlayer.Character:FindFirstChild("[Get Out]") then game.Players.LocalPlayer.Character:FindFirstChild("[Get Out]"):Destroy() end
+        local player = game.Players.LocalPlayer
+        tool = Instance.new("Tool")
+        tool.RequiresHandle = false
+        tool.Name = "[Get Out]"
+        tool.Activated:Connect(function()
+            print("Deer test")
+            Play(17573042535)
+        end)
+        tool.Parent = game.Players.LocalPlayer.Backpack
 
+    end
+    getout()
 --//------------------------------------------------------------------------------------------\\--
 if _G.Loopspaw then _G.Loopspaw:Disconnect() end
 _G.Loopspaw = game.Players.LocalPlayer.CharacterAdded:connect(function() 
     game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
     Diotp()
     boommmm()
+    getout()
     ighlight()
 
 end)
@@ -1359,7 +1374,7 @@ tools:Button("lock for Gun",function()
     setreadonly(mt, false)
     mt.__namecall = newcclosure(function(...)
         local args = {...}
-        if enabled and getnamecallmethod() == "FireServer" and args[2] == "UpdateMousePosI" and Settings.rewrittenmain.Enabled and Plr.Character ~= nil then
+        if enabled and getnamecallmethod() == "FireServer" and args[2] == "UpdateMousePosI2" and Settings.rewrittenmain.Enabled and Plr.Character ~= nil then
             if Prediction == true then
     
                 args[3] = Plr.Character[SelectedPart].Position + Vector3.new(0, 1, 0) + (Plr.Character.Humanoid.MoveDirection * 0.4 * Plr.Character.Humanoid.WalkSpeed)
