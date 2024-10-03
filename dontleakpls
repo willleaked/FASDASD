@@ -3999,6 +3999,8 @@ function Stand(targetName)
                 end
             end)   
             repeat task.wait() until follow == true     
+            game:GetService("RunService"):UnbindFromRenderStep("Invisible")
+
         end)
         Create('Dcash!',function()
             if Sounds == true then
