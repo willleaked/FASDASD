@@ -2381,6 +2381,57 @@ trun:Toggle("กันล็อก(เเบบ เเล็กปลอม โ�
     end
 end
 )
+trun:Toggle("AUTO ARMOR", false, function(ARMORARMOR)
+    if ARMORARMOR == true then
+        if _G.spiningv3 then _G.spiningv3:Disconnect() end
+        _G.spiningv3 = game:GetService("RunService").Heartbeat:Connect(function()
+            if game.Players.LocalPlayer.Character:WaitForChild('BodyEffects')['Armor'].Value <= 30 then
+                local rsrv = game:GetService("RunService")
+                local heartbeat = rsrv.Heartbeat
+                local renderstepped = rsrv.RenderStepped
+    
+                local lp = game.Players.LocalPlayer
+                local mouse = lp:GetMouse()
+    
+                local chr = lp.Character
+                local hum = chr.Humanoid
+                local root = hum.RootPart
+    
+                local ifyouwilldead = false
+    
+                local visible_parts = {}
+    
+                for _, v in pairs(chr:GetDescendants()) do
+                    if v:IsA("BasePart") and v.Transparency == 0 then
+                        visible_parts[#visible_parts + 1] = v
+                    end
+                end
+    
+                local function ghost_parts()
+                    for _, v in pairs(visible_parts) do
+                        v.Transparency = v.Transparency == 0 and 0.5 or 0
+                    end
+                end
+                if game.Players.LocalPlayer.Character:WaitForChild('BodyEffects')['Armor'].Value <= 30 then
+                    local oldcf = root.CFrame
+                    local currentvel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+                    local Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+                    local newcf =  game.workspace.Ignored.Shop["[High-Medium Armor] - $2440"].Head.CFrame
+                    fireclickdetector(workspace.Ignored.Shop["[High-Medium Armor] - $2440"].ClickDetector)
+                    hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
+                    root.CFrame = newcf
+                    renderstepped:Wait()
+                    hum.CameraOffset = oldcamoffset
+                    root.CFrame = oldcf
+                end
+            end
+        end)
+    elseif ARMORARMOR == false then
+        if _G.spiningv3 then _G.spiningv3:Disconnect() end
+
+    end
+end
+)
 trun:Toggle(
     "Auto-reload",
     false,
@@ -5827,16 +5878,18 @@ function checkpunch()
     game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
     task.wait()
     checkpunch()
-local annoying = {"JokeTheFool","Sherosama", "Papa_Mbaye", "AStrongMuscle", "streetren", "NikoSenpai", "WashedGarage", "iumu", "Benoxa", "Luutyy", "clubstar54", "givkitheth", "kywiexcx", "ATKDrizzy", "dtbbullet", "XavierWildYT", "RogueDaHoodKing", "paxxythecreator", "NatsuDBlaze", "AnqelicMar", "DrBlakMD", "DarkWhirlwind", "coreten", "LegacyCross", "Greed_Ocean"} -- you can add more players by doing {"Player1", "Player2"}
+    local annoying = {"JokeTheFool","Sherosama", "Papa_Mbaye", "AStrongMuscle", "streetren", "NikoSenpai", "WashedGarage", "iumu", "Benoxa", "Luutyy", "clubstar54", "givkitheth", "kywiexcx", "ATKDrizzy", "dtbbullet", "XavierWildYT", "RogueDaHoodKing", "paxxythecreator", "NatsuDBlaze", "AnqelicMar", "DrBlakMD", "DarkWhirlwind", "coreten", "LegacyCross", "Greed_Ocean"} -- you can add more players by doing {"Player1", "Player2"}
 
-game.Players.PlayerAdded:Connect(function(plr)
-for i, v in pairs(annoying) do
-if plr.Name == v then
-local loc = game.Players.LocalPlayer
-loc:Kick("A Moderator Has Joined")
-end
-end
-end)
+    game.Players.PlayerAdded:Connect(function(plr)
+        if plr.Name == game.Players.LocalPlayer.Name then
+            for _, v in pairs(annoying) do
+                if plr.Name == v then
+                    plr:Kick("A Moderator Has Joined")
+                end
+            end
+        end
+    end)
+    
 
 if _G.Loopohoh then
 _G.Loopohoh:Disconnect()
