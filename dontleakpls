@@ -1,5 +1,5 @@
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "Skibidi" -- Set the name of the ScreenGui
+ScreenGui.Name = "Skibidi"
 local TextButton = Instance.new("TextButton")
 local Sound = Instance.new("Sound")
 
@@ -14,8 +14,6 @@ TextButton.Font = Enum.Font.GothamBold
 TextButton.TextSize = 24
 TextButton.BorderSizePixel = 2
 TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-
--- Configure the sound
 Sound.Parent = TextButton
 Sound.SoundId = "rbxassetid://6609305306"
 Sound.Volume = 10
@@ -31,23 +29,19 @@ TextButton.MouseButton1Click:Connect(function()
     TextButton.Text = "Join!"
     TextButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
     TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    wait(Sound.TimeLength) -- Wait for the sound to finish
-    ScreenGui:Destroy() -- Destroy the ScreenGui
+    wait(Sound.TimeLength)
+    ScreenGui:Destroy()
 end)
 
--- Wait until the "Skibidi" ScreenGui is destroyed
 repeat wait() until not game.Players.LocalPlayer:FindFirstChild("PlayerGui"):FindFirstChild("Skibidi")
 
 print("ScreenGui removed")
--- Create the GUI
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "ProfessionalGUI"
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.Name = "Animation ui"
--- Table to keep track of all buttons
 local buttons = {}
 
--- Function to create a button with an icon
 local function createButton(name, position, text, iconId, clickAction)
     local Frame = Instance.new("Frame")
     Frame.Size = UDim2.new(0, 200, 0, 50)
@@ -67,8 +61,6 @@ local function createButton(name, position, text, iconId, clickAction)
     Button.Font = Enum.Font.GothamBold
     Button.TextSize = 20
     Button.Parent = Frame
-
-    -- Add hover effect
     Button.MouseEnter:Connect(function()
         Button.BackgroundColor3 = Color3.fromRGB(0, 153, 255)
     end)
@@ -76,8 +68,6 @@ local function createButton(name, position, text, iconId, clickAction)
     Button.MouseLeave:Connect(function()
         Button.BackgroundColor3 = Color3.fromRGB(0, 122, 204)
     end)
-
-    -- Button click action
     Button.MouseButton1Click:Connect(function()
         clickAction()
             game:GetService("Players").LocalPlayer.PlayerGui["Animation ui"]:Destroy()
@@ -93,21 +83,18 @@ local function createButton(name, position, text, iconId, clickAction)
     table.insert(buttons, Frame)
 end
 
--- Function to handle animations
 local function ANIMATION(idle, idle2, walk, run, jump, climb, fall)
     local function onCharacterAdded(character)
         wait(1)
         
         local humanoid = character:WaitForChild("Humanoid")
         
-        -- Stop all currently playing animations
         for _, v in ipairs(humanoid:GetPlayingAnimationTracks()) do
             v:Stop()
         end
         
         local animate = character:WaitForChild("Animate")
         
-        -- Function to set the animation ID
         local function setAnimation(animation, animationId)
             if typeof(animation) == "Instance" and animation:IsA("Animation") then
                 animation.AnimationId = animationId
@@ -116,7 +103,6 @@ local function ANIMATION(idle, idle2, walk, run, jump, climb, fall)
             end
         end
         
-        -- Set animations using provided asset IDs
         setAnimation(animate.idle.Animation1, "http://www.roblox.com/asset/?id="..idle)
         setAnimation(animate.idle.Animation2, "http://www.roblox.com/asset/?id="..idle2)
         setAnimation(animate.walk.WalkAnim, "http://www.roblox.com/asset/?id="..walk)
@@ -128,10 +114,8 @@ local function ANIMATION(idle, idle2, walk, run, jump, climb, fall)
         game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, 100, 0)
     end
 
-    -- Connect the function to CharacterAdded event
     game.Players.LocalPlayer.CharacterAdded:Connect(onCharacterAdded)
 
-    -- Apply animations to the existing character if present
     if game.Players.LocalPlayer.Character then
         onCharacterAdded(game.Players.LocalPlayer.Character)
     end
@@ -139,7 +123,6 @@ local function ANIMATION(idle, idle2, walk, run, jump, climb, fall)
     game.Players.LocalPlayer.Character.Humanoid.Jump = true
 end
 
--- Create buttons with actions and icons
 createButton("Button1", UDim2.new(0.5, -110, 0.1, 0), "Sports", "18537376492", function()
     print("Adidas Sports Animation Pack")
     ANIMATION(
@@ -293,7 +276,6 @@ end
             end
     end)
     
-    -- Enable dragging
     local UserInputService = game:GetService("UserInputService")
     
     local dragging
@@ -335,12 +317,10 @@ end
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
--- Create ScreenGui
 local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = game.CoreGui
 screenGui.Name = "Betrue"
 
--- Create Frame
 local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0, 250, 0, 350)
 frame.Position = UDim2.new(0.5, -125, 0.1, 0)
@@ -350,7 +330,6 @@ frame.Active = true
 frame.Draggable = true
 frame.Parent = screenGui
 
--- Create Title
 local titleLabel = Instance.new("TextLabel")
 titleLabel.Size = UDim2.new(1, 0, 0, 40)
 titleLabel.Position = UDim2.new(0, 0, 0, 0)
@@ -362,7 +341,6 @@ titleLabel.TextSize = 20
 titleLabel.Font = Enum.Font.SourceSansBold
 titleLabel.Parent = frame
 
--- Create TextBox
 local textBox = Instance.new("TextBox")
 textBox.Size = UDim2.new(0, 230, 0, 40)
 textBox.Position = UDim2.new(0.5, -115, 0.15, 0)
@@ -375,7 +353,6 @@ textBox.TextColor3 = Color3.fromRGB(0, 0, 0)
 textBox.ClearTextOnFocus = false
 textBox.Parent = frame
 
--- Create ScrollingFrame for player names
 local scrollingFrame = Instance.new("ScrollingFrame")
 scrollingFrame.Size = UDim2.new(0, 230, 0, 200)
 scrollingFrame.Position = UDim2.new(0.5, -115, 0.35, 0)
@@ -385,7 +362,6 @@ scrollingFrame.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 scrollingFrame.BorderSizePixel = 0
 scrollingFrame.Parent = frame
 
--- Create Button
 local button = Instance.new("TextButton")
 button.Size = UDim2.new(0, 230, 0, 40)
 button.Position = UDim2.new(0.5, -115, 0.85, 0)
@@ -396,7 +372,6 @@ button.BackgroundColor3 = Color3.fromRGB(70, 130, 180)
 button.TextColor3 = Color3.fromRGB(255, 255, 255)
 button.Parent = frame
 
--- Function to teleport to target
 local function teleportToTarget(targetName)
     local targetPlayer = Players:FindFirstChild(targetName)
     if targetPlayer and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
@@ -406,7 +381,6 @@ local function teleportToTarget(targetName)
     end
 end
 
--- Function to update the player list based on the search query
 local function updatePlayerList()
     scrollingFrame:ClearAllChildren()
     local layout = Instance.new("UIListLayout")
@@ -432,7 +406,6 @@ local function updatePlayerList()
     end
 end
 
--- Button click event
 button.MouseButton1Click:Connect(function()
     local targetName = textBox.Text
     if targetName and targetName ~= "" then
@@ -440,12 +413,10 @@ button.MouseButton1Click:Connect(function()
     end
 end)
 
--- Update player list on load and when players join/leave
 updatePlayerList()
 Players.PlayerAdded:Connect(updatePlayerList)
 Players.PlayerRemoving:Connect(updatePlayerList)
 
--- Update player list in real-time as the user types
 textBox:GetPropertyChangedSignal("Text"):Connect(updatePlayerList)
 
 
