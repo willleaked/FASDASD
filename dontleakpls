@@ -2885,6 +2885,7 @@ function Stand(targetName)
                 _G.Clippy2:Disconnect()
                 _G.Clippy2 = nil
             end
+            game:GetService('RunService'):UnbindFromRenderStep("anti-stomp")
         end)
             Create('atm!',function()
             getgenv().TESTER = true
