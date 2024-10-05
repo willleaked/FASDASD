@@ -2005,11 +2005,9 @@ function Stand(targetName)
                             local Prediction = 0.6
         
                             if OWNER.Character.Humanoid.MoveDirection.Magnitude == 0 then
-                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OWNER.Character.HumanoidRootPart.CFrame*CFrame.new(0,0,3)
                                 workspace.OldVehicles[game.Players.LocalPlayer.Name.."BIKE"].Seat.CFrame = CFrame.new(getRoot(OWNER).Position + Vector3.new(0,0,4) + (getHumanoid(OWNER).MoveDirection*0.85*getHumanoid(OWNER).WalkSpeed))
         
                             else
-                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(OWNER.Character.HumanoidRootPart.Position.X+(OWNER.Character.HumanoidRootPart.Velocity.X*Prediction), OWNER.Character.HumanoidRootPart.Position.Y+0, OWNER.Character.HumanoidRootPart.Position.Z+(OWNER.Character.HumanoidRootPart.Velocity.Z*Prediction))*CFrame.new(0,0,2)
                                 workspace.OldVehicles[game.Players.LocalPlayer.Name.."BIKE"].Seat.CFrame = CFrame.new(getRoot(OWNER).Position + Vector3.new(0,0,0) + (getHumanoid(OWNER).MoveDirection*0.85*getHumanoid(OWNER).WalkSpeed))
                             end
                         until getHumanoid(OWNER).Sit == true
@@ -5478,11 +5476,9 @@ function Stand(targetName)
                     local Predictionnn = 0.6
         
                     if TARGET.Character.Humanoid.MoveDirection.Magnitude == 0 then
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = TARGET.Character.HumanoidRootPart.CFrame*CFrame.new(0,0,4)
                         workspace.OldVehicles[game.Players.LocalPlayer.Name.."BIKE"].Seat.CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,0,4) + (getHumanoid(TARGET).MoveDirection*0.85*getHumanoid(TARGET).WalkSpeed))
         
                     else
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TARGET.Character.HumanoidRootPart.Position.X+(TARGET.Character.HumanoidRootPart.Velocity.X*Predictionnn), TARGET.Character.HumanoidRootPart.Position.Y+0, TARGET.Character.HumanoidRootPart.Position.Z+(TARGET.Character.HumanoidRootPart.Velocity.Z*Predictionnn))*CFrame.new(0,0,2)
                         workspace.OldVehicles[game.Players.LocalPlayer.Name.."BIKE"].Seat.CFrame = CFrame.new(getRoot(TARGET).Position + Vector3.new(0,0,0) + (getHumanoid(TARGET).MoveDirection*0.85*getHumanoid(TARGET).WalkSpeed))
                     end
                 until getHumanoid(TARGET).Sit == true
