@@ -7479,8 +7479,7 @@ function Stand(targetName)
                 game:GetService("RunService").Heartbeat:Connect(function()
                     local currentvel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
                     if Bind == true then
-                        if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Health <= 80 then
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(68756,100,-344)
+                        if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Health <= 99 then
                             local rsrv = game:GetService("RunService")
                             local heartbeat = rsrv.Heartbeat
                             local renderstepped = rsrv.RenderStepped
@@ -7509,7 +7508,7 @@ function Stand(targetName)
                             if not game.Players.LocalPlayer.Backpack:FindFirstChild("[Taco]") and not game.Players.LocalPlayer.Character:FindFirstChild("[Taco]") then
                                 local oldcf = root.CFrame
                                 local currentvel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
-                                local Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(68756,100,-344)
                                 local newcf =  game.Workspace.Ignored.Shop["[Taco] - $2"].Head.CFrame*CFrame.new(math.random(-5,5),math.random(-5,5), math.random(-5,5))   
                                 fireclickdetector(game.Workspace.Ignored.Shop["[Taco] - $2"].ClickDetector)
                                 hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
@@ -7519,10 +7518,10 @@ function Stand(targetName)
         
                                 hum.CameraOffset = oldcamoffset
                                 root.CFrame = oldcf
-                            else
+                            elseif game.Players.LocalPlayer.Backpack:FindFirstChild("[Taco]") then
                                 local oldcf = root.CFrame
                                 local currentvel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
-                                local Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(68756,100,-344)
                                 local newcf = oldcf * CFrame.new(math.random(-50,50),math.random(-10,10), math.random(-50,50))
                 
                                 hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
@@ -7533,12 +7532,23 @@ function Stand(targetName)
         
                                 hum.CameraOffset = oldcamoffset
                                 root.CFrame = oldcf
-                                if STAND.Character:FindFirstChild("[Taco]") then
-                                    STAND.Character["[Taco]"]:Activate()
-                                else
-                                    STAND.Backpack["[Taco]"].Parent = STAND.Character
+                                STAND.Backpack["[Taco]"].Parent = STAND.Character
         
-                                end
+                            elseif game.Players.LocalPlayer.Character:FindFirstChild("[Taco]") then
+                                local oldcf = root.CFrame
+                                local currentvel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(68756,100,-344)
+                                local newcf = oldcf * CFrame.new(math.random(-50,50),math.random(-10,10), math.random(-50,50))
+                
+                                hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
+                                root.CFrame = newcf
+                
+                                renderstepped:Wait()
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = currentvel
+        
+                                hum.CameraOffset = oldcamoffset
+                                root.CFrame = oldcf
+                                STAND.Character["[Taco]"]:Activate()
                             end
                         end
                     if  game.Players.LocalPlayer.Character.BodyEffects["K.O"].Value == true then
@@ -7547,15 +7557,14 @@ function Stand(targetName)
                 end
             end)
             
-        
-        game:GetService("RunService").Heartbeat:Connect(function()
-            if antilock == true then
-                    local currentvel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(68756,100,-344)--Vector3.new(math.random(-2000,2000), math.random(-2000,2000), math.random(-2000,2000))
-                    game:GetService("RunService").RenderStepped:Wait()
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = currentvel
-            end
-        end)
+            game:GetService("RunService").Heartbeat:Connect(function()
+                if antilock == true then
+                        local currentvel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(68756,100,-344)--Vector3.new(math.random(-2000,2000), math.random(-2000,2000), math.random(-2000,2000))
+                        game:GetService("RunService").RenderStepped:Wait()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = currentvel
+                end
+            end)
         
         rs.heartbeat:connect(function()
             if Sneak == true then
