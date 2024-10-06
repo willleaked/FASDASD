@@ -2015,7 +2015,9 @@ function Stand(targetName)
                             getRoot(STAND).CFrame = cframe
                         until getHumanoid(OWNER).Sit == false
                         noclip = false
+                        workspace.OldVehicles[game.Players.LocalPlayer.Name.."BIKE"].Seat.CFrame = CFrame.new(0,100,0)
                         getRoot(STAND).CFrame = CFrame.new(0,100,0)
+                        wheel(CFrame.new(0,100,0))
                         wait(0.5)
                         Summon()
                         wait(0.1)
