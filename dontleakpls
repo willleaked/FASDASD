@@ -5463,12 +5463,12 @@ function Stand(targetName)
                     until workspace.OldVehicles:FindFirstChild(STAND.Name.."BIKE")
                 end
                 if not getHumanoid(STAND).Sit == true then
-                    --Chat("Debug: Sitting alt")
-                    repeat task.wait()
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(workspace.OldVehicles[game.Players.LocalPlayer.Name.."BIKE"].VehicleSeat.Position+Vector3.new(0,0,-1))
-                        wait(0.1)
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(workspace.OldVehicles[game.Players.LocalPlayer.Name.."BIKE"].VehicleSeat.Position+Vector3.new(0,0,-1))
-                    until getHumanoid(STAND).Sit == true
+                        --Chat("Debug: Sitting alt")
+                        repeat task.wait()
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.OldVehicles[game.Players.LocalPlayer.Name.."BIKE"].Seat.CFrame * CFrame.new(0,0,1)
+                            wait()
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.OldVehicles[game.Players.LocalPlayer.Name.."BIKE"].Seat.CFrame * CFrame.new(0,0,1)
+                        until getHumanoid(STAND).Sit == true
                 end
                 --Chat("Debug: Bringing: "..TARGET.Name)
                 noclip = true
