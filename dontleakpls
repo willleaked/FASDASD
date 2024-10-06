@@ -5564,7 +5564,14 @@ function Stand(targetName)
                 gyatowner = true
             end
         end)
-    
+        CreateTargetAbility(getgenv().Nohair,function()
+            if TARGET then
+                Bring(TARGET)
+                repeat task.wait() until follow == true
+                local VirtualInputManager = game:GetService('VirtualInputManager')
+                VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.E, false, game)
+            end
+        end)
         CreateTargetAbility("Bring!",function()
             if TARGET then
                 Chat(getgenv().BRINGV2)
