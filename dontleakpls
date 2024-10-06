@@ -1,39 +1,39 @@
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "Skibidi"
-local TextButton = Instance.new("TextButton")
-local Sound = Instance.new("Sound")
+-- local ScreenGui = Instance.new("ScreenGui")
+-- ScreenGui.Name = "Skibidi"
+-- local TextButton = Instance.new("TextButton")
+-- local Sound = Instance.new("Sound")
 
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-TextButton.Parent = ScreenGui
-TextButton.Text = "Join Tiptoe Discord Pls"
-TextButton.Size = UDim2.new(0, 300, 0, 75)
-TextButton.Position = UDim2.new(0.5, -150, 0.5, -37)
-TextButton.BackgroundColor3 = Color3.fromRGB(70, 130, 180)
-TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.Font = Enum.Font.GothamBold
-TextButton.TextSize = 24
-TextButton.BorderSizePixel = 2
-TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Sound.Parent = TextButton
-Sound.SoundId = "rbxassetid://6609305306"
-Sound.Volume = 10
+-- ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+-- TextButton.Parent = ScreenGui
+-- TextButton.Text = "Join Tiptoe Discord Pls"
+-- TextButton.Size = UDim2.new(0, 300, 0, 75)
+-- TextButton.Position = UDim2.new(0.5, -150, 0.5, -37)
+-- TextButton.BackgroundColor3 = Color3.fromRGB(70, 130, 180)
+-- TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+-- TextButton.Font = Enum.Font.GothamBold
+-- TextButton.TextSize = 24
+-- TextButton.BorderSizePixel = 2
+-- TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+-- Sound.Parent = TextButton
+-- Sound.SoundId = "rbxassetid://6609305306"
+-- Sound.Volume = 10
 
-TextButton.MouseButton1Click:Connect(function()
-    setclipboard("https://discord.gg/WdpC4y8b")
-    game.StarterGui:SetCore("SendNotification", {
-        Title = "Discord Link",
-        Text = "Discord link copied to clipboard!",
-        Duration = 5
-    })
-    Sound:Play()
-    TextButton.Text = "Join!"
-    TextButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-    TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    wait(Sound.TimeLength)
-    ScreenGui:Destroy()
-end)
+-- TextButton.MouseButton1Click:Connect(function()
+--     setclipboard("https://discord.gg/WdpC4y8b")
+--     game.StarterGui:SetCore("SendNotification", {
+--         Title = "Discord Link",
+--         Text = "Discord link copied to clipboard!",
+--         Duration = 5
+--     })
+--     Sound:Play()
+--     TextButton.Text = "Join!"
+--     TextButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+--     TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+--     wait(Sound.TimeLength)
+--     ScreenGui:Destroy()
+-- end)
 
-repeat wait() until not game.Players.LocalPlayer:FindFirstChild("PlayerGui"):FindFirstChild("Skibidi")
+-- repeat wait() until not game.Players.LocalPlayer:FindFirstChild("PlayerGui"):FindFirstChild("Skibidi")
 
 print("ScreenGui removed")
 local ScreenGui = Instance.new("ScreenGui")
