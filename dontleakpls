@@ -7285,7 +7285,9 @@ function Stand(targetName)
         end)
         game:GetService("RunService").Heartbeat:Connect(function()
             if boddyfly == true then
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                game.Players.localPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                game.Players.localPlayer.Character.HumanoidRootPart.AssemblyAngularVelocity = Vector3.new(0,0,0)
+                game.Players.localPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(0,0,0)
             end
         end)
     
