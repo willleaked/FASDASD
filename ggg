@@ -18,29 +18,31 @@ else
             return nil
         end
         _G.SKidd = OWNER.Chatted:Connect(function(msg)
-            local lowerMsg = msg:lower()
+            lowerMsg = msg:lower()
             if lowerMsg:sub(1, 3) == ".tp" or lowerMsg:sub(1, 3) == ".to" or 
             lowerMsg:sub(1, 3) == ";tp" or lowerMsg:sub(1, 3) == ";to" or 
             lowerMsg:sub(1, 3) == ":tp" or lowerMsg:sub(1, 3) == ":to" or 
             lowerMsg:sub(1, 3) == ",tp" or lowerMsg:sub(1, 3) == ",to" then
-                local partialName = lowerMsg:sub(5)
-                local TARGET = findPlayer(partialName)
-                
-                if TARGET then
-                    print("hi " .. TARGET.Name)
-                    
-                    if STAND.Character and TARGET.Character and 
-                    STAND.Character:FindFirstChild("HumanoidRootPart") and 
-                    TARGET.Character:FindFirstChild("HumanoidRootPart") then
-                        STAND.Character.HumanoidRootPart.CFrame = CFrame.new(
-                            TARGET.Character.HumanoidRootPart.Position + 
-                            (TARGET.Character.HumanoidRootPart.Velocity * 0.2)
-                        )
-                    end
-
-                else
-                    print("Target not found.")
+                partialName = lowerMsg:sub(5)
+                TARGET = findPlayer(partialName)
+                if TARGET and STAND.Character and TARGET.Character and 
+                STAND.Character:FindFirstChild("HumanoidRootPart") and 
+                TARGET.Character:FindFirstChild("HumanoidRootPart") then
+                    STAND.Character.HumanoidRootPart.CFrame = CFrame.new(
+                        TARGET.Character.HumanoidRootPart.Position + 
+                        (TARGET.Character.HumanoidRootPart.Velocity * 0.2)
+                    )
                 end
+            elseif lowerMsg:sub(1, 5) == ".view" or lowerMsg:sub(1, 5) == ";view" or 
+            lowerMsg:sub(1, 5) == ":view" or lowerMsg:sub(1, 5) == ",view" then
+                partialName = lowerMsg:sub(7)
+                TARGET = findPlayer(partialName)
+                if TARGET then
+                    workspace.Camera.CameraSubject = TARGET.Character.Humanoid
+                end
+            elseif lowerMsg:sub(1, 7) == ".unview" or lowerMsg:sub(1, 7) == ";unview" or 
+            lowerMsg:sub(1, 7) == ":unview" or lowerMsg:sub(1, 7) == ",unview" then
+                workspace.Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
             end
         end)
 
