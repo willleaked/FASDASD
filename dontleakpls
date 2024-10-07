@@ -3940,6 +3940,7 @@ function Stand(targetName)
             BuyWeight()
         end)
         Create('Lettuce!',function()
+            Stop()
             local Character = game.Players.LocalPlayer.Character
             local Backpack = game.Players.LocalPlayer.Backpack
             function ZeroVelocity___(PATH)
@@ -3947,8 +3948,8 @@ function Stand(targetName)
                 PATH.AssemblyAngularVelocity = Vector3.zero
                 PATH.AssemblyLinearVelocity = Vector3.zero
             end
-            game:GetService("RunService"):UnbindFromRenderStep("Invisible")
-            game:GetService("RunService"):BindToRenderStep("Invisible", -1, function()
+            game:GetService("RunService"):UnbindFromRenderStep("SIGGG")
+            game:GetService("RunService"):BindToRenderStep("SIGGG", -1, function()
                 ZeroVelocity___(Character:FindFirstChild("HumanoidRootPart"))
                 if not Backpack:FindFirstChild("[Lettuce]") and not Character:FindFirstChild("[Lettuce]") then
                     Character.HumanoidRootPart.CFrame = game.Workspace.Ignored.Shop["[Lettuce] - $5"].Head.CFrame * CFrame.new(0, 5, 0)   
@@ -3960,7 +3961,7 @@ function Stand(targetName)
                 end
             end)   
             repeat task.wait() until follow == true     
-            game:GetService("RunService"):UnbindFromRenderStep("Invisible")
+            game:GetService("RunService"):UnbindFromRenderStep("SIGGG")
 
         end)
         Create('Dcash!',function()
