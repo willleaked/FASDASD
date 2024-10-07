@@ -1,6 +1,7 @@
 if not game:IsLoaded() then
 	game.Loaded:Wait()
 end
+repeat wait() until getgenv().Discrodzerver == "https://discord.gg/TMUnBrbY"
 getgenv().keybind = Enum.KeyCode.V
 
 if game.Players.LocalPlayer.Name == "poohvvff" then
@@ -125,7 +126,7 @@ local View = Instance.new("TextButton")
 local Target = Instance.new("TextButton")
 local FlySpeedPlus = Instance.new("TextButton")
 local Gunbring = Instance.new("TextButton")
-local FlyMode = Instance.new("TextButton")
+local Grenade = Instance.new("TextButton")
 local Gunknock = Instance.new("TextButton")
 local Gunkill = Instance.new("TextButton")
 local QuickTpFrame = Instance.new("Frame")
@@ -655,16 +656,16 @@ Gunbring.Text = "Gunbring"
 Gunbring.TextColor3 = Color3.fromRGB(255, 255, 255)
 Gunbring.TextSize = 14.000
 
-FlyMode.Name = "FlyMode"
-FlyMode.Parent = MainFrame
-FlyMode.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-FlyMode.BorderSizePixel = 0
-FlyMode.Position = UDim2.new(0.351977378, 0, 0.590557039, 0)
-FlyMode.Size = UDim2.new(0, 94, 0, 46)
-FlyMode.Font = Enum.Font.GothamBlack
-FlyMode.Text = "Coming soon"
-FlyMode.TextColor3 = Color3.fromRGB(255, 255, 255)
-FlyMode.TextSize = 14.000
+Grenade.Name = "Grenade"
+Grenade.Parent = MainFrame
+Grenade.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+Grenade.BorderSizePixel = 0
+Grenade.Position = UDim2.new(0.351977378, 0, 0.590557039, 0)
+Grenade.Size = UDim2.new(0, 94, 0, 46)
+Grenade.Font = Enum.Font.GothamBlack
+Grenade.Text = "Grenade Knock"
+Grenade.TextColor3 = Color3.fromRGB(255, 255, 255)
+Grenade.TextSize = 14.000
 
 Gunknock.Name = "Gunknock"
 Gunknock.Parent = MainFrame
@@ -2720,14 +2721,56 @@ Gunbring.MouseButton1Click:Connect(function()
 end)
 
 
-FLYMODE = 'Default'
 FLYSPEED = 20
 
 FlySpeedPlus.MouseButton1Click:Connect(function()
 end)
 FlySpeedMinus.MouseButton1Click:Connect(function()
 end)
-FlyMode.MouseButton1Click:Connect(function()
+if _G.GrenadeKill then _G.GrenadeKill:Disconnect() end
+_G.GrenadeKill = game:GetService("RunService").Heartbeat:Connect(function()
+    for i, v in pairs(workspace.Ignored:GetChildren()) do
+        if v.Name == "Handle" then
+            if not v:FindFirstChild("Highlight") then
+                Instance.new("Highlight",v)
+                v:FindFirstChild("Highlight").OutlineTransparency = 0
+                v:FindFirstChild("Highlight").FillTransparency = 0
+                v:FindFirstChild("Highlight").OutlineColor = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+                v:FindFirstChild("Highlight").FillColor = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+            end
+            v.Color = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+            v.Material = Enum.Material.Neon
+            v.Velocity = Vector3.new(0, 25.01, 0)
+            v.CanCollide = false
+            v.Position = Players:FindFirstChild(TargetTextbox.Text).Character.LeftLowerLeg.Position + (Players:FindFirstChild(TargetTextbox.Text).Character.Humanoid.MoveDirection * 5);
+        end
+    end
+end)
+Grenade.MouseButton1Click:Connect(function()
+    if Grenade.Text == 'Grenade knock' then
+        Grenade.Text = 'UnGrenade knock'
+        getgenv().loopdb = game:GetService("RunService").Heartbeat:Connect(function()
+            local savepos = game.Players.LocalPlayer.Character.UpperTorso.Position
+            local Brokie = game.workspace.Ignored.Shop["[Grenade] - $743"]
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Brokie.Head.CFrame * CFrame.new(0,-5,0)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+            wait()
+            fireclickdetector(Brokie.ClickDetector)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+        end)
+        repeat task.wait()
+        until game.Players.LocalPlayer.Backpack:FindFirstChild("[Grenade]")
+        getgenv().loopdb:Disconnect()
+        IsInvisible = true
+        task.wait(.5)
+        game.Players.LocalPlayer.Backpack:FindFirstChild("[Grenade]").Parent = game.Players.LocalPlayer.Character
+        game.Players.LocalPlayer.Character:FindFirstChild("[Grenade]"):Activate()task.wait(.1)
+        game.Players.LocalPlayer.Character:FindFirstChild("[Grenade]"):Activate()task.wait(.1)
+        game.Players.LocalPlayer.Character:FindFirstChild("[Grenade]"):Activate()task.wait(.1)
+        Grenade.Text = 'Grenade knock'
+    else
+        Grenade.Text = 'Grenade knock'
+    end
 end)
 
 Fly.MouseButton1Click:Connect(function()
