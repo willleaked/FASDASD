@@ -34,7 +34,7 @@
 -- end)
 
 -- repeat wait() until not game.Players.LocalPlayer:FindFirstChild("PlayerGui"):FindFirstChild("Skibidi")
-repeat wait() until getgenv().Discrodzerver == "https://discord.gg/TMUnBrbY"
+repeat wait() until getgenv().Discrodzerver == "https://discord.gg/sEAMggUJ5y"
 print("ScreenGui removed")
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "ProfessionalGUI"
