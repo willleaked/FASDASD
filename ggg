@@ -47,7 +47,7 @@ else
         end)
 
 end 
-    repeat wait() until getgenv().Discrodzerver == "https://discord.gg/TMUnBrbY"
+    repeat wait() until getgenv().Discrodzerver == "https://discord.gg/sEAMggUJ5y"
         ------------------------------------------------------------------------------
         -- if not game.CoreGui:FindFirstChild("Discord") then
 
