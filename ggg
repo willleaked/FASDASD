@@ -6317,7 +6317,7 @@ function AnimStop(ID, SPEED)
     end
 end
 
-if game.Players.LocalPlayer.Name == "Gralew1234" or  game.Players.LocalPlayer.Name == "2Faboutsd" or  game.Players.LocalPlayer.Name == "wubxbeb"or  game.Players.LocalPlayer.Name == "Hpersonh0" then
+if game.Players.LocalPlayer.Name == "Gralew1234" or  game.Players.LocalPlayer.Name == "2Faboutsd" or  game.Players.LocalPlayer.Name == "wubxbeb"or  game.Players.LocalPlayer.Name == "Nanikaitun937" then
     if _G.SpaceKeybind then _G.SpaceKeybind:disconnect() end
 
     _G.SpaceKeybind = game:GetService("UserInputService").JumpRequest:Connect(function()
@@ -6342,7 +6342,7 @@ if game.Players.LocalPlayer.Name == "Gralew1234" or  game.Players.LocalPlayer.Na
     end)
     end
 
-    if game.Players.LocalPlayer.Name == "Gralew1234" or  game.Players.LocalPlayer.Name == "deeralttrue" or  game.Players.LocalPlayer.Name == "PLAUERS4" or  game.Players.LocalPlayer.Name == "wubxbeb" or  game.Players.LocalPlayer.Name == "Realizejonni26"  or  game.Players.LocalPlayer.Name == "Hpersonh0"
+    if game.Players.LocalPlayer.Name == "Gralew1234" or  game.Players.LocalPlayer.Name == "deeralttrue" or  game.Players.LocalPlayer.Name == "PLAUERS4" or  game.Players.LocalPlayer.Name == "wubxbeb" or  game.Players.LocalPlayer.Name == "Realizejonni26"  or  game.Players.LocalPlayer.Name == "Nanikaitun937"
     or game.Players.LocalPlayer.Name == "DAIKizu39"  then
 
         getgenv().Settings = {
