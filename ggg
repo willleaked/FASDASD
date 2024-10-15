@@ -48,6 +48,7 @@ else
 
 end 
     repeat wait() until getgenv().Discrodzerver == "https://discord.gg/sEAMggUJ5y"
+    local oldcamoffset = game.Players.localPlayer.Character.Humanoid.CameraOffset
         ------------------------------------------------------------------------------
         -- if not game.CoreGui:FindFirstChild("Discord") then
 
@@ -1215,7 +1216,6 @@ tools:Button("lock for Gun",function()
     _G.TrueLockspin = heartbeat:Connect(function()
         if SKIBIIDI then
             local oldcf = root.CFrame
-            local oldcamoffset = hum.CameraOffset
             local newcf = Plr.Character.HumanoidRootPart.CFrame * CFrame.new(math.random(-10,10), math.random(-10,10), math.random(-10,10))
             if game.Players.localPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then
             root.CFrame = newcf
@@ -2166,8 +2166,6 @@ trun:Toggle(
         end
     end
 )
-local oldcamoffset = game.Players.localPlayer.Character.Humanoid.CameraOffset
-
 trun:Toggle("ถ้าเลือดน้อยจะวาปเร็ว",false,function(antispining)
     if antispining == true then
         if _G.spiningv3 then _G.spiningv3:Disconnect() end
@@ -2279,7 +2277,6 @@ trun:Toggle(
                     for i, v in pairs(workspace.Ignored:GetChildren()) do
                         if v.Name == "Handle" and (v.Position - OWNER.Character.HumanoidRootPart.Position).Magnitude <= 10 then
                             local oldcf = root.CFrame
-                            local oldcamoffset = hum.CameraOffset
                 
                             local newcf = oldcf * CFrame.new(0,-150,0)
                 
@@ -2295,7 +2292,6 @@ trun:Toggle(
                             root.CFrame = oldcf
                         elseif v.Name == "Part" and (v.Position - OWNER.Character.HumanoidRootPart.Position).Magnitude <= 10 then
                             local oldcf = root.CFrame
-                            local oldcamoffset = hum.CameraOffset
                 
                             local newcf = oldcf * CFrame.new(0,-150,0)
                 
@@ -2324,7 +2320,6 @@ trun:Toggle(
                         for i, v in pairs(workspace.Ignored.Model:GetChildren()) do
                             if v.Name == "Launcher" and (v.Position - OWNER.Character.HumanoidRootPart.Position).Magnitude <= 10 then
                                 local oldcf = root.CFrame
-                                local oldcamoffset = hum.CameraOffset
                     
                                 local newcf = oldcf * CFrame.new(0,-150,0)
                     
@@ -3526,7 +3521,6 @@ trun:Toggle(
             local loopv3 = heartbeat:Connect(function()
                 if Fastmoveing then
                     local oldcf = root.CFrame
-                    local oldcamoffset = hum.CameraOffset
             
                     local newcf = oldcf * CFrame.new(math.random(-40,40), math.random(-20,70), math.random(-40,40))
             
@@ -3595,7 +3589,6 @@ trun:Toggle(
             local loop = heartbeat:Connect(function()
                 if isinvisible then
                     local oldcf = root.CFrame
-                    local oldcamoffset = hum.CameraOffset
                     local newcf = oldcf * CFrame.new(math.random(-1000,1000),-500,0)
                     hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
                     if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then
@@ -5799,7 +5792,6 @@ local NewCFrame = CFrame.new
 local LocalFinobe = game.Players.LocalPlayer
 local InputService = game:GetService("UserInputService")
 local Runfinobe = game:GetService("RunService")
-local oldcamoffset = game.Players.LocalPlayer.Character.Humanoid.CameraOffset
 
 if _G.V2 then _G.V2:Disconnect() end
 _G.V2 = Runfinobe.Heartbeat:Connect(function()
@@ -5925,7 +5917,6 @@ function checkpunch()
         "[Pitchfork]",
         "[Shovel]"
         }
-        local oldcamoffset = hum.CameraOffset
         local function HasTool(tool)  
         for i , v in pairs(dodge) do
         if v == tool then 
@@ -5940,7 +5931,6 @@ function checkpunch()
         end
         return false
         end
-        local oldcamoffset = hum.CameraOffset
         if _G.dontpunchme then _G.dontpunchme:disconnect() end
     _G.dontpunchme = heartbeat:Connect(function()
         for i , player in pairs(game.Players:GetChildren()) do
