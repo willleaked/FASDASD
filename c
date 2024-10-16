@@ -1,5 +1,5 @@
 if game.Players.LocalPlayer.Name == "Gralew1234" or game.Players.LocalPlayer.Name == "bobo_458393" or game.Players.LocalPlayer.Name == "namchaza_araya" or game.Players.LocalPlayer.Name == "roopin01"
- or game.Players.LocalPlayer.Name == "DAIKizu39" then
+ or game.Players.LocalPlayer.Name == "Wirapat_Thaikid" then
 
 local PLAYERS = game:GetService("Players")
 local OWNER = PLAYERS.LocalPlayer
