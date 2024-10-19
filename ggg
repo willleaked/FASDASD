@@ -145,7 +145,7 @@ function Togglegui()
     toggleGuiInstance = screenGui
     toggleButton = Instance.new("TextButton")
     toggleButton.Size = UDim2.new(0, 200, 0, 50)
-    toggleButton.Position = UDim2.new(0.5, -100, 0.5, -25)
+    toggleButton.Position = UDim2.new(0,0,.7)
     toggleButton.Text = "Toggle Discord GUI"
     toggleButton.Parent = screenGui
     toggleButton.Name = "Toggleee"
