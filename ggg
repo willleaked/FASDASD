@@ -160,6 +160,39 @@ function Togglegui()
         end
     end
     toggleButton.MouseButton1Click:Connect(toggleDiscordGui)
+    -- local UserInputService = game:GetService("UserInputService")
+    -- local dragging = false
+    -- local dragInput = nil
+    -- local dragStart = nil
+    -- local startPos = nil
+    -- local function update(input)
+    --     if dragging and dragInput then
+    --         local delta = input.Position - dragStart
+    --         toggleButton.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    --     end
+    -- end
+    -- toggleButton.InputBegan:Connect(function(input)
+    --     if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+    --         dragging = true
+    --         dragStart = input.Position
+    --         startPos = toggleButton.Position
+    --         input.Changed:Connect(function()
+    --             if input.UserInputState == Enum.UserInputState.End then
+    --                 dragging = false
+    --             end
+    --         end)
+    --     end
+    -- end)
+    -- toggleButton.InputChanged:Connect(function(input)
+    --     if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+    --         dragInput = input
+    --     end
+    -- end)
+    -- UserInputService.InputChanged:Connect(function(input)
+    --     if input == dragInput then
+    --         update(input)
+    --     end
+    -- end)
 end
 
  loadstring(game:HttpGet('https://pastebin.com/raw/efgdHBFi'))()
@@ -3334,7 +3367,7 @@ trun:Toggle(
             local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
             local button = Instance.new("TextButton")
             screenGui.Name = "speedtool"
-            button.Size = UDim2.new(0, 200, 0, 50)
+            button.Size = UDim2.new(0, 150, 0, 50)
             button.Position = UDim2.new(0.5, -100, 0.5, -25)
             button.Text = "[Speed]"
             button.Parent = screenGui
