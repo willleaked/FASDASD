@@ -2888,224 +2888,222 @@ function Stand(targetName)
             game:GetService('RunService'):UnbindFromRenderStep("anti-stomp")
         end)
             Create('atm!',function()
-            getgenv().TESTER = true
-            Stop()
-            Clippy = false
-    
-            if _G.Clippy then
-                _G.Clippy:Disconnect()
-                _G.Clippy = nil
-            end
-    
-            if _G.Clippy2 then
-                _G.Clippy2:Disconnect()
-                _G.Clippy2 = nil
-            end
-    
-    
-                if fps then
-                    local decalsyeeted = true
-                    local g = game
-                    local w = g.Workspace
-                    local l = g.Lighting
-                    local t = w.Terrain
-                    t.WaterWaveSize = 0
-                    t.WaterWaveSpeed = 0
-                    t.WaterReflectance = 0
-                    t.WaterTransparency = 0
-                    l.GlobalShadows = false
-                    l.FogEnd = 9e9
-                    l.Brightness = 0
-                    settings().Rendering.QualityLevel = "Level01"
-    
-                    for i, v in pairs(g:GetDescendants()) do
-                        if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
-                            v.Material = "Plastic"
-                            v.Reflectance = 0
-                        elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
-                            v.Transparency = 1
-                        elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
-                            v.Lifetime = NumberRange.new(0)
-                        elseif v:IsA("Explosion") then
-                            v.BlastPressure = 1
-                            v.BlastRadius = 1
-                        elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
-                            v.Enabled = false
-                        elseif v:IsA("MeshPart") then
-                            v.Material = "Plastic"
-                            v.Reflectance = 0
-                            v.TextureID = 10385902758728957
-                        end
-                    end
-    
-                    for i, e in pairs(l:GetChildren()) do
-                        if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
-                            e.Enabled = false
-                        end
-                    end
+                getgenv().TESTER = true
+                Clippy = false
+                if _G.Clippy then
+                    _G.Clippy:Disconnect()
+                    _G.Clippy = nil
                 end
-    
-                if _G.Farming then
-                    game.ReplicatedStorage.MainEvent:FireServer("ResetNew")
-                    game.Players.LocalPlayer.Character.Humanoid:ChangeState('Dead')
+                
+                if _G.Clippy2 then
+                    _G.Clippy2:Disconnect()
+                    _G.Clippy2 = nil
                 end
-    
-                local vu = game:GetService("VirtualUser")
-                game:GetService("Players").LocalPlayer.Idled:connect(function()
-                    vu:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
-                    wait(1)
-                    vu:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
-                end)
-    
-                game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 9e9
-    
-                game:GetService('RunService'):BindToRenderStep("anti-stomp", 0, function()
-                    if game.Players.LocalPlayer.Character.BodyEffects["K.O"].Value == true then
-                        game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Dead)
-                    end
-                end)
-    
-    
-                _G.Clippy2 = game:GetService("RunService").Stepped:connect(function()
-                    for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-                        if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
-                            child.CanCollide = false
-                        end
-                    end
-                end)
-    
-                _G.Clippy = game:GetService("RunService").Heartbeat:connect(function()
-                    if Clippy == true then
-                        local Char = game.Players.LocalPlayer.Character
-                        local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
-    
-                        for i, v in next, Hum:GetPlayingAnimationTracks() do
-                            if v.Animation.AnimationId:match("rbxassetid://2788292075") then
-                                v:AdjustSpeed(2.5)
+                
+                
+                    if fps then
+                        local decalsyeeted = true
+                        local g = game
+                        local w = g.Workspace
+                        local l = g.Lighting
+                        local t = w.Terrain
+                        t.WaterWaveSize = 0
+                        t.WaterWaveSpeed = 0
+                        t.WaterReflectance = 0
+                        t.WaterTransparency = 0
+                        l.GlobalShadows = false
+                        l.FogEnd = 9e9
+                        l.Brightness = 0
+                        settings().Rendering.QualityLevel = "Level01"
+                
+                        for i, v in pairs(g:GetDescendants()) do
+                            if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+                                v.Material = "Plastic"
+                                v.Reflectance = 0
+                            elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+                                v.Transparency = 1
+                            elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+                                v.Lifetime = NumberRange.new(0)
+                            elseif v:IsA("Explosion") then
+                                v.BlastPressure = 1
+                                v.BlastRadius = 1
+                            elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
+                                v.Enabled = false
+                            elseif v:IsA("MeshPart") then
+                                v.Material = "Plastic"
+                                v.Reflectance = 0
+                                v.TextureID = 10385902758728957
                             end
                         end
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.zero
+                
+                        for i, e in pairs(l:GetChildren()) do
+                            if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+                                e.Enabled = false
+                            end
+                        end
+                    end
+                
+                    if _G.Farming then
+                        game.ReplicatedStorage.MainEvent:FireServer("ResetNew")
+                        game.Players.LocalPlayer.Character.Humanoid:ChangeState('Dead')
+                    end
+                
+                    local vu = game:GetService("VirtualUser")
+                    game:GetService("Players").LocalPlayer.Idled:connect(function()
+                        vu:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+                        wait(1)
+                        vu:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+                    end)
+                
+                    game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 9e9
+                
+                    game:GetService('RunService'):BindToRenderStep("anti-stomp", 0, function()
+                        if game.Players.LocalPlayer.Character.BodyEffects["K.O"].Value == true then
+                            game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Dead)
+                        end
+                    end)
+                
+                
+                    _G.Clippy2 = game:GetService("RunService").Stepped:connect(function()
                         for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
                             if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
                                 child.CanCollide = false
-                                child.Velocity = Vector3.new(0, 0, 0)
                             end
                         end
-                    end
-                end)
-    
-                local LocalPlayer = game:GetService("Players").LocalPlayer
-    
-                function gettarget()
-                    local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
-                    local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
-                    local maxdistance = math.huge
-                    local target
-                    for i, v in pairs(game:GetService("Workspace").Cashiers:GetChildren()) do
-                        if v:FindFirstChild("Head") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and (v:FindFirstChild("Head").Position - game.workspace.Ignored.Shop["[LMG] - $3978"].Head.Position).Magnitude > 80 then
-                            Clippy = true
-                            local distance = (HumanoidRootPart.Position - v.Head.Position).magnitude
-                            if distance < maxdistance then
-                                target = v
-                                maxdistance = distance
+                    end)
+                
+                    _G.Clippy = game:GetService("RunService").Heartbeat:connect(function()
+                        if Clippy == true then
+                            local Char = game.Players.LocalPlayer.Character
+                            local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
+                
+                            for i, v in next, Hum:GetPlayingAnimationTracks() do
+                                if v.Animation.AnimationId:match("rbxassetid://2788292075") then
+                                    v:AdjustSpeed(2.5)
+                                end
                             end
-                        else
-                            Clippy = true
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-546, -173, 1)
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.zero
+                            for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                                if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
+                                    child.CanCollide = false
+                                    child.Velocity = Vector3.new(0, 0, 0)
+                                end
+                            end
+                        end
+                    end)
+                
+                    local LocalPlayer = game:GetService("Players").LocalPlayer
+                
+                    function gettarget()
+                        local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
+                        local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+                        local maxdistance = math.huge
+                        local target
+                        for i, v in pairs(game:GetService("Workspace").Cashiers:GetChildren()) do
+                            if v:FindFirstChild("Head") and v:FindFirstChild("Humanoid")and v:FindFirstChild("Open") and v.Humanoid.Health > 0 and (v:FindFirstChild("Head").Position - game.workspace.Ignored.Shop["[LMG] - $3978"].Head.Position).Magnitude > 80 then
+                                Clippy = true
+                                local distance = (HumanoidRootPart.Position - v.Head.Position).magnitude
+                                if distance < maxdistance then
+                                    target = v
+                                    maxdistance = distance
+                                end
+                            else
+                                Clippy = true
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(math.random(-100,100),-173,math.random(-100,100))
+                            end
+                        end
+                        return target
+                    end
+                
+                    for i, v in pairs(workspace:GetDescendants()) do
+                        if v:IsA("Seat") then
+                            v:Destroy()
                         end
                     end
-                    return target
-                end
-    
-                for i, v in pairs(workspace:GetDescendants()) do
-                    if v:IsA("Seat") then
-                        v:Destroy()
-                    end
-                end
-    
-                local STAND = game.Players.LocalPlayer
-                pickupcash = true
-                Attack = "Heavy"
-    
-                    while getgenv().TESTER do
-                            game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
-                            wait()
-                            local Target = gettarget()
-                            repeat
+                
+                    local STAND = game.Players.LocalPlayer
+                    pickupcash = true
+                    Attack = "Heavy"
+                
+                        while getgenv().TESTER do
+                                game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
                                 wait()
-                                pcall(function()
-                                    local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
-                                    local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
-                                    if Attack == 'Heavy' then
-                                        if STAND.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then
-                                            HumanoidRootPart.CFrame = Target.Head.CFrame * CFrame.new(0, -2, 1.5)
-                                            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.zero
-                                            game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.zero
+                                local Target = gettarget()
+                                repeat
+                                    wait()
+                                    pcall(function()
+                                        local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
+                                        local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+                                        if Attack == 'Heavy' then
+                                            if STAND.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then
+                                                HumanoidRootPart.CFrame = Target.Head.CFrame * CFrame.new(0, -2, 1.5)
+                                                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.zero
+                                                game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.zero
+                                            else
+                                                HumanoidRootPart.CFrame = Target.Head.CFrame * CFrame.new(0, -24, 3)
+                                                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.zero
+                                                game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.zero
+                                            end
                                         else
-                                            HumanoidRootPart.CFrame = Target.Head.CFrame * CFrame.new(0, -24, 3)
+                                            HumanoidRootPart.CFrame = Target.Head.CFrame * CFrame.new(0, -2, 3)
                                             game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.zero
                                             game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.zero
                                         end
-                                    else
-                                        HumanoidRootPart.CFrame = Target.Head.CFrame * CFrame.new(0, -2, 3)
-                                        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.zero
-                                        game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.zero
-                                    end
-    
-                                    if Attack == 'Heavy' then
-                                        if STAND.Character:FindFirstChild('Combat') then
-                                            STAND.Character:FindFirstChild('Combat'):Activate()
-                                        else
-                                            STAND.Backpack:FindFirstChild('Combat').Parent = STAND.Character
-                                        end
-                                    else
-                                        if Attack == 'Light' then
+                
+                                        if Attack == 'Heavy' then
                                             if STAND.Character:FindFirstChild('Combat') then
                                                 STAND.Character:FindFirstChild('Combat'):Activate()
-                                                STAND.Character:FindFirstChild('Combat'):Deactivate()
                                             else
                                                 STAND.Backpack:FindFirstChild('Combat').Parent = STAND.Character
                                             end
+                                        else
+                                            if Attack == 'Light' then
+                                                if STAND.Character:FindFirstChild('Combat') then
+                                                    STAND.Character:FindFirstChild('Combat'):Activate()
+                                                    STAND.Character:FindFirstChild('Combat'):Deactivate()
+                                                else
+                                                    STAND.Backpack:FindFirstChild('Combat').Parent = STAND.Character
+                                                end
+                                            end
                                         end
-                                    end
-                                end)
-                            until not Target or Target.Humanoid.Health < 0 or getgenv().TESTER == false
-    
-                            for i, v in pairs(game:GetService("Workspace").Ignored.Drop:GetDescendants()) do
-                                if v:IsA("ClickDetector") and v.Parent and v.Parent.Name:find("MoneyDrop") then
-                                    local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
-                                    local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
-                                    if (v.Parent.Position - HumanoidRootPart.Position).Magnitude <= 20 then
-                                        if STAND.Character:FindFirstChild('Combat') then
-                                        STAND.Character:FindFirstChild('Combat').Parent = STAND.Backpack
-                                        end
-                                        if pickupcash then
-                                            for i = 1, 15 do
-                                                wait()
-                                                fireclickdetector(v)
+                                    end)
+                                until not Target or Target.Humanoid.Health < 0 or getgenv().TESTER == false
+                
+                                for i, v in pairs(game:GetService("Workspace").Ignored.Drop:GetDescendants()) do
+                                    if v:IsA("ClickDetector") and v.Parent and v.Parent.Name:find("MoneyDrop") then
+                                        local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+                                        local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+                                        if (v.Parent.Position - HumanoidRootPart.Position).Magnitude <= 20 then
+                                            if STAND.Character:FindFirstChild('Combat') then
+                                            STAND.Character:FindFirstChild('Combat').Parent = STAND.Backpack
+                                            end
+                                            if pickupcash then
+                                                for i = 1, 15 do
+                                                    wait()
+                                                    fireclickdetector(v)
+                                                end
                                             end
                                         end
                                     end
                                 end
+                                
+                                wait(1)
                             end
-                            
-                            wait(1)
-                        end
-    
-                local annoying = {
-                    "JokeTheFool", "Sherosama", "Papa_Mbappe", "THEGRIM000", "Killerkdk2008", "stacey7a", "alexchrissy", "Br2avy", "Shozzify"
-                }
-    
-                function checkPlayer()
-                    for _, v in pairs(game:GetService("Players"):GetPlayers()) do
-                        if table.find(annoying, v.Name) then
-                            game.ReplicatedStorage.DefaultChatSystemChatEvents.MutePlayerRequest:FireServer(v)
+                
+                    local annoying = {
+                        "JokeTheFool", "Sherosama", "Papa_Mbappe", "THEGRIM000", "Killerkdk2008", "stacey7a", "alexchrissy", "Br2avy", "Shozzify"
+                    }
+                
+                    function checkPlayer()
+                        for _, v in pairs(game:GetService("Players"):GetPlayers()) do
+                            if table.find(annoying, v.Name) then
+                                game.ReplicatedStorage.DefaultChatSystemChatEvents.MutePlayerRequest:FireServer(v)
+                            end
                         end
                     end
-                end
-    
-                checkPlayer()
-                game:GetService("Players").PlayerAdded:Connect(checkPlayer)
+                
+                    checkPlayer()
+                    game:GetService("Players").PlayerAdded:Connect(checkPlayer)
     
     
         end)
