@@ -3381,7 +3381,7 @@ trun:Toggle(
                     toggle = false
                     _G.MARCO = game:GetService("RunService").heartbeat:Connect(function()
 
-                        game.Players.localPlayer.Character.HumanoidRootPart.CFrame = game.Players.localPlayer.Character.HumanoidRootPart.CFrame + game.Players.localPlayer.Character.Humanoid.MoveDirection * 2
+                        game.Players.localPlayer.Character.HumanoidRootPart.CFrame = game.Players.localPlayer.Character.HumanoidRootPart.CFrame + game.Players.localPlayer.Character.Humanoid.MoveDirection * .5
                         end)
                 elseif not toggle then
                     if _G.MARCO then _G.MARCO:Disconnect() end
@@ -3410,7 +3410,7 @@ trun:Toggle(
                     toggle = false
                     _G.MARCO = game:GetService("RunService").heartbeat:Connect(function()
 
-                        game.Players.localPlayer.Character.HumanoidRootPart.CFrame = game.Players.localPlayer.Character.HumanoidRootPart.CFrame + game.Players.localPlayer.Character.Humanoid.MoveDirection * 2
+                        game.Players.localPlayer.Character.HumanoidRootPart.CFrame = game.Players.localPlayer.Character.HumanoidRootPart.CFrame + game.Players.localPlayer.Character.Humanoid.MoveDirection * .5
                         end)
                 elseif not toggle then
                     if _G.MARCO then _G.MARCO:Disconnect() end
@@ -3476,73 +3476,15 @@ trun:Toggle(
     false,
     function(lock)
         if lock == true then
-            if _G.cons then
-                for _, v in pairs(_G.cons) do
-                    v:Disconnect()
-                end
-            
-                _G.cons = nil
-            end
-            
-            local rsrv = game:GetService("RunService")
-            local heartbeat = rsrv.Heartbeat
-            local renderstepped = rsrv.RenderStepped
-            
-            local lp = game.Players.LocalPlayer
-            local mouse = lp:GetMouse()
-            
-            local chr = lp.Character
-            local hum = chr.Humanoid
-            local root = hum.RootPart
-            
-            local Fastmoveing = false
-            
-            local visible_parts = {}
-            
-            for _, v in pairs(chr:GetDescendants()) do
-                if v:IsA("BasePart") and v.Transparency == 0 then
-                    visible_parts[#visible_parts + 1] = v
-                end
-            end
-            
-            local function ghost_parts()
-                for _, v in pairs(visible_parts) do
-                    v.Transparency = v.Transparency == 0 and 0.5 or 0
-                end
-            end
-            
-            local kdownv2 = mouse.KeyDown:Connect(function(key)
-                if key == "g" then
-                    Fastmoveing = not Fastmoveing
-                    ghost_parts()
-                end
+            if getgenv().loop then getgenv().loop:Disconnect() end
+            getgenv().loop = game:GetService("RunService").Heartbeat:Connect(function()
+            local currentvel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,2000), math.random(0,2000), math.random(0,2000))
+            game:GetService("RunService").RenderStepped:Wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = currentvel
             end)
-            
-            local loopv3 = heartbeat:Connect(function()
-                if Fastmoveing then
-                    local oldcf = root.CFrame
-            
-                    local newcf = oldcf * CFrame.new(math.random(-40,40), math.random(-20,70), math.random(-40,40))
-            
-                    hum.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
-                    root.CFrame = newcf
-            
-                    renderstepped:Wait()
-            
-                    hum.CameraOffset = oldcamoffset
-                    root.CFrame = oldcf
-                end
-            end)
-            Fastmoveing = true
-            _G.cons = {kdownv2, loopv3}
         else
-            if _G.cons then
-                for _, v in pairs(_G.cons) do
-                    v:Disconnect()
-                end
-            
-                _G.cons = nil
-            end
+            if getgenv().loop then getgenv().loop:Disconnect() end
         end
     end
 )
@@ -5959,7 +5901,6 @@ function checkpunch()
     end
     game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
     task.wait()
-    checkpunch()
     local annoying = {"JokeTheFool","Sherosama", "Papa_Mbaye", "AStrongMuscle", "streetren", "NikoSenpai", "WashedGarage", "iumu", "Benoxa", "Luutyy", "clubstar54", "givkitheth", "kywiexcx", "ATKDrizzy", "dtbbullet", "XavierWildYT", "RogueDaHoodKing", "paxxythecreator", "NatsuDBlaze", "AnqelicMar", "DrBlakMD", "DarkWhirlwind", "coreten", "LegacyCross", "Greed_Ocean"} -- you can add more players by doing {"Player1", "Player2"}
 
     game.Players.PlayerAdded:Connect(function(plr)
@@ -5990,7 +5931,6 @@ _G.Loopohoh = game.Players.LocalPlayer.CharacterAdded:connect(function()
     
     Antikillfordunmb()
     task.wait()
-    checkpunch()
     game.Players.LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.Visible = true
     
     
