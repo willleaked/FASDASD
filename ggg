@@ -6250,7 +6250,7 @@ end
 local BIGGASS = game.Players.LocalPlayer.Name
 if BIGGASS == "Gralew1234" or  BIGGASS == "2Faboutsd" or  BIGGASS == "wubxbeb"
 or BIGGASS == "Nanikaitun937"
-or BIGGASS == "Hpersonh2" then
+or BIGGASS == "NBKKFIE22" then
     if _G.SpaceKeybind then _G.SpaceKeybind:disconnect() end
 
     _G.SpaceKeybind = game:GetService("UserInputService").JumpRequest:Connect(function()
