@@ -7864,11 +7864,6 @@ function Stand(targetName)
         end)
         
         
-        
-        rs.Stepped:Connect(function()
-            if game.Players.LocalPlayer.PlayerGui.MainScreenGui.Crew.CrewFrame.Visible == true then
-                game.Players.LocalPlayer.PlayerGui.MainScreenGui.Crew.CrewFrame.Visible = false
-            end
           for i,v in pairs(STAND.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do
                 if     (v.Animation.AnimationId:match("rbxassetid://2788315673"))
                     or (v.Animation.AnimationId:match("rbxassetid://2788316350"))
