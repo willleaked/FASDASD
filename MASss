@@ -288,7 +288,6 @@ function CamLock()
         --      , getgenv().Target:FindFirstChild("Head"), Vector3.new(0,0,-1))
         --     wait(2)
         -- _G.isInvisibleshot = false
-            end
         elseif not processed and input.KeyCode == Enum.KeyCode.C then
         elseif not processed and input.KeyCode == Enum.KeyCode.Y then
         elseif not processed and input.KeyCode == Enum.KeyCode.V then
