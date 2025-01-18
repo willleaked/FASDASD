@@ -1,0 +1,512 @@
+function CamLock()
+    local aimlockKey = Enum.KeyCode.X
+    local aimlockEnabled = false
+    getgenv().DistanceA = 100
+    getgenv().Target = nil
+    local circle = nil
+    getgenv().randomDance = "71243990877913"
+    if _G.A21 then _G.A21:Disconnect() end
+    if _G.speed1r then _G.speed1r:Disconnect() end
+    if _G.A211 then _G.A211:Disconnect() end
+    if _G.spesed1 then _G.spesed1:Disconnect() end
+    if _G.speed31 then _G.speed31:Disconnect() end
+    if _G.AURASPAWN then _G.AURASPAWN:Disconnect() end
+    if _G.A1 then _G.A1:Disconnect() end
+    if _G.Hpbartrue then _G.Hpbartrue:Disconnect() end
+    TweenService = game:GetService("TweenService")
+    _G.isInvisibleshot = false
+    OWNER = game:GetService("Players").LocalPlayer
+    --//------------------------------------------------------------------------------------------\\--
+    local OriginalKeyUpValue = 0
+    function StopAudio()
+        game:GetService("ReplicatedStorage"):WaitForChild("MainEvent"):FireServer("BoomboxStop")
+    end
+    Sound = "Ringtone"
+        function Playingringthone(ID)
+        if Sound == "Ringtone" then
+            game:GetService("ReplicatedStorage").MainEvent:FireServer("RingTone",ID)
+            local Tool = nil
+            if OWNER.Character:FindFirstChildWhichIsA("Tool") then
+                Tool = OWNER.Character:FindFirstChildWhichIsA("Tool")
+                wait(.1)
+                OWNER.Character:FindFirstChildWhichIsA("Tool").Parent = OWNER.Backpack
+                OWNER.Backpack["[Phone]"].Parent = OWNER.Character
+                OWNER.Character["[Phone]"].Parent = OWNER.Backpack
+                if Tool ~= true then
+                    if Tool then
+                        Tool.Parent = OWNER.Character
+                    end
+                end
+            end
+        end
+    end
+    function AnimPlay(ID, SPEED, Time, Smoothing)
+        for i,v in pairs(game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do
+             if (v.Animation.AnimationId:match("rbxassetid://"..ID)) then
+                v:Stop(.5)
+            end
+        end
+        local animation = Instance.new('Animation', game:GetService("Workspace"))
+        animation.AnimationId = 'rbxassetid://'..ID
+        playing = game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(animation)
+        playing.Priority = Enum.AnimationPriority.Action4;
+        if tonumber(Smoothing) then
+            playing:Play(Smoothing) 
+        else
+            playing:Play() 
+        end
+        if tonumber(SPEED) then
+            playing:AdjustSpeed(SPEED)
+        else
+            playing:AdjustSpeed(1)
+        end
+        if tonumber(Time) then
+            playing.TimePosition = Time
+        end
+        animation:Destroy()
+    end    
+
+    function AnimStop(ID, SPEED)
+        for i,v in pairs(game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do
+            if (v.Animation.AnimationId:match("rbxassetid://"..ID)) then
+                if tonumber(SPEED) then
+                    v:Stop(SPEED)
+                else
+                    v:Stop()
+                end
+            end 
+        end
+    end
+
+    function Textet(message)
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "AimLock";
+            Text = message;
+            Icon = "rbxassetid://4400070053";
+            Duration = 5
+        })
+    end
+
+    Textet("Deer Initialized")
+    local mouse = game.Players.LocalPlayer:GetMouse()
+
+    function getClosestPlayerToMouse()
+        local closestPlayer = nil
+        local shortestDistance = math.huge
+        local localPlayer = game.Players.LocalPlayer
+
+        for _, player in pairs(game.Players:GetPlayers()) do
+            if player ~= localPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                local screenPoint = workspace.CurrentCamera:WorldToScreenPoint(player.Character.HumanoidRootPart.Position)
+                local mousePosition = Vector2.new(mouse.X, mouse.Y)
+                local distance = (Vector2.new(screenPoint.X, screenPoint.Y) - mousePosition).Magnitude
+
+                if distance < shortestDistance and player.Character.BodyEffects:FindFirstChild("K.O").Value == false then
+                    closestPlayer = player
+                    shortestDistance = distance
+                end
+            end
+        end
+
+        return closestPlayer
+    end
+    
+    _G.A1 = game:GetService("UserInputService").InputBegan:Connect(function(input, processed)
+        if not processed and input.KeyCode == aimlockKey then
+            aimlockEnabled = not aimlockEnabled
+            if aimlockEnabled then
+                local closestPlayer = getClosestPlayerToMouse()
+                if closestPlayer then
+                    getgenv().Target = closestPlayer.Character
+                    spawn(function()
+                        repeat
+                            task.wait()
+                            if getgenv().Target then
+                                getgenv().Target = closestPlayer.Character
+                                print(getgenv().Target)
+                            end
+                        until not aimlockEnabled or getgenv().Target == nil
+                    end)
+                    if getgenv().Target and getgenv().Target.BodyEffects:FindFirstChild("K.O").Value == false then
+                        local H_1 = Instance.new("Highlight")
+                        H_1.Parent = getgenv().Target
+                        H_1.FillColor = Color3.new(0, 0, 0)
+                        H_1.OutlineColor = Color3.new(255, 0, 0)
+                        H_1.FillTransparency = 1
+                        H_1.OutlineTransparency = .75
+                        local hpBar = Instance.new("BillboardGui")
+                        hpBar.Adornee = getgenv().Target:WaitForChild("Head")
+                        hpBar.Size = UDim2.new(0, 50, 0, 5)
+                        hpBar.Name = "MyHpBarBiAss"
+                        hpBar.StudsOffset = Vector3.new(0, 3, 0)
+                        hpBar.AlwaysOnTop = true
+                        hpBar.Parent = getgenv().Target
+                        hpBar.Enabled = false
+                        local healthBar = Instance.new("Frame")
+                        healthBar.Size = UDim2.new(1, 0, 1, 0)
+                        healthBar.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+                        healthBar.BorderSizePixel = 0
+                        healthBar.Parent = hpBar
+
+                        if _G.BB then _G.BB:Disconnect() end
+                        _G.BB = getgenv().Target:WaitForChild("Humanoid").HealthChanged:Connect(function()
+                            local healthPercentage = getgenv().Target.Humanoid.Health / getgenv().Target.Humanoid.MaxHealth
+                            healthBar.Size = UDim2.new(healthPercentage, 0, 1, 0)
+                            if healthPercentage <= 0.3 then
+                                healthBar.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+                            elseif healthPercentage <= 0.6 then
+                                healthBar.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+                            else
+                                healthBar.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+                            end
+                        end)
+                        local nameTag = Instance.new("BillboardGui")
+                        nameTag.Adornee = getgenv().Target:WaitForChild("Head")
+                        nameTag.Size = UDim2.new(0, 100, 0, 50)
+                        nameTag.Name = "GGGG"
+                        nameTag.StudsOffset = Vector3.new(0, -5, 0)
+                        nameTag.AlwaysOnTop = true
+                        nameTag.Parent = getgenv().Target
+    
+                        local nameLabel = Instance.new("TextLabel")
+                        nameLabel.Size = UDim2.new(1, 0, 1, 0)
+                        nameLabel.Text = getgenv().Target.Name
+                        nameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                        nameLabel.BackgroundTransparency = 1
+                        nameLabel.TextStrokeTransparency = 0.8
+                        nameLabel.TextSize = 14
+                        nameLabel.Parent = nameTag
+                        if _G.Hpbartrue then _G.Hpbartrue:Disconnect() end
+                        _G.Hpbartrue = game:GetService("RunService").Heartbeat:Connect(function()
+                            if getgenv().Target and getgenv().Target:FindFirstChild("HumanoidRootPart") then
+                                local distance = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - getgenv().Target.HumanoidRootPart.Position).Magnitude
+                                if distance < 20 then
+                                    hpBar.Enabled = true
+                                    hpBar.Size = UDim2.new(0, 100, 0, 10)
+                                elseif distance < 100 and distance >= 20 then
+                                    hpBar.Enabled = true
+                                    hpBar.Size = UDim2.new(0, 50, 0, 5)
+                                else
+                                    hpBar.Enabled = false
+                                end
+                            end
+                        end)
+                    end
+                    -- Textet("Deer CamLock Enabled")
+                    -- spawn(function()
+                    --     if Target then
+                    --     repeat wait() until getgenv().Target.BodyEffects:FindFirstChild("K.O").Value == true
+                    --     Playingringthone(5730840791)
+                    --     _G.isInvisibleshot = false
+                    --     aimlockEnabled = false
+                    --     for _, v in pairs(game.Players:GetPlayers()) do
+                    --         if v.Name ~= game.Players.LocalPlayer.Name then
+                    --             pcall(function()
+                    --                 if v.Character and v.Character:FindFirstChild("GGGG") then
+                    --                     v.Character.GGGG:Destroy()
+                    --                 end
+                    --             end)
+                    --         end
+                    --     end
+                    --     if _G.Hpbartrue then _G.Hpbartrue:Disconnect() end
+                    --     for _, v in pairs(game.Players:GetPlayers()) do
+                    --         if v.Name ~= game.Players.LocalPlayer.Name then
+                    --             pcall(function()
+                    --                 if v.Character and v.Character:FindFirstChild("Highlight") then
+                    --                     v.Character.Highlight:Destroy()
+                    --                 end
+                    --             end)
+                    --         end
+                    --     end
+                    --     for _, v in pairs(game.Players:GetPlayers()) do
+                    --         if v.Name ~= game.Players.LocalPlayer.Name then
+                    --             pcall(function()
+                    --                 if v.Character and v.Character:FindFirstChild("MyHpBarBiAss") then
+                    --                     v.Character.MyHpBarBiAss:Destroy()
+                    --                 end
+                    --             end)
+                    --         end
+                    --     end
+                    --     if getgenv().Target and getgenv().Target:FindFirstChild("Head") then
+                    --         local nameTag = getgenv().Target.Head:FindFirstChildOfClass("BillboardGui")
+                    --         if nameTag then
+                    --             nameTag:Destroy()
+                    --         end
+                    --     end
+                        
+                    --     Textet("Deer CamLock Disabled")
+                    --     getgenv().Target = nil
+                    --     end
+                    -- end)
+                else
+                    Textet("No Valid getgenv().Target Found")
+                    getgenv().Target = nil
+                    aimlockEnabled = false
+                    game:GetService('RunService'):UnbindFromRenderStep("Auto-CheckIngPlayer")
+                end
+            else
+                for _, v in pairs(game.Players:GetPlayers()) do
+                    if v.Name ~= game.Players.LocalPlayer.Name then
+                        pcall(function()
+                            if v.Character and v.Character:FindFirstChild("GGGG") then
+                                v.Character.GGGG:Destroy()
+                            end
+                        end)
+                    end
+                end
+                
+                for _, v in pairs(game.Players:GetPlayers()) do
+                    if v.Name ~= game.Players.LocalPlayer.Name then
+                        pcall(function()
+                            if v.Character and v.Character:FindFirstChild("Highlight") then
+                                v.Character.Highlight:Destroy()
+                            end
+                        end)
+                    end
+                end
+                for _, v in pairs(game.Players:GetPlayers()) do
+                    if v.Name ~= game.Players.LocalPlayer.Name then
+                        pcall(function()
+                            if v.Character and v.Character:FindFirstChild("MyHpBarBiAss") then
+                                v.Character.MyHpBarBiAss:Destroy()
+                            end
+                        end)
+                    end
+                end
+                Textet("Deer CamLock Disabled")
+                getgenv().Target = nil
+                aimlockEnabled = false
+                game:GetService('RunService'):UnbindFromRenderStep("Auto-CheckIngPlayer")
+            end
+        elseif not processed and input.KeyCode == Enum.KeyCode.Z then
+        --     if getgenv().Target then
+        --     _G.isInvisibleshot = true
+        --     game:GetService("ReplicatedStorage").MainEvent:FireServer("ShootGun",
+        --      game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool"):FindFirstChild("Handle")
+        --      , game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(0,10,0)
+        --      , getgenv().Target:FindFirstChild("Head").Position-Vector3.new(0,25,0)
+        --      , getgenv().Target:FindFirstChild("Head"), Vector3.new(0,0,-1))
+        --     wait(2)
+        -- _G.isInvisibleshot = false
+            end
+        elseif not processed and input.KeyCode == Enum.KeyCode.C then
+        elseif not processed and input.KeyCode == Enum.KeyCode.Y then
+        elseif not processed and input.KeyCode == Enum.KeyCode.V then
+            AnimStop(getgenv().randomDance)
+            local DANCEE = {
+                "18946844622",
+                "16572740012",
+                "85267023718407",
+                "15517864808",
+                "71243990877913",
+                "10714382225",
+                "135876612109535"
+            }
+            
+            getgenv().randomDance = DANCEE[math.random(1, #DANCEE)]
+            AnimPlay(getgenv().randomDance)
+            task.wait(.5)
+            repeat wait()
+                until game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.V) 
+                or game.Players.LocalPlayer.Character:WaitForChild("Humanoid").MoveDirection.magnitude > 0 
+                or game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air                                    
+            AnimStop(getgenv().randomDance)
+        elseif not processed and input.KeyCode == Enum.KeyCode.J then 
+        end
+    end)
+    -- local Shottt = false
+    -- getgenv().isPressing = false
+    -- _G.speed1r = game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
+    --     if not gameProcessed then
+    --         if input.KeyCode == Enum.KeyCode.Z then
+    --             Shottt = true
+    --             _G.isInvisibleshot = true
+    --             repeat wait()
+    --                 if getgenv().Target then
+    --                     game:GetService("ReplicatedStorage").MainEvent:FireServer("ShootGun",
+    --                      game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool"):FindFirstChild("Handle")
+    --                      , game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(0,10,0)
+    --                      , getgenv().Target:FindFirstChild("Head").Position-Vector3.new(0,25,0)
+    --                      , getgenv().Target:FindFirstChild("Head"), Vector3.new(0,0,-1))
+    --                 end
+    --             until not Shottt
+    --         end
+    --     end
+    -- end)
+    
+    -- _G.spesed1 = game:GetService("UserInputService").InputEnded:Connect(function(input)
+    --     if input.KeyCode == Enum.KeyCode.Z then
+    --         print("ZZ End")
+    --         Shottt = false
+    --         _G.isInvisibleshot = false
+    --     end
+    -- end)
+    
+
+    _G.speed31 = game:GetService("RunService").Heartbeat:Connect(function()    
+        local currentvel = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        local character = game.Players.LocalPlayer.Character
+        local humanoidRootPart = character.HumanoidRootPart
+        if getgenv().isPressing and game.Players.LocalPlayer.Character:WaitForChild("Humanoid").MoveDirection.magnitude > 0 then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(
+                game.Players.LocalPlayer.Character.Humanoid.MoveDirection.X * 150,
+                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity.Y,
+                game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Z * 150
+            )
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = 
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.Angles(0, math.rad(math.random(-90, 90)), 0)
+            game:GetService("RunService").RenderStepped:Wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentvel
+        end
+    end)
+
+    local Character = game.Players.LocalPlayer.Character
+
+    _G.A21 = game:GetService("RunService").Heartbeat:Connect(function()
+        if aimlockEnabled and getgenv().Target and getgenv().Target:FindFirstChild("HumanoidRootPart") then
+            local Body = {
+                "Head",
+            }
+            local camera = workspace.CurrentCamera
+            local tool = Character and Character:FindFirstChildWhichIsA("Tool")
+            if tool and tool:FindFirstChild("Ammo") and getgenv().Target.BodyEffects:FindFirstChild("K.O").Value == false and Character.BodyEffects:FindFirstChild("K.O").Value == false then
+                -- for i,v in pairs(Character.Humanoid:GetPlayingAnimationTracks()) do
+                --     if (v.Animation.AnimationId:match("rbxassetid://2809413000")) and not getgenv().isPressing then
+                --         camera.CFrame = CFrame.new(camera.CFrame.Position, getgenv().Target[Body[math.random(1,#Body)]].Position)
+                --     end
+                -- end
+                camera.CFrame = CFrame.new(camera.CFrame.Position, getgenv().Target[Body[math.random(1,#Body)]].Position)
+            end
+        end
+    end)
+    _G.A211 = game:GetService("RunService").Heartbeat:Connect(function()
+        if aimlockEnabled and getgenv().Target and getgenv().Target:FindFirstChild("HumanoidRootPart") then
+            if _G.isInvisibleshot then
+            local oldcf = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame
+            local taretfam = getgenv().Target.Humanoid.RootPart.CFrame
+            local oldcamoffset = game.Players.LocalPlayer.Character.Humanoid.CameraOffset
+            local newcf = taretfam * CFrame.new(15, -15, 15)
+            if (getgenv().Target.Humanoid.RootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > getgenv().DistanceA then
+            game.Players.LocalPlayer.Character.Humanoid.CameraOffset = newcf:ToObjectSpace(CFrame.new(oldcf.Position)).Position
+            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = newcf
+    
+            game:GetService("RunService").RenderStepped:Wait()
+    
+            game.Players.LocalPlayer.Character.Humanoid.CameraOffset = oldcamoffset
+            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = oldcf
+            end
+            end
+        end
+    end)
+end
+    for _, v in pairs(game.Players:GetPlayers()) do
+        if v.Name ~= game.Players.LocalPlayer.Name then
+            pcall(function()
+                if v.Character then
+                    if v.Character:FindFirstChild("Highlight") then
+                        v.Character.Highlight:Destroy()
+                    end
+                    if v.Character:FindFirstChild("MyHpBarBiAss") then
+                        v.Character.MyHpBarBiAss:Destroy()
+                    end
+                end
+            end)
+        end
+    end
+game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
+CamLock()
+
+_G.AURASPAWN = game.Players.LocalPlayer.CharacterAdded:connect(function() 
+    game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
+    local OWNER = game.Players.LocalPlayer
+    repeat wait() until game.Players.LocalPlayer.Backpack:FindFirstChild("[Mask]")
+    game.Players.LocalPlayer.Backpack:FindFirstChild("[Mask]").Parent = OWNER.Character
+    task.wait(.5)
+    game.Players.LocalPlayer.Character:FindFirstChild("[Mask]"):Activate()
+    game.Players.LocalPlayer.Character:FindFirstChild("[Mask]").Parent = OWNER.Backpack
+    CamLock()
+end)
+
+
+
+game:GetService('RunService'):UnbindFromRenderStep("Auto-Reload")
+game:GetService('RunService'):BindToRenderStep("Auto-Reload", 0 , function()
+    if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo") then
+            if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo").Value <= 0 then
+                game:GetService("ReplicatedStorage").MainEvent:FireServer("Reload", game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool")) 
+                wait(1)
+            end
+        end
+    end
+end)
+        function invisonyalt()
+                tool = Instance.new("Tool")
+                tool.RequiresHandle = false
+                tool.Name = "[invis]"
+                tool.Activated:Connect(function()
+                    if game.Players.LocalPlayer.Character.BodyEffects.Grabbed.Value ~= nil then
+                    wait(.2)
+                    for i , v in pairs(game.Players[tostring(game.Players.LocalPlayer.Character.BodyEffects.Grabbed.Value)].Character:GetChildren()) do
+                        if v:IsA("MeshPart") then
+                            v.Parent.LowerTorso.Position = Vector3.new(0,-1200,0)
+                        end
+                    end
+                    end
+                end)
+                tool.Parent = game.Players.LocalPlayer.Backpack
+            end;
+            if OWNER.Character:FindFirstChild("[invis]") or OWNER.Backpack:FindFirstChild("[invis]") then
+            else
+            invisonyalt()
+            end
+game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 9e9
+if game.Players.LocalPlayer.Backpack:FindFirstChild("[Mask]") then
+local surg = game.Players.LocalPlayer.Backpack:FindFirstChild("[Mask]")
+surg.Parent = game.Players.LocalPlayer.Character
+local New = game.Players.LocalPlayer.Character:FindFirstChild("[Mask]")
+New:Activate()
+New.Parent = game.Players.LocalPlayer.Backpack
+end
+
+local function onCharacterAdded(character)
+    wait(1)
+    
+    local humanoid = character:WaitForChild("Humanoid")
+    
+    for _, v in ipairs(humanoid:GetPlayingAnimationTracks()) do
+        v:Stop()
+    end
+    
+    local animate = character:WaitForChild("Animate")
+    
+    local function setAnimation(animation, animationId)
+        if typeof(animation) == "Instance" and animation:IsA("Animation") then
+            animation.AnimationId = animationId
+        else
+            warn("Failed to set animation:", animationId)
+        end
+    end
+
+setAnimation(animate.idle.Animation1, "http://www.roblox.com/asset/?id=10921301576")
+setAnimation(animate.idle.Animation1, "http://www.roblox.com/asset/?id=10921301576")
+setAnimation(animate.idle.Animation2, "http://www.roblox.com/asset/?id=10921302207")
+setAnimation(animate.walk.WalkAnim, "http://www.roblox.com/asset/?id=616168032")
+setAnimation(animate.run.RunAnim, "http://www.roblox.com/asset/?id=616163682")
+setAnimation(animate.jump.JumpAnim, "http://www.roblox.com/asset/?id=616161997")
+setAnimation(animate.climb.ClimbAnim, "http://www.roblox.com/asset/?id=616156119")
+setAnimation(animate.fall.FallAnim, "http://www.roblox.com/asset/?id=616157476")
+end
+
+game.Players.LocalPlayer.CharacterAdded:Connect(onCharacterAdded)
+
+if game.Players.LocalPlayer.Character then
+    onCharacterAdded(game.Players.LocalPlayer.Character)
+end 
+
+    game:GetService('RunService'):UnbindFromRenderStep("anti-stomp")
+    game:GetService('RunService'):BindToRenderStep("anti-stomp", 0 , function()
+    if game.Players.LocalPlayer.Character.BodyEffects["K.O"].Value == true and getgenv().ANTIstomp then
+    game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Dead)
+    end
+    end)
