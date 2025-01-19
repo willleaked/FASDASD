@@ -1,12 +1,17 @@
 function CamLock()
     local aimlockKey = Enum.KeyCode.X
     local aimlockEnabled = false
-    getgenv().DistanceA = 80
+    local delta = 0
+    local StrafeSpeed = 2
+    local Actual_Prediction = 0.4
+    getgenv().DistanceA = 182
     getgenv().Target = nil
     local circle = nil
     getgenv().randomDance = "71243990877913"
     if _G.A21 then _G.A21:Disconnect() end
     if _G.speed1r then _G.speed1r:Disconnect() end
+    if _G.speed1r1 then _G.speed1r1:Disconnect() end
+    if _G.spesed11 then _G.spesed11:Disconnect() end
     if _G.A211 then _G.A211:Disconnect() end
     if _G.spesed1 then _G.spesed1:Disconnect() end
     if _G.speed31 then _G.speed31:Disconnect() end
@@ -16,6 +21,13 @@ function CamLock()
     TweenService = game:GetService("TweenService")
     _G.isInvisibleshot = false
     OWNER = game:GetService("Players").LocalPlayer
+    function getRoot(v) return v.Character:FindFirstChild("HumanoidRootPart") end
+    function getTorso(v) return v.Character:FindFirstChild("UpperTorso") end
+    function getHumanoid(v) return v.Character:FindFirstChildOfClass("Humanoid") end
+    function KO(v) return v.Character:FindFirstChild("BodyEffects"):FindFirstChild("K.O") end
+    function Dead(v) return v.Character:FindFirstChild("BodyEffects"):FindFirstChild("Dead") end
+    function Attacking(v) return v.Character:FindFirstChild("BodyEffects"):FindFirstChild("Attacking") end
+
     --//------------------------------------------------------------------------------------------\\--
     local OriginalKeyUpValue = 0
     function StopAudio()
@@ -118,7 +130,8 @@ local lockingAss = false
 local RigIdle = nil
 local WSpped = 0 
 local LeftSpeed = 0
-local UpSpeed = 0    function AnimPlay(ID, SPEED, Time, Smoothing)
+local UpSpeed = 0    
+    function AnimPlay(ID, SPEED, Time, Smoothing)
         for i,v in pairs(game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):GetPlayingAnimationTracks()) do
              if (v.Animation.AnimationId:match("rbxassetid://"..ID)) then
              v:Stop(.5)
@@ -155,119 +168,20 @@ local UpSpeed = 0    function AnimPlay(ID, SPEED, Time, Smoothing)
             end 
         end
     end
-
-
-
-    if not game.ReplicatedStorage.ClientAnimations:FindFirstChild("Walk") and not game.ReplicatedStorage.ClientAnimations:FindFirstChild("Idle") then
-        local WalkAnimation = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
-        WalkAnimation.AnimationId = "rbxassetid://10921261968"
-        WalkAnimation.Name = "Walk"
-        local Idle = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
-        Idle.AnimationId = "rbxassetid://10921301576"
-        Idle.Name = "Idle"
-    end
-
-    function ModelCharacter()
-
-        if workspace:FindFirstChild(OWNER.Name.."StringKOD") then
-            game:GetService("RunService"):UnbindFromRenderStep("Invisible")
-            IsInvisible = false
-            workspace.Camera.CameraSubject =  OWNER.Character.Humanoid
-            OWNER.Character.HumanoidRootPart.CFrame = workspace:FindFirstChild(OWNER.Name.."StringKOD").Idaro.HumanoidRootPart.CFrame *CFrame.new(0,10,0)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.zero
-            workspace:FindFirstChild(OWNER.Name.."StringKOD"):Destroy()
-            game.Players.LocalPlayer.Character.Humanoid.Jump = true   
-            for i = 1, 30 do
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.zero
-                OWNER.Character.HumanoidRootPart.CFrame = CFrame.new(OWNER.Character.HumanoidRootPart.Position)*CFrame.new(0,1,0)
-                wait()
-            end            
-        else
-                IsInvisible = true
-                local MODEL = Instance.new("Model", workspace)
-                MODEL.Name = OWNER.Name.."StringKOD"
-                for i, v in pairs(OWNER.Character:GetChildren()) do 
-                    if (v:IsA("BasePart")  or v:IsA("MeshPart")) and v.Parent:FindFirstChildOfClass("Humanoid") and v.Name ~= "HumanoidRootPart" then
-                        local Part = v:Clone()
-                        Part.Parent = MODEL
-                        Part.Name = v.Name
-                        Part.Material = Enum.Material.ForceField
-                        Part.CFrame = v.CFrame
-                        Part.Transparency = 0.5
-                        Part.Color = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-                        Part.CanCollide = false
-                        Part.Anchored = true
-                        for i, v  in pairs(Part:GetChildren()) do 
-                            if v.ClassName ~= "SpecialMesh" then
-                                v:Destroy()
-                            end
-                        end
-                    end
-                end
-                local NewCharacter = game:GetObjects("rbxassetid://6547055500")[1]
-                NewCharacter.Parent = MODEL
-                NewCharacter.Name = "Idaro"
-                NewCharacter.Humanoid.WalkSpeed = myspeed
-                SaveLocation = OWNER.Character.HumanoidRootPart.Position + Vector3.new(0, 1, 0)
-                NewCharacter.HumanoidRootPart.CFrame = CFrame.new(SaveLocation)                
-                for i,v in pairs(NewCharacter:GetDescendants()) do
-                    if v:IsA("BasePart") or v:IsA("MeshPart") or v:IsA("Part") then
-                        v.Color = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-                        v.Material = Enum.Material.ForceField
-                    end
-                end
-                workspace.Camera.CameraSubject = NewCharacter.Humanoid
-                RigIdle = NewCharacter:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Idle)
-                RigIdle.Looped = true
-                RigIdle.Priority = Enum.AnimationPriority.Action
-                RigWalk = NewCharacter:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Walk)
-                RigWalk.Looped = true
-                RigWalk.Priority = Enum.AnimationPriority.Action
-                RigIdle:Play()
-                game:GetService("RunService"):BindToRenderStep("Invisible",-1 ,function()
-                    workspace:FindFirstChild(OWNER.Name.."StringKOD"):FindFirstChild("Idaro").Humanoid:Move(Vector3.new(LeftSpeed, UpSpeed, WSpped), true)
-                end)
-            end
-    end
-    function Idle() if RigIdle and RigWalk.IsPlaying and WSpped == 0 and LeftSpeed == 0 and UpSpeed == 0 then RigIdle:Play(.5)RigWalk:Stop(.5)end end
-    function Walk() if RigWalk and RigIdle.IsPlaying then RigIdle:Stop() RigWalk:Play()end end
-    if _G.KeyDownConnection then _G.KeyDownConnection:Disconnect() end
-    _G.KeyDownConnection = OWNER:GetMouse().KeyDown:Connect(function(KeyDownXD)
-        if workspace:FindFirstChild(OWNER.Name.."StringKOD") then
-            if KeyDownXD == "w" then
-                WSpped = -1 Walk()
-            elseif KeyDownXD == "a" then
-                LeftSpeed = -1 Walk()
-            elseif KeyDownXD == "d" then
-                LeftSpeed = 1 Walk()
-            elseif KeyDownXD == "s" then
-                WSpped = 1 Walk()
-            end
-        end
-    end)
-    if _G.KeyUpConnection then _G.KeyUpConnection:Disconnect() end
-    _G.KeyUpConnection = OWNER:GetMouse().KeyUp:Connect(function(KeyDownXD)
-        if KeyDownXD == "w" then
-            WSpped = 0 Idle()
-        elseif KeyDownXD == "a" then
-            LeftSpeed = 0 Idle()
-        elseif KeyDownXD == "d" then
-            LeftSpeed = -0 Idle()
-        elseif KeyDownXD == "s" then
-            WSpped = 0 Idle()
-        end
-    end)
     _G.A1 = game:GetService("UserInputService").InputBegan:Connect(function(input, processed)
         if not processed and input.KeyCode == aimlockKey then
             aimlockEnabled = not aimlockEnabled
             if aimlockEnabled then
+                getgenv().Target = nil
                 local closestPlayer = getClosestPlayerToMouse()
                 if closestPlayer then
                     getgenv().Target = closestPlayer.Character
+                    getgenv().Target2 = closestPlayer
                     spawn(function()
                         repeat
                             task.wait()
                             if getgenv().Target then
+                                getgenv().Target2 = closestPlayer
                                 getgenv().Target = closestPlayer.Character
                             end
                         until not aimlockEnabled or getgenv().Target == nil
@@ -387,6 +301,7 @@ local UpSpeed = 0    function AnimPlay(ID, SPEED, Time, Smoothing)
                     Textet("No Valid getgenv().Target Found")
                     getgenv().Target = nil
                     aimlockEnabled = false
+                    getgenv().Target2 = nil
                     game:GetService('RunService'):UnbindFromRenderStep("Auto-CheckIngPlayer")
                 end
             else
@@ -420,6 +335,7 @@ local UpSpeed = 0    function AnimPlay(ID, SPEED, Time, Smoothing)
                 end
                 Textet("Deer CamLock Disabled")
                 getgenv().Target = nil
+                getgenv().Target2 = nil
                 aimlockEnabled = false
                 game:GetService('RunService'):UnbindFromRenderStep("Auto-CheckIngPlayer")
             end
@@ -453,7 +369,7 @@ local UpSpeed = 0    function AnimPlay(ID, SPEED, Time, Smoothing)
                 or game.Players.LocalPlayer.Character:WaitForChild("Humanoid").MoveDirection.magnitude > 0 
                 or game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').FloorMaterial == Enum.Material.Air                                    
             AnimStop(getgenv().randomDance)
-        elseif not processed and input.KeyCode == Enum.KeyCode.J then 
+        elseif not processed and input.KeyCode == Enum.KeyCode.J then
         end
     end)
     local Shottt = false
@@ -461,9 +377,18 @@ local UpSpeed = 0    function AnimPlay(ID, SPEED, Time, Smoothing)
     _G.speed1r = game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
         if not gameProcessed then
             if input.KeyCode == Enum.KeyCode.Z then
+                getgenv().OlDFam = OWNER.Character.HumanoidRootPart.Position
                 if getgenv().Target then
                 Shottt = true
-                ModelCharacter()
+                spawn(function()
+                    repeat wait()
+                        until Shottt == false
+                        workspace.CurrentCamera.CameraSubject = OWNER.Character.Humanoid
+                        if (getgenv().Target.Humanoid.RootPart.Position - getgenv().OlDFam).Magnitude > getgenv().DistanceA then
+                            OWNER.Character.HumanoidRootPart.CFrame = CFrame.new(getgenv().OlDFam)
+                        else
+                        end
+                end)
                 end
                 repeat wait()
                     if getgenv().Target then
@@ -483,12 +408,22 @@ local UpSpeed = 0    function AnimPlay(ID, SPEED, Time, Smoothing)
             if getgenv().Target then
             print("ZZ End")
             Shottt = false
-            ModelCharacter()
             end
         end
     end)
     
+    getgenv().isPressing = false
+    _G.speed1r1 = game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
+        if not gameProcessed then
+            if  input.KeyCode == Enum.KeyCode.Q then
+            end
+        end
+    end)
 
+    _G.spesed11 = game:GetService("UserInputService").InputEnded:Connect(function(input)
+        if input.KeyCode == Enum.KeyCode.Q then
+        end
+    end)
     _G.speed31 = game:GetService("RunService").Heartbeat:Connect(function()    
         local currentvel = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
         local character = game.Players.LocalPlayer.Character
@@ -521,20 +456,21 @@ local UpSpeed = 0    function AnimPlay(ID, SPEED, Time, Smoothing)
                 --         camera.CFrame = CFrame.new(camera.CFrame.Position, getgenv().Target[Body[math.random(1,#Body)]].Position)
                 --     end
                 -- end
-                camera.CFrame = CFrame.new(camera.CFrame.Position, getgenv().Target[Body[math.random(1,#Body)]].Position)
+                if not Shottt then
+                    camera.CFrame = CFrame.new(camera.CFrame.Position, getgenv().Target[Body[math.random(1,#Body)]].Position)
+                end
             end
             if Shottt then
-                if (getgenv().Target.Humanoid.RootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > getgenv().DistanceA then
-                if getgenv().Target.BodyEffects:FindFirstChild("K.O").Value == false then
-                OWNER.Character.HumanoidRootPart.CFrame = CFrame.new(getgenv().Target.HumanoidRootPart.Position + Vector3.new(math.random(-10,10),math.random(-10,10),math.random(-10,10)) + (getgenv().Target.Humanoid.MoveDirection*0.40*getgenv().Target.Humanoid.WalkSpeed))
-                else
-                OWNER.Character.HumanoidRootPart.CFrame = workspace:FindFirstChild(OWNER.Name.."StringKOD").Idaro.HumanoidRootPart.CFrame *CFrame.new(0,0,0)
-                end
+                if (getgenv().Target.Humanoid.RootPart.Position - getgenv().OlDFam).Magnitude > getgenv().DistanceA then
+                    OWNER.Character.HumanoidRootPart.CFrame = CFrame.new(getgenv().Target.HumanoidRootPart.Position + Vector3.new(math.random(-10,10),math.random(-10,10),math.random(-10,10)) + (getgenv().Target.Humanoid.MoveDirection*0.40*getgenv().Target.Humanoid.WalkSpeed))
+                    workspace.CurrentCamera.CameraSubject = getgenv().Target.Humanoid
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(math.random(0,0),math.random(0,0), math.random(0,0))
                 end
             end
         end
     end)
 end
+--Code.Z
     for _, v in pairs(game.Players:GetPlayers()) do
         if v.Name ~= game.Players.LocalPlayer.Name then
             pcall(function()
