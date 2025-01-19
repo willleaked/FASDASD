@@ -526,7 +526,7 @@ local UpSpeed = 0    function AnimPlay(ID, SPEED, Time, Smoothing)
             if Shottt then
                 if (getgenv().Target.Humanoid.RootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > getgenv().DistanceA then
                 if getgenv().Target.BodyEffects:FindFirstChild("K.O").Value == false then
-                OWNER.Character.HumanoidRootPart.CFrame = CFrame.new(getgenv().Target[Body[math.random(1,#Body)]].Position)*CFrame.new(0,-8,0)
+                OWNER.Character.HumanoidRootPart.CFrame = CFrame.new(getgenv().Target.HumanoidRootPart.Position + Vector3.new(math.random(-10,10),math.random(-10,10),math.random(-10,10)) + (getgenv().Target.Humanoid.MoveDirection*0.40*getgenv().Target.Humanoid.WalkSpeed))
                 else
                 OWNER.Character.HumanoidRootPart.CFrame = workspace:FindFirstChild(OWNER.Name.."StringKOD").Idaro.HumanoidRootPart.CFrame *CFrame.new(0,0,0)
                 end
