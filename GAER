@@ -1,3 +1,4 @@
+if game:GetService("Players").LocalPlayer.Name ~= "Raphaelluvpapa" then return end
 local PLAYERS = game:GetService("Players")
 local OWNER = PLAYERS.LocalPlayer
 local GrabbedCharacter
