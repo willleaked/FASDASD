@@ -1,4 +1,6 @@
-if game:GetService("Players").LocalPlayer.Name ~= "Raphaelluvpapa" then return end
+if game:GetService("Players").LocalPlayer.Name ~= "Raphaelluvpapa"
+or game:GetService("Players").LocalPlayer.Name ~= "dahoodbotmoney18"
+or game:GetService("Players").LocalPlayer.Name ~= "dahoodbotmoney24" then return end
 print("Run Script เเล้ว")
 local PLAYERS = game:GetService("Players")
 local OWNER = PLAYERS.LocalPlayer
