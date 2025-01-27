@@ -1,7 +1,6 @@
-if game:GetService("Players").LocalPlayer.Name ~= "Raphaelluvpapa"
-or game:GetService("Players").LocalPlayer.Name ~= "dahoodbotmoney18"
-or game:GetService("Players").LocalPlayer.Name ~= "dahoodbotmoney24" then return end
-print("Run Script เเล้ว")
+BuyEr = game:GetService("Players").LocalPlayer.Name
+if BuyEr == "Raphaelluvpapa" or BuyEr == "dahoodbotmoney18" or BuyEr == "dahoodbotmoney24" then
+print("Run Script")
 local PLAYERS = game:GetService("Players")
 local OWNER = PLAYERS.LocalPlayer
 local GrabbedCharacter
@@ -1047,3 +1046,4 @@ getgenv().CharacterAddedv3 =  OWNER.CharacterAdded:connect(function()
     
 end)
 ToolSSs()
+end
