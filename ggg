@@ -5657,7 +5657,7 @@ win:Server("Main", "http://www.roblox.com/asset/?id=6031075938")
 
 
 --------------------------------------------------------------------------------------------------------------------  
-local FINOBE_KEYBIND = "o"
+local FINOBE_KEYBIND = "ooo"
 getgenv().Finobe1 = false 
 local NewCFrame = CFrame.new
 local LocalFinobe = game.Players.LocalPlayer
