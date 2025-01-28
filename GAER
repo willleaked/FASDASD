@@ -1,5 +1,9 @@
 BuyEr = game:GetService("Players").LocalPlayer.Name
-if BuyEr == "Raphaelluvpapa" or BuyEr == "dahoodbotmoney18" or BuyEr == "dahoodbotmoney24" or BuyEr == "GAMMARROBOX" then
+if BuyEr == "Raphaelluvpapa" 
+or BuyEr == "dahoodbotmoney18" 
+or BuyEr == "SanXDZaaa" 
+or BuyEr == "dahoodbotmoney24" 
+or BuyEr == "GAMMARROBOX" then
 print("Run Script")
 local PLAYERS = game:GetService("Players")
 local OWNER = PLAYERS.LocalPlayer
